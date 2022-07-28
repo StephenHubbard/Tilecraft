@@ -40,7 +40,7 @@ public class CameraController : MonoBehaviour
 
     private void HandleZoom()
     {
-        float zoomIncreaseAmount = 1f;
+        float zoomIncreaseAmount = 2f;
         float currentZoom = cinemachineVirtualCamera.m_Lens.OrthographicSize;
         float targetZoom = currentZoom;
         targetZoom += InputManager.Instance.GetCameraZoomAmount() * zoomIncreaseAmount;
