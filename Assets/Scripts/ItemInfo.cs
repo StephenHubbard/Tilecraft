@@ -9,6 +9,17 @@ public class ItemInfo : ScriptableObject
     public int coinValue;
     public GameObject draggableItemPrefab;
     public GameObject onTilePrefab;
-    public TileInfo tileInfo;
+    public TileInfo[] tileInfoValidLocations;
+
+    public bool checkValidTiles(TileInfo tileInfo) { 
+        foreach (var tile in tileInfoValidLocations)
+        {
+            if (tile.name == tileInfo.name) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 
 }

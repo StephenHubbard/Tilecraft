@@ -7,7 +7,7 @@ public class DraggableItem : MonoBehaviour
     [SerializeField] public ItemInfo itemInfo;
     
     private GameObject tileHighlight;
-    private Tile currentTile;
+    public Tile currentTile;
 
     private void Awake() {
         tileHighlight = GameObject.Find("Highlighted Border");
@@ -41,12 +41,22 @@ public class DraggableItem : MonoBehaviour
     }
 
     public void PlaceItemOnTile() {
-        if (currentTile != null && !currentTile.isOccupied && itemInfo.tileInfo == currentTile.GetComponent<Tile>().tileInfo) {
+        if (itemInfo.name == "Worker") {
+            if (currentTile.PlaceWorker(itemInfo.onTilePrefab)) {
+                Destroy(gameObject);
+                return;
+            } else {
+                print("no worker spots available");
+            }
+        }
+
+        if (currentTile != null && !currentTile.isOccupied && itemInfo.checkValidTiles(currentTile.GetComponent<Tile>().tileInfo)) {
             GameObject thisItem = Instantiate(itemInfo.onTilePrefab, currentTile.transform.position, transform.rotation);
             thisItem.transform.parent = currentTile.transform;
             currentTile.isOccupied = true;
-            currentTile.UpdateCurrentPlaceItem(itemInfo, thisItem);
+            currentTile.UpdateCurrentPlacedItem(itemInfo, thisItem);
             Destroy(gameObject);
+            return;
         }
     }
 

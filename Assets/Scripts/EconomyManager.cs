@@ -7,7 +7,7 @@ public class EconomyManager : MonoBehaviour
 {
     [SerializeField] private TMP_Text coinText;
     [SerializeField] private int startingCoins = 3;
-    [SerializeField] private int currentCoins;
+    [SerializeField] public int currentCoins;
 
     private void Start() {
         currentCoins = startingCoins;
@@ -19,6 +19,10 @@ public class EconomyManager : MonoBehaviour
 
     public void SellItem(int amount) {
         currentCoins += amount;
+    }
+
+    public void BuyPack(int amount) {
+        currentCoins -= amount;
     }
 
     

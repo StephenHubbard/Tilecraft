@@ -39,12 +39,16 @@ public class DragAndDrop : MonoBehaviour
         if (hit && isActive)
         {
             draggableItem.setActiveTile(hit.transform.gameObject);
+        } else {
+            draggableItem.tileHighlightOff();
         }
     }
 
     private void OnMouseUp() {
-        draggableItem.PlaceItemOnTile();
-        draggableItem.tileHighlightOff();
+        if (draggableItem.currentTile) {
+            draggableItem.PlaceItemOnTile();
+        }
+        
         isActive = false;
 
         if (sellButton.overSellBox) {

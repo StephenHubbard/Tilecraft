@@ -16,4 +16,5 @@ MonoBehaviour:
   coinValue: 1
   draggableItemPrefab: {fileID: 4812397909494241834, guid: 8adc13cb9cb860341a2695c0ba62d8d4, type: 3}
   onTilePrefab: {fileID: 994099794024727751, guid: f7e0b55a1bed8ac4bb275d8ece821371, type: 3}
-  tileInfo: {fileID: 11400000, guid: e492befd9aee1b645b08c2b5e24460b2, type: 2}
+  tileInfoValidLocations:
+  - {fileID: 11400000, guid: e492befd9aee1b645b08c2b5e24460b2, type: 2}
