@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 9047470564281639635}
   - component: {fileID: 2948633767903344407}
-  - component: {fileID: 4709750432052260178}
   m_Layer: 7
   m_Name: Stone Tile
   m_TagString: Untagged
@@ -31,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2948633767903344407
 SpriteRenderer:
@@ -85,16 +84,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4709750432052260178
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7705127686124994547}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c00dfbc39f4fee4eaba42cb4675752e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tileInfo: {fileID: 0}

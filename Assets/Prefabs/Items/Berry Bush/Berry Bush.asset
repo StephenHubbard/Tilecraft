@@ -18,3 +18,5 @@ MonoBehaviour:
   onTilePrefab: {fileID: 994099794024727751, guid: f7e0b55a1bed8ac4bb275d8ece821371, type: 3}
   tileInfoValidLocations:
   - {fileID: 11400000, guid: e492befd9aee1b645b08c2b5e24460b2, type: 2}
+  recipeInfo: {fileID: 11400000, guid: aa1aef896831fb64cae6720c4c90b8c4, type: 2}
+  amountRecipeCanCreate: 3

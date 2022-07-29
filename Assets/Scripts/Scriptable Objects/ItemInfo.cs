@@ -10,6 +10,8 @@ public class ItemInfo : ScriptableObject
     public GameObject draggableItemPrefab;
     public GameObject onTilePrefab;
     public TileInfo[] tileInfoValidLocations;
+    public RecipeInfo recipeInfo;
+    public int amountRecipeCanCreate = 1;
 
     public bool checkValidTiles(TileInfo tileInfo) { 
         foreach (var tile in tileInfoValidLocations)

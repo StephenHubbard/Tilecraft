@@ -2617,6 +2617,7 @@ MonoBehaviour:
   - {fileID: 4812397909494241834, guid: 8adc13cb9cb860341a2695c0ba62d8d4, type: 3}
   - {fileID: 4812397909494241834, guid: 560ab673ad8be8a448b090d628cc165a, type: 3}
   - {fileID: 4812397909494241834, guid: 4fea6c41e7173da44bdb63fc54b8a34a, type: 3}
+  - {fileID: 4812397909494241834, guid: 9bd14624e2e320b49ab89d1e67511cb4, type: 3}
   amountOfItemsToSpawn: 4
 --- !u!1 &1957499777
 GameObject:

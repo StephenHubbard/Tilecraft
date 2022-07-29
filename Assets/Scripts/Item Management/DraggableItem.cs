@@ -43,6 +43,8 @@ public class DraggableItem : MonoBehaviour
     public void PlaceItemOnTile() {
         if (itemInfo.name == "Worker") {
             if (currentTile.PlaceWorker(itemInfo.onTilePrefab)) {
+                currentTile.GetComponent<CraftingManager>().CheckCanStartCrafting();
+                currentTile.GetComponent<CraftingManager>().IncreaseWorkerCount();
                 Destroy(gameObject);
                 return;
             } else {
@@ -50,14 +52,17 @@ public class DraggableItem : MonoBehaviour
             }
         }
 
-        if (currentTile != null && !currentTile.isOccupied && itemInfo.checkValidTiles(currentTile.GetComponent<Tile>().tileInfo)) {
+        if (currentTile != null && !currentTile.isOccupiedWithItem && itemInfo.checkValidTiles(currentTile.GetComponent<Tile>().tileInfo)) {
             GameObject thisItem = Instantiate(itemInfo.onTilePrefab, currentTile.transform.position, transform.rotation);
             thisItem.transform.parent = currentTile.transform;
-            currentTile.isOccupied = true;
+            currentTile.isOccupiedWithItem = true;
             currentTile.UpdateCurrentPlacedItem(itemInfo, thisItem);
+            currentTile.GetComponent<CraftingManager>().UpdateAmountLeftToCraft(itemInfo);
+            currentTile.GetComponent<CraftingManager>().CheckCanStartCrafting();
             Destroy(gameObject);
             return;
         }
+
     }
 
 }

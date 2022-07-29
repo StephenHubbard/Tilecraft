@@ -12,21 +12,24 @@ public class Tile : MonoBehaviour
 
     private GameObject tileHighlight;
 
-    public bool isOccupied = false;
-    public bool hasWorkers = false;
+    public bool isOccupiedWithItem = false;
+    public bool isOccupiedWithWorkers = false;
+
+    private CraftingManager craftingManager;
 
     private void Awake() {
+        craftingManager = GetComponent<CraftingManager>();
         tileHighlight = GameObject.Find("Highlighted Border");
-        
     }
 
     public void UpdateCurrentPlacedItem(ItemInfo itemInfo, GameObject thisPlacedItem) {
         this.itemInfo = itemInfo;
         currentPlacedItem = thisPlacedItem;
+        currentPlacedItem.GetComponent<PlacedItem>().CheckForValidRecipe();
     }
 
     private void OnMouseOver() {
-        if ((isOccupied || hasWorkers) && Input.GetMouseButtonDown(1)) {
+        if ((isOccupiedWithItem || isOccupiedWithWorkers) && Input.GetMouseButtonDown(1)) {
             PluckItemsOffTile();
         }
 
@@ -45,7 +48,8 @@ public class Tile : MonoBehaviour
             if (worker.childCount == 0) {
                 GameObject newWorker = Instantiate(workerPrefab, worker.position, transform.rotation);
                 newWorker.transform.parent = worker;
-                hasWorkers = true;
+                isOccupiedWithWorkers = true;
+                GetComponent<CraftingManager>().hasWorkers = true;
                 return true;
             }
         }
@@ -71,7 +75,16 @@ public class Tile : MonoBehaviour
             }
         }
 
-        isOccupied = false;
-        hasWorkers = false;
+        isOccupiedWithItem = false;
+        isOccupiedWithWorkers = false;
+
+        craftingManager.DoneCrafting();
+        craftingManager.WorkerCountToZero();
+    }
+
+    public void DoneCraftingDestroyItem() {
+        isOccupiedWithItem = false;
+
+        Destroy(currentPlacedItem);
     }
 }

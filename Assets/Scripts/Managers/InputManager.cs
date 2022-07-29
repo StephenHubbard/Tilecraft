@@ -22,6 +22,12 @@ public class InputManager : MonoBehaviour
         return Input.mousePosition;
     }
 
+    private void Update() {
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            Application.Quit();
+        }
+    }
+
     public Vector2 GetCameraMoveVector()
     {
         Vector2 inputMoveDir = new Vector2(0, 0);

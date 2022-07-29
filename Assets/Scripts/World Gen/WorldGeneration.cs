@@ -9,7 +9,6 @@ public class WorldGeneration : MonoBehaviour
     [SerializeField] private int gridHeight;
     [SerializeField] private float cellSize;
     [SerializeField] private GameObject tilePrefab;
-    // [SerializeField] private GameObject[] tileTypePrefabs;
     [SerializeField] private TileInfo[] tileInfoScriptableObjects;
     [SerializeField] private Transform tileParent;
     
@@ -23,7 +22,6 @@ public class WorldGeneration : MonoBehaviour
 
         GenerateTiles();
     }
-
 
     private void GenerateTiles() {
         for (int x = 0; x < grid.gridArray.GetLength(0); x ++) {
