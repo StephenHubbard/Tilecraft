@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DraggableItem : MonoBehaviour
 {
-    [SerializeField] private ItemInfo itemInfo;
+    [SerializeField] public ItemInfo itemInfo;
     
     private GameObject tileHighlight;
     private Tile currentTile;
@@ -24,10 +24,8 @@ public class DraggableItem : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay2D(Collider2D other) {
-        if (other.gameObject.GetComponent<Tile>() && GetComponent<DragAndDrop>().isActive) {
-            currentTile = other.gameObject.GetComponent<Tile>();
-        } 
+    public void setActiveTile(GameObject hitTile) {
+        currentTile = hitTile.GetComponent<Tile>();
     }
 
     public void tileHighlightOff() {
@@ -47,6 +45,7 @@ public class DraggableItem : MonoBehaviour
             GameObject thisItem = Instantiate(itemInfo.onTilePrefab, currentTile.transform.position, transform.rotation);
             thisItem.transform.parent = currentTile.transform;
             currentTile.isOccupied = true;
+            currentTile.UpdateCurrentPlaceItem(itemInfo, thisItem);
             Destroy(gameObject);
         }
     }

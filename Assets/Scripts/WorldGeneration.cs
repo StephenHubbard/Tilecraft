@@ -24,11 +24,6 @@ public class WorldGeneration : MonoBehaviour
         GenerateTiles();
     }
 
-    private void Update() {
-        if (Input.GetMouseButtonDown(1)) {
-            Debug.Log(grid.GetValue(UtilsClass.GetMouseWorldPosition()));
-        }
-    }
 
     private void GenerateTiles() {
         for (int x = 0; x < grid.gridArray.GetLength(0); x ++) {
@@ -36,8 +31,11 @@ public class WorldGeneration : MonoBehaviour
                 
                 if (x == gridWidth / 2 && y == gridHeight / 2) {
                     Vector3 gridLocation = grid.GetWorldPosition(x, y) + new Vector3(cellSize, cellSize) * .5f;
+                    // always spawns grass tile at center
                     GameObject newTile = Instantiate(tilePrefab, gridLocation, transform.rotation);
-                    GenWhichTileType(newTile.transform);
+                    GameObject tileType = Instantiate(tileInfoScriptableObjects[0].tilePrefab, newTile.transform.position, transform.rotation);
+                    tileType.transform.parent = newTile.transform;
+                    tileType.GetComponentInParent<Tile>().tileInfo = tileInfoScriptableObjects[0];
 
                     SpawnTileAbove(x, y);
                     SpawnTileBelow(x, y);
