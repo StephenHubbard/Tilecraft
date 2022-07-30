@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemInfo: {fileID: 11400000, guid: 568a013acb7200747b4d15d39ba99de3, type: 2}
-  offspringRecipeInfo: {fileID: 11400000, guid: 785e907fbaffd414d901ecc8927e640c, type: 2}
+  recipeInfo: {fileID: 11400000, guid: 4fa444fbeb518494c842c0dad7effeca, type: 2}
 --- !u!1 &2758257396004611092
 GameObject:
   m_ObjectHideFlags: 0

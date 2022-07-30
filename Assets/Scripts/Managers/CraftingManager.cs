@@ -16,7 +16,10 @@ public class CraftingManager : MonoBehaviour
 
     public bool hasCompleteRecipe = false;
     public bool hasWorkers = false;
-    private bool isCrafting = false;
+    public bool isCrafting = false;
+
+    public int currentCorrectItemsAcquiredForCrafting = 0;
+    
 
 
     private void Start() {
@@ -24,7 +27,7 @@ public class CraftingManager : MonoBehaviour
     }
 
     private void Update() {
-        if (currentCraftTime > 0) {
+        if (currentCraftTime > 0 && hasCompleteRecipe) {
             tileSlider.value = currentCraftTime;
             currentCraftTime -= Time.deltaTime * amountOfWorkers;
         }

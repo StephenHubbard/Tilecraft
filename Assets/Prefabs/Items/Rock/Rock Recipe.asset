@@ -14,6 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Rock Recipe
   itemInfo: {fileID: 11400000, guid: 2b9c0844a0446c74c93858e737899656, type: 2}
-  neededRecipeItems:
-  - {fileID: 0}
+  neededRecipeItems: []
   recipeCraftTime: 5

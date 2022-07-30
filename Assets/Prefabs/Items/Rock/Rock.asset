@@ -20,3 +20,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 683019bb58be0914385796f71488de33, type: 2}
   recipeInfo: {fileID: 11400000, guid: a28bb94b85556ec408bd6b947336f791, type: 2}
   amountRecipeCanCreate: 3
+  potentialOffSpring:
+  - {fileID: 11400000, guid: 7b333da9a70418f439e2fb040ed4d7e5, type: 2}
+  isResourceOnly: 0

@@ -12,6 +12,8 @@ public class ItemInfo : ScriptableObject
     public TileInfo[] tileInfoValidLocations;
     public RecipeInfo recipeInfo;
     public int amountRecipeCanCreate = 1;
+    public ItemInfo[] potentialOffSpring;
+    public bool isResourceOnly = true;
 
     public bool checkValidTiles(TileInfo tileInfo) { 
         foreach (var tile in tileInfoValidLocations)

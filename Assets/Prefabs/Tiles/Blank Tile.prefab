@@ -259,6 +259,99 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &2749565779365562969
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5155303251552824129}
+  m_Layer: 7
+  m_Name: ResourcePoint_3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5155303251552824129
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2749565779365562969}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.45, y: 0.38599998, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8424925183059702566}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4133573009128877596
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2533574394097153052}
+  m_Layer: 7
+  m_Name: ResourcePoint_1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2533574394097153052
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4133573009128877596}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.45, y: 0.38599998, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8424925183059702566}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4473943873941113327
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4326491989489227075}
+  m_Layer: 7
+  m_Name: ResourcePoint_2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4326491989489227075
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4473943873941113327}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.386, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8424925183059702566}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5538696456789523485
 GameObject:
   m_ObjectHideFlags: 0
@@ -540,6 +633,9 @@ Transform:
   - {fileID: 675382289}
   - {fileID: 934023555}
   - {fileID: 7535450322336248113}
+  - {fileID: 2533574394097153052}
+  - {fileID: 4326491989489227075}
+  - {fileID: 5155303251552824129}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -583,15 +679,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileInfo: {fileID: 0}
   itemInfo: {fileID: 0}
-  currentPlacedItem: {fileID: 0}
+  currentPlacedItems: []
   workerItemPrefab: {fileID: 4812397909494241834, guid: 4fea6c41e7173da44bdb63fc54b8a34a, type: 3}
   workerPoints:
   - {fileID: 619971871}
   - {fileID: 675382289}
   - {fileID: 934023555}
+  resourcePoints:
+  - {fileID: 2533574394097153052}
+  - {fileID: 4326491989489227075}
+  - {fileID: 5155303251552824129}
   isOccupiedWithItem: 0
   isOccupiedWithWorkers: 0
-  recipeInProgress: 0
 --- !u!114 &7124545992445261582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -609,8 +708,10 @@ MonoBehaviour:
   startingCraftTime: 10
   currentCraftTime: 0
   recipeInfo: {fileID: 0}
+  amountLeftToCraft: 0
   hasCompleteRecipe: 0
   hasWorkers: 0
+  currentCorrectItemsAcquiredForCrafting: 0
 --- !u!1 &8424925183525853616
 GameObject:
   m_ObjectHideFlags: 0

@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 930d0fac990f5a640bc418598ee9e5c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemInfo: {fileID: 11400000, guid: 7b6f06137545f3243acc5e75239f777f, type: 2}
+  itemInfo: {fileID: 11400000, guid: b4324be3f84016744bdc2029d2dee09d, type: 2}
   recipeInfo: {fileID: 11400000, guid: 5792a59bfc3deb64b92ad41c827e72e6, type: 2}
 --- !u!1 &6127922019841925830
 GameObject:

@@ -47,8 +47,22 @@ public class DraggableItem : MonoBehaviour
                 currentTile.GetComponent<CraftingManager>().IncreaseWorkerCount();
                 Destroy(gameObject);
                 return;
-            } else {
+            } else { 
                 print("no worker spots available");
+                return;
+            }
+        }
+
+        if (itemInfo.isResourceOnly) {
+            if (currentTile.PlaceResource(itemInfo.onTilePrefab)) {
+                currentTile.isOccupiedWithItem = true;
+                currentTile.UpdateCurrentPlacedResourceList(itemInfo);
+                currentTile.GetComponent<CraftingManager>().CheckCanStartCrafting();
+                Destroy(gameObject);
+                return;
+            } else { 
+                print("no resource spots available");
+                return;
             }
         }
 
@@ -57,7 +71,6 @@ public class DraggableItem : MonoBehaviour
             thisItem.transform.parent = currentTile.transform;
             currentTile.isOccupiedWithItem = true;
             currentTile.UpdateCurrentPlacedItem(itemInfo, thisItem);
-            currentTile.GetComponent<CraftingManager>().UpdateAmountLeftToCraft(itemInfo);
             currentTile.GetComponent<CraftingManager>().CheckCanStartCrafting();
             Destroy(gameObject);
             return;

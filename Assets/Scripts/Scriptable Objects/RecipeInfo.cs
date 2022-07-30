@@ -9,4 +9,5 @@ public class RecipeInfo : ScriptableObject
     public ItemInfo itemInfo;
     public ItemInfo[] neededRecipeItems;
     public float recipeCraftTime;
+    
 }

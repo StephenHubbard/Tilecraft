@@ -7,13 +7,16 @@ public class Tile : MonoBehaviour
     [SerializeField] public TileInfo tileInfo;
     [SerializeField] public ItemInfo itemInfo;
     [SerializeField] private GameObject currentPlacedItem;
+    [SerializeField] public List<ItemInfo> currentPlacedResources = new List<ItemInfo>();
     [SerializeField] private GameObject workerItemPrefab;
     [SerializeField] private Transform[] workerPoints;
+    [SerializeField] private Transform[] resourcePoints;
 
     private GameObject tileHighlight;
 
     public bool isOccupiedWithItem = false;
     public bool isOccupiedWithWorkers = false;
+    public bool isOccupiedWithResources = false;
 
     private CraftingManager craftingManager;
 
@@ -25,7 +28,13 @@ public class Tile : MonoBehaviour
     public void UpdateCurrentPlacedItem(ItemInfo itemInfo, GameObject thisPlacedItem) {
         this.itemInfo = itemInfo;
         currentPlacedItem = thisPlacedItem;
+        currentPlacedResources.Add(itemInfo);
         currentPlacedItem.GetComponent<PlacedItem>().CheckForValidRecipe();
+    }
+
+    public void UpdateCurrentPlacedResourceList(ItemInfo itemInfo) {
+        currentPlacedResources.Add(itemInfo);
+        resourcePoints[0].GetChild(0).GetComponent<PlacedItem>().CheckForValidRecipe();
     }
 
     private void OnMouseOver() {
@@ -57,6 +66,22 @@ public class Tile : MonoBehaviour
         return false;
     }
 
+    public bool PlaceResource(GameObject itemPrefab) {
+        foreach (var resource in resourcePoints)
+        {
+            if (resource.childCount == 0) {
+                GameObject newResource = Instantiate(itemPrefab, resource.position, transform.rotation);
+                newResource.transform.parent = resource;
+                isOccupiedWithResources = true;
+                return true;
+            }
+
+            // itemPrefab.GetComponent<PlacedItem>().CheckForValidRecipe();
+        }
+
+        return false;
+    }
+
 
     private void PluckItemsOffTile() {
         Vector3 spawnItemsVector3 = transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), -1);
@@ -70,13 +95,24 @@ public class Tile : MonoBehaviour
         {
             if (worker.childCount == 1) {
                 spawnItemsVector3 = transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), -1);
-                Destroy(worker.GetChild(0).transform.gameObject);
                 Instantiate(workerItemPrefab, spawnItemsVector3, transform.rotation);
+                Destroy(worker.GetChild(0).transform.gameObject);
+            }
+        }
+
+        foreach (var resource in resourcePoints)
+        {
+            if (resource.childCount == 1) {
+                spawnItemsVector3 = transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), -1);
+                Instantiate(resource.GetChild(0).GetComponent<PlacedItem>().itemInfo.draggableItemPrefab, spawnItemsVector3, transform.rotation);
+                Destroy(resource.GetChild(0).transform.gameObject);
             }
         }
 
         isOccupiedWithItem = false;
         isOccupiedWithWorkers = false;
+        isOccupiedWithResources = false;
+        currentPlacedResources = new List<ItemInfo>();
 
         craftingManager.DoneCrafting();
         craftingManager.WorkerCountToZero();
@@ -84,6 +120,13 @@ public class Tile : MonoBehaviour
 
     public void DoneCraftingDestroyItem() {
         isOccupiedWithItem = false;
+
+        if (resourcePoints[0].childCount > 0) {
+            foreach (var resource in resourcePoints)
+            {
+                Destroy(resource.GetChild(0).gameObject);
+            }
+        }
 
         Destroy(currentPlacedItem);
     }
