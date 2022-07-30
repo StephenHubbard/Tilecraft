@@ -50,6 +50,7 @@ public class CraftingManager : MonoBehaviour
 
     public void WorkerCountToZero() {
         amountOfWorkers = 0;
+        hasWorkers = false;
     }
 
     private void StartCrafting() {
@@ -63,7 +64,6 @@ public class CraftingManager : MonoBehaviour
     public void DoneCrafting() {
         sliderCanvas.SetActive(false);
         hasCompleteRecipe = false;
-        // hasWorkers = false;
         isCrafting = false;
     }
 

@@ -6,19 +6,23 @@ public class PlacedItem : MonoBehaviour
 {
     [SerializeField] public ItemInfo itemInfo;
     // put in what is crafted from the placedItem
-    [SerializeField] public RecipeInfo recipeInfo;
+    [SerializeField] public RecipeInfo offspringRecipeInfo;
 
     public bool CheckForValidRecipe() {
-        foreach (var recipe in recipeInfo.neededRecipeItems)
-        {
-            if (recipe == itemInfo) { 
-                GetComponentInParent<CraftingManager>().hasCompleteRecipe = true;
-                GetComponentInParent<CraftingManager>().recipeInfo = recipeInfo;
-                return true;
-            } 
+        if (offspringRecipeInfo) {
+            foreach (var recipe in offspringRecipeInfo.neededRecipeItems)
+            {
+                if (recipe == itemInfo) { 
+                    GetComponentInParent<CraftingManager>().hasCompleteRecipe = true;
+                    GetComponentInParent<CraftingManager>().recipeInfo = offspringRecipeInfo;
+                    return true;
+                } 
+            }
+
+            GetComponentInParent<CraftingManager>().recipeInfo = offspringRecipeInfo;
+            return false;
         }
 
-        GetComponentInParent<CraftingManager>().recipeInfo = recipeInfo;
         return false;
     }
 
