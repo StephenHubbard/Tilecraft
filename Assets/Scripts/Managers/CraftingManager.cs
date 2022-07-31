@@ -62,12 +62,28 @@ public class CraftingManager : MonoBehaviour
         startingCraftTime = recipeInfo.recipeCraftTime;
         currentCraftTime = startingCraftTime;
         tileSlider.maxValue = startingCraftTime;
+
+        foreach (var item in GetComponent<Tile>().workerPoints)
+        {
+            if (item.childCount > 0) {
+                item.GetChild(0).GetComponent<Worker>().StartWorking();
+            }
+        }
     }
 
     public void DoneCrafting() {
         sliderCanvas.SetActive(false);
         hasCompleteRecipe = false;
         isCrafting = false;
+
+        foreach (var item in GetComponent<Tile>().workerPoints)
+        {
+            if (item.childCount > 0) {
+                item.GetChild(0).GetComponent<Worker>().StopWorking();
+            }
+        }
+
+        GetComponent<Tile>().currentPlacedResources.Clear();
     }
 
     public void PopOutNewItemFromRecipe() {

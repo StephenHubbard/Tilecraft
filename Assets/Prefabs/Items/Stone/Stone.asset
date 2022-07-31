@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a967a3f0f99c934bb9b8a89e7f72db0, type: 3}
   m_Name: Stone
   m_EditorClassIdentifier: 
-  name: Stone
   coinValue: 1
   draggableItemPrefab: {fileID: 4812397909494241834, guid: f23181bdae95e46419da0bca4c6f2bdd, type: 3}
   onTilePrefab: {fileID: 994099794024727751, guid: 4edade26865698341a53a4ecef48c49a, type: 3}
@@ -21,7 +20,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5f31d55a53bbe2f479011bab64202e0c, type: 2}
   - {fileID: 11400000, guid: 683019bb58be0914385796f71488de33, type: 2}
   recipeInfo: {fileID: 11400000, guid: 033c7ee662df4ba40bc7570f2c24a6eb, type: 2}
-  amountRecipeCanCreate: 1
+  amountRecipeCanCreate: 3
   potentialOffSpring:
   - {fileID: 11400000, guid: 855316e0c92bea843b6ce2d9671bd864, type: 2}
+  - {fileID: 11400000, guid: 1a15c1455f69b214a8d5bc2dcb3677cd, type: 2}
   isResourceOnly: 1

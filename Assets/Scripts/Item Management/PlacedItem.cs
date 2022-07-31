@@ -19,9 +19,10 @@ public class PlacedItem : MonoBehaviour
                     resourcesNeededForRecipeLookup.Add(neededRecipeItemsInOffspring);
                 }
 
+                print(potentialOffSpring.recipeInfo);
+
                 if (AreListsEqual(GetComponentInParent<Tile>().currentPlacedResources, resourcesNeededForRecipeLookup)) {
                     print("current valid recipe");
-
                     GetComponentInParent<CraftingManager>().UpdateAmountLeftToCraft(potentialOffSpring.recipeInfo.itemInfo);
                     GetComponentInParent<CraftingManager>().recipeInfo = potentialOffSpring.recipeInfo;
                     GetComponentInParent<CraftingManager>().hasCompleteRecipe = true;

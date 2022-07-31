@@ -9,7 +9,7 @@ public class Tile : MonoBehaviour
     [SerializeField] private GameObject currentPlacedItem;
     [SerializeField] public List<ItemInfo> currentPlacedResources = new List<ItemInfo>();
     [SerializeField] private GameObject workerItemPrefab;
-    [SerializeField] private Transform[] workerPoints;
+    [SerializeField] public Transform[] workerPoints;
     [SerializeField] private Transform[] resourcePoints;
 
     private GameObject tileHighlight;
@@ -59,6 +59,9 @@ public class Tile : MonoBehaviour
                 newWorker.transform.parent = worker;
                 isOccupiedWithWorkers = true;
                 GetComponent<CraftingManager>().hasWorkers = true;
+                if (GetComponent<CraftingManager>().isCrafting) {
+                    newWorker.GetComponent<Worker>().StartWorking();
+                }
                 return true;
             }
         }
@@ -112,7 +115,6 @@ public class Tile : MonoBehaviour
         isOccupiedWithItem = false;
         isOccupiedWithWorkers = false;
         isOccupiedWithResources = false;
-        currentPlacedResources = new List<ItemInfo>();
 
         craftingManager.DoneCrafting();
         craftingManager.WorkerCountToZero();
@@ -124,10 +126,13 @@ public class Tile : MonoBehaviour
         if (resourcePoints[0].childCount > 0) {
             foreach (var resource in resourcePoints)
             {
-                Destroy(resource.GetChild(0).gameObject);
+                if (resource.childCount > 0) {
+                    Destroy(resource.GetChild(0).gameObject);
+                }
             }
         }
 
+        isOccupiedWithResources = false;
         Destroy(currentPlacedItem);
     }
 }

@@ -10,18 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7a967a3f0f99c934bb9b8a89e7f72db0, type: 3}
-  m_Name: Wood
+  m_Name: Wood Plank
   m_EditorClassIdentifier: 
   coinValue: 1
-  draggableItemPrefab: {fileID: 4812397909494241834, guid: 4bba008b3bda6544b9546054e466faa4, type: 3}
-  onTilePrefab: {fileID: 994099794024727751, guid: 12a4aabc806a0d648b3925d1d6e647ef, type: 3}
+  draggableItemPrefab: {fileID: 4812397909494241834, guid: efa7ecb3227172a4f97a78ce82b85376, type: 3}
+  onTilePrefab: {fileID: 994099794024727751, guid: 57d0310debd4c4e4c8d4e25ada78ee18, type: 3}
   tileInfoValidLocations:
   - {fileID: 11400000, guid: e492befd9aee1b645b08c2b5e24460b2, type: 2}
   - {fileID: 11400000, guid: 5f31d55a53bbe2f479011bab64202e0c, type: 2}
   - {fileID: 11400000, guid: 683019bb58be0914385796f71488de33, type: 2}
-  recipeInfo: {fileID: 11400000, guid: 785e907fbaffd414d901ecc8927e640c, type: 2}
-  amountRecipeCanCreate: 3
-  potentialOffSpring:
-  - {fileID: 11400000, guid: 855316e0c92bea843b6ce2d9671bd864, type: 2}
-  - {fileID: 11400000, guid: 14a62113a04f8aa4e9ce5e060ae05011, type: 2}
+  recipeInfo: {fileID: 11400000, guid: 54238dadb5fcdbb44976c0534b4eeab4, type: 2}
+  amountRecipeCanCreate: 1
+  potentialOffSpring: []
   isResourceOnly: 1
