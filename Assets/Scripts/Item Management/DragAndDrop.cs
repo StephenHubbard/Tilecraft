@@ -13,9 +13,13 @@ public class DragAndDrop : MonoBehaviour
     private SellButton sellButton;
     private EconomyManager economyManager;
     private int tileLayerMask;
+    private HighlightedBorder highlightedBorder;
+    private Stackable stackable;
 
     private void Awake() {
+        stackable = GetComponent<Stackable>();
         mainCamera = Camera.main;
+        highlightedBorder = FindObjectOfType<HighlightedBorder>();
         draggableItem = GetComponent<DraggableItem>();
         sellButton = FindObjectOfType<SellButton>();
         economyManager = FindObjectOfType<EconomyManager>();
@@ -28,7 +32,9 @@ public class DragAndDrop : MonoBehaviour
 
     private void OnMouseDown() {
         dragOffset = transform.position - UtilsClass.GetMouseWorldPosition();
+        highlightedBorder.UpdateCurrentItemInHand(gameObject.GetComponent<DraggableItem>().itemInfo);
         isActive = true;
+        stackable.isInStackAlready = false;
     }
 
     private void OnMouseDrag() {
@@ -49,12 +55,20 @@ public class DragAndDrop : MonoBehaviour
             draggableItem.PlaceItemOnTile();
         }
         
-        isActive = false;
 
         if (sellButton.overSellBox) {
             economyManager.SellItem(GetComponent<DraggableItem>().itemInfo.coinValue);
             Destroy(gameObject);
         }
+
+        if (stackable.potentialParentItem) {
+            stackable.AttachToParent();
+        } else {
+            stackable.DetachFromParent();
+        }
+
+        isActive = false;
+        FindObjectOfType<HighlightedBorder>().currentHeldItem = null;
     }
 
     

@@ -10,17 +10,19 @@ public class Tile : MonoBehaviour
     [SerializeField] public List<ItemInfo> currentPlacedResources = new List<ItemInfo>();
     [SerializeField] private GameObject workerItemPrefab;
     [SerializeField] public Transform[] workerPoints;
-    [SerializeField] private Transform[] resourcePoints;
+    [SerializeField] public Transform[] resourcePoints;
 
     private GameObject tileHighlight;
 
-    public bool isOccupiedWithItem = false;
+    public bool isOccupiedWithBuilding = false;
     public bool isOccupiedWithWorkers = false;
     public bool isOccupiedWithResources = false;
 
     private CraftingManager craftingManager;
+    private HighlightedBorder highlightedBorder;
 
     private void Awake() {
+        highlightedBorder = FindObjectOfType<HighlightedBorder>();
         craftingManager = GetComponent<CraftingManager>();
         tileHighlight = GameObject.Find("Highlighted Border");
     }
@@ -38,11 +40,16 @@ public class Tile : MonoBehaviour
     }
 
     private void OnMouseOver() {
-        if ((isOccupiedWithItem || isOccupiedWithWorkers) && Input.GetMouseButtonDown(1)) {
+        if ((isOccupiedWithBuilding || isOccupiedWithWorkers || isOccupiedWithResources) && Input.GetMouseButtonDown(1)) {
             PluckItemsOffTile();
         }
 
         tileHighlight.GetComponent<SpriteRenderer>().enabled = true;
+
+        // buggy not working as intended
+        // if (highlightedBorder.currentHeldItem != null) {
+        //     highlightedBorder.checkIfHoveredOverTileIsValid(tileInfo);
+        // }
 
         tileHighlight.transform.position = transform.position;
     }
@@ -112,7 +119,7 @@ public class Tile : MonoBehaviour
             }
         }
 
-        isOccupiedWithItem = false;
+        isOccupiedWithBuilding = false;
         isOccupiedWithWorkers = false;
         isOccupiedWithResources = false;
 
@@ -121,7 +128,7 @@ public class Tile : MonoBehaviour
     }
 
     public void DoneCraftingDestroyItem() {
-        isOccupiedWithItem = false;
+        isOccupiedWithBuilding = false;
 
         if (resourcePoints[0].childCount > 0) {
             foreach (var resource in resourcePoints)
