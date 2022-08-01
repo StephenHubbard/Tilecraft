@@ -20,6 +20,11 @@ public class CraftingManager : MonoBehaviour
 
     public int currentCorrectItemsAcquiredForCrafting = 0;
     
+    private AudioManager audioManager;
+
+    private void Awake() {
+        audioManager = FindObjectOfType<AudioManager>();
+    }
 
 
     private void Start() {
@@ -83,6 +88,7 @@ public class CraftingManager : MonoBehaviour
             }
         }
 
+        audioManager.Play("Pop");
         GetComponent<Tile>().currentPlacedResources.Clear();
     }
 

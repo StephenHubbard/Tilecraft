@@ -20,8 +20,10 @@ public class Tile : MonoBehaviour
 
     private CraftingManager craftingManager;
     private HighlightedBorder highlightedBorder;
+    private AudioManager audioManager;
 
     private void Awake() {
+        audioManager = FindObjectOfType<AudioManager>();
         highlightedBorder = FindObjectOfType<HighlightedBorder>();
         craftingManager = GetComponent<CraftingManager>();
         tileHighlight = GameObject.Find("Highlighted Border");
@@ -32,6 +34,8 @@ public class Tile : MonoBehaviour
         currentPlacedItem = thisPlacedItem;
         currentPlacedResources.Add(itemInfo);
         currentPlacedItem.GetComponent<PlacedItem>().CheckForValidRecipe();
+        audioManager.Play("Click");
+
     }
 
     public void UpdateCurrentPlacedResourceList(ItemInfo itemInfo) {
@@ -66,9 +70,11 @@ public class Tile : MonoBehaviour
                 newWorker.transform.parent = worker;
                 isOccupiedWithWorkers = true;
                 GetComponent<CraftingManager>().hasWorkers = true;
+
                 if (GetComponent<CraftingManager>().isCrafting) {
                     newWorker.GetComponent<Worker>().StartWorking();
                 }
+                audioManager.Play("Click");
                 return true;
             }
         }
@@ -83,6 +89,8 @@ public class Tile : MonoBehaviour
                 GameObject newResource = Instantiate(itemPrefab, resource.position, transform.rotation);
                 newResource.transform.parent = resource;
                 isOccupiedWithResources = true;
+                audioManager.Play("Click");
+
                 return true;
             }
 
@@ -91,7 +99,6 @@ public class Tile : MonoBehaviour
 
         return false;
     }
-
 
     private void PluckItemsOffTile() {
         Vector3 spawnItemsVector3 = transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), -1);
@@ -125,6 +132,8 @@ public class Tile : MonoBehaviour
 
         craftingManager.DoneCrafting();
         craftingManager.WorkerCountToZero();
+
+        audioManager.Play("Pop");
     }
 
     public void DoneCraftingDestroyItem() {
