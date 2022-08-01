@@ -5,12 +5,16 @@ using UnityEngine;
 public class Stackable : MonoBehaviour
 {
     public Transform potentialParentItem;
+    public int amountOfChildItems = 0;
 
     public bool isInStackAlready = false;
     private ItemInfo itemInfo;
     private Transform lastChild;
 
+    private AudioManager audioManager;
+
     private void Awake() {
+        audioManager = FindObjectOfType<AudioManager>();
         itemInfo = GetComponent<DraggableItem>().itemInfo;
     }
 
@@ -35,6 +39,7 @@ public class Stackable : MonoBehaviour
         Vector3 newPos = lastChild.transform.position + new Vector3(0, -.4f, 0);
 
         gameObject.transform.position = newPos;
+        audioManager.Play("Stack");
 
         isInStackAlready = true;
         lastChild.GetComponent<Stackable>().isInStackAlready = true;
@@ -47,6 +52,7 @@ public class Stackable : MonoBehaviour
                 item.potentialParentItem = null;
             }
         }
+        
     }
 
     private void FindLastChild(Transform thisChild) {
@@ -54,6 +60,17 @@ public class Stackable : MonoBehaviour
             lastChild = thisChild;
         } else {
             FindLastChild(thisChild.GetChild(1));
+        }
+    }
+
+    public void FindAmountOfChildren(Transform parentItem) {
+        amountOfChildItems = 0;
+
+        Stackable[] amountOfChildren = GetComponentsInChildren<Stackable>();
+
+        foreach (var item in amountOfChildren)
+        {
+            amountOfChildItems += 1;
         }
     }
 

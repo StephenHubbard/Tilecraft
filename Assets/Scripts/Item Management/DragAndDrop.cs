@@ -35,6 +35,7 @@ public class DragAndDrop : MonoBehaviour
         highlightedBorder.UpdateCurrentItemInHand(gameObject.GetComponent<DraggableItem>().itemInfo);
         isActive = true;
         stackable.isInStackAlready = false;
+        stackable.FindAmountOfChildren(transform);
     }
 
     private void OnMouseDrag() {
@@ -52,12 +53,12 @@ public class DragAndDrop : MonoBehaviour
 
     private void OnMouseUp() {
         if (draggableItem.currentTile) {
-            draggableItem.PlaceItemOnTile();
+            draggableItem.PlaceItemOnTile(stackable.amountOfChildItems);
         }
         
 
         if (sellButton.overSellBox) {
-            economyManager.SellItem(GetComponent<DraggableItem>().itemInfo.coinValue);
+            economyManager.SellItem(GetComponent<DraggableItem>().itemInfo.coinValue, stackable.amountOfChildItems);
             Destroy(gameObject);
         }
 

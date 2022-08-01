@@ -23,8 +23,8 @@ public class EconomyManager : MonoBehaviour
         coinText.text = currentCoins.ToString();
     }
 
-    public void SellItem(int amount) {
-        currentCoins += amount;
+    public void SellItem(int amount, int stackSize) {
+        currentCoins += amount * stackSize;
         audioManager.Play("Sell");
     }
 

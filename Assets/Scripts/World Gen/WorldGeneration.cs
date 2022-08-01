@@ -16,6 +16,12 @@ public class WorldGeneration : MonoBehaviour
     private int newTileSpawnDir = 1;
     private bool newTileSpawned = false;
 
+    private AudioManager audioManager;
+
+    private void Awake() {
+        audioManager = FindObjectOfType<AudioManager>();
+    }
+
 
     private void Start() {
         grid = new Grid(gridWidth, gridHeight, cellSize, new Vector3(0, 0));
@@ -97,6 +103,12 @@ public class WorldGeneration : MonoBehaviour
         } else {
             newTileSpawned = false;
         }
+
+
+    }
+
+    public void PlayNewTileSound() {
+        audioManager.Play("Tile Placement");
     }
 
     private void SpawnLeft() {

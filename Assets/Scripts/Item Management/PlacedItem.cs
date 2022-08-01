@@ -10,21 +10,28 @@ public class PlacedItem : MonoBehaviour
     public bool CheckForValidRecipe() {
         CraftingManager craftingManager = GetComponentInParent<CraftingManager>();
 
-            foreach (var potentialOffSpring in itemInfo.potentialOffSpring)
-            {
-                List<ItemInfo> resourcesNeededForRecipeLookup = new List<ItemInfo>();
-                
-                foreach (var neededRecipeItemsInOffspring in potentialOffSpring.recipeInfo.neededRecipeItems)
-                {
-                    resourcesNeededForRecipeLookup.Add(neededRecipeItemsInOffspring);
-                }
+        foreach (var item in GetComponentInParent<Tile>().currentPlacedResources)
+        {
+            print(item.name);   
+        }
 
-                if (AreListsEqual(GetComponentInParent<Tile>().currentPlacedResources, resourcesNeededForRecipeLookup)) {
-                    GetComponentInParent<CraftingManager>().UpdateAmountLeftToCraft(potentialOffSpring.recipeInfo.itemInfo);
-                    GetComponentInParent<CraftingManager>().recipeInfo = potentialOffSpring.recipeInfo;
-                    GetComponentInParent<CraftingManager>().hasCompleteRecipe = true;
-                    return true;
-                }
+        foreach (var potentialOffSpring in itemInfo.potentialOffSpring)
+        {
+            List<ItemInfo> resourcesNeededForRecipeLookup = new List<ItemInfo>();
+            
+            foreach (var neededRecipeItemsInOffspring in potentialOffSpring.recipeInfo.neededRecipeItems)
+            {
+                resourcesNeededForRecipeLookup.Add(neededRecipeItemsInOffspring);
+            }
+
+            
+
+            if (AreListsEqual(GetComponentInParent<Tile>().currentPlacedResources, resourcesNeededForRecipeLookup)) {
+                GetComponentInParent<CraftingManager>().UpdateAmountLeftToCraft(potentialOffSpring.recipeInfo.itemInfo);
+                GetComponentInParent<CraftingManager>().recipeInfo = potentialOffSpring.recipeInfo;
+                GetComponentInParent<CraftingManager>().hasCompleteRecipe = true;
+                return true;
+            }
 
         }
 

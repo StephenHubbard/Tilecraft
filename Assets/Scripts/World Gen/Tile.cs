@@ -33,14 +33,14 @@ public class Tile : MonoBehaviour
         this.itemInfo = itemInfo;
         currentPlacedItem = thisPlacedItem;
         currentPlacedResources.Add(itemInfo);
-        currentPlacedItem.GetComponent<PlacedItem>().CheckForValidRecipe();
+        // currentPlacedItem.GetComponent<PlacedItem>().CheckForValidRecipe();
         audioManager.Play("Click");
 
     }
 
     public void UpdateCurrentPlacedResourceList(ItemInfo itemInfo) {
         currentPlacedResources.Add(itemInfo);
-        resourcePoints[0].GetChild(0).GetComponent<PlacedItem>().CheckForValidRecipe();
+        // resourcePoints[0].GetChild(0).GetComponent<PlacedItem>().CheckForValidRecipe();
     }
 
     private void OnMouseOver() {
