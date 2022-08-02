@@ -10,10 +10,6 @@ public class PlacedItem : MonoBehaviour
     public bool CheckForValidRecipe() {
         CraftingManager craftingManager = GetComponentInParent<CraftingManager>();
 
-        foreach (var item in GetComponentInParent<Tile>().currentPlacedResources)
-        {
-            print(item.name);   
-        }
 
         foreach (var potentialOffSpring in itemInfo.potentialOffSpring)
         {
@@ -35,6 +31,7 @@ public class PlacedItem : MonoBehaviour
 
         }
 
+        GetComponentInParent<CraftingManager>().hasCompleteRecipe = false;
         return false;
     }
 

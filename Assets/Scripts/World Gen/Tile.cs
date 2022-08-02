@@ -33,14 +33,14 @@ public class Tile : MonoBehaviour
         this.itemInfo = itemInfo;
         currentPlacedItem = thisPlacedItem;
         currentPlacedResources.Add(itemInfo);
-        // currentPlacedItem.GetComponent<PlacedItem>().CheckForValidRecipe();
+        currentPlacedItem.GetComponent<PlacedItem>().CheckForValidRecipe();
         audioManager.Play("Click");
 
     }
 
     public void UpdateCurrentPlacedResourceList(ItemInfo itemInfo) {
         currentPlacedResources.Add(itemInfo);
-        // resourcePoints[0].GetChild(0).GetComponent<PlacedItem>().CheckForValidRecipe();
+        resourcePoints[0].GetChild(0).GetComponent<PlacedItem>().CheckForValidRecipe();
     }
 
     private void OnMouseOver() {
@@ -70,7 +70,7 @@ public class Tile : MonoBehaviour
                 newWorker.transform.parent = worker;
                 isOccupiedWithWorkers = true;
                 GetComponent<CraftingManager>().hasWorkers = true;
-
+                
                 if (GetComponent<CraftingManager>().isCrafting) {
                     newWorker.GetComponent<Worker>().StartWorking();
                 }
@@ -90,11 +90,10 @@ public class Tile : MonoBehaviour
                 newResource.transform.parent = resource;
                 isOccupiedWithResources = true;
                 audioManager.Play("Click");
-
+                resourcePoints[0].GetChild(0).GetComponent<PlacedItem>().CheckForValidRecipe();
                 return true;
             }
 
-            // itemPrefab.GetComponent<PlacedItem>().CheckForValidRecipe();
         }
 
         return false;

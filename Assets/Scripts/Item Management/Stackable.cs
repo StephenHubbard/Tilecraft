@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using CodeMonkey.Utils;
 
 public class Stackable : MonoBehaviour
 {
@@ -12,10 +13,23 @@ public class Stackable : MonoBehaviour
     private Transform lastChild;
 
     private AudioManager audioManager;
+    private int interactableLayerMask;
+
 
     private void Awake() {
         audioManager = FindObjectOfType<AudioManager>();
         itemInfo = GetComponent<DraggableItem>().itemInfo;
+        interactableLayerMask = LayerMask.GetMask("Interactable");
+    }
+
+    private void OnMouseDrag() {
+        RaycastHit2D[] hit = Physics2D.RaycastAll(UtilsClass.GetMouseWorldPosition(), Vector2.zero, 100f, interactableLayerMask);
+
+        if (hit.Length > 1) {
+            if (hit[1].transform.gameObject.GetComponent<Stackable>() && hit[1].transform.gameObject.GetComponent<DraggableItem>().itemInfo == itemInfo && !isInStackAlready) {
+            potentialParentItem = hit[1].transform.gameObject.transform;
+            }
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D other) {
@@ -34,7 +48,7 @@ public class Stackable : MonoBehaviour
 
         FindLastChild(potentialParentItem);
 
-        gameObject.transform.parent = lastChild;
+        gameObject.transform.SetParent(lastChild);
 
         Vector3 newPos = lastChild.transform.position + new Vector3(0, -.4f, 0);
 

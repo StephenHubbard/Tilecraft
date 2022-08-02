@@ -68,8 +68,11 @@ public class DraggableItem : MonoBehaviour
                     if (i == 1) {
                         Destroy(gameObject);
                     }
+                    currentTile.resourcePoints[0].GetChild(0).GetComponent<PlacedItem>().CheckForValidRecipe();
                     continue;
                 } else { 
+                    currentTile.resourcePoints[0].GetChild(0).GetComponent<PlacedItem>().CheckForValidRecipe();
+                    currentTile.GetComponent<CraftingManager>().CheckCanStartCrafting();
                     DetermineExtraItems(i);
                     Destroy(gameObject);
                     return;
@@ -89,9 +92,10 @@ public class DraggableItem : MonoBehaviour
                 if (i - 1 == 0) {
                     DetermineExtraItems(i);
                 } else {
-                    DetermineExtraItems(i - 1);
+                    DetermineExtraItems(i);
                 }
                 Destroy(gameObject);
+                return;
             }
         }
 
@@ -99,7 +103,6 @@ public class DraggableItem : MonoBehaviour
     }
 
     private void DetermineExtraItems(int amountExtra) {
-        // print(amountExtra);
 
         for (int i = 0; i < amountExtra; i++)
         {
