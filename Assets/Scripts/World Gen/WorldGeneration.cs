@@ -7,10 +7,12 @@ public class WorldGeneration : MonoBehaviour
 {
     [SerializeField] private int gridWidth;
     [SerializeField] private int gridHeight;
-    [SerializeField] private float cellSize;
+    [SerializeField] public float cellSize;
     [SerializeField] private GameObject tilePrefab;
     [SerializeField] private TileInfo[] tileInfoScriptableObjects;
     [SerializeField] private Transform tileParent;
+    [SerializeField] private GameObject towerPrefab;
+    [SerializeField] private int amountOfStartingTiles = 20;
     
     private Grid grid;
     private int newTileSpawnDir = 1;
@@ -20,13 +22,18 @@ public class WorldGeneration : MonoBehaviour
 
     private void Awake() {
         audioManager = FindObjectOfType<AudioManager>();
+
+        grid = new Grid(gridWidth, gridHeight, cellSize, new Vector3(0, 0));
     }
 
 
     private void Start() {
-        grid = new Grid(gridWidth, gridHeight, cellSize, new Vector3(0, 0));
-
         GenerateTiles();
+        GenStartingTilesAroundCenter();
+    }
+
+    public Grid ReturnGrid() {
+        return grid;
     }
 
     private void GenerateTiles() {
@@ -38,8 +45,12 @@ public class WorldGeneration : MonoBehaviour
                     // always spawns grass tile at center
                     GameObject newTile = Instantiate(tilePrefab, gridLocation, transform.rotation);
                     GameObject tileType = Instantiate(tileInfoScriptableObjects[0].tilePrefab, newTile.transform.position, transform.rotation);
+                    GameObject startingTower = Instantiate(towerPrefab, newTile.transform.position, transform.rotation);
+                    startingTower.transform.parent = newTile.transform;
                     tileType.transform.parent = newTile.transform;
                     tileType.GetComponentInParent<Tile>().tileInfo = tileInfoScriptableObjects[0];
+                    newTile.GetComponent<Tile>().UpdateCurrentPlacedItem(towerPrefab.GetComponent<PlacedItem>().itemInfo, startingTower);
+                    newTile.GetComponent<Tile>().isOccupiedWithBuilding = true;
 
                     SpawnTileAbove(x, y);
                     SpawnTileBelow(x, y);
@@ -50,7 +61,13 @@ public class WorldGeneration : MonoBehaviour
                 }
             }
         }
+    }
 
+    private void GenStartingTilesAroundCenter() {
+        for (int i = 0; i < amountOfStartingTiles; i++)
+        {
+            NewTile();
+        }
     }
 
     private void GenWhichTileType(Transform newTile) {

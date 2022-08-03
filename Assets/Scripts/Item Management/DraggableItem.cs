@@ -36,11 +36,11 @@ public class DraggableItem : MonoBehaviour
         currentTile = null;
     }
 
-    private void OnTriggerExit2D(Collider2D other) {
-        if (other.gameObject.GetComponent<Tile>() && currentTile == other.gameObject.GetComponent<Tile>()) {
+    public void CustomerOnTriggerExit2D() {
+        // if (other.gameObject.GetComponent<Tile>() && currentTile == other.gameObject.GetComponent<Tile>()) {
             currentTile = null;
             tileHighlight.GetComponent<SpriteRenderer>().enabled = false;
-        }
+        // }
     }
 
     public void PlaceItemOnTile(int amountInStack) {
@@ -86,6 +86,7 @@ public class DraggableItem : MonoBehaviour
                 currentTile.UpdateCurrentPlacedItem(itemInfo, thisItem);
                 DetermineExtraItems(i - 1);
                 currentTile.GetComponent<CraftingManager>().CheckCanStartCrafting();
+                AudioManager.instance.Play("Click");
                 Destroy(gameObject);
                 return;
             } else {

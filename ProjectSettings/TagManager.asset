@@ -14,8 +14,8 @@ TagManager:
   - Interactable
   - Tile
   - PlacedItem
-  - 
-  - 
+  - CameraConfiner
+  - Clouds
   - 
   - 
   - 
@@ -43,6 +43,9 @@ TagManager:
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Clouds
+    uniqueID: 2381644817
     locked: 0
   - name: Interactable
     uniqueID: 320324999

@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a967a3f0f99c934bb9b8a89e7f72db0, type: 3}
   m_Name: House
   m_EditorClassIdentifier: 
-  name: House
   coinValue: 1
   draggableItemPrefab: {fileID: 4812397909494241834, guid: 560ab673ad8be8a448b090d628cc165a, type: 3}
   onTilePrefab: {fileID: 994099794024727751, guid: 6e82e1102fbdf134e88ac08f157e7599, type: 3}
@@ -24,3 +23,4 @@ MonoBehaviour:
   amountRecipeCanCreate: 1
   potentialOffSpring: []
   isResourceOnly: 0
+  isStationary: 1

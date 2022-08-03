@@ -13,6 +13,7 @@ public class CraftingManager : MonoBehaviour
     
     private int amountOfWorkers;
     public int amountLeftToCraft;
+    public int startAmountToCraft;
 
     public bool hasCompleteRecipe = false;
     public bool hasWorkers = false;
@@ -44,11 +45,15 @@ public class CraftingManager : MonoBehaviour
 
     public void UpdateAmountLeftToCraft(ItemInfo itemInfo) {
         amountLeftToCraft = itemInfo.amountRecipeCanCreate;
+        startAmountToCraft = itemInfo.amountRecipeCanCreate;
     }
 
     public void CheckCanStartCrafting() {
         if (hasCompleteRecipe && hasWorkers && !isCrafting && amountLeftToCraft > 0) {
             StartCrafting();
+            if (startAmountToCraft == amountLeftToCraft) {
+                audioManager.Play("Crafting Started");
+            }
         } 
     }
 

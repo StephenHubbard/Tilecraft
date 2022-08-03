@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Water Tile
   m_EditorClassIdentifier: 
   name: Water Tile
-  tilePrefab: {fileID: 7705127686124994547, guid: 88402991331e1204889ca97d0ea66ea6, type: 3}
+  tilePrefab: {fileID: 7705127686124994547, guid: a0e36413734867e44903f886c4a36d20, type: 3}

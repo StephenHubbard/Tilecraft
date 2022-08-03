@@ -6,56 +6,75 @@ using CodeMonkey.Utils;
 public class DragAndDrop : MonoBehaviour
 {
 
-    private Vector3 dragOffset;
+    public Vector3 dragOffset;
     private Camera mainCamera;
     public bool isActive = false;
     private DraggableItem draggableItem;
     private SellButton sellButton;
     private EconomyManager economyManager;
-    private int tileLayerMask;
-    private HighlightedBorder highlightedBorder;
+    private int tileCloudLayerMask;
+    private int interactableLayerMask;
     private Stackable stackable;
 
     private void Awake() {
         stackable = GetComponent<Stackable>();
         mainCamera = Camera.main;
-        highlightedBorder = FindObjectOfType<HighlightedBorder>();
         draggableItem = GetComponent<DraggableItem>();
         sellButton = FindObjectOfType<SellButton>();
         economyManager = FindObjectOfType<EconomyManager>();
+        tileCloudLayerMask = LayerMask.GetMask("Tile");
+        tileCloudLayerMask += LayerMask.GetMask("Clouds");
+        interactableLayerMask = LayerMask.GetMask("Interactable");
     }
 
-    private void Start() {
-        tileLayerMask = LayerMask.GetMask("Tile");
-    }
 
-
-    private void OnMouseDown() {
-        dragOffset = transform.position - UtilsClass.GetMouseWorldPosition();
-        highlightedBorder.UpdateCurrentItemInHand(gameObject.GetComponent<DraggableItem>().itemInfo);
-        isActive = true;
-        stackable.isInStackAlready = false;
-        stackable.FindAmountOfChildren(transform);
-    }
-
-    private void OnMouseDrag() {
-        transform.position = UtilsClass.GetMouseWorldPosition() + dragOffset;
-
-        RaycastHit2D hit = Physics2D.Raycast(gameObject.transform.position, Vector2.zero, 100f, tileLayerMask);
-
-        if (hit && isActive)
-        {
-            draggableItem.setActiveTile(hit.transform.gameObject);
-        } else {
-            draggableItem.tileHighlightOff();
+    private void Update() {
+        if (isActive) {
+            OnMouseDragCustom();
         }
     }
 
-    private void OnMouseUp() {
+    public void OnMouseDownCustom() {
+        dragOffset = transform.position - UtilsClass.GetMouseWorldPosition();
+        isActive = true;
+        stackable.FindAmountOfChildren(transform);
+        stackable.DetachFromParent();
+    }
+
+
+    public void OnMouseDragCustom() {
+        transform.position = UtilsClass.GetMouseWorldPosition() + dragOffset;
+
+        // tile and cloud detection
+        RaycastHit2D[] hit = Physics2D.RaycastAll(gameObject.transform.position, Vector2.zero, 100f, tileCloudLayerMask);
+        if (hit.Length > 0) {
+            if (hit[0].transform.GetComponent<Tile>() && isActive)
+            {
+                draggableItem.setActiveTile(hit[0].transform.gameObject);
+            } else {
+                draggableItem.tileHighlightOff();
+            }
+        } else {
+            draggableItem.CustomerOnTriggerExit2D();
+        }
+
+        // stack detection
+        RaycastHit2D[] hit2 = Physics2D.RaycastAll(UtilsClass.GetMouseWorldPosition(), Vector2.zero, 100f, interactableLayerMask);
+        if (hit2.Length > 1) {
+            if (hit2[1].transform.gameObject.GetComponent<Stackable>() && hit2[1].transform.gameObject.GetComponent<DraggableItem>().itemInfo == stackable.itemInfo) {
+                if (hit2[1].transform.root != transform) {
+                    stackable.potentialParentItem = hit2[1].transform.root;
+                }
+            }
+        } else {
+            stackable.potentialParentItem = null;
+        }
+    }
+
+    public void OnMouseUpCustom() {
         if (draggableItem.currentTile) {
             draggableItem.PlaceItemOnTile(stackable.amountOfChildItems);
         }
-        
 
         if (sellButton.overSellBox) {
             economyManager.SellItem(GetComponent<DraggableItem>().itemInfo.coinValue, stackable.amountOfChildItems);
@@ -64,12 +83,10 @@ public class DragAndDrop : MonoBehaviour
 
         if (stackable.potentialParentItem) {
             stackable.AttachToParent();
-        } else {
-            stackable.DetachFromParent();
-        }
-
+        } 
+        
         isActive = false;
-        FindObjectOfType<HighlightedBorder>().currentHeldItem = null;
+
     }
 
     

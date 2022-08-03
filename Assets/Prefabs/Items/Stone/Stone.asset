@@ -24,4 +24,5 @@ MonoBehaviour:
   potentialOffSpring:
   - {fileID: 11400000, guid: 855316e0c92bea843b6ce2d9671bd864, type: 2}
   - {fileID: 11400000, guid: 1a15c1455f69b214a8d5bc2dcb3677cd, type: 2}
+  - {fileID: 11400000, guid: 3541cebb65418d543904013ad5efe8ec, type: 2}
   isResourceOnly: 1

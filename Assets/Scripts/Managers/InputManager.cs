@@ -1,10 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using CodeMonkey.Utils;
 
 public class InputManager : MonoBehaviour
 {
     public static InputManager Instance { get; private set; }
+
+    private int interactableLayerMask;
+
+    private DragAndDrop activeObject;
 
     private void Awake()
     {
@@ -15,6 +20,9 @@ public class InputManager : MonoBehaviour
             return;
         }
         Instance = this;
+
+        interactableLayerMask = LayerMask.GetMask("Interactable");
+
     }
 
         public Vector2 GetMouseScreenPosition()
@@ -26,6 +34,32 @@ public class InputManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape)) {
             Application.Quit();
         }
+
+        if (Input.GetMouseButtonDown(0)) {
+            Transform lowestZGameObject = null;
+
+            RaycastHit2D[] hit = Physics2D.RaycastAll(UtilsClass.GetMouseWorldPosition(), Vector2.zero, 100f, interactableLayerMask);
+
+            if (hit.Length > 0) {
+                foreach (var item in hit)
+                {
+                    if (lowestZGameObject == null) {
+                        lowestZGameObject = item.transform;
+                    } else if (item.transform.position.y < lowestZGameObject.position.y) {
+                        lowestZGameObject = item.transform;
+                    }
+                }
+                activeObject = lowestZGameObject.gameObject.GetComponent<DragAndDrop>();
+                activeObject.OnMouseDownCustom();
+            }
+        }
+
+        if (activeObject) {
+            if (Input.GetMouseButtonUp(0)) {
+                activeObject.OnMouseUpCustom();
+            }
+        }
+
     }
 
     public Vector2 GetCameraMoveVector()

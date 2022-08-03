@@ -13,6 +13,7 @@ public class ItemInfo : ScriptableObject
     public int amountRecipeCanCreate = 1;
     public ItemInfo[] potentialOffSpring;
     public bool isResourceOnly = true;
+    public bool isStationary = false;
 
     public bool checkValidTiles(TileInfo tileInfo) { 
         foreach (var tile in tileInfoValidLocations)

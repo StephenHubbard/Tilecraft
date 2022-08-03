@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66df1655cda175c4da55e2cd2c217479, type: 3}
   m_Name: House Recipe
   m_EditorClassIdentifier: 
-  name: House Recipe
   itemInfo: {fileID: 11400000, guid: 855316e0c92bea843b6ce2d9671bd864, type: 2}
   neededRecipeItems:
-  - {fileID: 11400000, guid: cdc6c77c63a25e84ea9a037f25a90331, type: 2}
+  - {fileID: 11400000, guid: 14a62113a04f8aa4e9ce5e060ae05011, type: 2}
+  - {fileID: 11400000, guid: 7b333da9a70418f439e2fb040ed4d7e5, type: 2}
   - {fileID: 11400000, guid: 7b333da9a70418f439e2fb040ed4d7e5, type: 2}
   recipeCraftTime: 6
