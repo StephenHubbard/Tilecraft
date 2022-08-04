@@ -12,9 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66df1655cda175c4da55e2cd2c217479, type: 3}
   m_Name: Berry Bush Recipe
   m_EditorClassIdentifier: 
-  name: Berry Bush Recipe
   itemInfo: {fileID: 11400000, guid: 7b6f06137545f3243acc5e75239f777f, type: 2}
   neededRecipeItems: []
   recipeCraftTime: 5
-  offspringRecipes:
-  - {fileID: 11400000, guid: b4324be3f84016744bdc2029d2dee09d, type: 2}
+  craftingClipString: Bush Rustle

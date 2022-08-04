@@ -7,7 +7,7 @@ public class Tile : MonoBehaviour
 {
     [SerializeField] public TileInfo tileInfo;
     [SerializeField] public ItemInfo itemInfo;
-    [SerializeField] private GameObject currentPlacedItem;
+    [SerializeField] public GameObject currentPlacedItem;
     [SerializeField] public List<ItemInfo> currentPlacedResources = new List<ItemInfo>();
     [SerializeField] private GameObject workerItemPrefab;
     [SerializeField] public Transform[] workerPoints;
@@ -114,7 +114,9 @@ public class Tile : MonoBehaviour
         
         if (currentPlacedItem && currentPlacedItem.GetComponent<PlacedItem>().itemInfo.isStationary == false) {
             Destroy(currentPlacedItem);
-            Instantiate(itemInfo.draggableItemPrefab, spawnItemsVector3, transform.rotation);
+            GameObject newObject = Instantiate(itemInfo.draggableItemPrefab, spawnItemsVector3, transform.rotation);
+            newObject.GetComponent<DraggableItem>().UpdateAmountLeftToHarvest(GetComponent<CraftingManager>().amountLeftToCraft);
+            PopTileCleanUp();
         }
 
         foreach (var worker in workerPoints)
@@ -123,6 +125,7 @@ public class Tile : MonoBehaviour
                 spawnItemsVector3 = transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), -1);
                 Instantiate(workerItemPrefab, spawnItemsVector3, transform.rotation);
                 Destroy(worker.GetChild(0).transform.gameObject);
+                PopTileCleanUp();
             }
         }
 
@@ -132,8 +135,12 @@ public class Tile : MonoBehaviour
                 spawnItemsVector3 = transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), -1);
                 Instantiate(resource.GetChild(0).GetComponent<PlacedItem>().itemInfo.draggableItemPrefab, spawnItemsVector3, transform.rotation);
                 Destroy(resource.GetChild(0).transform.gameObject);
+                PopTileCleanUp();
             }
         }
+    }
+
+    private void PopTileCleanUp() {
 
         isOccupiedWithBuilding = false;
         isOccupiedWithWorkers = false;
@@ -141,12 +148,9 @@ public class Tile : MonoBehaviour
 
         craftingManager.DoneCrafting();
         craftingManager.WorkerCountToZero();
-
-        audioManager.Play("Pop");
     }
 
     public void DoneCraftingDestroyItem() {
-        isOccupiedWithBuilding = false;
 
         if (resourcePoints[0].childCount > 0) {
             foreach (var resource in resourcePoints)
@@ -158,6 +162,12 @@ public class Tile : MonoBehaviour
         }
 
         isOccupiedWithResources = false;
-        Destroy(currentPlacedItem);
+
+        if (currentPlacedItem) {
+            if (currentPlacedItem.GetComponent<PlacedItem>().itemInfo.isStationary == false) {
+                isOccupiedWithBuilding = false;
+                Destroy(currentPlacedItem);
+            }
+        }
     }
 }

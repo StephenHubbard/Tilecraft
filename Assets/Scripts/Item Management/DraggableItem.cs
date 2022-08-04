@@ -8,12 +8,15 @@ public class DraggableItem : MonoBehaviour
     
     private GameObject tileHighlight;
     public Tile currentTile;
+    public int amountLeft;
 
     private AudioManager audioManager;
 
     private void Awake() {
         tileHighlight = GameObject.Find("Highlighted Border");
         audioManager = FindObjectOfType<AudioManager>();
+
+        amountLeft = itemInfo.amountRecipeCanCreate;
     }
 
     private void Start() {
@@ -25,6 +28,11 @@ public class DraggableItem : MonoBehaviour
             tileHighlight.GetComponent<SpriteRenderer>().enabled = true;
             tileHighlight.transform.position = currentTile.transform.position;
         }
+    }
+
+
+    public void UpdateAmountLeftToHarvest(int amountLeft) {
+        this.amountLeft = amountLeft;
     }
 
     public void setActiveTile(GameObject hitTile) {
@@ -45,8 +53,19 @@ public class DraggableItem : MonoBehaviour
 
     public void PlaceItemOnTile(int amountInStack) {
 
+        
+
         for (int i = amountInStack; i > 0; i--)
         {
+
+            if (currentTile.currentPlacedItem != null) {
+                if (currentTile.currentPlacedItem.GetComponent<Furnace>() && itemInfo.isSmeltable) {
+                    currentTile.currentPlacedItem.GetComponent<Furnace>().StartSmelting(itemInfo, GetComponent<Stackable>().amountOfChildItems);
+                    Destroy(gameObject);
+                    return;
+                }
+            }
+
             if (itemInfo.name == "Worker") {
                 if (currentTile.PlaceWorker(itemInfo.onTilePrefab)) {
                     currentTile.GetComponent<CraftingManager>().IncreaseWorkerCount();
@@ -81,11 +100,13 @@ public class DraggableItem : MonoBehaviour
 
             if (currentTile != null && !currentTile.isOccupiedWithBuilding && itemInfo.checkValidTiles(currentTile.GetComponent<Tile>().tileInfo) && !currentTile.isOccupiedWithResources) {
                 GameObject thisItem = Instantiate(itemInfo.onTilePrefab, currentTile.transform.position, transform.rotation);
+                thisItem.GetComponent<PlacedItem>().UpdateAmountLeftToHarvest(amountLeft);
                 thisItem.transform.parent = currentTile.transform;
                 currentTile.isOccupiedWithBuilding = true;
                 currentTile.UpdateCurrentPlacedItem(itemInfo, thisItem);
                 DetermineExtraItems(i - 1);
                 currentTile.GetComponent<CraftingManager>().CheckCanStartCrafting();
+                currentTile.GetComponent<CraftingManager>().UpdateAmountLeftToCraft(amountLeft);
                 AudioManager.instance.Play("Click");
                 Destroy(gameObject);
                 return;

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66df1655cda175c4da55e2cd2c217479, type: 3}
   m_Name: Wood Recipe
   m_EditorClassIdentifier: 
-  name: Wood Recipe
   itemInfo: {fileID: 11400000, guid: cdc6c77c63a25e84ea9a037f25a90331, type: 2}
   neededRecipeItems:
   - {fileID: 11400000, guid: 568a013acb7200747b4d15d39ba99de3, type: 2}
   recipeCraftTime: 5
+  craftingClipString: Bush Rustle

@@ -22,3 +22,5 @@ MonoBehaviour:
   potentialOffSpring:
   - {fileID: 11400000, guid: cdc6c77c63a25e84ea9a037f25a90331, type: 2}
   isResourceOnly: 0
+  isStationary: 0
+  LeftInStack: 3

@@ -50,6 +50,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemInfo: {fileID: 11400000, guid: 3541cebb65418d543904013ad5efe8ec, type: 2}
+  amountLeft: 0
 --- !u!58 &1127059410693657500
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -63,9 +64,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.1}
   serializedVersion: 2
-  m_Radius: 2.5
+  m_Radius: 3.6
 --- !u!114 &2233424650196627136
 MonoBehaviour:
   m_ObjectHideFlags: 0

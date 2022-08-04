@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66df1655cda175c4da55e2cd2c217479, type: 3}
+  m_Name: Fridge Recipe
+  m_EditorClassIdentifier: 
+  itemInfo: {fileID: 11400000, guid: e1ff6a0b15351694987bf80d33b62f60, type: 2}
+  neededRecipeItems:
+  - {fileID: 11400000, guid: d10aca6c2f1b23346885ae9deb3d17db, type: 2}
+  - {fileID: 11400000, guid: 46caf5f13780ccc4397d7e19477d11e0, type: 2}
+  recipeCraftTime: 6
+  craftingClipString: Crafting Started

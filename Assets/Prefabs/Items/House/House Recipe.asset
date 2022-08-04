@@ -18,3 +18,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7b333da9a70418f439e2fb040ed4d7e5, type: 2}
   - {fileID: 11400000, guid: 7b333da9a70418f439e2fb040ed4d7e5, type: 2}
   recipeCraftTime: 6
+  craftingClipString: Crafting Started

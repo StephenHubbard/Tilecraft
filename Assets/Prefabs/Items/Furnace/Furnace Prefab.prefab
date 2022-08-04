@@ -10,6 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3800486178009987088}
   - component: {fileID: 853084195101498960}
+  - component: {fileID: 5454870018873558176}
+  - component: {fileID: 7983917789619933579}
+  - component: {fileID: 101432915807473210}
   m_Layer: 8
   m_Name: Furnace Prefab
   m_TagString: Untagged
@@ -30,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4766408083403190018}
-  - {fileID: 3701421580207941259}
+  - {fileID: 7209499519595806442}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -47,6 +50,56 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemInfo: {fileID: 11400000, guid: 1a15c1455f69b214a8d5bc2dcb3677cd, type: 2}
+  amountLeft: 0
+--- !u!114 &5454870018873558176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 994099794024727751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14b171033ff895644af1be9f77238fa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!58 &7983917789619933579
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 994099794024727751}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.39}
+  serializedVersion: 2
+  m_Radius: 0.54
+--- !u!50 &101432915807473210
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 994099794024727751}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &8070009926642562203
 GameObject:
   m_ObjectHideFlags: 0
@@ -186,10 +239,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lock Icon
       objectReference: {fileID: 0}
+    - target: {fileID: 6686942005358304066, guid: 87afe50ee7ec3bb4c8569f0e06430fc2, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 87afe50ee7ec3bb4c8569f0e06430fc2, type: 3}
---- !u!4 &3701421580207941259 stripped
+--- !u!4 &7209499519595806442 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 837551463291683619, guid: 87afe50ee7ec3bb4c8569f0e06430fc2, type: 3}
+  m_CorrespondingSourceObject: {fileID: 6686942005358304066, guid: 87afe50ee7ec3bb4c8569f0e06430fc2, type: 3}
   m_PrefabInstance: {fileID: 4089694860617868712}
   m_PrefabAsset: {fileID: 0}

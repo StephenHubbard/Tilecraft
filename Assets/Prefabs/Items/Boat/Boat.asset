@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a967a3f0f99c934bb9b8a89e7f72db0, type: 3}
+  m_Name: Boat
+  m_EditorClassIdentifier: 
+  coinValue: 1
+  draggableItemPrefab: {fileID: 4812397909494241834, guid: fbe67481c89815e429d5245f1f41be07, type: 3}
+  onTilePrefab: {fileID: 994099794024727751, guid: 745161ae8d6bed240b801ea71cacae9c, type: 3}
+  tileInfoValidLocations:
+  - {fileID: 11400000, guid: 68eb43c7510400947b95468668236dc7, type: 2}
+  recipeInfo: {fileID: 11400000, guid: 1a535ce18b58f7646a28cc6082910142, type: 2}
+  amountRecipeCanCreate: 1000
+  potentialOffSpring:
+  - {fileID: 11400000, guid: 2c977b769381c434c9c587b76049cc2a, type: 2}
+  isResourceOnly: 0
+  isStationary: 1
+  LeftInStack: 1000

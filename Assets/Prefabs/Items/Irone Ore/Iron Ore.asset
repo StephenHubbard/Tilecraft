@@ -21,5 +21,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 683019bb58be0914385796f71488de33, type: 2}
   recipeInfo: {fileID: 11400000, guid: 533fd566904076a42a46c4d9d1ee977a, type: 2}
   amountRecipeCanCreate: 3
-  potentialOffSpring: []
+  potentialOffSpring:
+  - {fileID: 11400000, guid: 46caf5f13780ccc4397d7e19477d11e0, type: 2}
   isResourceOnly: 1
+  isStationary: 0
+  LeftInStack: 1
+  isSmeltable: 1

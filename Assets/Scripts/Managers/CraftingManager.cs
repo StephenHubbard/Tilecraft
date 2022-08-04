@@ -40,19 +40,19 @@ public class CraftingManager : MonoBehaviour
 
         if (currentCraftTime < .1f && hasCompleteRecipe && hasWorkers && isCrafting) {
             PopOutNewItemFromRecipe();
-        }
+        } 
     }
 
-    public void UpdateAmountLeftToCraft(ItemInfo itemInfo) {
-        amountLeftToCraft = itemInfo.amountRecipeCanCreate;
-        startAmountToCraft = itemInfo.amountRecipeCanCreate;
+    public void UpdateAmountLeftToCraft(int amountLeft) {
+        amountLeftToCraft = amountLeft;
+        startAmountToCraft = amountLeft;
     }
 
     public void CheckCanStartCrafting() {
         if (hasCompleteRecipe && hasWorkers && !isCrafting && amountLeftToCraft > 0) {
             StartCrafting();
             if (startAmountToCraft == amountLeftToCraft) {
-                audioManager.Play("Crafting Started");
+                audioManager.Play(recipeInfo.craftingClipString);
             }
         } 
     }

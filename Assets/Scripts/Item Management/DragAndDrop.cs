@@ -39,6 +39,7 @@ public class DragAndDrop : MonoBehaviour
         isActive = true;
         stackable.FindAmountOfChildren(transform);
         stackable.DetachFromParent();
+        OnMouseDragCustom();
     }
 
 

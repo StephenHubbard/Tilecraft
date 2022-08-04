@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using CodeMonkey.Utils;
+using UnityEngine.SceneManagement;
 
 public class InputManager : MonoBehaviour
 {
@@ -34,6 +35,12 @@ public class InputManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape)) {
             Application.Quit();
         }
+
+        if (Input.GetKeyDown(KeyCode.R)) {
+            SceneManager.LoadScene(0);
+        }
+
+
 
         if (Input.GetMouseButtonDown(0)) {
             Transform lowestZGameObject = null;

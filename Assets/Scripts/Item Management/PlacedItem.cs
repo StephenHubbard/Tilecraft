@@ -6,6 +6,11 @@ using System.Linq;
 public class PlacedItem : MonoBehaviour
 {
     [SerializeField] public ItemInfo itemInfo;
+    public int amountLeft;
+
+    private void Awake() {
+        amountLeft = 1;
+    }
 
     public bool CheckForValidRecipe() {
         CraftingManager craftingManager = GetComponentInParent<CraftingManager>();
@@ -23,7 +28,7 @@ public class PlacedItem : MonoBehaviour
             
 
             if (AreListsEqual(GetComponentInParent<Tile>().currentPlacedResources, resourcesNeededForRecipeLookup)) {
-                GetComponentInParent<CraftingManager>().UpdateAmountLeftToCraft(potentialOffSpring.recipeInfo.itemInfo);
+                GetComponentInParent<CraftingManager>().UpdateAmountLeftToCraft(amountLeft);
                 GetComponentInParent<CraftingManager>().recipeInfo = potentialOffSpring.recipeInfo;
                 GetComponentInParent<CraftingManager>().hasCompleteRecipe = true;
                 return true;
@@ -33,6 +38,10 @@ public class PlacedItem : MonoBehaviour
 
         GetComponentInParent<CraftingManager>().hasCompleteRecipe = false;
         return false;
+    }
+
+    public void UpdateAmountLeftToHarvest(int amountLeft) {
+        this.amountLeft = amountLeft;
     }
 
     public static bool AreListsEqual<T>(IEnumerable<T> list1, IEnumerable<T> list2) {

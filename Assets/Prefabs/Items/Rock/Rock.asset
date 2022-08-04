@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a967a3f0f99c934bb9b8a89e7f72db0, type: 3}
   m_Name: Rock
   m_EditorClassIdentifier: 
-  name: Rock
   coinValue: 1
   draggableItemPrefab: {fileID: 4812397909494241834, guid: 83ef1112ea276e0418b60fe406b5d23d, type: 3}
   onTilePrefab: {fileID: 994099794024727751, guid: 18838b8e598bcc54e97c6e73a9fe7410, type: 3}
@@ -23,3 +22,5 @@ MonoBehaviour:
   potentialOffSpring:
   - {fileID: 11400000, guid: 7b333da9a70418f439e2fb040ed4d7e5, type: 2}
   isResourceOnly: 0
+  isStationary: 0
+  LeftInStack: 3
