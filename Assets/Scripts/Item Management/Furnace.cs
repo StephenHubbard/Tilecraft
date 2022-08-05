@@ -12,11 +12,10 @@ public class Furnace : MonoBehaviour
 
     public void StartSmelting(ItemInfo itemInfo, int amountInStack) {
         craftingManager = GetComponentInParent<CraftingManager>();
-        amountLeftToSmelt = amountInStack;
         currentlySmeltingItem = itemInfo;
         craftingManager.recipeInfo = currentlySmeltingItem.potentialOffSpring[0].recipeInfo;
         craftingManager.hasCompleteRecipe = true;
-        craftingManager.UpdateAmountLeftToCraft(amountLeftToSmelt);
+        craftingManager.UpdateAmountLeftToCraft(amountInStack);
         craftingManager.CheckCanStartCrafting();
     }
 }

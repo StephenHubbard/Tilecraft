@@ -60,10 +60,16 @@ public class DraggableItem : MonoBehaviour
 
             if (currentTile.currentPlacedItem != null) {
                 if (currentTile.currentPlacedItem.GetComponent<Furnace>() && itemInfo.isSmeltable) {
-                    currentTile.currentPlacedItem.GetComponent<Furnace>().StartSmelting(itemInfo, GetComponent<Stackable>().amountOfChildItems);
-                    Destroy(gameObject);
-                    return;
-                }
+                    if (!currentTile.GetComponent<CraftingManager>().isCrafting) {
+                        currentTile.currentPlacedItem.GetComponent<Furnace>().StartSmelting(itemInfo, GetComponent<Stackable>().amountOfChildItems);
+                        Destroy(gameObject);
+                        return;
+                    } else {
+                        DetermineExtraItems(i);
+                        Destroy(gameObject);
+                        return;
+                    }
+                } 
             }
 
             if (itemInfo.name == "Worker") {

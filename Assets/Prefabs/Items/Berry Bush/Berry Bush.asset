@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a967a3f0f99c934bb9b8a89e7f72db0, type: 3}
   m_Name: Berry Bush
   m_EditorClassIdentifier: 
+  itemName: Berry Bush
   coinValue: 1
   draggableItemPrefab: {fileID: 4812397909494241834, guid: 8adc13cb9cb860341a2695c0ba62d8d4, type: 3}
   onTilePrefab: {fileID: 994099794024727751, guid: f7e0b55a1bed8ac4bb275d8ece821371, type: 3}
@@ -25,3 +26,6 @@ MonoBehaviour:
   isResourceOnly: 0
   isStationary: 0
   LeftInStack: 3
+  isSmeltable: 0
+  foodValue: 0
+  toolTipText: Placed on a grass tile to gather berries.

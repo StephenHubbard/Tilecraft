@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a967a3f0f99c934bb9b8a89e7f72db0, type: 3}
   m_Name: Berry
   m_EditorClassIdentifier: 
-  name: Berry Bush
+  itemName: Berry
   coinValue: 1
   draggableItemPrefab: {fileID: 4812397909494241834, guid: 9bd14624e2e320b49ab89d1e67511cb4, type: 3}
   onTilePrefab: {fileID: 994099794024727751, guid: 3ea712a93ee306e4fa7abede8a7a9a8c, type: 3}
@@ -24,3 +24,8 @@ MonoBehaviour:
   amountRecipeCanCreate: 3
   potentialOffSpring: []
   isResourceOnly: 1
+  isStationary: 0
+  LeftInStack: 1
+  isSmeltable: 0
+  foodValue: 1
+  toolTipText: Provides food for workers.

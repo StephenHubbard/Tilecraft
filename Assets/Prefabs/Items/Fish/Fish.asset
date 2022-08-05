@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a967a3f0f99c934bb9b8a89e7f72db0, type: 3}
   m_Name: Fish
   m_EditorClassIdentifier: 
+  itemName: 
   coinValue: 1
   draggableItemPrefab: {fileID: 4812397909494241834, guid: ef5b046ae5a00564db02daeaa1c0c440, type: 3}
   onTilePrefab: {fileID: 994099794024727751, guid: 0874e08d8487bf34a82fc8be87261913, type: 3}
@@ -26,3 +27,6 @@ MonoBehaviour:
   isResourceOnly: 1
   isStationary: 0
   LeftInStack: 1
+  isSmeltable: 0
+  foodValue: 2
+  toolTipText: 

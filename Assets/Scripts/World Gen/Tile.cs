@@ -153,6 +153,8 @@ public class Tile : MonoBehaviour
             if (!currentPlacedItem.GetComponent<UnlimitedHarvest>()) {
                 craftingManager.DoneCrafting();
             }
+        } else {
+            craftingManager.DoneCrafting();
         }
 
         craftingManager.WorkerCountToZero();

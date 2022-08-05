@@ -43,6 +43,10 @@ public class CraftingManager : MonoBehaviour
         } 
     }
 
+    // public void UpdateFurnaceAmount(int amountLeft) {
+    //     amountLeftToCraft += amountLeft;
+    // }
+
     public void UpdateAmountLeftToCraft(int amountLeft) {
         amountLeftToCraft = amountLeft;
         startAmountToCraft = amountLeft;
