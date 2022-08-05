@@ -9,15 +9,34 @@ public class TimeOfDay : MonoBehaviour
 
     [Header("How long a day is in seconds")]
     [SerializeField] private float howLongIsOneDay;
+    
+    private float clockSpinFactor;
+
+    private FoodManager foodManager;
+
+    private void Awake() {
+        foodManager = FindObjectOfType<FoodManager>();
+    }
 
     private void Start() {
+        clockSpinFactor = 360f / howLongIsOneDay ;
         timeLeftInDay = howLongIsOneDay;
     }
 
     private void Update() {
         timeLeftInDay -= Time.deltaTime;
 
-        handleParent.Rotate(new Vector3(0, 0, -15) * Time.deltaTime) ;
+        handleParent.transform.eulerAngles = new Vector3(0, 0, timeLeftInDay * clockSpinFactor);
+
+        ResetDay();
+    }
+
+    private void ResetDay() {
+        if (timeLeftInDay <= 0) {
+            timeLeftInDay = howLongIsOneDay;
+
+            foodManager.NewDayEatFood();
+        }
     }
 
 

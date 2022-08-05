@@ -61,6 +61,16 @@ public class CraftingManager : MonoBehaviour
         amountOfWorkers += 1;
     }
 
+    public void DecreaseWorkerCount() {
+        amountOfWorkers -= 1;
+
+        if (amountOfWorkers == 0) {
+            hasWorkers = false;
+        }
+
+        CheckCanStartCrafting();
+    }
+
     public void WorkerCountToZero() {
         amountOfWorkers = 0;
         hasWorkers = false;

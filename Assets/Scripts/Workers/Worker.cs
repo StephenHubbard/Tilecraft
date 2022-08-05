@@ -10,6 +10,10 @@ public class Worker : MonoBehaviour
         myAnimator = GetComponent<Animator>();
     }
 
+    private void Start() {
+        StartCoroutine(FindObjectOfType<FoodManager>().UpdateFoodNeededCo());
+    }
+
     public void StartWorking() {
         StartCoroutine(StartWorkingCo());
     }
