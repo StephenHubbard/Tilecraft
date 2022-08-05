@@ -16,7 +16,7 @@ MonoBehaviour:
   draggableItemPrefab: {fileID: 4812397909494241834, guid: 4d82638bbf51eb945beb8ddc4d9adf48, type: 3}
   onTilePrefab: {fileID: 994099794024727751, guid: ab9681d3089af0e43b0b2e2000d547f1, type: 3}
   tileInfoValidLocations:
-  - {fileID: 11400000, guid: e492befd9aee1b645b08c2b5e24460b2, type: 2}
+  - {fileID: 11400000, guid: 5f31d55a53bbe2f479011bab64202e0c, type: 2}
   recipeInfo: {fileID: 11400000, guid: 496a28945db6091468054779743062ec, type: 2}
   amountRecipeCanCreate: 3
   potentialOffSpring:
@@ -24,3 +24,4 @@ MonoBehaviour:
   isResourceOnly: 0
   isStationary: 0
   LeftInStack: 3
+  isSmeltable: 0

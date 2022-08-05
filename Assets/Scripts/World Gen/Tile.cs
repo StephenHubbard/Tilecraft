@@ -142,11 +142,19 @@ public class Tile : MonoBehaviour
 
     private void PopTileCleanUp() {
 
-        isOccupiedWithBuilding = false;
         isOccupiedWithWorkers = false;
         isOccupiedWithResources = false;
 
-        craftingManager.DoneCrafting();
+        if (currentPlacedItem) {
+            if (currentPlacedItem.GetComponent<PlacedItem>().itemInfo.isStationary == false) {
+                isOccupiedWithBuilding = false;
+            }
+
+            if (!currentPlacedItem.GetComponent<UnlimitedHarvest>()) {
+                craftingManager.DoneCrafting();
+            }
+        }
+
         craftingManager.WorkerCountToZero();
     }
 

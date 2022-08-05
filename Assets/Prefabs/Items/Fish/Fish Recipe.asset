@@ -15,5 +15,5 @@ MonoBehaviour:
   itemInfo: {fileID: 11400000, guid: 2c977b769381c434c9c587b76049cc2a, type: 2}
   neededRecipeItems:
   - {fileID: 11400000, guid: 82a4221057f384b4da215e848da2cead, type: 2}
-  recipeCraftTime: 5
+  recipeCraftTime: 30
   craftingClipString: Bush Rustle

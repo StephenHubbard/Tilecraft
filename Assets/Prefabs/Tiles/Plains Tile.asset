@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bd5d9ad62b9b05d4d8603b2189dba574, type: 3}
-  m_Name: Desert Tile
+  m_Name: Plains Tile
   m_EditorClassIdentifier: 
-  name: Desert Tile
+  name: Plains Tile
   tilePrefab: {fileID: 7705127686124994547, guid: 41f362ec673fb2c479c7409f162a856f, type: 3}

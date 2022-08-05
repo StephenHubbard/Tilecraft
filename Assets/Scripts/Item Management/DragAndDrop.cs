@@ -61,10 +61,14 @@ public class DragAndDrop : MonoBehaviour
 
         // stack detection
         RaycastHit2D[] hit2 = Physics2D.RaycastAll(UtilsClass.GetMouseWorldPosition(), Vector2.zero, 100f, interactableLayerMask);
+
         if (hit2.Length > 1) {
-            if (hit2[1].transform.gameObject.GetComponent<Stackable>() && hit2[1].transform.gameObject.GetComponent<DraggableItem>().itemInfo == stackable.itemInfo) {
-                if (hit2[1].transform.root != transform) {
-                    stackable.potentialParentItem = hit2[1].transform.root;
+            foreach (var item in hit2) 
+            {
+                if (item.transform.gameObject.GetComponent<Stackable>() && item.transform.gameObject.GetComponent<DraggableItem>().itemInfo == stackable.itemInfo && item.transform.root != transform) 
+                {
+                    stackable.potentialParentItem = item.transform.root;
+                    return;
                 }
             }
         } else {

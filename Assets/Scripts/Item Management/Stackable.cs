@@ -8,7 +8,6 @@ public class Stackable : MonoBehaviour
     public Transform potentialParentItem;
     public int amountOfChildItems = 0;
 
-    // public bool isInStackAlready = false;
     public ItemInfo itemInfo;
     private Transform lastChild;
 
@@ -21,21 +20,6 @@ public class Stackable : MonoBehaviour
         interactableLayerMask = LayerMask.GetMask("Interactable");
     }
 
-    // private void OnMouseDrag() {
-    //     RaycastHit2D[] hit = Physics2D.RaycastAll(UtilsClass.GetMouseWorldPosition(), Vector2.zero, 100f, interactableLayerMask);
-
-    //     if (hit.Length > 1) {
-    //         if (hit[1].transform.gameObject.GetComponent<Stackable>() && hit[1].transform.gameObject.GetComponent<DraggableItem>().itemInfo == itemInfo) {
-    //             if (hit[1].transform.root != transform) {
-    //                 potentialParentItem = hit[1].transform.root;
-    //             }
-    //         }
-    //     } else {
-    //         potentialParentItem = null;
-    //     }
-    // }
-
-    
     public void AttachToParent() {
 
         FindLastChild(potentialParentItem);
@@ -47,18 +31,6 @@ public class Stackable : MonoBehaviour
 
         audioManager.Play("Stack");
 
-        // isInStackAlready = true;
-        // lastChild.GetComponent<Stackable>().isInStackAlready = true;
-        
-        // Stackable[] allItems = FindObjectsOfType<Stackable>(); 
-
-        // foreach (var item in allItems)
-        // {
-        //     if (item.isInStackAlready) {
-        //         item.potentialParentItem = null;
-        //     }
-        // }
-        
     }
 
     private void FindLastChild(Transform thisChild) {
@@ -81,9 +53,7 @@ public class Stackable : MonoBehaviour
     }
 
     public void DetachFromParent() {
-        // isInStackAlready = false;
         transform.SetParent(null);
-        // transform.position = new Vector3(transform.position.x, transform.position.y, -1f);
         
     }
     

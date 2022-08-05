@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9047470564281639635}
   - component: {fileID: 2948633767903344407}
   m_Layer: 7
-  m_Name: Desert Tile
+  m_Name: Plains Tile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
