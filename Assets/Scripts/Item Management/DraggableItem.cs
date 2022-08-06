@@ -87,7 +87,7 @@ public class DraggableItem : MonoBehaviour
                         Destroy(gameObject);
                     }
 
-                    if (currentTile && currentTile.currentPlacedItem.GetComponent<House>()) {
+                    if (currentTile.currentPlacedItem && currentTile.currentPlacedItem.GetComponent<House>()) {
                         currentTile.currentPlacedItem.GetComponent<House>().DetectBabyMaking();
                     }
 

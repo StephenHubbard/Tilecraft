@@ -6,8 +6,8 @@ using Cinemachine;
 public class CameraController : MonoBehaviour
 {
 
-    private const float MIN_FOLLOW_Y_OFFSET = 2f;
-    private const float MAX_FOLLOW_Y_OFFSET = 8f;
+    private const float MIN_FOLLOW_Z_OFFSET = 2f;
+    private const float MAX_FOLLOW_Z_OFFSET = 10f;
 
     [SerializeField] private CinemachineVirtualCamera cinemachineVirtualCamera;
     [SerializeField] private Collider2D cameraConfiner;
@@ -53,11 +53,11 @@ public class CameraController : MonoBehaviour
 
     private void HandleZoom()
     {
-        float zoomIncreaseAmount = 2f;
+        float zoomIncreaseAmount = 3f;
         float currentZoom = cinemachineVirtualCamera.m_Lens.OrthographicSize;
         float targetZoom = currentZoom;
         targetZoom += InputManager.Instance.GetCameraZoomAmount() * zoomIncreaseAmount;
-        targetZoom = Mathf.Clamp(targetZoom, MIN_FOLLOW_Y_OFFSET, MAX_FOLLOW_Y_OFFSET);
+        targetZoom = Mathf.Clamp(targetZoom, MIN_FOLLOW_Z_OFFSET, MAX_FOLLOW_Z_OFFSET);
 
         float zoomSpeed = 5f;
 

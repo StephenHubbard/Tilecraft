@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 3800486178009987088}
   - component: {fileID: 853084195101498960}
   - component: {fileID: 945506467775673203}
-  - component: {fileID: -5672351691741752047}
+  - component: {fileID: 8140804103263101259}
   m_Layer: 8
-  m_Name: Worker Prefab
+  m_Name: Orc Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 930d0fac990f5a640bc418598ee9e5c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemInfo: {fileID: 11400000, guid: 7ecdb19248e9de349ba40029c73a2f12, type: 2}
+  itemInfo: {fileID: 11400000, guid: 9f4fcc8b513a12e4ba49920d92c8637f, type: 2}
   amountLeft: 0
 --- !u!95 &945506467775673203
 Animator:
@@ -59,7 +59,7 @@ Animator:
   m_GameObject: {fileID: 994099794024727751}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: adc28bd6a0e72314887bc56a38818f6f, type: 2}
+  m_Controller: {fileID: 9100000, guid: 50278b1fb5ecde24f889cfdb5dcac890, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -69,7 +69,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &-5672351691741752047
+--- !u!114 &8140804103263101259
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -78,7 +78,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 994099794024727751}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88fb9c1437828da47b0877019fb4030c, type: 3}
+  m_Script: {fileID: 11500000, guid: 089e18529806e0c43bc081d4e0a18ffc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &8070009926642562203
@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 4766408083403190018}
   - component: {fileID: 7301728323509092388}
   m_Layer: 8
-  m_Name: Worker
+  m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -154,9 +154,9 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -1736298917, guid: 48d8443122268c748a050518cd6fd91d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5cbce5d09954d3e4cadf90e53386e365, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}

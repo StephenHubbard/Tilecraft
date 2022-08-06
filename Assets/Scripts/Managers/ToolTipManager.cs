@@ -18,6 +18,7 @@ public class ToolTipManager : MonoBehaviour
     [SerializeField] private LayerMask toolTipLayerMask = new LayerMask();
 
     private bool isMaximized = true;
+    private bool isOverUI = false;
 
     private void Start() {
         ToggleToolTipOff();
@@ -29,7 +30,7 @@ public class ToolTipManager : MonoBehaviour
     }
 
     private void RaycastMouseOver() {
-        if (!isMaximized) { return; }
+        if (!isMaximized || isOverUI) { return; }
 
         RaycastHit2D[] hit = Physics2D.RaycastAll(UtilsClass.GetMouseWorldPosition(), Vector2.zero, 100f, toolTipLayerMask);
 
@@ -97,6 +98,17 @@ public class ToolTipManager : MonoBehaviour
         minimizeButton.SetActive(true);
         isMaximized = true;
         AudioManager.instance.Play("UI Click");
+    }
+
+    public void HoverOverUI(Transform sender) {
+        isOverUI = true;
+        ToggleToolTipOn();
+        UpdateValues(sender.GetComponent<UITooltip>().toolTipName, sender.GetComponent<UITooltip>().toolTipText, 0, 0);
+    }
+
+    public void ExitUI() {
+        ToggleToolTipOff();
+        isOverUI = false;
     }
 
 }
