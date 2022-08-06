@@ -13,10 +13,13 @@ public class WorldGeneration : MonoBehaviour
     [SerializeField] private Transform tileParent;
     [SerializeField] private GameObject towerPrefab;
     [SerializeField] private int amountOfStartingTiles = 20;
+    [SerializeField] private ItemInfo[] spawnableTileItems;
     
     private Grid grid;
     private int newTileSpawnDir = 1;
     private bool newTileSpawned = false;
+
+
 
     private AudioManager audioManager;
 
@@ -47,15 +50,15 @@ public class WorldGeneration : MonoBehaviour
                     GameObject tileType = Instantiate(tileInfoScriptableObjects[0].tilePrefab, newTile.transform.position, transform.rotation);
                     GameObject startingTower = Instantiate(towerPrefab, newTile.transform.position, transform.rotation);
                     startingTower.transform.parent = newTile.transform;
-                    tileType.transform.parent = newTile.transform;
-                    tileType.GetComponentInParent<Tile>().tileInfo = tileInfoScriptableObjects[0];
                     newTile.GetComponent<Tile>().UpdateCurrentPlacedItem(towerPrefab.GetComponent<PlacedItem>().itemInfo, startingTower);
                     newTile.GetComponent<Tile>().isOccupiedWithBuilding = true;
+                    tileType.transform.parent = newTile.transform;
+                    tileType.GetComponentInParent<Tile>().tileInfo = tileInfoScriptableObjects[0];
 
-                    SpawnTileAbove(x, y);
-                    SpawnTileBelow(x, y);
-                    SpawnTileToRight(x, y);
-                    SpawnTileToLeft(x, y);
+                    // SpawnTileAbove(x, y);
+                    // SpawnTileBelow(x, y);
+                    // SpawnTileToRight(x, y);
+                    // SpawnTileToLeft(x, y);
 
                     grid.SetValue(gridLocation, 1);
                 }
@@ -139,6 +142,35 @@ public class WorldGeneration : MonoBehaviour
                         Vector3 gridLocation = grid.GetWorldPosition(x, y) + new Vector3(cellSize, cellSize) * .5f;
                         GameObject newTile = Instantiate(tilePrefab, gridLocation, transform.rotation);
                         GenWhichTileType(newTile.transform);
+
+                        int doesSpawnStartingItemNum = Random.Range(1, 3);
+
+                        if (doesSpawnStartingItemNum == 1) {
+
+                            List<ItemInfo> potentialItems = new List<ItemInfo>();
+                            
+                            foreach (var potentialItem in spawnableTileItems)
+                            {
+
+                                foreach (var validLandTile in potentialItem.tileInfoValidLocations)
+                                {
+
+                                    if (validLandTile == newTile.GetComponent<Tile>().tileInfo) {
+                                        potentialItems.Add(potentialItem);
+                                    }
+                                }
+                            }
+
+                            int whichPrefabToSpawnNum = Random.Range(0, potentialItems.Count);
+
+                            GameObject startingPlacedItem = Instantiate(potentialItems[whichPrefabToSpawnNum].onTilePrefab, newTile.transform.position, transform.rotation);
+                            startingPlacedItem.transform.parent = newTile.transform;
+                            newTile.GetComponent<Tile>().UpdateCurrentPlacedItem(startingPlacedItem.GetComponent<PlacedItem>().itemInfo, startingPlacedItem);
+                            newTile.GetComponent<Tile>().isOccupiedWithBuilding = true;
+                            newTile.GetComponent<CraftingManager>().UpdateAmountLeftToCraft(startingPlacedItem.GetComponent<PlacedItem>().itemInfo.amountRecipeCanCreate);
+
+                        }
+
                         grid.SetValue(gridLocation, 1);
                         newTileSpawned = true;
                         newTileSpawnDir = 2;
@@ -161,6 +193,36 @@ public class WorldGeneration : MonoBehaviour
                         Vector3 gridLocation = grid.GetWorldPosition(x, y) + new Vector3(cellSize, cellSize) * .5f;
                         GameObject newTile = Instantiate(tilePrefab, gridLocation, transform.rotation);
                         GenWhichTileType(newTile.transform);
+
+                        int doesSpawnStartingItemNum = Random.Range(1, 3);
+
+                        if (doesSpawnStartingItemNum == 1) {
+
+                            List<ItemInfo> potentialItems = new List<ItemInfo>();
+                            
+                            foreach (var potentialItem in spawnableTileItems)
+                            {
+
+                                foreach (var validLandTile in potentialItem.tileInfoValidLocations)
+                                {
+
+                                    if (validLandTile == newTile.GetComponent<Tile>().tileInfo) {
+                                        potentialItems.Add(potentialItem);
+                                    }
+                                }
+                            }
+
+                            int whichPrefabToSpawnNum = Random.Range(0, potentialItems.Count);
+
+                            GameObject startingPlacedItem = Instantiate(potentialItems[whichPrefabToSpawnNum].onTilePrefab, newTile.transform.position, transform.rotation);
+                            startingPlacedItem.transform.parent = newTile.transform;
+                            newTile.GetComponent<Tile>().UpdateCurrentPlacedItem(startingPlacedItem.GetComponent<PlacedItem>().itemInfo, startingPlacedItem);
+                            newTile.GetComponent<Tile>().isOccupiedWithBuilding = true;
+                            newTile.GetComponent<CraftingManager>().UpdateAmountLeftToCraft(startingPlacedItem.GetComponent<PlacedItem>().itemInfo.amountRecipeCanCreate);
+
+                        }
+
+
                         grid.SetValue(gridLocation, 1);
                         newTileSpawned = true;
                         newTileSpawnDir = 1;

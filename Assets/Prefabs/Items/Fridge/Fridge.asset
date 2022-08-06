@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a967a3f0f99c934bb9b8a89e7f72db0, type: 3}
   m_Name: Fridge
   m_EditorClassIdentifier: 
+  itemName: Fridge
   coinValue: 1
   draggableItemPrefab: {fileID: 4812397909494241834, guid: 6626467f318c54940874bcebcce0ebe3, type: 3}
   onTilePrefab: {fileID: 994099794024727751, guid: 36a3568b0b89f724ca5383cc5bc749b1, type: 3}
@@ -26,3 +27,5 @@ MonoBehaviour:
   isStationary: 1
   LeftInStack: 1
   isSmeltable: 0
+  foodValue: 0
+  toolTipText: Food storage.  Food from fridge will be used first.

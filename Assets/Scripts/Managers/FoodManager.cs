@@ -43,21 +43,36 @@ public class FoodManager : MonoBehaviour
             amountOfFoodAvailable += item.foodWorthAmount;
         }
 
+        Fridge[] allFridges = FindObjectsOfType<Fridge>();
+
+        foreach (var fridge in allFridges)
+        {
+            amountOfFoodAvailable += fridge.currentAmountOfFood;
+        }
+
         currentFood = amountOfFoodAvailable;
     }
 
     public void NewDayEatFood() {
         Food[] allFood = FindObjectsOfType<Food>();
 
-        int amountOfFoodAvailable = 0;
-
-        foreach (Food item in allFood)
-        {
-            amountOfFoodAvailable += item.foodWorthAmount;
-        }
+        Fridge[] allFridges = FindObjectsOfType<Fridge>();
 
         int amountOfFoodNeededNow = totalFoodNeeded;
         bool enoughFood = false;
+
+        foreach (var fridge in allFridges)
+        {
+            if (amountOfFoodNeededNow > 0) {
+                for (int i = fridge.currentAmountOfFood; i > 0; i--)
+                {
+                    if (amountOfFoodNeededNow > 0) {
+                        amountOfFoodNeededNow--;
+                        fridge.currentAmountOfFood--;
+                    }
+                }
+            }
+        }
 
         foreach (Food item in allFood)
         {
@@ -65,7 +80,6 @@ public class FoodManager : MonoBehaviour
                 amountOfFoodNeededNow -= item.foodWorthAmount;
                 Destroy(item.gameObject);
             } else {
-                print("successfully done eating");
                 enoughFood = true;
                 break;
             }
@@ -83,6 +97,8 @@ public class FoodManager : MonoBehaviour
 
         UpdateAmountOfCurrentFoodAvailable();
         UpdateAmountOfTotalFoodNeed();
+
+        StartCoroutine(UpdateFoodCo());
     }
 
     private void CalcStarvedWorkers(int foodDeficitAmount) {
@@ -92,7 +108,6 @@ public class FoodManager : MonoBehaviour
 
         int amountOfWorkersStarved = 0;
         int workersToStarve = Mathf.CeilToInt((float)-foodDeficitAmount / 2);
-        print(workersToStarve);
 
         for (int i = 0; i < workersToStarve; i++)
         {

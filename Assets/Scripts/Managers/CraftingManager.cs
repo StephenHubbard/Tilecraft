@@ -43,22 +43,25 @@ public class CraftingManager : MonoBehaviour
         } 
     }
 
-    // public void UpdateFurnaceAmount(int amountLeft) {
-    //     amountLeftToCraft += amountLeft;
-    // }
-
     public void UpdateAmountLeftToCraft(int amountLeft) {
         amountLeftToCraft = amountLeft;
         startAmountToCraft = amountLeft;
     }
 
     public void CheckCanStartCrafting() {
-        if (hasCompleteRecipe && hasWorkers && !isCrafting && amountLeftToCraft > 0) {
+        if (hasCompleteRecipe && hasWorkers && !isCrafting && amountLeftToCraft > 0 && !recipeInfo.requiresFurnace) {
             StartCrafting();
             if (startAmountToCraft == amountLeftToCraft) {
                 audioManager.Play(recipeInfo.craftingClipString);
             }
-        } 
+        } else if (hasCompleteRecipe && hasWorkers && !isCrafting && amountLeftToCraft > 0 && recipeInfo.requiresFurnace) {
+            if (GetComponent<Tile>().currentPlacedItem.GetComponent<Furnace>()) {
+                StartCrafting();
+                if (startAmountToCraft == amountLeftToCraft) {
+                    audioManager.Play(recipeInfo.craftingClipString);
+                }
+            }
+        }
     }
 
     public void IncreaseWorkerCount() {
@@ -120,6 +123,10 @@ public class CraftingManager : MonoBehaviour
         if (amountLeftToCraft == 0) {
             DoneCrafting();
             GetComponent<Tile>().DoneCraftingDestroyItem();
+        }
+
+        if (transform.GetComponent<Tile>().currentPlacedItem && transform.GetComponent<Tile>().currentPlacedItem.GetComponent<Furnace>()) {
+            transform.GetComponent<Tile>().currentPlacedItem.GetComponent<Furnace>().UpdateFurnaceAmountLeft();
         }
 
         CheckCanStartCrafting();

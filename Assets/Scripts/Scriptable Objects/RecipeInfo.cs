@@ -9,6 +9,7 @@ public class RecipeInfo : ScriptableObject
     public ItemInfo[] neededRecipeItems;
     public float recipeCraftTime;
     public string craftingClipString;
+    public bool requiresFurnace = false;
 
     
 }

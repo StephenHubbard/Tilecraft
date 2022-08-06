@@ -32,7 +32,7 @@ public class Tile : MonoBehaviour
         tileCloudLayerMask = LayerMask.GetMask("Tile");
         tileCloudLayerMask += LayerMask.GetMask("Clouds");
 
-    }
+    } 
 
     private void Update() {
         CustomOnMouseOver();
@@ -117,6 +117,14 @@ public class Tile : MonoBehaviour
             GameObject newObject = Instantiate(itemInfo.draggableItemPrefab, spawnItemsVector3, transform.rotation);
             newObject.GetComponent<DraggableItem>().UpdateAmountLeftToHarvest(GetComponent<CraftingManager>().amountLeftToCraft);
             PopTileCleanUp();
+        }
+
+        if (currentPlacedItem && currentPlacedItem.GetComponent<Furnace>()) {
+            currentPlacedItem.GetComponent<Furnace>().AbandonSmelting();
+        }
+
+        if (currentPlacedItem && currentPlacedItem.GetComponent<House>()) {
+            currentPlacedItem.GetComponent<House>().StopBabyMaking();
         }
 
         foreach (var worker in workerPoints)

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a967a3f0f99c934bb9b8a89e7f72db0, type: 3}
   m_Name: Tower
   m_EditorClassIdentifier: 
+  itemName: Tower
   coinValue: 1
   draggableItemPrefab: {fileID: 4812397909494241834, guid: ccdde166ebea3304b8be7377a6a6fcbd, type: 3}
   onTilePrefab: {fileID: 994099794024727751, guid: 80d1c8f5de5a25f438d0acafde184359, type: 3}
@@ -24,3 +25,7 @@ MonoBehaviour:
   potentialOffSpring: []
   isResourceOnly: 0
   isStationary: 1
+  LeftInStack: 1
+  isSmeltable: 0
+  foodValue: 0
+  toolTipText: Reveals more available space on the map.

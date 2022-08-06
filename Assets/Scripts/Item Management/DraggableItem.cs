@@ -52,12 +52,19 @@ public class DraggableItem : MonoBehaviour
     }
 
     public void PlaceItemOnTile(int amountInStack) {
-
-        
-
         for (int i = amountInStack; i > 0; i--)
         {
 
+            // fridge
+            if (currentTile.currentPlacedItem && currentTile.currentPlacedItem.GetComponent<Fridge>()) {
+                if (gameObject.GetComponent<Food>()) {
+                    currentTile.currentPlacedItem.GetComponent<Fridge>().IncreaseFoodAmount(gameObject.GetComponent<Food>().foodWorthAmount, GetComponent<Stackable>().amountOfChildItems);
+                    Destroy(gameObject);
+                    return;
+                }
+            }
+
+            // furnace
             if (currentTile.currentPlacedItem != null) {
                 if (currentTile.currentPlacedItem.GetComponent<Furnace>() && itemInfo.isSmeltable) {
                     if (!currentTile.GetComponent<CraftingManager>().isCrafting) {
@@ -72,12 +79,18 @@ public class DraggableItem : MonoBehaviour
                 } 
             }
 
+            // worker
             if (itemInfo.name == "Worker") {
                 if (currentTile.PlaceWorker(itemInfo.onTilePrefab)) {
                     currentTile.GetComponent<CraftingManager>().IncreaseWorkerCount();
                     if (i == 1) {
                         Destroy(gameObject);
                     }
+
+                    if (currentTile && currentTile.currentPlacedItem.GetComponent<House>()) {
+                        currentTile.currentPlacedItem.GetComponent<House>().DetectBabyMaking();
+                    }
+
                     continue;
                 } else { 
                     DetermineExtraItems(i);
@@ -86,6 +99,7 @@ public class DraggableItem : MonoBehaviour
                 }
             }
 
+            // resources
             if (itemInfo.isResourceOnly && !currentTile.isOccupiedWithBuilding && !currentTile.GetComponent<CraftingManager>().isCrafting) {
                 if (currentTile.PlaceResource(itemInfo.onTilePrefab)) {
                     currentTile.UpdateCurrentPlacedResourceList(itemInfo);
@@ -104,6 +118,7 @@ public class DraggableItem : MonoBehaviour
                 }
             }
 
+            // main item
             if (currentTile != null && !currentTile.isOccupiedWithBuilding && itemInfo.checkValidTiles(currentTile.GetComponent<Tile>().tileInfo) && !currentTile.isOccupiedWithResources) {
                 GameObject thisItem = Instantiate(itemInfo.onTilePrefab, currentTile.transform.position, transform.rotation);
                 thisItem.GetComponent<PlacedItem>().UpdateAmountLeftToHarvest(amountLeft);
