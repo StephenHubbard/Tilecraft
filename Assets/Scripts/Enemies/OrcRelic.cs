@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class OrcRelic : MonoBehaviour
 {
-    [SerializeField] private Transform[] orcSpawnPoints;
+    [SerializeField] public Transform[] orcSpawnPoints;
     [SerializeField] private GameObject orcPrefab;
+
+    public bool hasEnemies = true;
 
     private void Start() {
         SpawnOrcs();
@@ -20,9 +22,34 @@ public class OrcRelic : MonoBehaviour
             {
                 if (spawnPoint.childCount == 0 && howManyOrcsToSpawn > 0) {
                     GameObject newOrc = Instantiate(orcPrefab, spawnPoint.transform.position, transform.rotation);
+                    newOrc.transform.SetParent(spawnPoint);
                     howManyOrcsToSpawn--;
                 }
             }
         }
+    }
+
+    public IEnumerator DetectEnemiesCo() {
+        yield return new WaitForEndOfFrame();
+
+        int potentialEnemies = 3;
+
+        foreach (var spawnPoint in orcSpawnPoints)
+        {
+            if (spawnPoint.childCount == 0) {
+                potentialEnemies--;
+            } 
+        }
+
+        if (potentialEnemies > 0) {
+            hasEnemies = true;
+        } else {
+            hasEnemies = false;
+            GetComponentInParent<CraftingManager>().CheckCanStartCrafting();
+        }
+    }
+
+    public void DetectIfEnemies() {
+        StartCoroutine(DetectEnemiesCo());
     }
 }

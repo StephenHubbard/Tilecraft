@@ -10,23 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7a967a3f0f99c934bb9b8a89e7f72db0, type: 3}
-  m_Name: Orc Relic
+  m_Name: Relic
   m_EditorClassIdentifier: 
-  itemName: Orc Relic
-  coinValue: 0
-  draggableItemPrefab: {fileID: 0}
-  onTilePrefab: {fileID: 994099794024727751, guid: 00b21b1e3a1253f4b89cc3008bdee2f8, type: 3}
+  itemName: 
+  coinValue: 1
+  draggableItemPrefab: {fileID: 4812397909494241834, guid: bff4b66d52f11d344b2f40fdd4d50092, type: 3}
+  onTilePrefab: {fileID: 994099794024727751, guid: 97a4f770f7a0037478bd350cb533b487, type: 3}
   tileInfoValidLocations:
   - {fileID: 11400000, guid: e492befd9aee1b645b08c2b5e24460b2, type: 2}
   - {fileID: 11400000, guid: 5f31d55a53bbe2f479011bab64202e0c, type: 2}
   - {fileID: 11400000, guid: 683019bb58be0914385796f71488de33, type: 2}
-  recipeInfo: {fileID: 11400000, guid: 8d22678c339ac4a4ab17aa974e63c27e, type: 2}
+  - {fileID: 11400000, guid: 68eb43c7510400947b95468668236dc7, type: 2}
+  recipeInfo: {fileID: 11400000, guid: 6fc6438411a205b4bae7d3a61098e1a1, type: 2}
   amountRecipeCanCreate: 1
-  potentialOffSpring:
-  - {fileID: 11400000, guid: 527003d1c10ea764ab3fdb9306715b74, type: 2}
-  isResourceOnly: 0
-  isStationary: 1
-  LeftInStack: 0
+  potentialOffSpring: []
+  isResourceOnly: 1
+  isStationary: 0
+  LeftInStack: 1
   isSmeltable: 0
   foodValue: 0
-  toolTipText: Defeat all orcs to capture their relics.
+  toolTipText: 

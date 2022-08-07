@@ -158,7 +158,7 @@ public class Tile : MonoBehaviour
                 isOccupiedWithBuilding = false;
             }
 
-            if (!currentPlacedItem.GetComponent<UnlimitedHarvest>()) {
+            if (!currentPlacedItem.GetComponent<UnlimitedHarvest>() && !currentPlacedItem.GetComponent<OrcRelic>()) {
                 craftingManager.DoneCrafting();
             }
         } else {
@@ -182,7 +182,7 @@ public class Tile : MonoBehaviour
         isOccupiedWithResources = false;
 
         if (currentPlacedItem) {
-            if (currentPlacedItem.GetComponent<PlacedItem>().itemInfo.isStationary == false) {
+            if (currentPlacedItem.GetComponent<PlacedItem>().itemInfo.isStationary == false || currentPlacedItem.GetComponent<OrcRelic>()) {
                 isOccupiedWithBuilding = false;
                 Destroy(currentPlacedItem);
             }

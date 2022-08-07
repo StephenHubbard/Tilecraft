@@ -82,7 +82,6 @@ public class DraggableItem : MonoBehaviour
             // worker
             if (itemInfo.name == "Worker") {
                 if (currentTile.PlaceWorker(itemInfo.onTilePrefab)) {
-                    currentTile.GetComponent<CraftingManager>().IncreaseWorkerCount();
                     if (i == 1) {
                         Destroy(gameObject);
                     }

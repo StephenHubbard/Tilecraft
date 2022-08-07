@@ -29,11 +29,11 @@ public class CraftingManager : MonoBehaviour
 
 
     private void Start() {
-        currentCraftTime = 10f;
+        // currentCraftTime = 10f;
     }
 
     private void Update() {
-        if (currentCraftTime > 0 && hasCompleteRecipe) {
+        if (currentCraftTime > 0 && hasCompleteRecipe && isCrafting && hasWorkers) {
             tileSlider.value = currentCraftTime;
             currentCraftTime -= Time.deltaTime * amountOfWorkers;
         }
@@ -50,10 +50,13 @@ public class CraftingManager : MonoBehaviour
 
     public void CheckCanStartCrafting() {
         if (hasCompleteRecipe && hasWorkers && !isCrafting && amountLeftToCraft > 0 && !recipeInfo.requiresFurnace) {
-            StartCrafting();
-            if (startAmountToCraft == amountLeftToCraft) {
-                audioManager.Play(recipeInfo.craftingClipString);
+            if (CheckIfTileHasEnemies() == false) {
+                StartCrafting();
+                if (startAmountToCraft == amountLeftToCraft) {
+                    audioManager.Play(recipeInfo.craftingClipString);
+                }
             }
+
         } else if (hasCompleteRecipe && hasWorkers && !isCrafting && amountLeftToCraft > 0 && recipeInfo.requiresFurnace) {
             if (GetComponent<Tile>().currentPlacedItem.GetComponent<Furnace>()) {
                 StartCrafting();
@@ -62,6 +65,16 @@ public class CraftingManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    private bool CheckIfTileHasEnemies() {
+        if(GetComponent<Tile>().currentPlacedItem && GetComponent<Tile>().currentPlacedItem.GetComponent<OrcRelic>()) {
+            if (GetComponent<Tile>().currentPlacedItem.GetComponent<OrcRelic>().hasEnemies) {
+                return true;
+            } 
+        } 
+
+        return false;
     }
 
     public void IncreaseWorkerCount() {
@@ -73,6 +86,10 @@ public class CraftingManager : MonoBehaviour
 
         if (amountOfWorkers == 0) {
             hasWorkers = false;
+        }
+
+        if (amountOfWorkers < 0) {
+            amountOfWorkers = 0;
         }
 
         CheckCanStartCrafting();
@@ -89,6 +106,8 @@ public class CraftingManager : MonoBehaviour
         startingCraftTime = recipeInfo.recipeCraftTime;
         currentCraftTime = startingCraftTime;
         tileSlider.maxValue = startingCraftTime;
+
+        amountOfWorkers = 0;
 
         foreach (var item in GetComponent<Tile>().workerPoints)
         {
@@ -112,6 +131,29 @@ public class CraftingManager : MonoBehaviour
 
         audioManager.Play("Pop");
         GetComponent<Tile>().currentPlacedResources.Clear();
+    }
+
+    public void AllWorkersHaveDiedCheck() {
+        StartCoroutine(AllWorkersHaveDiedCheckCo());
+    }
+
+    private IEnumerator AllWorkersHaveDiedCheckCo() {
+        yield return new WaitForEndOfFrame();
+
+        int potentialWorkers = 3;
+
+        foreach (var workerPoint in GetComponent<Tile>().workerPoints)
+        {
+            if (workerPoint.childCount > 0) {
+                continue;
+            } else {
+                potentialWorkers--;
+            }
+        }
+
+        if (potentialWorkers == 0) {
+            hasWorkers = false;
+        }
     }
 
     public void PopOutNewItemFromRecipe() {
