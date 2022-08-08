@@ -10,8 +10,11 @@ public class ToolTipManager : MonoBehaviour
     [SerializeField] private TMP_Text toolTipText; 
     [SerializeField] private GameObject appleContainer;
     [SerializeField] private GameObject coinContainer;
+    [SerializeField] private GameObject heartContainer;
+    [SerializeField] private GameObject availablePackItemsContainer;
     [SerializeField] private TMP_Text foodValueText;
     [SerializeField] private TMP_Text coinValueText;
+    [SerializeField] private TMP_Text heartValueText;
     [SerializeField] private GameObject toolTipImage;
     [SerializeField] private GameObject maximizeButton;
     [SerializeField] private GameObject minimizeButton;
@@ -38,14 +41,19 @@ public class ToolTipManager : MonoBehaviour
             ToggleToolTipOn();
             if (hit[0].transform.GetComponent<DraggableItem>()) {
                 ItemInfo thisItem = hit[0].transform.GetComponent<DraggableItem>().itemInfo;
-                UpdateValues(thisItem.itemName, thisItem.toolTipText, thisItem.foodValue, thisItem.coinValue);
+                if (hit[0].transform.GetComponent<Worker>()) {
+                    int healthValue = hit[0].transform.GetComponent<Worker>().myHealth;
+                    UpdateValues(thisItem.itemName, thisItem.toolTipText, thisItem.foodValue, thisItem.coinValue, healthValue);
+                } else {
+                    UpdateValues(thisItem.itemName, thisItem.toolTipText, thisItem.foodValue, thisItem.coinValue, 0);
+                }
             } else if (hit[0].transform.GetComponent<Tile>()) {
                 TileInfo thisTile = hit[0].transform.GetComponent<Tile>().tileInfo;
                 if (hit[0].transform.GetComponent<Tile>().currentPlacedItem != null) {
                     string newStr = hit[0].transform.GetComponent<Tile>().currentPlacedItem.GetComponent<PlacedItem>().itemInfo.itemName + ": " + hit[0].transform.GetComponent<Tile>().currentPlacedItem.GetComponent<PlacedItem>().itemInfo.toolTipText;
-                    UpdateValues(thisTile.name, newStr, 0, 0);
+                    UpdateValues(thisTile.name, newStr, 0, 0, 0);
                 } else {
-                    UpdateValues(thisTile.name, null, 0, 0);
+                    UpdateValues(thisTile.name, null, 0, 0, 0);
                 }
             }
         } else {
@@ -58,6 +66,7 @@ public class ToolTipManager : MonoBehaviour
         toolTipText.gameObject.SetActive(true);
         appleContainer.gameObject.SetActive(true);
         coinContainer.gameObject.SetActive(true);
+        heartContainer.gameObject.SetActive(true);
     }
 
     public void ToggleToolTipOff() {
@@ -65,9 +74,10 @@ public class ToolTipManager : MonoBehaviour
         toolTipText.gameObject.SetActive(false);
         appleContainer.gameObject.SetActive(false);
         coinContainer.gameObject.SetActive(false);
+        heartContainer.gameObject.SetActive(false);
     }
 
-    public void UpdateValues(string itemText, string toolTipText, int foodValue, int coinValue) {
+    public void UpdateValues(string itemText, string toolTipText, int foodValue, int coinValue, int heartValue) {
         this.itemText.text = itemText;
         this.toolTipText.text = toolTipText;
         if (foodValue > 0) {
@@ -79,6 +89,11 @@ public class ToolTipManager : MonoBehaviour
             this.coinValueText.text = coinValue.ToString();
         } else {
             coinContainer.SetActive(false);
+        }
+        if (heartValue > 0) {
+            this.heartValueText.text = heartValue.ToString();
+        } else {
+            heartContainer.SetActive(false);
         }
     }
 
@@ -100,15 +115,24 @@ public class ToolTipManager : MonoBehaviour
         AudioManager.instance.Play("UI Click");
     }
 
+    // event listener in inspector
     public void HoverOverUI(Transform sender) {
         isOverUI = true;
         ToggleToolTipOn();
-        UpdateValues(sender.GetComponent<UITooltip>().toolTipName, sender.GetComponent<UITooltip>().toolTipText, 0, 0);
+        UpdateValues(sender.GetComponent<UITooltip>().toolTipName, sender.GetComponent<UITooltip>().toolTipText, 0, 0, 0);
+        if (sender.GetComponent<UITooltip>().packItemsContainer) {
+            sender.GetComponent<UITooltip>().UpdatePackUIToolTip();
+        }
     }
 
-    public void ExitUI() {
+    // event listener in inspector
+    public void ExitUI(Transform sender) {
         ToggleToolTipOff();
         isOverUI = false;
+        if (sender.GetComponent<UITooltip>().packItemsContainer) {
+            sender.GetComponent<UITooltip>().ClearPackUIToolTip();
+            sender.GetComponent<UITooltip>().packItemsContainer.SetActive(false);
+        }
     }
 
 }

@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Worker : MonoBehaviour
 {
-    public int myHealth = 100;
+    public ItemInfo itemInfo;
+    public int myHealth = 10;
 
     private Enemy enemyTarget = null;
 
@@ -23,6 +24,7 @@ public class Worker : MonoBehaviour
         }
 
         DetectCombat();
+
     }
 
     private void DetectCombat() {
@@ -75,6 +77,10 @@ public class Worker : MonoBehaviour
 
     public void StopWorking() {
         StartCoroutine(StopWorkingCo());
+    }
+
+    public void TransferHealth(int currentHealth) {
+        myHealth = currentHealth;
     }
 
 

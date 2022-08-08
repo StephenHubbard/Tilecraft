@@ -10,24 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7a967a3f0f99c934bb9b8a89e7f72db0, type: 3}
-  m_Name: Iron
+  m_Name: Solar Panel
   m_EditorClassIdentifier: 
-  itemName: 
+  itemName: Solar Panel
   coinValue: 1
-  draggableItemPrefab: {fileID: 4812397909494241834, guid: 2f57d7d7f570a9540ab3218859d9cb0a, type: 3}
-  onTilePrefab: {fileID: 994099794024727751, guid: 20c51c3820983ed4485a0c278c310fe5, type: 3}
+  draggableItemPrefab: {fileID: 4812397909494241834, guid: e74738fe918aa894ab8d001e43bd52b3, type: 3}
+  onTilePrefab: {fileID: 994099794024727751, guid: 47fc124a6a565c04e957d7a0c1af7a62, type: 3}
   tileInfoValidLocations:
   - {fileID: 11400000, guid: e492befd9aee1b645b08c2b5e24460b2, type: 2}
   - {fileID: 11400000, guid: 5f31d55a53bbe2f479011bab64202e0c, type: 2}
   - {fileID: 11400000, guid: 683019bb58be0914385796f71488de33, type: 2}
-  recipeInfo: {fileID: 11400000, guid: 6efc3de32fc3bd34ab400ed2c1ed9853, type: 2}
-  amountRecipeCanCreate: 1
-  potentialOffSpring:
-  - {fileID: 11400000, guid: e1ff6a0b15351694987bf80d33b62f60, type: 2}
-  - {fileID: 11400000, guid: 605870f83804f984fad4e30336515b3b, type: 2}
-  isResourceOnly: 1
-  isStationary: 0
-  LeftInStack: 1
+  recipeInfo: {fileID: 11400000, guid: 96f4112eae4c6ea4c971edccd4a5e411, type: 2}
+  amountRecipeCanCreate: 1000
+  potentialOffSpring: []
+  isResourceOnly: 0
+  isStationary: 1
+  LeftInStack: 1000
   isSmeltable: 0
   foodValue: 0
-  toolTipText: 
+  toolTipText: An unlimited supply of batteries

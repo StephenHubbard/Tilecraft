@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4812397909172993939}
   - component: {fileID: 4812397909172993940}
   m_Layer: 6
-  m_Name: Worker Image
+  m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25,8 +25,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4812397909172993938}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.0069999695, y: 0.127, z: 0}
-  m_LocalScale: {x: 1.1119314, y: 1.1119314, z: 1.1119314}
+  m_LocalPosition: {x: 0.0069999695, y: 0.162, z: 0}
+  m_LocalScale: {x: 0.5262225, y: 0.5262225, z: 0.5262225}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4812397909208000542}
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 320324999
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1736298917, guid: 48d8443122268c748a050518cd6fd91d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7e8f412dc7e1867459b5f22ab45743e7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -195,10 +195,9 @@ GameObject:
   - component: {fileID: 4812397909494241836}
   - component: {fileID: 4812397909494241838}
   - component: {fileID: 4812397909494241839}
-  - component: {fileID: -3316961845721695248}
-  - component: {fileID: -244537642764773173}
+  - component: {fileID: -8217692014297498177}
   m_Layer: 6
-  m_Name: Item_Worker
+  m_Name: Item_Solar Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -262,9 +261,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e39409af50ae3624aa410dfaa2eb8233, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemInfo: {fileID: 11400000, guid: 7ecdb19248e9de349ba40029c73a2f12, type: 2}
+  itemInfo: {fileID: 11400000, guid: 605870f83804f984fad4e30336515b3b, type: 2}
   currentTile: {fileID: 0}
-  amountLeft: 0
+  amountLeft: 1000
 --- !u!50 &4812397909494241839
 Rigidbody2D:
   serializedVersion: 4
@@ -286,7 +285,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &-3316961845721695248
+--- !u!114 &-8217692014297498177
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -301,20 +300,6 @@ MonoBehaviour:
   potentialParentItem: {fileID: 0}
   amountOfChildItems: 0
   itemInfo: {fileID: 0}
---- !u!114 &-244537642764773173
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4812397909494241834}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88fb9c1437828da47b0877019fb4030c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemInfo: {fileID: 11400000, guid: 7ecdb19248e9de349ba40029c73a2f12, type: 2}
-  myHealth: 5
 --- !u!1 &4812397909912382413
 GameObject:
   m_ObjectHideFlags: 0

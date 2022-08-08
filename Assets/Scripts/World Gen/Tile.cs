@@ -72,12 +72,13 @@ public class Tile : MonoBehaviour
         tileHighlight.GetComponent<SpriteRenderer>().enabled = false;
     }
 
-    public bool PlaceWorker(GameObject workerPrefab) {
+    public bool PlaceWorker(GameObject workerPrefab, int currentHealth) {
         foreach (var worker in workerPoints)
         {
             if (worker.childCount == 0) {
                 GameObject newWorker = Instantiate(workerPrefab, worker.position, transform.rotation);
                 newWorker.transform.parent = worker;
+                newWorker.GetComponent<Worker>().TransferHealth(currentHealth);
                 isOccupiedWithWorkers = true;
                 GetComponent<CraftingManager>().hasWorkers = true;
                 
@@ -131,7 +132,8 @@ public class Tile : MonoBehaviour
         {
             if (worker.childCount == 1) {
                 spawnItemsVector3 = transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), -1);
-                Instantiate(workerItemPrefab, spawnItemsVector3, transform.rotation);
+                GameObject newWorker = Instantiate(workerItemPrefab, spawnItemsVector3, transform.rotation);
+                newWorker.GetComponent<Worker>().TransferHealth(worker.GetChild(0).GetComponent<Worker>().myHealth);
                 Destroy(worker.GetChild(0).transform.gameObject);
                 PopTileCleanUp();
             }
