@@ -35,6 +35,7 @@ public class Enemy : MonoBehaviour
             myAnimator.SetBool("isAttacking", true);
             myAnimator.Play("Attack", -1, Random.Range(0f,1f));
             currentTarget = worker;
+            AudioManager.instance.Play("Orc Attack");
         }
     }
 
@@ -50,5 +51,6 @@ public class Enemy : MonoBehaviour
 
         GameObject newArrow = Instantiate(arrowPrefab, transform.position, transform.rotation);
         newArrow.GetComponent<Arrow>().UpdateCurrentTarget(currentTarget);
+        AudioManager.instance.Play("Arrow Launch");
     }
 }

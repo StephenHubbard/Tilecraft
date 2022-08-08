@@ -10,21 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7a967a3f0f99c934bb9b8a89e7f72db0, type: 3}
-  m_Name: Worker
+  m_Name: Paper
   m_EditorClassIdentifier: 
-  itemName: Worker
-  itemSprite: {fileID: 0}
+  itemName: Paper
+  itemSprite: {fileID: 21300000, guid: 83c3f9d9d6dd41645819f4426cad9527, type: 3}
   coinValue: 1
-  draggableItemPrefab: {fileID: 4812397909494241834, guid: 4fea6c41e7173da44bdb63fc54b8a34a, type: 3}
-  onTilePrefab: {fileID: 994099794024727751, guid: e3ee011d0d473cc43b6160ebf59dfbda, type: 3}
+  draggableItemPrefab: {fileID: 4812397909494241834, guid: 8d879b9933188bc4fa03e6502eb5f911, type: 3}
+  onTilePrefab: {fileID: 994099794024727751, guid: 6d3defecb13520646a4f0218b378fe69, type: 3}
   tileInfoValidLocations:
-  - {fileID: 11400000, guid: 5f31d55a53bbe2f479011bab64202e0c, type: 2}
   - {fileID: 11400000, guid: e492befd9aee1b645b08c2b5e24460b2, type: 2}
+  - {fileID: 11400000, guid: 5f31d55a53bbe2f479011bab64202e0c, type: 2}
   - {fileID: 11400000, guid: 683019bb58be0914385796f71488de33, type: 2}
   - {fileID: 11400000, guid: 68eb43c7510400947b95468668236dc7, type: 2}
-  recipeInfo: {fileID: 0}
+  recipeInfo: {fileID: 11400000, guid: 36323993abe53b4448fa7bf9255eec04, type: 2}
   amountRecipeCanCreate: 1
-  potentialOffSpring: []
+  potentialOffSpring:
+  - {fileID: 11400000, guid: e52cf4c2af3a8d64ab1121f2bfac1c6a, type: 2}
   isResourceOnly: 1
   isStationary: 0
   LeftInStack: 1

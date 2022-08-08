@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a967a3f0f99c934bb9b8a89e7f72db0, type: 3}
   m_Name: Fiber
   m_EditorClassIdentifier: 
+  itemName: 
+  itemSprite: {fileID: 0}
   coinValue: 1
   draggableItemPrefab: {fileID: 4812397909494241834, guid: dd10e835716f40e48b89831d654a22f4, type: 3}
   onTilePrefab: {fileID: 994099794024727751, guid: 1585568e7edd5374e942462ac71bfb5f, type: 3}
@@ -23,5 +25,10 @@ MonoBehaviour:
   amountRecipeCanCreate: 3
   potentialOffSpring:
   - {fileID: 11400000, guid: 2411593c1d9b1c74cb4c36169072d07a, type: 2}
+  - {fileID: 11400000, guid: 288868514ae1d204c845b251d77feecd, type: 2}
   isResourceOnly: 1
   isStationary: 0
+  LeftInStack: 1
+  isSmeltable: 0
+  foodValue: 0
+  toolTipText: 

@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 66df1655cda175c4da55e2cd2c217479, type: 3}
-  m_Name: Berry Recipe
+  m_Name: Book Recipe
   m_EditorClassIdentifier: 
-  itemInfo: {fileID: 11400000, guid: b4324be3f84016744bdc2029d2dee09d, type: 2}
+  itemInfo: {fileID: 11400000, guid: e52cf4c2af3a8d64ab1121f2bfac1c6a, type: 2}
   neededRecipeItems:
-  - {fileID: 11400000, guid: 7b6f06137545f3243acc5e75239f777f, type: 2}
+  - {fileID: 11400000, guid: 288868514ae1d204c845b251d77feecd, type: 2}
+  - {fileID: 11400000, guid: 288868514ae1d204c845b251d77feecd, type: 2}
   recipeCraftTime: 5
-  craftingClipString: Bush Rustle
+  craftingClipString: Crafting Started
   requiresFurnace: 0

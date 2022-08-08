@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 853084195101498960}
   - component: {fileID: -7858915592111961031}
   m_Layer: 0
-  m_Name: Berry Prefab
+  m_Name: Book Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 994099794024727751}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.0452, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 930d0fac990f5a640bc418598ee9e5c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemInfo: {fileID: 11400000, guid: b4324be3f84016744bdc2029d2dee09d, type: 2}
+  itemInfo: {fileID: 11400000, guid: e52cf4c2af3a8d64ab1121f2bfac1c6a, type: 2}
   amountLeft: 0
 --- !u!114 &-7858915592111961031
 MonoBehaviour:
@@ -134,7 +134,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: c6ac31708db229643963dbd17c172a1d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fdaf3442cbff5da47b589ad2c036c5ff, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

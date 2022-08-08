@@ -21,11 +21,15 @@ public class Furnace : MonoBehaviour
     }
 
     public void AbandonSmelting() {
+        if (!currentlySmeltingItem) { return; }
+
         for (int i = 0; i < amountLeftToSmelt; i++)
         {
             Vector3 spawnItemsVector3 = transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), -1);
             Instantiate(currentlySmeltingItem.draggableItemPrefab, spawnItemsVector3, transform.rotation);
         }
+
+        currentlySmeltingItem = null;
     }
 
     public void UpdateFurnaceAmountLeft() {
