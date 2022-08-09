@@ -7,11 +7,16 @@ public class PackManager : MonoBehaviour
 {
     [SerializeField] public ItemInfo[] resourcePackItems;
     [SerializeField] private int amountOfItemsToSpawn = 4;
+    [SerializeField] private GameObject nextPackToReveal;
+
+    private int amountOfPacksOpened = 0;
 
     private EconomyManager economyManager;
+    private Encyclopedia encyclopedia;
 
     private void Awake() {
         economyManager = FindObjectOfType<EconomyManager>();
+        encyclopedia = FindObjectOfType<Encyclopedia>();
     }
 
     public void SpawnResourcePack() {
@@ -22,10 +27,21 @@ public class PackManager : MonoBehaviour
             {
                 // z vector set to -1 for colliders and raycasts on interactable layer mask
                 Vector3 packSpawnLocation = UtilsClass.GetMouseWorldPosition() + new Vector3(Random.Range(-3f, -5f), Random.Range(-3f, -5f), -1);
-                Instantiate(resourcePackItems[Random.Range(0, resourcePackItems.Length)].draggableItemPrefab, packSpawnLocation, transform.rotation);
+                if (resourcePackItems.Length > 0) {
+                    int randomNum = Random.Range(0, resourcePackItems.Length);
+                    Instantiate(resourcePackItems[randomNum].draggableItemPrefab, packSpawnLocation, transform.rotation);
+                    encyclopedia.AddItemToDiscoveredList(resourcePackItems[randomNum]);
+                }
             }
             economyManager.BuyPack(3);
+            amountOfPacksOpened++;
+            NextPackAvailableCheck();
         }
+    }
 
+    private void NextPackAvailableCheck() {
+        if (amountOfPacksOpened >= 3) {
+            nextPackToReveal.SetActive(true);
+        }
     }
 }

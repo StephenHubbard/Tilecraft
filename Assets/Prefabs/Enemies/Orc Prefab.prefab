@@ -84,7 +84,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arrowPrefab: {fileID: 7841289795254243318, guid: 7bde550d385ac68419052f93f4e141fb, type: 3}
-  myHealth: 5
+  myHealth: 7
+  cloudLayerMask:
+    serializedVersion: 2
+    m_Bits: 1024
+  isUncoveredByClouds: 0
 --- !u!58 &6816163836829188929
 CircleCollider2D:
   m_ObjectHideFlags: 0

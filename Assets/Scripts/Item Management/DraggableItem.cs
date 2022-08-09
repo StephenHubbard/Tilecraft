@@ -127,7 +127,12 @@ public class DraggableItem : MonoBehaviour
                 DetermineExtraItems(i - 1);
                 currentTile.GetComponent<CraftingManager>().CheckCanStartCrafting();
                 currentTile.GetComponent<CraftingManager>().UpdateAmountLeftToCraft(amountLeft);
-                AudioManager.instance.Play("Click");
+                if (itemInfo.isStationary) {
+                    AudioManager.instance.Play("Building Placement");
+                    currentTile.InstantiateSmokePrefab();
+                } else {
+                    AudioManager.instance.Play("Click");
+                }
                 Destroy(gameObject);
                 return;
             } else {

@@ -24,6 +24,7 @@ public class Fridge : MonoBehaviour
 
     public void IncreaseFoodAmount(int amount, int amountInStack) {
         currentAmountOfFood += (amount * amountInStack);
+        AudioManager.instance.Play("Click");
 
         StartCoroutine(FindObjectOfType<FoodManager>().UpdateFoodCo());
 

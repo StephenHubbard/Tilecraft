@@ -6,9 +6,10 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] private GameObject arrowPrefab;
     [SerializeField] private int myHealth = 3;
+    [SerializeField] private LayerMask cloudLayerMask = new LayerMask();
     private Animator myAnimator;
-
     private Worker currentTarget = null;
+    public bool isUncoveredByClouds = false;
 
     private void Awake() {
         myAnimator = GetComponent<Animator>();
@@ -17,6 +18,14 @@ public class Enemy : MonoBehaviour
     private void Start() {
         AnimatorStateInfo state = myAnimator.GetCurrentAnimatorStateInfo (0);
         myAnimator.Play (state.fullPathHash, -1, Random.Range(0f,1f));
+    }
+
+    private void Update() {
+        RaycastHit2D[] hit = Physics2D.RaycastAll(transform.position, Vector2.zero, 100f, cloudLayerMask);
+
+        if (hit.Length == 0) {
+            isUncoveredByClouds = true;
+        }
     }
 
     public void TakeDamage(int amount, Worker attackingWorker) {
@@ -31,7 +40,7 @@ public class Enemy : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D other) {
         Worker worker = other.gameObject.GetComponent<Worker>();
-        if (worker && currentTarget == null && worker.GetComponent<PlacedItem>()) {
+        if (worker && currentTarget == null && worker.GetComponent<PlacedItem>() && isUncoveredByClouds) {
             myAnimator.SetBool("isAttacking", true);
             myAnimator.Play("Attack", -1, Random.Range(0f,1f));
             currentTarget = worker;

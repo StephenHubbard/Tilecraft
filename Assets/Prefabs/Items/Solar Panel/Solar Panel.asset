@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Solar Panel
   m_EditorClassIdentifier: 
   itemName: Solar Panel
+  itemSprite: {fileID: 0}
   coinValue: 1
   draggableItemPrefab: {fileID: 4812397909494241834, guid: e74738fe918aa894ab8d001e43bd52b3, type: 3}
   onTilePrefab: {fileID: 994099794024727751, guid: 47fc124a6a565c04e957d7a0c1af7a62, type: 3}
@@ -22,7 +23,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 683019bb58be0914385796f71488de33, type: 2}
   recipeInfo: {fileID: 11400000, guid: 96f4112eae4c6ea4c971edccd4a5e411, type: 2}
   amountRecipeCanCreate: 1000
-  potentialOffSpring: []
+  potentialOffSpring:
+  - {fileID: 11400000, guid: be97de2e023f6bf498d29f083af8db08, type: 2}
   isResourceOnly: 0
   isStationary: 1
   LeftInStack: 1000

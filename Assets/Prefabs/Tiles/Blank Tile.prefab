@@ -679,7 +679,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileInfo: {fileID: 0}
   itemInfo: {fileID: 0}
-  currentPlacedItems: []
+  currentPlacedItem: {fileID: 0}
+  currentPlacedResources: []
   workerItemPrefab: {fileID: 4812397909494241834, guid: 4fea6c41e7173da44bdb63fc54b8a34a, type: 3}
   workerPoints:
   - {fileID: 619971871}
@@ -689,8 +690,10 @@ MonoBehaviour:
   - {fileID: 2533574394097153052}
   - {fileID: 4326491989489227075}
   - {fileID: 5155303251552824129}
-  isOccupiedWithItem: 0
+  buildingPlacementSmokePrefab: {fileID: 6349002128902621385, guid: 83991efcb26e6c740a104c8ce159d0cc, type: 3}
+  isOccupiedWithBuilding: 0
   isOccupiedWithWorkers: 0
+  isOccupiedWithResources: 0
 --- !u!114 &7124545992445261582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -709,8 +712,10 @@ MonoBehaviour:
   currentCraftTime: 0
   recipeInfo: {fileID: 0}
   amountLeftToCraft: 0
+  startAmountToCraft: 0
   hasCompleteRecipe: 0
   hasWorkers: 0
+  isCrafting: 0
   currentCorrectItemsAcquiredForCrafting: 0
 --- !u!1 &8424925183525853616
 GameObject:

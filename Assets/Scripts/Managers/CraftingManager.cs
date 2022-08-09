@@ -22,9 +22,11 @@ public class CraftingManager : MonoBehaviour
     public int currentCorrectItemsAcquiredForCrafting = 0;
     
     private AudioManager audioManager;
+    private Encyclopedia encyclopedia;
 
     private void Awake() {
         audioManager = FindObjectOfType<AudioManager>();
+        encyclopedia = FindObjectOfType<Encyclopedia>();
     }
 
 
@@ -159,6 +161,7 @@ public class CraftingManager : MonoBehaviour
     public void PopOutNewItemFromRecipe() {
         Vector3 spawnItemsVector3 = transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), -1);
         Instantiate(recipeInfo.itemInfo.draggableItemPrefab, spawnItemsVector3, transform.rotation);
+        encyclopedia.AddItemToDiscoveredList(recipeInfo.itemInfo);
         isCrafting = false;
         amountLeftToCraft -= 1;
 

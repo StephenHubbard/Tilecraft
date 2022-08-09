@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a967a3f0f99c934bb9b8a89e7f72db0, type: 3}
   m_Name: Wood Plank
   m_EditorClassIdentifier: 
+  itemName: 
+  itemSprite: {fileID: 21300000, guid: 99693e105c21778448f27b1e664945ef, type: 3}
   coinValue: 1
   draggableItemPrefab: {fileID: 4812397909494241834, guid: efa7ecb3227172a4f97a78ce82b85376, type: 3}
   onTilePrefab: {fileID: 994099794024727751, guid: 57d0310debd4c4e4c8d4e25ada78ee18, type: 3}
@@ -26,3 +28,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 82a4221057f384b4da215e848da2cead, type: 2}
   isResourceOnly: 1
   isStationary: 0
+  LeftInStack: 1
+  isSmeltable: 0
+  foodValue: 0
+  toolTipText: 

@@ -10,8 +10,6 @@ public class CloudGeneration : MonoBehaviour
     private WorldGeneration worldGeneration;
     private Grid grid;
 
-    
-
     private void Awake() {
         worldGeneration = GetComponent<WorldGeneration>();
     }
@@ -27,7 +25,7 @@ public class CloudGeneration : MonoBehaviour
             for (int y = 0; y < grid.gridArray.GetLength(1); y++) {
                 for (int t = 1; t <= amountOfClouds; t++)
                 {
-                    Vector3 gridLocation = grid.GetWorldPosition(x, y) + new Vector3(worldGeneration.cellSize, worldGeneration.cellSize, -1f) * .5f + new Vector3(amountOfClouds / t, amountOfClouds / t);
+                    Vector3 gridLocation = grid.GetWorldPosition(x, y) + new Vector3(worldGeneration.cellSize - 3f, worldGeneration.cellSize, -1f) * .5f + new Vector3(amountOfClouds / t, amountOfClouds / t);
                     int randomNum = Random.Range(0, cloudPrefabs.Length);
                     GameObject newCloud = Instantiate(cloudPrefabs[randomNum], gridLocation, transform.rotation);
                     newCloud.transform.SetParent(cloudParent);

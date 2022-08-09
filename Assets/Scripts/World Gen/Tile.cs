@@ -12,6 +12,7 @@ public class Tile : MonoBehaviour
     [SerializeField] private GameObject workerItemPrefab;
     [SerializeField] public Transform[] workerPoints;
     [SerializeField] public Transform[] resourcePoints;
+    [SerializeField] private GameObject buildingPlacementSmokePrefab;
     private int tileCloudLayerMask;
 
     private GameObject tileHighlight;
@@ -70,6 +71,16 @@ public class Tile : MonoBehaviour
 
     private void OnMouseExit() {
         tileHighlight.GetComponent<SpriteRenderer>().enabled = false;
+    }
+
+    public void InstantiateSmokePrefab() {
+        GameObject smokePrefab = Instantiate(buildingPlacementSmokePrefab, transform.position, transform.rotation);
+        StartCoroutine(DestroySmokeCo(smokePrefab));
+    }
+
+    private IEnumerator DestroySmokeCo(GameObject smokePrefab) {
+        yield return new WaitForSeconds(3f);
+        Destroy(smokePrefab);
     }
 
     public bool PlaceWorker(GameObject workerPrefab, int currentHealth) {

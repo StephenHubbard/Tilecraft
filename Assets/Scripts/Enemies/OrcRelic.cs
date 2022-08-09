@@ -14,7 +14,7 @@ public class OrcRelic : MonoBehaviour
     }
 
     private void SpawnOrcs() {
-        int howManyOrcsToSpawn = Random.Range(1, 4);
+        int howManyOrcsToSpawn = Random.Range(1, 3);
 
         for (int i = 0; i <= howManyOrcsToSpawn; i++)
         {

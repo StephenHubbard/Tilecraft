@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a967a3f0f99c934bb9b8a89e7f72db0, type: 3}
   m_Name: Wood
   m_EditorClassIdentifier: 
-  itemName: 
+  itemName: Wood
   itemSprite: {fileID: 21300000, guid: ead3c2b7cb0291f449731a9d4583813a, type: 3}
   coinValue: 1
   draggableItemPrefab: {fileID: 4812397909494241834, guid: 4bba008b3bda6544b9546054e466faa4, type: 3}

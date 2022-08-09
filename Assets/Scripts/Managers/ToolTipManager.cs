@@ -20,7 +20,7 @@ public class ToolTipManager : MonoBehaviour
     [SerializeField] private GameObject minimizeButton;
     [SerializeField] private LayerMask toolTipLayerMask = new LayerMask();
 
-    private bool isMaximized = true;
+    public bool isMaximized = true;
     private bool isOverUI = false;
 
     private void Start() {
@@ -78,6 +78,7 @@ public class ToolTipManager : MonoBehaviour
     }
 
     public void UpdateValues(string itemText, string toolTipText, int foodValue, int coinValue, int heartValue) {
+
         this.itemText.text = itemText;
         this.toolTipText.text = toolTipText;
         if (foodValue > 0) {
@@ -117,21 +118,25 @@ public class ToolTipManager : MonoBehaviour
 
     // event listener in inspector
     public void HoverOverUI(Transform sender) {
+        if (!isMaximized) { return; }
+
         isOverUI = true;
         ToggleToolTipOn();
-        UpdateValues(sender.GetComponent<UITooltip>().toolTipName, sender.GetComponent<UITooltip>().toolTipText, 0, 0, 0);
-        if (sender.GetComponent<UITooltip>().packItemsContainer) {
+        if (sender.GetComponent<UITooltip>().isPackIcon || sender.GetComponent<UITooltip>().isEncyclopediaIcon) {
             sender.GetComponent<UITooltip>().UpdatePackUIToolTip();
         }
+        UpdateValues(sender.GetComponent<UITooltip>().toolTipName, sender.GetComponent<UITooltip>().toolTipText, 0, 0, 0);
     }
 
     // event listener in inspector
     public void ExitUI(Transform sender) {
-        ToggleToolTipOff();
+        if (!isMaximized) { return; }
+
         isOverUI = false;
-        if (sender.GetComponent<UITooltip>().packItemsContainer) {
+        ToggleToolTipOff();
+        if (sender.GetComponent<UITooltip>().isPackIcon || sender.GetComponent<UITooltip>().isEncyclopediaIcon) {
             sender.GetComponent<UITooltip>().ClearPackUIToolTip();
-            sender.GetComponent<UITooltip>().packItemsContainer.SetActive(false);
+            sender.GetComponent<UITooltip>().shownItemsContainer.SetActive(false);
         }
     }
 
