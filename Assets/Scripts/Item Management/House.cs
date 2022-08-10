@@ -15,15 +15,8 @@ public class House : MonoBehaviour
 
     public bool isBabyMaking = false;
 
-
-    private HousingManager housingManager;
-
-    private void Awake() {
-        housingManager = FindObjectOfType<HousingManager>();
-    }
-
     private void Start() {
-        housingManager.DetectHowManyHouses();
+        HousingManager.instance.DetectHowManyHouses();
         workerPoints = GetComponentInParent<Tile>().workerPoints;
         timeToHaveBabyCurrent = timeToHaveBabyTotal;
     }
@@ -49,7 +42,11 @@ public class House : MonoBehaviour
         }
 
         if (amountOfCurrentWorkersOnTile == 2) {
-            StartBabyMaking();
+            if (HousingManager.instance.currentWorkers < HousingManager.instance.maximumWorkers) {
+                StartBabyMaking();
+            } else {
+                print("not enough housing");
+            }
         }
     }
 

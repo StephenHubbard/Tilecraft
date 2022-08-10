@@ -10,11 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 66df1655cda175c4da55e2cd2c217479, type: 3}
-  m_Name: Fish Recipe
+  m_Name: Fishing Bob  Recipe
   m_EditorClassIdentifier: 
-  itemInfo: {fileID: 11400000, guid: 2c977b769381c434c9c587b76049cc2a, type: 2}
-  neededRecipeItems:
-  - {fileID: 11400000, guid: ded67e27af248f146b7362b141ba2928, type: 2}
+  itemInfo: {fileID: 11400000, guid: ded67e27af248f146b7362b141ba2928, type: 2}
+  neededRecipeItems: []
   recipeCraftTime: 5
   craftingClipString: Bush Rustle
   requiresFurnace: 0

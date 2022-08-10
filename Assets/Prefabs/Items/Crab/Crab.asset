@@ -10,24 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7a967a3f0f99c934bb9b8a89e7f72db0, type: 3}
-  m_Name: Fish
+  m_Name: Crab
   m_EditorClassIdentifier: 
-  itemName: Fish
-  itemSprite: {fileID: 21300000, guid: 964fe109ac6630c4ab8ee7bdf9a3d676, type: 3}
+  itemName: Crab
+  itemSprite: {fileID: 21300000, guid: 38ecc833a8c10dd40ad2745d212931fe, type: 3}
   coinValue: 1
-  draggableItemPrefab: {fileID: 4812397909494241834, guid: ef5b046ae5a00564db02daeaa1c0c440, type: 3}
-  onTilePrefab: {fileID: 994099794024727751, guid: 0874e08d8487bf34a82fc8be87261913, type: 3}
+  draggableItemPrefab: {fileID: 4812397909494241834, guid: 76d3354372cf3a44fa69266a62404d6b, type: 3}
+  onTilePrefab: {fileID: 994099794024727751, guid: 25129deee61951447bc4c9298cae1def, type: 3}
   tileInfoValidLocations:
   - {fileID: 11400000, guid: e492befd9aee1b645b08c2b5e24460b2, type: 2}
   - {fileID: 11400000, guid: 5f31d55a53bbe2f479011bab64202e0c, type: 2}
   - {fileID: 11400000, guid: 683019bb58be0914385796f71488de33, type: 2}
   - {fileID: 11400000, guid: 68eb43c7510400947b95468668236dc7, type: 2}
-  recipeInfo: {fileID: 11400000, guid: c86ace7df8a75ed438fce7c7acfd9a01, type: 2}
+  recipeInfo: {fileID: 11400000, guid: 739b1f7cc4301ac4db66a9b2154dd392, type: 2}
   amountRecipeCanCreate: 1000
   potentialOffSpring: []
   isResourceOnly: 1
   isStationary: 0
   LeftInStack: 1
   isSmeltable: 0
-  foodValue: 1
+  foodValue: 2
   toolTipText: 

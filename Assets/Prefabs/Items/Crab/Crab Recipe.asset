@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 66df1655cda175c4da55e2cd2c217479, type: 3}
-  m_Name: Fish Recipe
+  m_Name: Crab Recipe
   m_EditorClassIdentifier: 
-  itemInfo: {fileID: 11400000, guid: 2c977b769381c434c9c587b76049cc2a, type: 2}
+  itemInfo: {fileID: 11400000, guid: 3185e8e7e0addb74e9545378aad2659d, type: 2}
   neededRecipeItems:
-  - {fileID: 11400000, guid: ded67e27af248f146b7362b141ba2928, type: 2}
-  recipeCraftTime: 5
-  craftingClipString: Bush Rustle
+  - {fileID: 11400000, guid: 82a4221057f384b4da215e848da2cead, type: 2}
+  recipeCraftTime: 20
+  craftingClipString: 
   requiresFurnace: 0

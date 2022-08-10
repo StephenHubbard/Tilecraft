@@ -5,9 +5,17 @@ using TMPro;
 
 public class HousingManager : MonoBehaviour
 {
-  [SerializeField] private int maximumWorkers;
-  [SerializeField] private int currentWorkers;
+  [SerializeField] public int maximumWorkers;
+  [SerializeField] public int currentWorkers;
   [SerializeField] private TMP_Text housingText;
+
+  public static HousingManager instance;
+
+  private void Awake() {
+    if (instance == null) {
+      instance = this;
+    }
+  }
 
   private void Start() {
     DetectHowManyWorkers();

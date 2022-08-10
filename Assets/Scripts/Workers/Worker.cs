@@ -66,6 +66,7 @@ public class Worker : MonoBehaviour
             GetComponentInParent<CraftingManager>().AllWorkersHaveDiedCheck();
             Vector3 spawnItemsVector3 = transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), -1);
             Instantiate(deadWorkerItemPrefab, spawnItemsVector3, transform.rotation);    
+            AudioManager.instance.Play("Worker Death");
             Destroy(gameObject);
         }
     }
