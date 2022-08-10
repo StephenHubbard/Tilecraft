@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a967a3f0f99c934bb9b8a89e7f72db0, type: 3}
   m_Name: Ice
   m_EditorClassIdentifier: 
+  itemName: Ice
+  itemSprite: {fileID: 21300000, guid: cf7287200b31f234ca613997d0093b90, type: 3}
   coinValue: 1
   draggableItemPrefab: {fileID: 4812397909494241834, guid: c8d13ea1f3d95424291df6d7400a2efd, type: 3}
   onTilePrefab: {fileID: 994099794024727751, guid: 817c12cd2cf50d24ca2a5ab0305fa39e, type: 3}
@@ -28,3 +30,5 @@ MonoBehaviour:
   isStationary: 0
   LeftInStack: 1
   isSmeltable: 0
+  foodValue: 0
+  toolTipText: 

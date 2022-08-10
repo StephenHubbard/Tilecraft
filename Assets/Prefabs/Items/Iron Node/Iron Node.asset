@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a967a3f0f99c934bb9b8a89e7f72db0, type: 3}
   m_Name: Iron Node
   m_EditorClassIdentifier: 
+  itemName: Iron Node
+  itemSprite: {fileID: 21300000, guid: 150258bc4484c09438fc0c7fc96b671d, type: 3}
   coinValue: 1
   draggableItemPrefab: {fileID: 4812397909494241834, guid: 8de05990dd6c96343acfa1c6f68921a1, type: 3}
   onTilePrefab: {fileID: 994099794024727751, guid: 9e00a049418728248a2a732219dcfef5, type: 3}
@@ -24,3 +26,6 @@ MonoBehaviour:
   isResourceOnly: 0
   isStationary: 0
   LeftInStack: 3
+  isSmeltable: 0
+  foodValue: 0
+  toolTipText: 

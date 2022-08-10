@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Tower
   m_EditorClassIdentifier: 
   itemName: Tower
+  itemSprite: {fileID: 21300000, guid: 306454ca157847649badb46ddfe34df1, type: 3}
   coinValue: 1
   draggableItemPrefab: {fileID: 4812397909494241834, guid: ccdde166ebea3304b8be7377a6a6fcbd, type: 3}
   onTilePrefab: {fileID: 994099794024727751, guid: 80d1c8f5de5a25f438d0acafde184359, type: 3}

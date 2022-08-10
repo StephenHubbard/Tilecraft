@@ -10,23 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7a967a3f0f99c934bb9b8a89e7f72db0, type: 3}
-  m_Name: Relic
+  m_Name: Iron Ore
   m_EditorClassIdentifier: 
-  itemName: 
+  itemName: Iron Ore
+  itemSprite: {fileID: 21300000, guid: f5ae04fdc0a60f04984f7a5162d3d448, type: 3}
   coinValue: 1
-  draggableItemPrefab: {fileID: 4812397909494241834, guid: bff4b66d52f11d344b2f40fdd4d50092, type: 3}
-  onTilePrefab: {fileID: 994099794024727751, guid: 97a4f770f7a0037478bd350cb533b487, type: 3}
+  draggableItemPrefab: {fileID: 4812397909494241834, guid: 5d1361d83c0d6b94392c4211d3b00772, type: 3}
+  onTilePrefab: {fileID: 994099794024727751, guid: d9532b6342d56de4b9476af02017917d, type: 3}
   tileInfoValidLocations:
   - {fileID: 11400000, guid: e492befd9aee1b645b08c2b5e24460b2, type: 2}
   - {fileID: 11400000, guid: 5f31d55a53bbe2f479011bab64202e0c, type: 2}
   - {fileID: 11400000, guid: 683019bb58be0914385796f71488de33, type: 2}
-  - {fileID: 11400000, guid: 68eb43c7510400947b95468668236dc7, type: 2}
-  recipeInfo: {fileID: 11400000, guid: 6fc6438411a205b4bae7d3a61098e1a1, type: 2}
-  amountRecipeCanCreate: 1
-  potentialOffSpring: []
+  recipeInfo: {fileID: 11400000, guid: 533fd566904076a42a46c4d9d1ee977a, type: 2}
+  amountRecipeCanCreate: 3
+  potentialOffSpring:
+  - {fileID: 11400000, guid: 46caf5f13780ccc4397d7e19477d11e0, type: 2}
   isResourceOnly: 1
   isStationary: 0
   LeftInStack: 1
-  isSmeltable: 0
+  isSmeltable: 1
   foodValue: 0
   toolTipText: 

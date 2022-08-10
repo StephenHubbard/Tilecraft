@@ -32,7 +32,7 @@ public class OrcRelic : MonoBehaviour
     public IEnumerator DetectEnemiesCo() {
         yield return new WaitForEndOfFrame();
 
-        int potentialEnemies = 3;
+        int potentialEnemies = orcSpawnPoints.Length;
 
         foreach (var spawnPoint in orcSpawnPoints)
         {

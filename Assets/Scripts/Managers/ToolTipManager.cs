@@ -21,7 +21,15 @@ public class ToolTipManager : MonoBehaviour
     [SerializeField] private LayerMask toolTipLayerMask = new LayerMask();
 
     public bool isMaximized = true;
-    private bool isOverUI = false;
+    public bool isOverUI = false;
+
+    public static ToolTipManager instance;
+
+    private void Awake() {
+        if (instance == null) {
+            instance = this;
+        }
+    }
 
     private void Start() {
         ToggleToolTipOff();
@@ -136,7 +144,7 @@ public class ToolTipManager : MonoBehaviour
         ToggleToolTipOff();
         if (sender.GetComponent<UITooltip>().isPackIcon || sender.GetComponent<UITooltip>().isEncyclopediaIcon) {
             sender.GetComponent<UITooltip>().ClearPackUIToolTip();
-            sender.GetComponent<UITooltip>().shownItemsContainer.SetActive(false);
+            // sender.GetComponent<UITooltip>().shownItemsContainer.SetActive(false);
         }
     }
 

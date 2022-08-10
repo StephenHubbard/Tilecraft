@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Worker : MonoBehaviour
 {
+    [SerializeField] private GameObject deadWorkerOnTilePrefab;
+    [SerializeField] private GameObject deadWorkerItemPrefab;
     public ItemInfo itemInfo;
     public int myHealth = 10;
 
@@ -18,7 +20,7 @@ public class Worker : MonoBehaviour
     private void Start() {
         StartCoroutine(FindObjectOfType<FoodManager>().UpdateFoodNeededCo());
 
-        if (GetComponent<PlacedItem>()) {
+        if (GetComponent<PlacedItem>() && myAnimator) {
             AnimatorStateInfo state = myAnimator.GetCurrentAnimatorStateInfo (0);
             myAnimator.Play (state.fullPathHash, -1, Random.Range(0f,1f));
         }
@@ -62,6 +64,8 @@ public class Worker : MonoBehaviour
     private void DetectDeath() {
         if (myHealth <= 0) {
             GetComponentInParent<CraftingManager>().AllWorkersHaveDiedCheck();
+            Vector3 spawnItemsVector3 = transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), -1);
+            Instantiate(deadWorkerItemPrefab, spawnItemsVector3, transform.rotation);    
             Destroy(gameObject);
         }
     }
@@ -107,6 +111,8 @@ public class Worker : MonoBehaviour
     public void HitTarget() {
         if (enemyTarget) {
             enemyTarget.TakeDamage(1, this);
+            AudioManager.instance.Play("Pitchfork Attack");
+
         } else {
             StopAttacking();
             StartCoroutine(DetectNewEnemyCo());

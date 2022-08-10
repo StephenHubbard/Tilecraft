@@ -11,6 +11,7 @@ public class TierOneCollider : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.GetComponent<OrcRelic>()) {
             other.gameObject.transform.parent.GetComponent<Tile>().isOccupiedWithBuilding = false;
+            other.gameObject.transform.parent.GetComponent<Tile>().currentPlacedResources.Clear();
             Destroy(other.gameObject);
         }
     }

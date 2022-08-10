@@ -60,6 +60,10 @@ public class UITooltip : MonoBehaviour
         }
 
         if (isEncyclopediaIcon) {
+            if (shownItemsContainer == null) {
+                shownItemsContainer = GameObject.Find("ShownItemsContainer");
+            }
+
             shownItemsContainer.SetActive(true);
 
             foreach (var requiredResource in itemInfo.recipeInfo.neededRecipeItems)

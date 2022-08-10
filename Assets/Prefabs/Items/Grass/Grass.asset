@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a967a3f0f99c934bb9b8a89e7f72db0, type: 3}
   m_Name: Grass
   m_EditorClassIdentifier: 
+  itemName: Grass
+  itemSprite: {fileID: 21300000, guid: 4c26d3514d333bd40acc13196f29f1ee, type: 3}
   coinValue: 1
   draggableItemPrefab: {fileID: 4812397909494241834, guid: 4d82638bbf51eb945beb8ddc4d9adf48, type: 3}
   onTilePrefab: {fileID: 994099794024727751, guid: ab9681d3089af0e43b0b2e2000d547f1, type: 3}
@@ -25,3 +27,5 @@ MonoBehaviour:
   isStationary: 0
   LeftInStack: 3
   isSmeltable: 0
+  foodValue: 0
+  toolTipText: 

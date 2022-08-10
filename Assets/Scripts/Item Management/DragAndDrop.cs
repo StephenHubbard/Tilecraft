@@ -87,7 +87,7 @@ public class DragAndDrop : MonoBehaviour
         }
 
         if (stackable.potentialParentItem) {
-            stackable.AttachToParent();
+            stackable.AttachToParent(true);
         } 
         
         isActive = false;

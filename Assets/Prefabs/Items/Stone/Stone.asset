@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a967a3f0f99c934bb9b8a89e7f72db0, type: 3}
   m_Name: Stone
   m_EditorClassIdentifier: 
+  itemName: Stone
+  itemSprite: {fileID: 21300000, guid: 8b6169a105497374ca1091b3e2fb6b38, type: 3}
   coinValue: 1
   draggableItemPrefab: {fileID: 4812397909494241834, guid: f23181bdae95e46419da0bca4c6f2bdd, type: 3}
   onTilePrefab: {fileID: 994099794024727751, guid: 4edade26865698341a53a4ecef48c49a, type: 3}
@@ -26,3 +28,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1a15c1455f69b214a8d5bc2dcb3677cd, type: 2}
   - {fileID: 11400000, guid: 3541cebb65418d543904013ad5efe8ec, type: 2}
   isResourceOnly: 1
+  isStationary: 0
+  LeftInStack: 1
+  isSmeltable: 0
+  foodValue: 0
+  toolTipText: 

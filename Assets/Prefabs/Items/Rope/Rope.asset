@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a967a3f0f99c934bb9b8a89e7f72db0, type: 3}
   m_Name: Rope
   m_EditorClassIdentifier: 
-  itemName: 
+  itemName: Rope
   itemSprite: {fileID: 21300000, guid: 2a1b3561fb40fa846ad90dc42d7e1d11, type: 3}
   coinValue: 1
   draggableItemPrefab: {fileID: 4812397909494241834, guid: 61aacfcf3613a4141b8ca866632e15f6, type: 3}

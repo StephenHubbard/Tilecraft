@@ -14,10 +14,16 @@ public class Encyclopedia : MonoBehaviour
     private ToolTipManager toolTipManager;
     private GameObject shownItemsContainer;
 
+    public static Encyclopedia instance;
+
     private void Awake() {
         toolTipManager = FindObjectOfType<ToolTipManager>();
 
         shownItemsContainer = GameObject.Find("ShownItemsContainer");
+
+        if (instance == null) {
+            instance = this;
+        }
     }
 
     public void OpenEncylopedia() {

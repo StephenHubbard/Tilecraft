@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 320324999
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1736298917, guid: 48d8443122268c748a050518cd6fd91d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 057808e8388c6aa48be324858fa2ead7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -196,9 +196,8 @@ GameObject:
   - component: {fileID: 4812397909494241838}
   - component: {fileID: 4812397909494241839}
   - component: {fileID: -3316961845721695248}
-  - component: {fileID: -244537642764773173}
   m_Layer: 6
-  m_Name: Item_Worker
+  m_Name: Item_Dead Worker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -262,7 +261,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e39409af50ae3624aa410dfaa2eb8233, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemInfo: {fileID: 11400000, guid: 7ecdb19248e9de349ba40029c73a2f12, type: 2}
+  itemInfo: {fileID: 11400000, guid: ba2fb7b8b790e484ea944d12a1a29087, type: 2}
   currentTile: {fileID: 0}
   amountLeft: 0
 --- !u!50 &4812397909494241839
@@ -301,22 +300,6 @@ MonoBehaviour:
   potentialParentItem: {fileID: 0}
   amountOfChildItems: 0
   itemInfo: {fileID: 0}
---- !u!114 &-244537642764773173
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4812397909494241834}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88fb9c1437828da47b0877019fb4030c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  deadWorkerOnTilePrefab: {fileID: 0}
-  deadWorkerItemPrefab: {fileID: 0}
-  itemInfo: {fileID: 11400000, guid: 7ecdb19248e9de349ba40029c73a2f12, type: 2}
-  myHealth: 4
 --- !u!1 &4812397909912382413
 GameObject:
   m_ObjectHideFlags: 0

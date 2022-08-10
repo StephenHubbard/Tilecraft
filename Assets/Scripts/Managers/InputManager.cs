@@ -40,7 +40,10 @@ public class InputManager : MonoBehaviour
             SceneManager.LoadScene(0);
         }
 
-
+        if (Input.GetKeyDown(KeyCode.Space)) {
+            Encyclopedia.instance.OpenEncylopedia();
+            ToolTipManager.instance.isOverUI = false;
+        }
 
         if (Input.GetMouseButtonDown(0)) {
             Transform lowestZGameObject = null;

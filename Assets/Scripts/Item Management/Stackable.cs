@@ -20,7 +20,11 @@ public class Stackable : MonoBehaviour
         interactableLayerMask = LayerMask.GetMask("Interactable");
     }
 
-    public void AttachToParent() {
+    private void Start() {
+        FindNearbySameQOL();
+    }
+
+    public void AttachToParent(bool playClickSound) {
 
         FindLastChild(potentialParentItem);
 
@@ -29,8 +33,9 @@ public class Stackable : MonoBehaviour
         Vector3 newPos = lastChild.transform.position + new Vector3(0, -.4f, 0f);
         gameObject.transform.position = newPos;
 
-        audioManager.Play("Stack");
-
+        if (playClickSound) {
+            audioManager.Play("Stack");
+        }
     }
 
     private void FindLastChild(Transform thisChild) {
@@ -55,6 +60,24 @@ public class Stackable : MonoBehaviour
     public void DetachFromParent() {
         transform.SetParent(null);
         
+    }
+
+    public void FindNearbySameQOL() {
+        Collider2D[] allNearbyItems = Physics2D.OverlapCircleAll(transform.position, 1.8f, interactableLayerMask);
+
+        foreach (var item in allNearbyItems)
+        {
+            if (item.GetComponent<DraggableItem>().itemInfo == transform.GetComponent<DraggableItem>().itemInfo && item.transform != this.transform) {
+
+                if (item.transform.childCount > 1) {
+                    potentialParentItem = item.transform.root;
+                } else {
+                    potentialParentItem = item.transform;
+                }
+                AttachToParent(false);
+                return;
+            }
+        }
     }
     
 }

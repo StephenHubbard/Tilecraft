@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Solar Panel
   m_EditorClassIdentifier: 
   itemName: Solar Panel
-  itemSprite: {fileID: 0}
+  itemSprite: {fileID: 21300000, guid: 7e8f412dc7e1867459b5f22ab45743e7, type: 3}
   coinValue: 1
   draggableItemPrefab: {fileID: 4812397909494241834, guid: e74738fe918aa894ab8d001e43bd52b3, type: 3}
   onTilePrefab: {fileID: 994099794024727751, guid: 47fc124a6a565c04e957d7a0c1af7a62, type: 3}
