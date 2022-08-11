@@ -7,7 +7,6 @@ public class DragAndDrop : MonoBehaviour
 {
 
     public Vector3 dragOffset;
-    private Camera mainCamera;
     public bool isActive = false;
     private DraggableItem draggableItem;
     private SellButton sellButton;
@@ -15,10 +14,10 @@ public class DragAndDrop : MonoBehaviour
     private int tileCloudLayerMask;
     private int interactableLayerMask;
     private Stackable stackable;
+    private Worker potentialWorkerToFeed;
 
     private void Awake() {
         stackable = GetComponent<Stackable>();
-        mainCamera = Camera.main;
         draggableItem = GetComponent<DraggableItem>();
         sellButton = FindObjectOfType<SellButton>();
         economyManager = FindObjectOfType<EconomyManager>();
@@ -74,6 +73,21 @@ public class DragAndDrop : MonoBehaviour
         } else {
             stackable.potentialParentItem = null;
         }
+
+        if (hit2.Length > 1 && GetComponent<Food>()) {
+            foreach (var item in hit2)
+            {
+                if (item.transform.GetComponent<Worker>()) {
+                    potentialWorkerToFeed = item.transform.GetComponent<Worker>();
+                    InputManager.instance.CircleHighlightOn();
+                    InputManager.instance.circleHighlight.transform.position = potentialWorkerToFeed.transform.position;
+                    return;
+                }
+            }
+        } else {
+            potentialWorkerToFeed = null;
+            InputManager.instance.CircleHighlightOff();
+        }
     }
 
     public void OnMouseUpCustom() {
@@ -89,6 +103,12 @@ public class DragAndDrop : MonoBehaviour
         if (stackable.potentialParentItem) {
             stackable.AttachToParent(true);
         } 
+
+        if (potentialWorkerToFeed) {
+            potentialWorkerToFeed.FeedWorker(GetComponent<DraggableItem>().itemInfo.foodValue * stackable.amountOfChildItems, true);
+            InputManager.instance.CircleHighlightOff();
+            Destroy(gameObject);
+        }
         
         isActive = false;
 

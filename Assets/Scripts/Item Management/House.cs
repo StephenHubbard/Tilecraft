@@ -63,6 +63,7 @@ public class House : MonoBehaviour
         if (timeToHaveBabyCurrent <= .1f) {
             Vector3 spawnItemsVector3 = transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), -1);
             Instantiate(workerItemPrefab, spawnItemsVector3, transform.rotation);
+            HousingManager.instance.AddNewWorker();
         }
 
         timeToHaveBabyCurrent = timeToHaveBabyTotal;

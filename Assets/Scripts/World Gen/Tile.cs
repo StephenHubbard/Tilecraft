@@ -29,7 +29,7 @@ public class Tile : MonoBehaviour
         audioManager = FindObjectOfType<AudioManager>();
         highlightedBorder = FindObjectOfType<HighlightedBorder>();
         craftingManager = GetComponent<CraftingManager>();
-        tileHighlight = GameObject.Find("Highlighted Border");
+        tileHighlight = GameObject.Find("Highlighted Border - Square");
         tileCloudLayerMask = LayerMask.GetMask("Tile");
         tileCloudLayerMask += LayerMask.GetMask("Clouds");
 
@@ -83,13 +83,14 @@ public class Tile : MonoBehaviour
         Destroy(smokePrefab);
     }
 
-    public bool PlaceWorker(GameObject workerPrefab, int currentHealth) {
+    public bool PlaceWorker(GameObject workerPrefab, int currentHealth, int currentStrength) {
         foreach (var worker in workerPoints)
         {
             if (worker.childCount == 0) {
                 GameObject newWorker = Instantiate(workerPrefab, worker.position, transform.rotation);
                 newWorker.transform.parent = worker;
                 newWorker.GetComponent<Worker>().TransferHealth(currentHealth);
+                newWorker.GetComponent<Worker>().TransferStrength(currentStrength);
                 isOccupiedWithWorkers = true;
                 GetComponent<CraftingManager>().hasWorkers = true;
                 
@@ -145,6 +146,7 @@ public class Tile : MonoBehaviour
                 spawnItemsVector3 = transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), -1);
                 GameObject newWorker = Instantiate(workerItemPrefab, spawnItemsVector3, transform.rotation);
                 newWorker.GetComponent<Worker>().TransferHealth(worker.GetChild(0).GetComponent<Worker>().myHealth);
+                newWorker.GetComponent<Worker>().TransferStrength(worker.GetChild(0).GetComponent<Worker>().myStrength);
                 Destroy(worker.GetChild(0).transform.gameObject);
                 PopTileCleanUp();
             }

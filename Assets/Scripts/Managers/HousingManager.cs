@@ -8,6 +8,8 @@ public class HousingManager : MonoBehaviour
   [SerializeField] public int maximumWorkers;
   [SerializeField] public int currentWorkers;
   [SerializeField] private TMP_Text housingText;
+  [SerializeField] private int startingWorkers;
+  [SerializeField] private int housePopValue = 5;
 
   public static HousingManager instance;
 
@@ -33,7 +35,7 @@ public class HousingManager : MonoBehaviour
 
   public void DetectHowManyHouses() {
     House[] amountOfHouses = FindObjectsOfType<House>();
-    maximumWorkers = (amountOfHouses.Length * 3) + 2;
+    maximumWorkers = (amountOfHouses.Length * housePopValue) + startingWorkers;
   }
 
   public void AddNewWorker() {

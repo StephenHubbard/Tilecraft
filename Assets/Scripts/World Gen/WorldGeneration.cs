@@ -19,11 +19,15 @@ public class WorldGeneration : MonoBehaviour
     private int newTileSpawnDir = 1;
     private bool newTileSpawned = false;
 
-
+    public static WorldGeneration instance;
 
     private AudioManager audioManager;
 
     private void Awake() {
+        if (instance == null) {
+            instance = this;
+        }
+
         audioManager = FindObjectOfType<AudioManager>();
 
         grid = new Grid(gridWidth, gridHeight, cellSize, new Vector3(0, 0));
@@ -37,6 +41,10 @@ public class WorldGeneration : MonoBehaviour
 
     public Grid ReturnGrid() {
         return grid;
+    }
+
+    public ItemInfo[] ReturnSpawnableItems() {
+        return spawnableTileItems;
     }
 
     private void GenerateTiles() {
@@ -69,7 +77,7 @@ public class WorldGeneration : MonoBehaviour
     private void GenStartingTilesAroundCenter() {
         for (int i = 0; i < amountOfStartingTiles; i++)
         {
-            NewTile();
+            NewTile(i);
         }
     }
 
@@ -110,16 +118,16 @@ public class WorldGeneration : MonoBehaviour
         grid.SetValue(gridLocation, 1);
     }
 
-    public void NewTile() {
+    public void NewTile(int i) {
         if (newTileSpawnDir == 1) {
-            SpawnLeft();
+            SpawnLeft(i);
         } else if (newTileSpawnDir == 2) {
-            SpawnRight();
+            SpawnRight(i);
         } 
 
         // WARNING: will cause infinite loop crash if grid is full or close to full
         if (!newTileSpawned) {
-            NewTile();
+            NewTile(i);
         } else {
             newTileSpawned = false;
         }
@@ -131,7 +139,7 @@ public class WorldGeneration : MonoBehaviour
         audioManager.Play("Tile Placement");
     }
 
-    private void SpawnLeft() {
+    private void SpawnLeft(int i) {
         for (int x = 0; x < grid.gridArray.GetLength(0); x ++) {
             for (int y = 0; y < grid.gridArray.GetLength(1); y++) {
                 
@@ -145,13 +153,16 @@ public class WorldGeneration : MonoBehaviour
 
                         int doesSpawnStartingItemNum = Random.Range(1, 3);
 
+                        if (i < 20) {
+                            doesSpawnStartingItemNum = 1;
+                        }
+
                         if (doesSpawnStartingItemNum == 1) {
 
                             List<ItemInfo> potentialItems = new List<ItemInfo>();
                             
                             foreach (var potentialItem in spawnableTileItems)
                             {
-
                                 foreach (var validLandTile in potentialItem.tileInfoValidLocations)
                                 {
 
@@ -182,7 +193,7 @@ public class WorldGeneration : MonoBehaviour
         }
     }
 
-    private void SpawnRight() {
+    private void SpawnRight(int i) {
         for (int x = gridWidth - 1; x > 0; x--) {
             for (int y = 0; y < grid.gridArray.GetLength(1); y++) {
                 
@@ -195,6 +206,10 @@ public class WorldGeneration : MonoBehaviour
                         GenWhichTileType(newTile.transform);
 
                         int doesSpawnStartingItemNum = Random.Range(1, 3);
+
+                        if (i < 20) {
+                            doesSpawnStartingItemNum = 1;
+                        }
 
                         if (doesSpawnStartingItemNum == 1) {
 

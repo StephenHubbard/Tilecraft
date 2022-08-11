@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class Food : MonoBehaviour
 {
-    [SerializeField] public int foodWorthAmount = 1;
+    public int foodWorthAmount;
 
     private void Start() {
-        StartCoroutine(FindObjectOfType<FoodManager>().UpdateFoodCo());
+        if (GetComponent<DraggableItem>()) {
+            foodWorthAmount = GetComponent<DraggableItem>().itemInfo.foodValue;
+        } else if (GetComponent<PlacedItem>()) {
+            foodWorthAmount = GetComponent<PlacedItem>().itemInfo.foodValue;
+        }
     }
 }

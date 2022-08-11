@@ -26,6 +26,13 @@ public class Encyclopedia : MonoBehaviour
         }
     }
 
+    private void Start() {
+        foreach (var item in discoveredItems)
+        {
+            NewItemToEncyclopedia(item);
+        }
+    }
+
     public void OpenEncylopedia() {
         if (encylopediaContainer.activeInHierarchy) {
             encylopediaContainer.SetActive(false);

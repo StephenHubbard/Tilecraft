@@ -12,6 +12,7 @@ public class CraftingManager : MonoBehaviour
     [SerializeField] public RecipeInfo recipeInfo;
     
     private int amountOfWorkers;
+    private int totalWorkerStrength;
     public int amountLeftToCraft;
     public int startAmountToCraft;
 
@@ -37,7 +38,7 @@ public class CraftingManager : MonoBehaviour
     private void Update() {
         if (currentCraftTime > 0 && hasCompleteRecipe && isCrafting && hasWorkers) {
             tileSlider.value = currentCraftTime;
-            currentCraftTime -= Time.deltaTime * amountOfWorkers;
+            currentCraftTime -= Time.deltaTime * totalWorkerStrength;
         }
 
         if (currentCraftTime < .1f && hasCompleteRecipe && hasWorkers && isCrafting) {
@@ -79,8 +80,20 @@ public class CraftingManager : MonoBehaviour
         return false;
     }
 
+    
+
     public void IncreaseWorkerCount() {
         amountOfWorkers += 1;
+        int newTotalStrength = 0;
+
+        foreach (var worker in GetComponent<Tile>().workerPoints)
+        {
+            if (worker.childCount > 0) {
+                newTotalStrength += worker.GetChild(0).GetComponent<Worker>().myStrength;
+            }
+        }
+
+        totalWorkerStrength = newTotalStrength;
     }
 
     public void DecreaseWorkerCount() {

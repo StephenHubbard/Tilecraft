@@ -6,8 +6,8 @@ using Cinemachine;
 public class CameraController : MonoBehaviour
 {
 
-    private const float MIN_FOLLOW_Z_OFFSET = 2f;
-    private const float MAX_FOLLOW_Z_OFFSET = 10f;
+    private const float MIN_FOLLOW_Z_OFFSET = 4f;
+    private const float MAX_FOLLOW_Z_OFFSET = 14f;
 
     [SerializeField] private CinemachineVirtualCamera cinemachineVirtualCamera;
     [SerializeField] private Collider2D cameraConfiner;
@@ -22,7 +22,7 @@ public class CameraController : MonoBehaviour
     {
         cinemachineTransposer = cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>();
 
-        cinemachineVirtualCamera.m_Lens.OrthographicSize = 5f;
+        cinemachineVirtualCamera.m_Lens.OrthographicSize = 6f;
 
         bottomLeftLimit = cameraConfiner.bounds.min;
         topRightLimit = cameraConfiner.bounds.max;
@@ -38,7 +38,7 @@ public class CameraController : MonoBehaviour
 
     private void HandleMovement()
     {
-        Vector2 inputMoveDir = InputManager.Instance.GetCameraMoveVector();
+        Vector2 inputMoveDir = InputManager.instance.GetCameraMoveVector();
 
         float moveSpeed = 10f;
 
@@ -56,7 +56,7 @@ public class CameraController : MonoBehaviour
         float zoomIncreaseAmount = 3f;
         float currentZoom = cinemachineVirtualCamera.m_Lens.OrthographicSize;
         float targetZoom = currentZoom;
-        targetZoom += InputManager.Instance.GetCameraZoomAmount() * zoomIncreaseAmount;
+        targetZoom += InputManager.instance.GetCameraZoomAmount() * zoomIncreaseAmount;
         targetZoom = Mathf.Clamp(targetZoom, MIN_FOLLOW_Z_OFFSET, MAX_FOLLOW_Z_OFFSET);
 
         float zoomSpeed = 5f;

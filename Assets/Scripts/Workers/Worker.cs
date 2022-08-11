@@ -6,6 +6,13 @@ public class Worker : MonoBehaviour
 {
     [SerializeField] private GameObject deadWorkerOnTilePrefab;
     [SerializeField] private GameObject deadWorkerItemPrefab;
+    [SerializeField] private GameObject levelUpAnimPrefab;
+    [SerializeField] private GameObject starGroup1;
+    [SerializeField] private GameObject starGroup2;
+    [SerializeField] private GameObject starGroup3;
+    [SerializeField] public int myStrength = 1;
+    [SerializeField] public int foodNeededToUpPickaxeStrengthCurrent;
+    [SerializeField] public int foodNeededToUpPickaxeStrengthStart = 3;
     public ItemInfo itemInfo;
     public int myHealth = 10;
 
@@ -18,8 +25,6 @@ public class Worker : MonoBehaviour
     }
 
     private void Start() {
-        StartCoroutine(FindObjectOfType<FoodManager>().UpdateFoodNeededCo());
-
         if (GetComponent<PlacedItem>() && myAnimator) {
             AnimatorStateInfo state = myAnimator.GetCurrentAnimatorStateInfo (0);
             myAnimator.Play (state.fullPathHash, -1, Random.Range(0f,1f));
@@ -27,6 +32,9 @@ public class Worker : MonoBehaviour
 
         DetectCombat();
 
+        itemInfo.toolTipText = "strength value: " + myStrength.ToString();
+
+        foodNeededToUpPickaxeStrengthCurrent = foodNeededToUpPickaxeStrengthStart;
     }
 
     private void DetectCombat() {
@@ -47,6 +55,57 @@ public class Worker : MonoBehaviour
                     FindEnemy();
                 }
         }
+    }
+
+    public void TransferStrength(int currentStrength) {
+        myStrength = currentStrength;
+    }
+
+    public void FeedWorker(int amount, bool playCrunch) {
+        if (playCrunch) {
+            AudioManager.instance.Play("Eat Crunch");
+        }
+
+        int leftoverAmountOfFood = 0;
+
+        if (foodNeededToUpPickaxeStrengthCurrent < amount) {
+            leftoverAmountOfFood = Mathf.Abs(foodNeededToUpPickaxeStrengthCurrent - amount);;
+        }
+
+        foodNeededToUpPickaxeStrengthCurrent -= amount;
+
+        if (foodNeededToUpPickaxeStrengthCurrent <= 0) {
+            LevelUpStrength(leftoverAmountOfFood);
+        }
+
+
+    }
+
+    public void LevelUpStrength(int leftoverAmountOfFood) {
+        GameObject starPrefab = Instantiate(levelUpAnimPrefab, transform.position, transform.rotation);
+        StartCoroutine(DestroyStarPrefabCo(starPrefab));
+        myStrength++;
+        foodNeededToUpPickaxeStrengthStart *= Mathf.CeilToInt(1.5f);
+        foodNeededToUpPickaxeStrengthCurrent = foodNeededToUpPickaxeStrengthStart;
+        if (leftoverAmountOfFood > 0) {
+            FeedWorker(leftoverAmountOfFood, false);
+        }
+
+        // if (myStrength == 2) {
+        //     starGroup1.SetActive(true);
+        // } else if (myStrength == 3) {
+        //     starGroup1.SetActive(false);
+        //     starGroup2.SetActive(true);
+
+        // } else if (myStrength == 4) {
+        //     starGroup2.SetActive(false);
+        //     starGroup3.SetActive(true);
+        // } 
+    }
+
+    private IEnumerator DestroyStarPrefabCo(GameObject starPrefab) {
+        yield return new WaitForSeconds(2f);
+        Destroy(starPrefab);
     }
 
     private void FindEnemy() {

@@ -6,7 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class InputManager : MonoBehaviour
 {
-    public static InputManager Instance { get; private set; }
+    [SerializeField] public GameObject circleHighlight;
+
+    public static InputManager instance { get; private set; }
 
     private int interactableLayerMask;
 
@@ -14,13 +16,13 @@ public class InputManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance != null)
+        if (instance != null)
         {
-            Debug.LogError("There's more than one InputManager! " + transform + " - " + Instance);
+            Debug.LogError("There's more than one InputManager! " + transform + " - " + instance);
             Destroy(gameObject);
             return;
         }
-        Instance = this;
+        instance = this;
 
         interactableLayerMask = LayerMask.GetMask("Interactable");
 
@@ -110,5 +112,13 @@ public class InputManager : MonoBehaviour
         }
 
         return zoomAmount;
+    }
+
+    public void CircleHighlightOn() {
+        circleHighlight.GetComponent<SpriteRenderer>().enabled = true;
+    }
+
+    public void CircleHighlightOff() {
+        circleHighlight.GetComponent<SpriteRenderer>().enabled = false;
     }
 }
