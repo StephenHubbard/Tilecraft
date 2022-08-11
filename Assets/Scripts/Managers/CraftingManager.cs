@@ -89,7 +89,7 @@ public class CraftingManager : MonoBehaviour
         foreach (var worker in GetComponent<Tile>().workerPoints)
         {
             if (worker.childCount > 0) {
-                newTotalStrength += worker.GetChild(0).GetComponent<Worker>().myStrength;
+                newTotalStrength += worker.GetChild(0).GetComponent<Worker>().myWorkingStrength;
             }
         }
 

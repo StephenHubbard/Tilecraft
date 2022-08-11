@@ -10,7 +10,8 @@ public class Worker : MonoBehaviour
     [SerializeField] private GameObject starGroup1;
     [SerializeField] private GameObject starGroup2;
     [SerializeField] private GameObject starGroup3;
-    [SerializeField] public int myStrength = 1;
+    [SerializeField] public int myWorkingStrength = 1;
+    [SerializeField] public int myCombatValue = 1;
     [SerializeField] public int foodNeededToUpPickaxeStrengthCurrent;
     [SerializeField] public int foodNeededToUpPickaxeStrengthStart = 3;
     public ItemInfo itemInfo;
@@ -32,7 +33,7 @@ public class Worker : MonoBehaviour
 
         DetectCombat();
 
-        itemInfo.toolTipText = "strength value: " + myStrength.ToString();
+        itemInfo.toolTipText = "strength value: " + myWorkingStrength.ToString();
 
         foodNeededToUpPickaxeStrengthCurrent = foodNeededToUpPickaxeStrengthStart;
     }
@@ -58,7 +59,7 @@ public class Worker : MonoBehaviour
     }
 
     public void TransferStrength(int currentStrength) {
-        myStrength = currentStrength;
+        myWorkingStrength = currentStrength;
     }
 
     public void FeedWorker(int amount, bool playCrunch) {
@@ -84,23 +85,13 @@ public class Worker : MonoBehaviour
     public void LevelUpStrength(int leftoverAmountOfFood) {
         GameObject starPrefab = Instantiate(levelUpAnimPrefab, transform.position, transform.rotation);
         StartCoroutine(DestroyStarPrefabCo(starPrefab));
-        myStrength++;
+        myWorkingStrength++;
         foodNeededToUpPickaxeStrengthStart *= Mathf.CeilToInt(1.5f);
         foodNeededToUpPickaxeStrengthCurrent = foodNeededToUpPickaxeStrengthStart;
         if (leftoverAmountOfFood > 0) {
             FeedWorker(leftoverAmountOfFood, false);
         }
 
-        // if (myStrength == 2) {
-        //     starGroup1.SetActive(true);
-        // } else if (myStrength == 3) {
-        //     starGroup1.SetActive(false);
-        //     starGroup2.SetActive(true);
-
-        // } else if (myStrength == 4) {
-        //     starGroup2.SetActive(false);
-        //     starGroup3.SetActive(true);
-        // } 
     }
 
     private IEnumerator DestroyStarPrefabCo(GameObject starPrefab) {

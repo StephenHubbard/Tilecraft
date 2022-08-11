@@ -81,7 +81,7 @@ public class DraggableItem : MonoBehaviour
 
             // worker
             if (itemInfo.name == "Worker") {
-                if (currentTile.PlaceWorker(itemInfo.onTilePrefab, gameObject.GetComponent<Worker>().myHealth, gameObject.GetComponent<Worker>().myStrength)) {
+                if (currentTile.PlaceWorker(itemInfo.onTilePrefab, gameObject.GetComponent<Worker>().myHealth, gameObject.GetComponent<Worker>().myWorkingStrength)) {
                     if (i == 1) {
                         Destroy(gameObject);
                     }

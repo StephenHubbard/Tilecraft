@@ -146,7 +146,7 @@ public class Tile : MonoBehaviour
                 spawnItemsVector3 = transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), -1);
                 GameObject newWorker = Instantiate(workerItemPrefab, spawnItemsVector3, transform.rotation);
                 newWorker.GetComponent<Worker>().TransferHealth(worker.GetChild(0).GetComponent<Worker>().myHealth);
-                newWorker.GetComponent<Worker>().TransferStrength(worker.GetChild(0).GetComponent<Worker>().myStrength);
+                newWorker.GetComponent<Worker>().TransferStrength(worker.GetChild(0).GetComponent<Worker>().myWorkingStrength);
                 Destroy(worker.GetChild(0).transform.gameObject);
                 PopTileCleanUp();
             }

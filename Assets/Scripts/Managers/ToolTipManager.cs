@@ -12,11 +12,13 @@ public class ToolTipManager : MonoBehaviour
     [SerializeField] private GameObject pickaxeContainer;
     [SerializeField] private GameObject coinContainer;
     [SerializeField] private GameObject heartContainer;
+    [SerializeField] private GameObject hatchetContainer;
     [SerializeField] private GameObject availablePackItemsContainer;
     [SerializeField] private TMP_Text foodValueText;
     [SerializeField] private TMP_Text coinValueText;
     [SerializeField] private TMP_Text heartValueText;
     [SerializeField] private TMP_Text pickaxeValueText;
+    [SerializeField] private TMP_Text hatchetValueText;
     [SerializeField] private GameObject toolTipImage;
     [SerializeField] private GameObject maximizeButton;
     [SerializeField] private GameObject minimizeButton;
@@ -52,7 +54,7 @@ public class ToolTipManager : MonoBehaviour
             ToggleToolTipOn();
             if (hit.Length > 1 && hit[0].transform.GetComponent<Food>() && hit[1].transform.GetComponent<Worker>()) {
                 string newStr = "You are about to feed worker " + (hit[0].transform.GetComponent<Food>().foodWorthAmount * hit[0].transform.GetComponent<Stackable>().amountOfChildItems).ToString() + " food";
-                UpdateValues("Feed Worker?", newStr, 0, 0, 0, 0);
+                UpdateValues("Feed Worker?", newStr, 0, 0, 0, 0, 0);
                 return;
             }
 
@@ -60,12 +62,13 @@ public class ToolTipManager : MonoBehaviour
                 ItemInfo thisItem = hit[0].transform.GetComponent<DraggableItem>().itemInfo;
                 if (hit[0].transform.GetComponent<Worker>()) {
                     int healthValue = hit[0].transform.GetComponent<Worker>().myHealth;
-                    int workStrengthValue = hit[0].transform.GetComponent<Worker>().myStrength;
+                    int workStrengthValue = hit[0].transform.GetComponent<Worker>().myWorkingStrength;
+                    int hatchetCombatValue = hit[0].transform.GetComponent<Worker>().myCombatValue;
                     string neededFoodToUpgradeStrength = "Food until power up: " + hit[0].transform.GetComponent<Worker>().foodNeededToUpPickaxeStrengthCurrent.ToString();
-                    UpdateValues(thisItem.itemName, neededFoodToUpgradeStrength, thisItem.foodValue, thisItem.coinValue, healthValue, workStrengthValue);
+                    UpdateValues(thisItem.itemName, neededFoodToUpgradeStrength, thisItem.foodValue, thisItem.coinValue, healthValue, workStrengthValue, hatchetCombatValue);
                     return;
                 } else {
-                    UpdateValues(thisItem.itemName, thisItem.toolTipText, thisItem.foodValue, thisItem.coinValue, 0, 0);
+                    UpdateValues(thisItem.itemName, thisItem.toolTipText, thisItem.foodValue, thisItem.coinValue, 0, 0, 0);
                     return;
                 }
             } 
@@ -74,10 +77,10 @@ public class ToolTipManager : MonoBehaviour
                 TileInfo thisTile = hit[0].transform.GetComponent<Tile>().tileInfo;
                 if (hit[0].transform.GetComponent<Tile>().currentPlacedItem != null) {
                     string newStr = hit[0].transform.GetComponent<Tile>().currentPlacedItem.GetComponent<PlacedItem>().itemInfo.itemName + ": " + hit[0].transform.GetComponent<Tile>().currentPlacedItem.GetComponent<PlacedItem>().itemInfo.toolTipText;
-                    UpdateValues(thisTile.name, newStr, 0, 0, 0, 0);
+                    UpdateValues(thisTile.name, newStr, 0, 0, 0, 0, 0);
                     return;
                 } else {
-                    UpdateValues(thisTile.name, null, 0, 0, 0, 0);
+                    UpdateValues(thisTile.name, null, 0, 0, 0, 0, 0);
                     return;
                 }
             } 
@@ -93,6 +96,7 @@ public class ToolTipManager : MonoBehaviour
         coinContainer.gameObject.SetActive(true);
         heartContainer.gameObject.SetActive(true);
         pickaxeContainer.gameObject.SetActive(true);
+        hatchetContainer.gameObject.SetActive(true);
     }
 
     public void ToggleToolTipOff() {
@@ -102,9 +106,10 @@ public class ToolTipManager : MonoBehaviour
         coinContainer.gameObject.SetActive(false);
         heartContainer.gameObject.SetActive(false);
         pickaxeContainer.gameObject.SetActive(false);
+        hatchetContainer.gameObject.SetActive(false);
     }
 
-    public void UpdateValues(string itemText, string toolTipText, int foodValue, int coinValue, int heartValue, int pickaxeValue) {
+    public void UpdateValues(string itemText, string toolTipText, int foodValue, int coinValue, int heartValue, int pickaxeValue, int hatchetValue) {
 
         this.itemText.text = itemText;
         this.toolTipText.text = toolTipText;
@@ -127,6 +132,11 @@ public class ToolTipManager : MonoBehaviour
             this.pickaxeValueText.text = pickaxeValue.ToString();
         } else {
             pickaxeContainer.SetActive(false);
+        }
+        if (hatchetValue > 0) {
+            this.hatchetValueText.text = hatchetValue.ToString();
+        } else {
+            hatchetContainer.SetActive(false);
         }
     }
 
@@ -157,7 +167,7 @@ public class ToolTipManager : MonoBehaviour
         if (sender.GetComponent<UITooltip>().isPackIcon || sender.GetComponent<UITooltip>().isEncyclopediaIcon) {
             sender.GetComponent<UITooltip>().UpdatePackUIToolTip();
         }
-        UpdateValues(sender.GetComponent<UITooltip>().toolTipName, sender.GetComponent<UITooltip>().toolTipText, 0, 0, 0, 0);
+        UpdateValues(sender.GetComponent<UITooltip>().toolTipName, sender.GetComponent<UITooltip>().toolTipText, 0, 0, 0, 0, 0);
     }
 
     // event listener in inspector
