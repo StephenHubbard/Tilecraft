@@ -10,11 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 66df1655cda175c4da55e2cd2c217479, type: 3}
-  m_Name: Sand Recipe
+  m_Name: Sand Pile  Recipe
   m_EditorClassIdentifier: 
-  itemInfo: {fileID: 11400000, guid: 71a922df838685d4a8ad5e60919b7bc2, type: 2}
-  neededRecipeItems:
-  - {fileID: 11400000, guid: 65bb08fef2fc1e24dafebc772d382f01, type: 2}
+  itemInfo: {fileID: 11400000, guid: 65bb08fef2fc1e24dafebc772d382f01, type: 2}
+  neededRecipeItems: []
   recipeCraftTime: 5
-  craftingClipString: 
+  craftingClipString: Bush Rustle
   requiresFurnace: 0

@@ -175,6 +175,12 @@ public class CraftingManager : MonoBehaviour
         Vector3 spawnItemsVector3 = transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), -1);
         Instantiate(recipeInfo.itemInfo.draggableItemPrefab, spawnItemsVector3, transform.rotation);
         encyclopedia.AddItemToDiscoveredList(recipeInfo.itemInfo);
+
+        foreach (var recipe in recipeInfo.itemInfo.recipeInfo.neededRecipeItems)
+        {
+        encyclopedia.AddItemToDiscoveredList(recipe);
+        }
+        
         isCrafting = false;
         amountLeftToCraft -= 1;
 

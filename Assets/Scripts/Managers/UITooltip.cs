@@ -12,6 +12,7 @@ public class UITooltip : MonoBehaviour
 
     [SerializeField] public ItemInfo itemInfo;
 
+    [HideInInspector]
     public GameObject shownItemsContainer;
     public bool isPackIcon = false;
     public bool isEncyclopediaIcon = false;
@@ -36,9 +37,6 @@ public class UITooltip : MonoBehaviour
     }
 
     private void Update() {
-        // if (toolTipName == "Coins") {
-        //     toolTipText = "You currently have " + economyManager.currentCoins + " coins.";
-        // }
     }
 
     public void UpdatePackUIToolTip() {

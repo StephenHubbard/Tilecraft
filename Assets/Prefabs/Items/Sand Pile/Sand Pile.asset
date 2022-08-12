@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a967a3f0f99c934bb9b8a89e7f72db0, type: 3}
+  m_Name: Sand Pile
+  m_EditorClassIdentifier: 
+  itemName: 'Sand Pile '
+  itemSprite: {fileID: 21300000, guid: cf80afdcb9e9385409f0c03cf3316f80, type: 3}
+  coinValue: 1
+  draggableItemPrefab: {fileID: 4812397909494241834, guid: 3d96b64255d01d149b3444557628e673, type: 3}
+  onTilePrefab: {fileID: 994099794024727751, guid: 97144763890df8048be4fc1ec287f7cd, type: 3}
+  tileInfoValidLocations:
+  - {fileID: 11400000, guid: 5f31d55a53bbe2f479011bab64202e0c, type: 2}
+  recipeInfo: {fileID: 11400000, guid: 40166e8186620b14a98ebd6c07c612af, type: 2}
+  amountRecipeCanCreate: 2
+  potentialOffSpring:
+  - {fileID: 11400000, guid: 71a922df838685d4a8ad5e60919b7bc2, type: 2}
+  isResourceOnly: 0
+  isStationary: 0
+  LeftInStack: 2
+  isSmeltable: 0
+  foodValue: 0
+  toolTipText: Placed on a grass tile to gather berries.

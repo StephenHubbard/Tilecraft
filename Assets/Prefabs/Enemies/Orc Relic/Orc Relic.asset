@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Orc Relic
   m_EditorClassIdentifier: 
   itemName: Orc Relic
+  itemSprite: {fileID: 21300000, guid: 42255bbae46123642a62a1e455b91402, type: 3}
   coinValue: 0
   draggableItemPrefab: {fileID: 0}
   onTilePrefab: {fileID: 994099794024727751, guid: 00b21b1e3a1253f4b89cc3008bdee2f8, type: 3}

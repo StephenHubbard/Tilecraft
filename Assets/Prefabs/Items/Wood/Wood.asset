@@ -24,7 +24,6 @@ MonoBehaviour:
   recipeInfo: {fileID: 11400000, guid: 785e907fbaffd414d901ecc8927e640c, type: 2}
   amountRecipeCanCreate: 3
   potentialOffSpring:
-  - {fileID: 11400000, guid: 855316e0c92bea843b6ce2d9671bd864, type: 2}
   - {fileID: 11400000, guid: 14a62113a04f8aa4e9ce5e060ae05011, type: 2}
   - {fileID: 11400000, guid: 3541cebb65418d543904013ad5efe8ec, type: 2}
   - {fileID: 11400000, guid: 288868514ae1d204c845b251d77feecd, type: 2}

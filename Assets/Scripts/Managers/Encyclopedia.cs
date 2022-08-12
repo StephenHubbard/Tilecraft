@@ -3,13 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using TMPro;
 
 public class Encyclopedia : MonoBehaviour
 {
     [SerializeField] private Image newDiscoveredItemPrefab;
     [SerializeField] private GameObject encylopediaContainer;
     [SerializeField] private GameObject encylopediaGridLayout;
+    [SerializeField] private GameObject newDiscoveredItemsGridLayout;
+    [SerializeField] private GameObject itemsThatCanBeCraftedGridLayout;
+    [SerializeField] private Image currentInspectedItem;
+    [SerializeField] private GameObject backButton;
+    [SerializeField] private TMP_Text bottomContainerText;
     [SerializeField] private List<ItemInfo> discoveredItems = new List<ItemInfo>();
+    [SerializeField] private List<ItemInfo> newlyDiscoveredItems = new List<ItemInfo>();
+    [SerializeField] private List<ItemInfo> itemsThatCanBeCrafted = new List<ItemInfo>();
 
     private ToolTipManager toolTipManager;
     private GameObject shownItemsContainer;
@@ -29,15 +37,26 @@ public class Encyclopedia : MonoBehaviour
     private void Start() {
         foreach (var item in discoveredItems)
         {
-            NewItemToEncyclopedia(item);
+            NewItemToEncyclopedia(item, encylopediaGridLayout.transform);
+        }
+
+        foreach (var item in newlyDiscoveredItems)
+        {
+            NewItemToEncyclopedia(item, newDiscoveredItemsGridLayout.transform);
         }
     }
 
     public void OpenEncylopedia() {
+        if (backButton.GetComponent<Image>().enabled == true) {
+            BackButton();
+            return;
+        }
+
         if (encylopediaContainer.activeInHierarchy) {
             encylopediaContainer.SetActive(false);
         } else {
             encylopediaContainer.SetActive(true);
+            BackButton();
         }
     }
 
@@ -45,19 +64,74 @@ public class Encyclopedia : MonoBehaviour
         encylopediaContainer.SetActive(false);
     }
 
+    public void BackButton() {
+        backButton.GetComponent<Image>().enabled = false;
+        backButton.GetComponent<Button>().enabled = false;
+        currentInspectedItem.transform.parent.gameObject.SetActive(false);
+
+        encylopediaGridLayout.SetActive(true);
+        itemsThatCanBeCraftedGridLayout.SetActive(false);
+
+        bottomContainerText.text = "Known Recipes:";
+    }
+
+    private void DisplayWhatRecipesCanBeMade(Transform sender) {
+        bottomContainerText.text = "Can Craft:";
+        currentInspectedItem.transform.parent.gameObject.SetActive(true);
+
+        currentInspectedItem.sprite = sender.transform.GetComponent<UITooltip>().itemInfo.itemSprite;
+
+        encylopediaGridLayout.SetActive(false);
+        itemsThatCanBeCraftedGridLayout.SetActive(true);
+
+        itemsThatCanBeCrafted.Clear();
+
+        foreach (Transform child in itemsThatCanBeCraftedGridLayout.transform)
+        {
+            Destroy(child.gameObject);
+        }
+
+        addItemsToPotentialCraftedList(sender.transform.GetComponent<UITooltip>().itemInfo);
+
+        foreach (var item in itemsThatCanBeCrafted)
+        {
+            NewItemToEncyclopedia(item, itemsThatCanBeCraftedGridLayout.transform);
+        }
+
+        backButton.GetComponent<Image>().enabled = true;
+        backButton.GetComponent<Button>().enabled = true;
+        
+    }
+
+    private void addItemsToPotentialCraftedList(ItemInfo itemInfo) {
+        foreach (var item in itemInfo.potentialOffSpring)
+        {
+            itemsThatCanBeCrafted.Add(item);
+        }
+    }
+
     public void AddItemToDiscoveredList(ItemInfo newItem) {
         if (!discoveredItems.Contains(newItem)) {
             discoveredItems.Add(newItem);
-            NewItemToEncyclopedia(newItem);
+            NewItemToEncyclopedia(newItem, encylopediaGridLayout.transform);
+            newlyDiscoveredItems.Add(newItem);
+            NewItemToEncyclopedia(newItem, newDiscoveredItemsGridLayout.transform);
         } 
     }
 
-    private void NewItemToEncyclopedia(ItemInfo newItem) {
+
+    private void NewItemToEncyclopedia(ItemInfo newItem, Transform parentTransform) {
         GameObject discoveredItem = Instantiate(newDiscoveredItemPrefab.gameObject, transform.position, transform.rotation);
-        discoveredItem.transform.SetParent(encylopediaGridLayout.transform);
+        discoveredItem.transform.SetParent(parentTransform);
         discoveredItem.transform.localScale = Vector3.one;
         discoveredItem.GetComponent<Image>().sprite = newItem.itemSprite;
         discoveredItem.GetComponent<UITooltip>().itemInfo = newItem;
+
+        EventTrigger thisClickTrigger = discoveredItem.GetComponent<EventTrigger>();
+        EventTrigger.Entry clickEntry = new EventTrigger.Entry();
+        clickEntry.eventID = EventTriggerType.PointerClick;
+        clickEntry.callback.AddListener((data) => { DisplayWhatRecipesCanBeMade(discoveredItem.transform); });
+        thisClickTrigger.triggers.Add(clickEntry);
 
         EventTrigger thisHoverTrigger = discoveredItem.GetComponent<EventTrigger>();
         EventTrigger.Entry hoverEntry = new EventTrigger.Entry();
@@ -71,6 +145,7 @@ public class Encyclopedia : MonoBehaviour
         exitEntry.callback.AddListener((data) => { OnPointerExitDelegate(discoveredItem.transform); });
         thisHoverTrigger.triggers.Add(exitEntry);
     }
+
 
     public void OnPointerHoverDelegate(Transform discoveredItem)
     {
