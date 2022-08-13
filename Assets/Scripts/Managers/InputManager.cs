@@ -3,14 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using CodeMonkey.Utils;
 using UnityEngine.SceneManagement;
+using UnityEngine.Rendering;
 
 public class InputManager : MonoBehaviour
 {
     [SerializeField] public GameObject circleHighlight;
+    [SerializeField] public GameObject tileHighlight;
 
     public static InputManager instance { get; private set; }
 
-    private int interactableLayerMask;
+    [SerializeField] private LayerMask interactableLayerMask = new LayerMask();
+    [SerializeField] private LayerMask tileDetectionLayerMask = new LayerMask();
+
+    [SerializeField] private CursorManager.CursorType cursorTypeArrow;
+    [SerializeField] private CursorManager.CursorType cursorOpenHand;
+    [SerializeField] private CursorManager.CursorType cursorClosedHand;
 
     private DragAndDrop activeObject;
 
@@ -23,8 +30,6 @@ public class InputManager : MonoBehaviour
             return;
         }
         instance = this;
-
-        interactableLayerMask = LayerMask.GetMask("Interactable");
 
     }
 
@@ -47,31 +52,127 @@ public class InputManager : MonoBehaviour
             ToolTipManager.instance.isOverUI = false;
         }
 
-        if (Input.GetMouseButtonDown(0)) {
+        UpdateInteractablesInput();
+        UpdateTileInput();
+    }
+
+    private void UpdateTileInput() {
+        RaycastHit2D[] hitArray = Physics2D.RaycastAll(UtilsClass.GetMouseWorldPosition(), Vector2.zero, 100f, tileDetectionLayerMask);
+
+        Tile thisTile = null;
+
+        bool isRayBeingBlocked = false;
+
+        if (hitArray.Length > 0) {
+
+            foreach (var item in hitArray)
+            {
+                thisTile = item.transform.GetComponent<Tile>();
+            }
+
+            if (thisTile != null) {
+                foreach (var item in hitArray)
+                {
+                    if (item.transform.GetComponent<Stackable>() || item.transform.GetComponent<Cloud>()) { 
+                        isRayBeingBlocked = true;
+                    } 
+                }
+
+                if (Input.GetMouseButtonDown(1)) {
+                    if (isRayBeingBlocked == false) {
+                        thisTile.GetComponent<Tile>().PluckItemsOffTile();
+                    }
+                }
+            }
+
+            if (isRayBeingBlocked == false && thisTile != null) {
+                tileHighlight.GetComponent<SpriteRenderer>().enabled = true;
+
+                tileHighlight.transform.position = thisTile.transform.position;
+            } else {
+                tileHighlight.GetComponent<SpriteRenderer>().enabled = false;
+            }
+        }
+    }
+
+    private void UpdateInteractablesInput() {
             Transform lowestZGameObject = null;
 
             RaycastHit2D[] hit = Physics2D.RaycastAll(UtilsClass.GetMouseWorldPosition(), Vector2.zero, 100f, interactableLayerMask);
 
             if (hit.Length > 0) {
-                foreach (var item in hit)
-                {
-                    if (lowestZGameObject == null) {
-                        lowestZGameObject = item.transform;
-                    } else if (item.transform.position.y < lowestZGameObject.position.y) {
-                        lowestZGameObject = item.transform;
+                CursorManager.Instance.SetActiveCursorType(cursorOpenHand);
+
+                if (Input.GetMouseButtonDown(0)) {
+                    foreach (var item in hit)
+                    {
+                        if (lowestZGameObject == null) {
+                            lowestZGameObject = item.transform;
+                        } else if (item.transform.position.y < lowestZGameObject.position.y) {
+                            lowestZGameObject = item.transform;
+                        }
                     }
-                }
-                activeObject = lowestZGameObject.gameObject.GetComponent<DragAndDrop>();
-                activeObject.OnMouseDownCustom();
+                    activeObject = lowestZGameObject.gameObject.GetComponent<DragAndDrop>();
+                    activeObject.OnMouseDownCustom();
+                } 
+            } else {
+                CursorManager.Instance.SetActiveCursorType(cursorTypeArrow);
             }
-        }
 
         if (activeObject) {
+            CursorManager.Instance.SetActiveCursorType(cursorClosedHand);
+
             if (Input.GetMouseButtonUp(0)) {
                 activeObject.OnMouseUpCustom();
+                activeObject = null;
+                CursorManager.Instance.SetActiveCursorType(cursorOpenHand);
             }
         }
 
+        if (Input.GetMouseButtonDown(1)) {
+            Transform lowestZGameObject2 = null;
+
+            RaycastHit2D[] hit2 = Physics2D.RaycastAll(UtilsClass.GetMouseWorldPosition(), Vector2.zero, 100f, interactableLayerMask);
+
+            if (hit.Length > 0) {
+                foreach (var item in hit)
+                {
+                    if (lowestZGameObject2 == null) {
+                        lowestZGameObject2 = item.transform;
+                    } else if (item.transform.position.y < lowestZGameObject2.position.y) {
+                        lowestZGameObject2 = item.transform;
+                    }
+                }
+                
+                EconomyManager.instance.SellItem(lowestZGameObject2.gameObject, lowestZGameObject2.GetComponent<DraggableItem>().itemInfo.coinValue, lowestZGameObject2.GetComponent<Stackable>().amountOfChildItems);
+            }
+        }
+
+        // SPRITE CIRCLE INTERACTABLE HIGHLIGHT - WORKING BUT KINDA ANNOYING 
+        // RaycastHit2D[] hitInteractable = Physics2D.RaycastAll(UtilsClass.GetMouseWorldPosition(), Vector2.zero, 100f, interactableLayerMask);
+
+        // if (hitInteractable.Length > 0) {
+
+        //     Transform lowestZGameObject = null;
+
+        //     foreach (var item in hitInteractable)
+        //     {
+        //         if (lowestZGameObject == null) {
+        //             lowestZGameObject = item.transform;
+        //         } else if (item.transform.position.y < lowestZGameObject.position.y) {
+        //             lowestZGameObject = item.transform;
+        //         }
+        //     }
+
+        //     if (lowestZGameObject != null) {
+        //         CircleHighlightOn();
+        //         circleHighlight.transform.position = lowestZGameObject.transform.position;
+
+        //         return;
+        //     } 
+
+        // } else {
+        //     CircleHighlightOff();
     }
 
     public Vector2 GetCameraMoveVector()

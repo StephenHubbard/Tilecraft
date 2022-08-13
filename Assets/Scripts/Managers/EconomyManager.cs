@@ -8,11 +8,14 @@ public class EconomyManager : MonoBehaviour
     [SerializeField] private TMP_Text coinText;
     [SerializeField] private int startingCoins = 3;
     [SerializeField] public int currentCoins;
+    [SerializeField] private GameObject spinningCoinPrefab;
 
-    private AudioManager audioManager;
+    public static EconomyManager instance;
 
     private void Awake() {
-        audioManager = FindObjectOfType<AudioManager>();
+        if (instance == null) {
+            instance = this;
+        }
     }
 
     private void Start() {
@@ -23,14 +26,23 @@ public class EconomyManager : MonoBehaviour
         coinText.text = currentCoins.ToString();
     }
 
-    public void SellItem(int amount, int stackSize) {
+    public void SellItem(GameObject thisObj, int amount, int stackSize) {
+        if (thisObj.GetComponent<Stackable>().isSellable == false) { return; }
         currentCoins += amount * stackSize;
-        audioManager.Play("Sell");
+        AudioManager.instance.Play("Sell");
+        GameObject thisCoin = Instantiate(spinningCoinPrefab, thisObj.transform.position + new Vector3(0, 1f, 0), transform.rotation);
+        StartCoroutine(DestroyCoinCo(thisCoin));
+        Destroy(thisObj);
+    }
+
+    private IEnumerator DestroyCoinCo(GameObject thisCoin) {
+        yield return new WaitForSeconds(.7f);
+        Destroy(thisCoin);
     }
 
     public void BuyPack(int amount) {
         currentCoins -= amount;
-        audioManager.Play("Pop");
+        AudioManager.instance.Play("Pop");
     }
 
     

@@ -74,6 +74,7 @@ public class DragAndDrop : MonoBehaviour
             stackable.potentialParentItem = null;
         }
 
+        // feeding workers
         if (hit2.Length > 1 && GetComponent<Food>()) {
             foreach (var item in hit2)
             {
@@ -91,28 +92,25 @@ public class DragAndDrop : MonoBehaviour
     }
 
     public void OnMouseUpCustom() {
-        if (draggableItem.currentTile) {
-            draggableItem.PlaceItemOnTile(stackable.amountOfChildItems);
-        }
+        isActive = false;
+        stackable.FindAmountOfChildren(transform);
 
-        if (sellButton.overSellBox) {
-            economyManager.SellItem(GetComponent<DraggableItem>().itemInfo.coinValue, stackable.amountOfChildItems);
-            Destroy(gameObject);
-        }
-
-        if (stackable.potentialParentItem) {
-            stackable.AttachToParent(true);
-        } 
 
         if (potentialWorkerToFeed) {
             potentialWorkerToFeed.FeedWorker(GetComponent<DraggableItem>().itemInfo.foodValue * stackable.amountOfChildItems, true);
             InputManager.instance.CircleHighlightOff();
             Destroy(gameObject);
+            return;
         }
-        
-        isActive = false;
 
+        if (stackable.potentialParentItem) {
+            stackable.AttachToParent(true);
+            return;
+        } 
+
+        if (draggableItem.currentTile) {
+            draggableItem.PlaceItemOnTile(stackable.amountOfChildItems);
+            return;
+        }
     }
-
-    
 }

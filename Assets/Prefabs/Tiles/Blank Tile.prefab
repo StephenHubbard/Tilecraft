@@ -691,6 +691,9 @@ MonoBehaviour:
   - {fileID: 4326491989489227075}
   - {fileID: 5155303251552824129}
   buildingPlacementSmokePrefab: {fileID: 6349002128902621385, guid: 83991efcb26e6c740a104c8ce159d0cc, type: 3}
+  tileDetectionLayerMask:
+    serializedVersion: 2
+    m_Bits: 1216
   isOccupiedWithBuilding: 0
   isOccupiedWithWorkers: 0
   isOccupiedWithResources: 0

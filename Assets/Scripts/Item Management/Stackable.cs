@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using CodeMonkey.Utils;
+using UnityEngine.Rendering;
 
 public class Stackable : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class Stackable : MonoBehaviour
     private AudioManager audioManager;
     private int interactableLayerMask;
 
+    public bool isSellable = false;
+
     private void Awake() {
         audioManager = FindObjectOfType<AudioManager>();
         itemInfo = GetComponent<DraggableItem>().itemInfo;
@@ -22,6 +25,17 @@ public class Stackable : MonoBehaviour
 
     private void Start() {
         FindNearbySameQOL();
+        FindAmountOfChildren(this.transform);
+        StartCoroutine(CanSellCo());
+    }
+
+    private void OnMouseExit() {
+        transform.GetChild(0).GetComponent<SortingGroup>().sortingOrder = 0;
+    }
+
+    private IEnumerator CanSellCo() {
+        yield return new WaitForEndOfFrame();
+        isSellable = true;
     }
 
     public void AttachToParent(bool playClickSound) {

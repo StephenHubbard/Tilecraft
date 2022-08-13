@@ -17,7 +17,6 @@ public class ItemInfo : ScriptableObject
     public ItemInfo[] potentialOffSpring;
     public bool isResourceOnly = true;
     public bool isStationary = false;
-    public int LeftInStack = 1;
     public bool isSmeltable = false;
     public int foodValue = 0;
 

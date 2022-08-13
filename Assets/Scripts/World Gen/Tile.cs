@@ -13,9 +13,6 @@ public class Tile : MonoBehaviour
     [SerializeField] public Transform[] workerPoints;
     [SerializeField] public Transform[] resourcePoints;
     [SerializeField] private GameObject buildingPlacementSmokePrefab;
-    private int tileCloudLayerMask;
-
-    private GameObject tileHighlight;
 
     public bool isOccupiedWithBuilding = false;
     public bool isOccupiedWithWorkers = false;
@@ -29,15 +26,7 @@ public class Tile : MonoBehaviour
         audioManager = FindObjectOfType<AudioManager>();
         highlightedBorder = FindObjectOfType<HighlightedBorder>();
         craftingManager = GetComponent<CraftingManager>();
-        tileHighlight = GameObject.Find("Highlighted Border - Square");
-        tileCloudLayerMask = LayerMask.GetMask("Tile");
-        tileCloudLayerMask += LayerMask.GetMask("Clouds");
-
     } 
-
-    private void Update() {
-        CustomOnMouseOver();
-    }
 
     public void UpdateCurrentPlacedItem(ItemInfo itemInfo, GameObject thisPlacedItem) {
         this.itemInfo = itemInfo;
@@ -52,26 +41,6 @@ public class Tile : MonoBehaviour
         resourcePoints[0].GetChild(0).GetComponent<PlacedItem>().CheckForValidRecipe();
     }
 
-    private void CustomOnMouseOver() {
-
-        RaycastHit2D[] hit = Physics2D.RaycastAll(UtilsClass.GetMouseWorldPosition(), Vector2.zero, 100f, tileCloudLayerMask);
-
-        if (hit.Length > 0) {
-            if (hit[0].transform == transform) {
-                if ((isOccupiedWithBuilding || isOccupiedWithWorkers || isOccupiedWithResources) && Input.GetMouseButtonDown(1)) {
-                    PluckItemsOffTile();
-                }
-
-                tileHighlight.GetComponent<SpriteRenderer>().enabled = true;
-
-                tileHighlight.transform.position = hit[0].transform.position;
-            }
-        }
-    }
-
-    private void OnMouseExit() {
-        tileHighlight.GetComponent<SpriteRenderer>().enabled = false;
-    }
 
     public void InstantiateSmokePrefab() {
         GameObject smokePrefab = Instantiate(buildingPlacementSmokePrefab, transform.position, transform.rotation);
@@ -122,7 +91,7 @@ public class Tile : MonoBehaviour
         return false;
     }
 
-    private void PluckItemsOffTile() {
+    public void PluckItemsOffTile() {
         Vector3 spawnItemsVector3 = transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), -1);
         
         if (currentPlacedItem && currentPlacedItem.GetComponent<PlacedItem>().itemInfo.isStationary == false) {

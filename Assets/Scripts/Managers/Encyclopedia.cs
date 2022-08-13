@@ -37,12 +37,12 @@ public class Encyclopedia : MonoBehaviour
     private void Start() {
         foreach (var item in discoveredItems)
         {
-            NewItemToEncyclopedia(item, encylopediaGridLayout.transform);
+            NewItemToEncyclopedia(item, encylopediaGridLayout.transform, false);
         }
 
         foreach (var item in newlyDiscoveredItems)
         {
-            NewItemToEncyclopedia(item, newDiscoveredItemsGridLayout.transform);
+            NewItemToEncyclopedia(item, newDiscoveredItemsGridLayout.transform, true);
         }
     }
 
@@ -54,14 +54,17 @@ public class Encyclopedia : MonoBehaviour
 
         if (encylopediaContainer.activeInHierarchy) {
             encylopediaContainer.SetActive(false);
+            OnPointerExitDelegate();
         } else {
             encylopediaContainer.SetActive(true);
             BackButton();
         }
     }
 
+    // minimize icon button
     public void CloseEncylopedia() {
         encylopediaContainer.SetActive(false);
+        OnPointerExitDelegate();
     }
 
     public void BackButton() {
@@ -73,6 +76,7 @@ public class Encyclopedia : MonoBehaviour
         itemsThatCanBeCraftedGridLayout.SetActive(false);
 
         bottomContainerText.text = "Known Recipes:";
+        OnPointerExitDelegate();
     }
 
     private void DisplayWhatRecipesCanBeMade(Transform sender) {
@@ -95,7 +99,7 @@ public class Encyclopedia : MonoBehaviour
 
         foreach (var item in itemsThatCanBeCrafted)
         {
-            NewItemToEncyclopedia(item, itemsThatCanBeCraftedGridLayout.transform);
+            NewItemToEncyclopedia(item, itemsThatCanBeCraftedGridLayout.transform, false);
         }
 
         backButton.GetComponent<Image>().enabled = true;
@@ -113,17 +117,22 @@ public class Encyclopedia : MonoBehaviour
     public void AddItemToDiscoveredList(ItemInfo newItem) {
         if (!discoveredItems.Contains(newItem)) {
             discoveredItems.Add(newItem);
-            NewItemToEncyclopedia(newItem, encylopediaGridLayout.transform);
+            NewItemToEncyclopedia(newItem, encylopediaGridLayout.transform, false);
             newlyDiscoveredItems.Add(newItem);
-            NewItemToEncyclopedia(newItem, newDiscoveredItemsGridLayout.transform);
+            NewItemToEncyclopedia(newItem, newDiscoveredItemsGridLayout.transform, true);
+
+            if (newDiscoveredItemsGridLayout.transform.childCount > 8) {
+                Destroy(newDiscoveredItemsGridLayout.transform.GetChild(newDiscoveredItemsGridLayout.transform.childCount - 1).gameObject);
+            }
         } 
     }
 
 
-    private void NewItemToEncyclopedia(ItemInfo newItem, Transform parentTransform) {
+    private void NewItemToEncyclopedia(ItemInfo newItem, Transform parentTransform, bool isNew) {
         GameObject discoveredItem = Instantiate(newDiscoveredItemPrefab.gameObject, transform.position, transform.rotation);
         discoveredItem.transform.SetParent(parentTransform);
         discoveredItem.transform.localScale = Vector3.one;
+        if (isNew) { discoveredItem.transform.SetAsFirstSibling(); }
         discoveredItem.GetComponent<Image>().sprite = newItem.itemSprite;
         discoveredItem.GetComponent<UITooltip>().itemInfo = newItem;
 
@@ -142,7 +151,7 @@ public class Encyclopedia : MonoBehaviour
         EventTrigger thisExitTrigger = discoveredItem.GetComponent<EventTrigger>();
         EventTrigger.Entry exitEntry = new EventTrigger.Entry();
         exitEntry.eventID = EventTriggerType.PointerExit;
-        exitEntry.callback.AddListener((data) => { OnPointerExitDelegate(discoveredItem.transform); });
+        exitEntry.callback.AddListener((data) => { OnPointerExitDelegate(); });
         thisHoverTrigger.triggers.Add(exitEntry);
     }
 
@@ -152,11 +161,13 @@ public class Encyclopedia : MonoBehaviour
         toolTipManager.HoverOverUI(discoveredItem);
     }
 
-    public void OnPointerExitDelegate(Transform discoveredItem)
+    public void OnPointerExitDelegate()
     {
         foreach (Transform child in shownItemsContainer.transform)
-            {
-                Destroy(child.gameObject);
-            }
+        {
+            Destroy(child.gameObject);
+        }
+
+        // shownItemsContainer.SetActive(false);
     }
 }

@@ -20,12 +20,11 @@ MonoBehaviour:
   tileInfoValidLocations:
   - {fileID: 11400000, guid: e492befd9aee1b645b08c2b5e24460b2, type: 2}
   recipeInfo: {fileID: 11400000, guid: aa1aef896831fb64cae6720c4c90b8c4, type: 2}
-  amountRecipeCanCreate: 3
+  amountRecipeCanCreate: 1
   potentialOffSpring:
   - {fileID: 11400000, guid: b4324be3f84016744bdc2029d2dee09d, type: 2}
   isResourceOnly: 0
   isStationary: 0
-  LeftInStack: 3
   isSmeltable: 0
   foodValue: 0
   toolTipText: Placed on a grass tile to gather berries.

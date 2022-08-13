@@ -391,7 +391,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4812397909172993938}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.0069999695, y: 0.127, z: 0}
+  m_LocalPosition: {x: 0.0069999695, y: 0.16, z: 0}
   m_LocalScale: {x: 1.1119314, y: 1.1119314, z: 1.1119314}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -668,6 +668,7 @@ MonoBehaviour:
   potentialParentItem: {fileID: 0}
   amountOfChildItems: 0
   itemInfo: {fileID: 0}
+  isSellable: 0
 --- !u!114 &-244537642764773173
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -686,7 +687,8 @@ MonoBehaviour:
   starGroup1: {fileID: 2003195017429146219}
   starGroup2: {fileID: 2530454493488451070}
   starGroup3: {fileID: 8447484419325590477}
-  myStrength: 1
+  myWorkingStrength: 1
+  myCombatValue: 1
   foodNeededToUpPickaxeStrengthCurrent: 0
   foodNeededToUpPickaxeStrengthStart: 3
   itemInfo: {fileID: 11400000, guid: 7ecdb19248e9de349ba40029c73a2f12, type: 2}

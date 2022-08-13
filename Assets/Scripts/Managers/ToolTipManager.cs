@@ -13,7 +13,7 @@ public class ToolTipManager : MonoBehaviour
     [SerializeField] private GameObject coinContainer;
     [SerializeField] private GameObject heartContainer;
     [SerializeField] private GameObject hatchetContainer;
-    [SerializeField] private GameObject availablePackItemsContainer;
+    // [SerializeField] private GameObject availablePackItemsContainer;
     [SerializeField] private TMP_Text foodValueText;
     [SerializeField] private TMP_Text coinValueText;
     [SerializeField] private TMP_Text heartValueText;
@@ -161,6 +161,10 @@ public class ToolTipManager : MonoBehaviour
     // event listener in inspector
     public void HoverOverUI(Transform sender) {
         if (!isMaximized) { return; }
+
+        if (sender.GetComponent<UITooltip>().isPackIcon || sender.GetComponent<UITooltip>().isEncyclopediaIcon) {
+            sender.GetComponent<UITooltip>().ClearPackUIToolTip();
+        }
 
         isOverUI = true;
         ToggleToolTipOn();
