@@ -25,7 +25,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3185e8e7e0addb74e9545378aad2659d, type: 2}
   isResourceOnly: 0
   isStationary: 1
-  LeftInStack: 1000
   isSmeltable: 0
   foodValue: 0
-  toolTipText: 
+  toolTipText: Catch an infinite amount of crabs
+  tierGroup: 2

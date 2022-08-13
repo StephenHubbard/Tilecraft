@@ -19,6 +19,7 @@ public class House : MonoBehaviour
         HousingManager.instance.DetectHowManyHouses();
         workerPoints = GetComponentInParent<Tile>().workerPoints;
         timeToHaveBabyCurrent = timeToHaveBabyTotal;
+        DetectBabyMaking();
     }
 
     private void Update() {

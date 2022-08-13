@@ -25,7 +25,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0dbf3cdb92435a949917b08560054972, type: 2}
   isResourceOnly: 0
   isStationary: 0
-  LeftInStack: 3
   isSmeltable: 0
   foodValue: 0
-  toolTipText: 
+  toolTipText: Can only be placed on a plains tile

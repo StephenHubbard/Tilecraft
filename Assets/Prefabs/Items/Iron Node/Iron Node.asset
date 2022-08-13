@@ -25,7 +25,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 38fd101fb134f3f41b80b4e2165e3420, type: 2}
   isResourceOnly: 0
   isStationary: 0
-  LeftInStack: 3
   isSmeltable: 0
   foodValue: 0
-  toolTipText: 
+  toolTipText: Can only be placed on a stone tile

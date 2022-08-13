@@ -27,7 +27,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: be97de2e023f6bf498d29f083af8db08, type: 2}
   isResourceOnly: 0
   isStationary: 1
-  LeftInStack: 1000
   isSmeltable: 0
   foodValue: 0
   toolTipText: An unlimited supply of batteries
+  tierGroup: 1

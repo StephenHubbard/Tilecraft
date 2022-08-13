@@ -27,7 +27,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 527003d1c10ea764ab3fdb9306715b74, type: 2}
   isResourceOnly: 0
   isStationary: 1
-  LeftInStack: 0
   isSmeltable: 0
   foodValue: 0
   toolTipText: Defeat all orcs to capture their relics.
+  tierGroup: 1

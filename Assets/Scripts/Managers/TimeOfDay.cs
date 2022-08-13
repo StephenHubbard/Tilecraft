@@ -121,6 +121,7 @@ public class TimeOfDay : MonoBehaviour
                 tile.GetComponent<Tile>().UpdateCurrentPlacedItem(startingPlacedItem.GetComponent<PlacedItem>().itemInfo, startingPlacedItem);
                 tile.GetComponent<Tile>().isOccupiedWithBuilding = true;
                 tile.GetComponent<CraftingManager>().UpdateAmountLeftToCraft(startingPlacedItem.GetComponent<PlacedItem>().itemInfo.amountRecipeCanCreate);
+                tile.GetComponent<CraftingManager>().CheckCanStartCrafting();
                 FadeInNewTileItem(startingPlacedItem);
             }
         }

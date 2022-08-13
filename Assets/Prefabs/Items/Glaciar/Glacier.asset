@@ -25,7 +25,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d10aca6c2f1b23346885ae9deb3d17db, type: 2}
   isResourceOnly: 0
   isStationary: 0
-  LeftInStack: 1
   isSmeltable: 0
   foodValue: 0
-  toolTipText: 
+  toolTipText: Can only be placed on a water tile
+  tierGroup: 1

@@ -143,7 +143,7 @@ public class InputManager : MonoBehaviour
                         lowestZGameObject2 = item.transform;
                     }
                 }
-                
+                lowestZGameObject2.GetComponent<Stackable>().FindAmountOfChildren(lowestZGameObject2);
                 EconomyManager.instance.SellItem(lowestZGameObject2.gameObject, lowestZGameObject2.GetComponent<DraggableItem>().itemInfo.coinValue, lowestZGameObject2.GetComponent<Stackable>().amountOfChildItems);
             }
         }

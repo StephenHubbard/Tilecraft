@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 66df1655cda175c4da55e2cd2c217479, type: 3}
-  m_Name: Sand Pile  Recipe
+  m_Name: Worker Recipe
   m_EditorClassIdentifier: 
-  itemInfo: {fileID: 11400000, guid: 65bb08fef2fc1e24dafebc772d382f01, type: 2}
+  itemInfo: {fileID: 0}
   neededRecipeItems: []
-  recipeCraftTime: 5
-  craftingClipString: Bush Rustle
+  recipeCraftTime: 0
+  craftingClipString: 
   requiresFurnace: 0

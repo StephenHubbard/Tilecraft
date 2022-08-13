@@ -64,6 +64,7 @@ public class UITooltip : MonoBehaviour
 
             shownItemsContainer.SetActive(true);
 
+        
             foreach (var requiredResource in itemInfo.recipeInfo.neededRecipeItems)
             {
                 GameObject newImageObject = new GameObject("required crafting item");

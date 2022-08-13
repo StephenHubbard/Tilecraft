@@ -23,6 +23,13 @@ public class ItemInfo : ScriptableObject
     [TextArea]
     public string toolTipText;
 
+    public TierGroup tierGroup;
+    public enum TierGroup {
+        one, 
+        two, 
+        three
+    };
+
     public bool checkValidTiles(TileInfo tileInfo) { 
         foreach (var tile in tileInfoValidLocations)
         {

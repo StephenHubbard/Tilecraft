@@ -15,9 +15,10 @@ public class Encyclopedia : MonoBehaviour
     [SerializeField] private Image currentInspectedItem;
     [SerializeField] private GameObject backButton;
     [SerializeField] private TMP_Text bottomContainerText;
-    [SerializeField] private List<ItemInfo> discoveredItems = new List<ItemInfo>();
+    [SerializeField] public List<ItemInfo> discoveredItems = new List<ItemInfo>();
     [SerializeField] private List<ItemInfo> newlyDiscoveredItems = new List<ItemInfo>();
     [SerializeField] private List<ItemInfo> itemsThatCanBeCrafted = new List<ItemInfo>();
+
 
     private ToolTipManager toolTipManager;
     private GameObject shownItemsContainer;
@@ -44,6 +45,12 @@ public class Encyclopedia : MonoBehaviour
         {
             NewItemToEncyclopedia(item, newDiscoveredItemsGridLayout.transform, true);
         }
+
+        FindTierOneItems();
+    }
+
+    private void FindTierOneItems() {
+
     }
 
     public void OpenEncylopedia() {
@@ -80,6 +87,7 @@ public class Encyclopedia : MonoBehaviour
     }
 
     private void DisplayWhatRecipesCanBeMade(Transform sender) {
+        OnPointerExitDelegate();
         bottomContainerText.text = "Can Craft:";
         currentInspectedItem.transform.parent.gameObject.SetActive(true);
 
@@ -110,7 +118,9 @@ public class Encyclopedia : MonoBehaviour
     private void addItemsToPotentialCraftedList(ItemInfo itemInfo) {
         foreach (var item in itemInfo.potentialOffSpring)
         {
-            itemsThatCanBeCrafted.Add(item);
+            if (DiscoveryManager.instance.allKnownItems.Contains(item)) {
+                itemsThatCanBeCrafted.Add(item);
+            }
         }
     }
 
@@ -120,8 +130,9 @@ public class Encyclopedia : MonoBehaviour
             NewItemToEncyclopedia(newItem, encylopediaGridLayout.transform, false);
             newlyDiscoveredItems.Add(newItem);
             NewItemToEncyclopedia(newItem, newDiscoveredItemsGridLayout.transform, true);
+            DiscoveryManager.instance.NewDiscoveredItem(newItem);
 
-            if (newDiscoveredItemsGridLayout.transform.childCount > 8) {
+            if (newDiscoveredItemsGridLayout.transform.childCount > 7) {
                 Destroy(newDiscoveredItemsGridLayout.transform.GetChild(newDiscoveredItemsGridLayout.transform.childCount - 1).gameObject);
             }
         } 

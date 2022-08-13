@@ -28,7 +28,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9b59259665b11a8498e27c393ce79a5e, type: 2}
   isResourceOnly: 1
   isStationary: 0
-  LeftInStack: 1
   isSmeltable: 0
   foodValue: 1
   toolTipText: 
+  tierGroup: 1

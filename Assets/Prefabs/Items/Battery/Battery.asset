@@ -27,7 +27,7 @@ MonoBehaviour:
   potentialOffSpring: []
   isResourceOnly: 1
   isStationary: 0
-  LeftInStack: 1
   isSmeltable: 0
   foodValue: 0
   toolTipText: 
+  tierGroup: 2
