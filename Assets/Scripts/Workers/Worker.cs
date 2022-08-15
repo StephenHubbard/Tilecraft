@@ -83,23 +83,24 @@ public class Worker : MonoBehaviour
     public void EquipWorker(Weapon weapon) {
 
         if (weapon.weaponType == Weapon.WeaponType.sword) {
-            Vector3 spawnItemsVector3 = transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), -1);
-            GameObject newWorker = Instantiate(knightPrefab, spawnItemsVector3, transform.rotation);
+            GameObject newWorker = Instantiate(knightPrefab, transform.position, transform.rotation);
 
             if (transform.childCount > 1) {
                 transform.GetChild(1).transform.SetParent(null);
             }
+
+            AudioManager.instance.Play("Knight Equip");
 
             Destroy(gameObject);
         }
 
         if (weapon.weaponType == Weapon.WeaponType.bow) {
-            Vector3 spawnItemsVector3 = transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), -1);
-            GameObject newWorker = Instantiate(archerPrefab, spawnItemsVector3, transform.rotation);
+            GameObject newWorker = Instantiate(archerPrefab, transform.position, transform.rotation);
 
             if (transform.childCount > 1) {
                 transform.GetChild(1).transform.SetParent(null);
             }
+            AudioManager.instance.Play("Archer Equip");
 
             Destroy(gameObject);
         }
@@ -107,9 +108,10 @@ public class Worker : MonoBehaviour
         if (weapon.weaponType == Weapon.WeaponType.pitchfork) {
             Vector3 spawnItemsVector3 = transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), -1);
             GameObject newWorker = Instantiate(weapon.gameObject, spawnItemsVector3, transform.rotation);
+            AudioManager.instance.Play("Pop");
+
         }
 
-        AudioManager.instance.Play("Pop");
     }
 
 
@@ -192,7 +194,7 @@ public class Worker : MonoBehaviour
 
     public void HitTarget() {
         if (enemyTarget) {
-            enemyTarget.TakeDamage(1, this);
+            enemyTarget.TakeDamage(1, this.transform);
             AudioManager.instance.Play("Pitchfork Attack");
 
         } else {

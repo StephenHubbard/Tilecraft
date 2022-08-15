@@ -154,8 +154,6 @@ public class Tile : MonoBehaviour
                 }
 
                 if (worker.GetChild(0).GetComponent<Knight>()) {
-
-
                     GameObject newKnight = Instantiate(knightItemPrefab, spawnItemsVector3, transform.rotation);
                     newKnight.GetComponent<Knight>().TransferHealth(worker.GetChild(0).GetComponent<Knight>().myHealth);
                     newKnight.GetComponent<Knight>().TransferStrength(worker.GetChild(0).GetComponent<Knight>().myWorkingStrength);

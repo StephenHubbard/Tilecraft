@@ -8,7 +8,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private int myHealth = 3;
     [SerializeField] private LayerMask cloudLayerMask = new LayerMask();
     private Animator myAnimator;
-    private Worker currentTarget = null;
+    private Transform currentTarget = null;
     public bool isUncoveredByClouds = false;
 
     private void Awake() {
@@ -28,11 +28,21 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void TakeDamage(int amount, Worker attackingWorker) {
+    public void TakeDamage(int amount, Transform attackingWorker) {
         myHealth -= amount;
 
         if (myHealth <= 0) {
-            attackingWorker.CurrentEnemyNull();
+            if (attackingWorker.GetComponent<Worker>()) {
+                attackingWorker.GetComponent<Worker>().CurrentEnemyNull();
+            }
+
+            if (attackingWorker.GetComponent<Knight>()) {
+                attackingWorker.GetComponent<Knight>().CurrentEnemyNull();
+            }
+
+            if (attackingWorker.GetComponent<Archer>()) {
+                attackingWorker.GetComponent<Archer>().CurrentEnemyNull();
+            }
             GetComponentInParent<Tile>().currentPlacedItem.GetComponent<OrcRelic>().DetectIfEnemies();
             Destroy(gameObject);
         }
@@ -43,7 +53,23 @@ public class Enemy : MonoBehaviour
         if (worker && currentTarget == null && worker.GetComponent<PlacedItem>() && isUncoveredByClouds) {
             myAnimator.SetBool("isAttacking", true);
             myAnimator.Play("Attack", -1, Random.Range(0f,1f));
-            currentTarget = worker;
+            currentTarget = worker.transform;
+            AudioManager.instance.Play("Orc Attack");
+        }
+
+        Archer archer = other.gameObject.GetComponent<Archer>();
+        if (archer && currentTarget == null && archer.GetComponent<PlacedItem>() && isUncoveredByClouds) {
+            myAnimator.SetBool("isAttacking", true);
+            myAnimator.Play("Attack", -1, Random.Range(0f,1f));
+            currentTarget = archer.transform;
+            AudioManager.instance.Play("Orc Attack");
+        }
+
+        Knight knight = other.gameObject.GetComponent<Knight>();
+        if (knight && currentTarget == null && knight.GetComponent<PlacedItem>() && isUncoveredByClouds) {
+            myAnimator.SetBool("isAttacking", true);
+            myAnimator.Play("Attack", -1, Random.Range(0f,1f));
+            currentTarget = knight.transform;
             AudioManager.instance.Play("Orc Attack");
         }
     }
@@ -59,7 +85,7 @@ public class Enemy : MonoBehaviour
         if (currentTarget == null) { return; }
 
         GameObject newArrow = Instantiate(arrowPrefab, transform.position, transform.rotation);
-        newArrow.GetComponent<Arrow>().UpdateCurrentTarget(currentTarget);
+        newArrow.GetComponent<Arrow>().UpdateCurrentTarget(currentTarget.transform);
         AudioManager.instance.Play("Arrow Launch");
     }
 }

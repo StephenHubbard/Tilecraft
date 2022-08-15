@@ -61,7 +61,7 @@ public class CraftingManager : MonoBehaviour
             }
 
         } else if (hasCompleteRecipe && hasWorkers && !isCrafting && amountLeftToCraft > 0 && recipeInfo.requiresFurnace) {
-            if (GetComponent<Tile>().currentPlacedItem.GetComponent<Furnace>()) {
+            if (GetComponent<Tile>().currentPlacedItem && GetComponent<Tile>().currentPlacedItem.GetComponent<Furnace>()) {
                 StartCrafting();
                 if (startAmountToCraft == amountLeftToCraft) {
                     audioManager.Play(recipeInfo.craftingClipString);
@@ -88,7 +88,7 @@ public class CraftingManager : MonoBehaviour
 
         foreach (var worker in GetComponent<Tile>().workerPoints)
         {
-            if (worker.childCount > 0) {
+            if (worker.childCount > 0 && worker.GetChild(0).GetComponent<Worker>()) {
                 newTotalStrength += worker.GetChild(0).GetComponent<Worker>().myWorkingStrength;
             }
         }
@@ -139,7 +139,7 @@ public class CraftingManager : MonoBehaviour
 
         foreach (var item in GetComponent<Tile>().workerPoints)
         {
-            if (item.childCount > 0) {
+            if (item.childCount > 0 && item.GetChild(0).GetComponent<Worker>()) {
                 item.GetChild(0).GetComponent<Worker>().StopWorking();
             }
         }

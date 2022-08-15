@@ -86,7 +86,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.19
+  m_Radius: 2.3
 --- !u!50 &6258026925614194309
 Rigidbody2D:
   serializedVersion: 4
@@ -122,13 +122,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deadWorkerItemPrefab: {fileID: 4812397909494241834, guid: 9babb8865d7eb6040b2a905aab024264, type: 3}
   levelUpAnimPrefab: {fileID: 0}
-  myWorkingStrength: 1
+  myWorkingStrength: 0
   myCombatValue: 1
   foodNeededToUpPickaxeStrengthCurrent: 0
   foodNeededToUpPickaxeStrengthStart: 3
   workerPrefab: {fileID: 4812397909494241834, guid: 4fea6c41e7173da44bdb63fc54b8a34a, type: 3}
   knightPrefab: {fileID: 4812397909494241834, guid: 0a3f66f9d8017864fb7cf306cf6c630d, type: 3}
-  myHealth: 5
+  archerArrowPrefab: {fileID: 7841289795254243318, guid: 75287fdfb26479d49b0cc45414db2410, type: 3}
+  myHealth: 6
 --- !u!1 &8070009926642562203
 GameObject:
   m_ObjectHideFlags: 0

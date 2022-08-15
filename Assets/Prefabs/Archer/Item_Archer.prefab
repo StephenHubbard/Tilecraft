@@ -683,13 +683,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deadWorkerItemPrefab: {fileID: 4812397909494241834, guid: 9babb8865d7eb6040b2a905aab024264, type: 3}
-  levelUpAnimPrefab: {fileID: 0}
-  myWorkingStrength: 1
+  levelUpAnimPrefab: {fileID: 6309947321449810909, guid: 250095a8072322f40beed91a82500db7, type: 3}
+  myWorkingStrength: 0
   myCombatValue: 1
-  foodNeededToUpPickaxeStrengthCurrent: 0
-  foodNeededToUpPickaxeStrengthStart: 3
+  foodNeededToUpCombatValue: 0
+  foodNeeded: 3
   workerPrefab: {fileID: 4812397909494241834, guid: 4fea6c41e7173da44bdb63fc54b8a34a, type: 3}
   knightPrefab: {fileID: 4812397909494241834, guid: 0a3f66f9d8017864fb7cf306cf6c630d, type: 3}
+  archerArrowPrefab: {fileID: 0}
   myHealth: 5
 --- !u!1 &4812397909912382413
 GameObject:

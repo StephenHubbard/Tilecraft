@@ -66,17 +66,25 @@ public class TimeOfDay : MonoBehaviour
             timeLeftInDay = howLongIsOneDay;
 
             AudioManager.instance.Play("End Of Day Bell");
-            SpawnNewItems();
+            SpawnNewItems(1);
+            SpawnNewItems(2);
         }
     }
 
-    private void SpawnNewItems() {
+    private void SpawnNewItems(int tier) {
         List<ItemInfo> allSpawnableItems = new List<ItemInfo>();
         
-        foreach (var item in WorldGeneration.instance.ReturnSpawnableItems())
-        {
-            if (item.itemName != "Orc Relic") {
+        if (tier == 1) {
+            foreach (var item in WorldGeneration.instance.ReturnSpawnableItemsTierOne())
+            {
                 allSpawnableItems.Add(item);
+            }
+        } else if (tier == 2) {
+            foreach (var item in WorldGeneration.instance.ReturnSpawnableItemsTierTwo())
+            {
+                if (item.itemName != "Orc Relic") {
+                    allSpawnableItems.Add(item);
+                }
             }
         }
 
@@ -93,27 +101,52 @@ public class TimeOfDay : MonoBehaviour
             }
         }
 
-
         foreach (var tile in freeTiles)
         {
-            List<ItemInfo> potentialItems = new List<ItemInfo>();
+            Grid grid = WorldGeneration.instance.ReturnGrid();
             
-            foreach (var potentialItem in allSpawnableItems)
-            {
-                foreach (var validLandTile in potentialItem.tileInfoValidLocations)
-                {
+            int x;
+            int y;
 
-                    if (validLandTile == tile.GetComponent<Tile>().tileInfo) {
-                        potentialItems.Add(potentialItem);
-                    }
+            Vector3 tilePosition = tile.transform.position;
+
+            grid.GetXY(tilePosition, out x, out y);
+
+
+            if (tier == 2 && WorldGeneration.instance.ReturnTierTwoBoundries(x, y))
+            {
+                print(x + " " + y);
+                DetermineWhichItem(allSpawnableItems, tile);
+            } else if (tier == 1) {
+                DetermineWhichItem(allSpawnableItems, tile);
+            }
+        }
+    }
+
+    private void DetermineWhichItem(List<ItemInfo> allSpawnableItems, Tile tile)
+    {
+        List<ItemInfo> potentialItems = new List<ItemInfo>();
+
+        foreach (var potentialItem in allSpawnableItems)
+        {
+            foreach (var validLandTile in potentialItem.tileInfoValidLocations)
+            {
+
+                if (validLandTile == tile.GetComponent<Tile>().tileInfo)
+                {
+                    potentialItems.Add(potentialItem);
                 }
             }
+        }   
 
+
+        if (potentialItems.Count > 0) {
             int whichPrefabToSpawnNum = Random.Range(0, potentialItems.Count);
 
             int spawnChance = Random.Range(0, 3);
 
-            if (spawnChance == 1) {
+            if (spawnChance == 1)
+            {
                 GameObject startingPlacedItem = Instantiate(potentialItems[whichPrefabToSpawnNum].onTilePrefab, tile.transform.position, transform.rotation);
                 GameObject newTileSmoke = Instantiate(newTileSmokePrefab, tile.transform.position + new Vector3(0, .5f, 0), transform.rotation);
                 StartCoroutine(DestroySmokePrefabCo(newTileSmoke));
@@ -125,6 +158,7 @@ public class TimeOfDay : MonoBehaviour
                 FadeInNewTileItem(startingPlacedItem);
             }
         }
+
     }
 
     private IEnumerator DestroySmokePrefabCo(GameObject smokePrefab) {

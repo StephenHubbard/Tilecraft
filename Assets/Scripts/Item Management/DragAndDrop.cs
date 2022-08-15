@@ -14,7 +14,7 @@ public class DragAndDrop : MonoBehaviour
     private int tileCloudLayerMask;
     private int interactableLayerMask;
     private Stackable stackable;
-    private Worker potentialWorkerToFeed;
+    private GameObject potentialToFeed;
     private GameObject potentialWorkerToEquip;
 
     private void Awake() {
@@ -80,14 +80,28 @@ public class DragAndDrop : MonoBehaviour
             foreach (var item in hit2)
             {
                 if (item.transform.GetComponent<Worker>()) {
-                    potentialWorkerToFeed = item.transform.GetComponent<Worker>();
+                    potentialToFeed = item.transform.GetComponent<Worker>().gameObject;
                     InputManager.instance.CircleHighlightOn();
-                    InputManager.instance.circleHighlight.transform.position = potentialWorkerToFeed.transform.position;
+                    InputManager.instance.circleHighlight.transform.position = potentialToFeed.transform.position;
+                    return;
+                }
+
+                if (item.transform.GetComponent<Archer>()) {
+                    potentialToFeed = item.transform.GetComponent<Archer>().gameObject;
+                    InputManager.instance.CircleHighlightOn();
+                    InputManager.instance.circleHighlight.transform.position = potentialToFeed.transform.position;
+                    return;
+                }
+
+                if (item.transform.GetComponent<Knight>()) {
+                    potentialToFeed = item.transform.GetComponent<Knight>().gameObject;
+                    InputManager.instance.CircleHighlightOn();
+                    InputManager.instance.circleHighlight.transform.position = potentialToFeed.transform.position;
                     return;
                 }
             }
         } else {
-            potentialWorkerToFeed = null;
+            potentialToFeed = null;
             InputManager.instance.CircleHighlightOff();
         }
 
@@ -123,11 +137,26 @@ public class DragAndDrop : MonoBehaviour
         stackable.FindAmountOfChildren(transform);
 
 
-        if (potentialWorkerToFeed) {
-            potentialWorkerToFeed.FeedWorker(GetComponent<DraggableItem>().itemInfo.foodValue * stackable.amountOfChildItems, true);
-            InputManager.instance.CircleHighlightOff();
-            Destroy(gameObject);
-            return;
+        if (potentialToFeed) {
+            if (potentialToFeed.GetComponent<Worker>()) {
+                potentialToFeed.GetComponent<Worker>().FeedWorker(GetComponent<DraggableItem>().itemInfo.foodValue * stackable.amountOfChildItems, true);
+                InputManager.instance.CircleHighlightOff();
+                Destroy(gameObject);
+                return;
+            }
+
+            if (potentialToFeed.GetComponent<Knight>()) {
+                potentialToFeed.GetComponent<Knight>().FeedWorker(GetComponent<DraggableItem>().itemInfo.foodValue * stackable.amountOfChildItems, true);
+                InputManager.instance.CircleHighlightOff();
+                Destroy(gameObject);
+                return;
+            }
+            if (potentialToFeed.GetComponent<Archer>()) {
+                potentialToFeed.GetComponent<Archer>().FeedWorker(GetComponent<DraggableItem>().itemInfo.foodValue * stackable.amountOfChildItems, true);
+                InputManager.instance.CircleHighlightOff();
+                Destroy(gameObject);
+                return;
+            }
         }
 
         if (potentialWorkerToEquip) {

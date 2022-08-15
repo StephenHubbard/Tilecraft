@@ -9,8 +9,8 @@ public class Knight : MonoBehaviour
 
     [SerializeField] public int myWorkingStrength = 1;
     [SerializeField] public int myCombatValue = 1;
-    [SerializeField] public int foodNeededToUpPickaxeStrengthCurrent;
-    [SerializeField] public int foodNeededToUpPickaxeStrengthStart = 3;
+    [SerializeField] public int foodNeededToUpCombatValue;
+    [SerializeField] public int foodNeeded = 3;
 
     [SerializeField] private GameObject archerPrefab;
     [SerializeField] private GameObject workerPrefab;
@@ -33,7 +33,29 @@ public class Knight : MonoBehaviour
             myAnimator.Play (state.fullPathHash, -1, Random.Range(0f,1f));
         }
 
-        foodNeededToUpPickaxeStrengthCurrent = foodNeededToUpPickaxeStrengthStart;
+        DetectCombat();
+
+        foodNeededToUpCombatValue = foodNeeded;
+    }
+
+    private void DetectCombat() {
+            if (transform.GetComponent<PlacedItem>() && transform.root.GetComponent<Tile>().currentPlacedItem && transform.root.GetComponent<Tile>().currentPlacedItem.GetComponent<OrcRelic>() && enemyTarget == null) {
+
+                bool isOccupiedWithEnemies = false;
+
+                foreach (var orcSpawnPoint in transform.root.GetComponent<Tile>().currentPlacedItem.GetComponent<OrcRelic>().orcSpawnPoints)
+                {
+                    if (orcSpawnPoint.childCount > 0) {
+                        isOccupiedWithEnemies = true;
+                    }
+                }
+                
+                if (isOccupiedWithEnemies) {
+                    StartAttacking();
+
+                    FindEnemy();
+                }
+        }
     }
 
     public void TransferStrength(int currentStrength) {
@@ -41,7 +63,7 @@ public class Knight : MonoBehaviour
     }
 
         public void TransferHealth(int currentHealth) {
-        myHealth = currentHealth;
+        myHealth = currentHealth; 
     }
 
     public void FeedWorker(int amount, bool playCrunch) {
@@ -51,13 +73,13 @@ public class Knight : MonoBehaviour
 
         int leftoverAmountOfFood = 0;
 
-        if (foodNeededToUpPickaxeStrengthCurrent < amount) {
-            leftoverAmountOfFood = Mathf.Abs(foodNeededToUpPickaxeStrengthCurrent - amount);;
+        if (foodNeededToUpCombatValue < amount) {
+            leftoverAmountOfFood = Mathf.Abs(foodNeededToUpCombatValue - amount);;
         }
 
-        foodNeededToUpPickaxeStrengthCurrent -= amount;
+        foodNeededToUpCombatValue -= amount;
 
-        if (foodNeededToUpPickaxeStrengthCurrent <= 0) {
+        if (foodNeededToUpCombatValue <= 0) {
             LevelUpStrength(leftoverAmountOfFood);
         }
     }
@@ -67,31 +89,32 @@ public class Knight : MonoBehaviour
         if (weapon.weaponType == Weapon.WeaponType.sword) {
             Vector3 spawnItemsVector3 = transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), -1);
             GameObject newWorker = Instantiate(weapon.gameObject, spawnItemsVector3, transform.rotation);
+            AudioManager.instance.Play("Pop");
+
         }
 
         if (weapon.weaponType == Weapon.WeaponType.bow) {
-            Vector3 spawnItemsVector3 = transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), -1);
-            GameObject newWorker = Instantiate(archerPrefab, spawnItemsVector3, transform.rotation);
+            GameObject newWorker = Instantiate(archerPrefab, transform.position, transform.rotation);
 
             if (transform.childCount > 1) {
                 transform.GetChild(1).transform.SetParent(null);
             }
+            AudioManager.instance.Play("Archer Equip");
 
             Destroy(gameObject);
         }
 
         if (weapon.weaponType == Weapon.WeaponType.pitchfork) {
-            Vector3 spawnItemsVector3 = transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), -1);
-            GameObject newWorker = Instantiate(workerPrefab, spawnItemsVector3, transform.rotation);
+            GameObject newWorker = Instantiate(workerPrefab, transform.position, transform.rotation);
 
             if (transform.childCount > 1) {
                 transform.GetChild(1).transform.SetParent(null);
             }
+            AudioManager.instance.Play("Pitchfork Attack");
 
             Destroy(gameObject);
         }
 
-        AudioManager.instance.Play("Pop");
     }
 
 
@@ -99,8 +122,8 @@ public class Knight : MonoBehaviour
         GameObject levelUpPrefabAnim = Instantiate(levelUpAnimPrefab, transform.position, transform.rotation);
         StartCoroutine(DestroyStarPrefabCo(levelUpPrefabAnim));
         myWorkingStrength++;
-        foodNeededToUpPickaxeStrengthStart *= Mathf.CeilToInt(1.5f);
-        foodNeededToUpPickaxeStrengthCurrent = foodNeededToUpPickaxeStrengthStart;
+        foodNeeded *= Mathf.CeilToInt(1.5f);
+        foodNeededToUpCombatValue = foodNeeded;
         if (leftoverAmountOfFood > 0) {
             FeedWorker(leftoverAmountOfFood, false);
         }
@@ -137,5 +160,36 @@ public class Knight : MonoBehaviour
     public void TakeDamage(int amount) {
         myHealth -= amount;
         DetectDeath();
+    }
+
+    public void StartAttacking() {
+        // myAnimator.Play("Attack", -1, Random.Range(0f,1f));
+        myAnimator.SetBool("isAttacking", true);
+    }
+
+    public void StopAttacking() {
+        myAnimator.SetBool("isAttacking", false);
+    }
+
+    public void HitTarget() {
+        if (enemyTarget) {
+            enemyTarget.TakeDamage(1, this.transform);
+            AudioManager.instance.Play("Pitchfork Attack");
+
+        } else {
+            StopAttacking();
+            StartCoroutine(DetectNewEnemyCo());
+        }
+    }
+
+    public void CurrentEnemyNull() {
+        enemyTarget = null;
+        StopAttacking();
+        StartCoroutine(DetectNewEnemyCo());
+    }
+
+    private IEnumerator DetectNewEnemyCo() {
+        yield return new WaitForEndOfFrame();
+        DetectCombat();
     }
 }

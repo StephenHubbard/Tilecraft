@@ -15,8 +15,8 @@ public class WorldGeneration : MonoBehaviour
     [Header("NewTile() iterations, not exactly amount of tile")]
     [SerializeField] private int amountOfStartingTiles = 20;
 
-    [SerializeField] private ItemInfo[] spawnableTileItems;
-    [SerializeField] private ItemInfo[] spawnableTileItemsTier2;
+    [SerializeField] private ItemInfo[] spawnableTileItemsTierOne;
+    [SerializeField] private ItemInfo[] spawnableTileItemsTierTwo;
     [SerializeField] private LayerMask tileLayerMask = new LayerMask();
 
     [SerializeField] private int tierTwoMinX;
@@ -53,8 +53,24 @@ public class WorldGeneration : MonoBehaviour
         return grid;
     }
 
-    public ItemInfo[] ReturnSpawnableItems() {
-        return spawnableTileItems;
+    public ItemInfo[] ReturnSpawnableItemsTierOne() {
+        return spawnableTileItemsTierOne;
+    }
+
+    public ItemInfo[] ReturnSpawnableItemsTierTwo() {
+        return spawnableTileItemsTierTwo;
+    }
+
+    public bool ReturnTierTwoBoundries(int x, int y) {
+        // print(x + " " + y);
+
+        // float cellSize = grid.ReturnCellSize();
+        if ((x >= tierTwoMinX && x <= tierTwoMaxX) && (y >= tierTwoMinY && y <= tierTwoMaxY)) 
+        { 
+            return false;
+        } 
+
+        return true;
     }
 
     private void SpawnTierTwoItems() {
@@ -62,9 +78,8 @@ public class WorldGeneration : MonoBehaviour
             for (int y = 0; y < grid.gridArray.GetLength(1); y++) {
 
                 // non spawnable area for tier 2 items
-                float cellSize = grid.ReturnCellSize();
-                if (!(x > tierTwoMinX / cellSize && x < tierTwoMaxX / cellSize) && 
-                    !(y > tierTwoMinY / cellSize && y < tierTwoMaxY / cellSize)) 
+                // float cellSize = grid.ReturnCellSize();
+                if (!(x > tierTwoMinX && x < tierTwoMaxX) && !(y > tierTwoMinY && y < tierTwoMaxY)) 
                 { 
                     if (grid.GetValue(x, y) == 1) {
                         Vector3 worldPos = grid.GetWorldPosition(x, y);
@@ -80,7 +95,7 @@ public class WorldGeneration : MonoBehaviour
 
                                 List<ItemInfo> potentialItems = new List<ItemInfo>();
                                 
-                                foreach (var potentialItem in spawnableTileItemsTier2)
+                                foreach (var potentialItem in spawnableTileItemsTierTwo)
                                 {
                                     foreach (var validLandTile in potentialItem.tileInfoValidLocations)
                                     {
@@ -141,13 +156,13 @@ public class WorldGeneration : MonoBehaviour
         Vector3 gridLocation = grid.GetWorldPosition(x, y + 1) + new Vector3(cellSize, cellSize) * .5f;
         GameObject newTile = Instantiate(tilePrefab, gridLocation, transform.rotation);
         GameObject tileType = Instantiate(tileInfoScriptableObjects[0].tilePrefab, newTile.transform.position, transform.rotation);
-        GameObject startingItem = Instantiate(spawnableTileItems[4].onTilePrefab, newTile.transform.position, transform.rotation);
+        GameObject startingItem = Instantiate(spawnableTileItemsTierOne[4].onTilePrefab, newTile.transform.position, transform.rotation);
         startingItem.transform.parent = newTile.transform;
-        newTile.GetComponent<Tile>().UpdateCurrentPlacedItem(spawnableTileItems[4].onTilePrefab.GetComponent<PlacedItem>().itemInfo, startingItem);
+        newTile.GetComponent<Tile>().UpdateCurrentPlacedItem(spawnableTileItemsTierOne[4].onTilePrefab.GetComponent<PlacedItem>().itemInfo, startingItem);
         newTile.GetComponent<Tile>().isOccupiedWithBuilding = true;
         tileType.transform.parent = newTile.transform;
         tileType.GetComponentInParent<Tile>().tileInfo = tileInfoScriptableObjects[0];
-        newTile.GetComponent<CraftingManager>().UpdateAmountLeftToCraft(spawnableTileItems[4].onTilePrefab.GetComponent<PlacedItem>().itemInfo.amountRecipeCanCreate);
+        newTile.GetComponent<CraftingManager>().UpdateAmountLeftToCraft(spawnableTileItemsTierOne[4].onTilePrefab.GetComponent<PlacedItem>().itemInfo.amountRecipeCanCreate);
 
         grid.SetValue(gridLocation, 1);
     }
@@ -156,13 +171,13 @@ public class WorldGeneration : MonoBehaviour
         Vector3 gridLocation = grid.GetWorldPosition(x, y - 1) + new Vector3(cellSize, cellSize) * .5f;
         GameObject newTile = Instantiate(tilePrefab, gridLocation, transform.rotation);
         GameObject tileType = Instantiate(tileInfoScriptableObjects[1].tilePrefab, newTile.transform.position, transform.rotation);
-        GameObject startingItem = Instantiate(spawnableTileItems[1].onTilePrefab, newTile.transform.position, transform.rotation);
+        GameObject startingItem = Instantiate(spawnableTileItemsTierOne[1].onTilePrefab, newTile.transform.position, transform.rotation);
         startingItem.transform.parent = newTile.transform;
-        newTile.GetComponent<Tile>().UpdateCurrentPlacedItem(spawnableTileItems[1].onTilePrefab.GetComponent<PlacedItem>().itemInfo, startingItem);
+        newTile.GetComponent<Tile>().UpdateCurrentPlacedItem(spawnableTileItemsTierOne[1].onTilePrefab.GetComponent<PlacedItem>().itemInfo, startingItem);
         newTile.GetComponent<Tile>().isOccupiedWithBuilding = true;
         tileType.transform.parent = newTile.transform;
         tileType.GetComponentInParent<Tile>().tileInfo = tileInfoScriptableObjects[1];
-        newTile.GetComponent<CraftingManager>().UpdateAmountLeftToCraft(spawnableTileItems[1].onTilePrefab.GetComponent<PlacedItem>().itemInfo.amountRecipeCanCreate);
+        newTile.GetComponent<CraftingManager>().UpdateAmountLeftToCraft(spawnableTileItemsTierOne[1].onTilePrefab.GetComponent<PlacedItem>().itemInfo.amountRecipeCanCreate);
 
         grid.SetValue(gridLocation, 1);
     }
@@ -171,13 +186,13 @@ public class WorldGeneration : MonoBehaviour
         Vector3 gridLocation = grid.GetWorldPosition(x + 1, y) + new Vector3(cellSize, cellSize) * .5f;
         GameObject newTile = Instantiate(tilePrefab, gridLocation, transform.rotation);
         GameObject tileType = Instantiate(tileInfoScriptableObjects[2].tilePrefab, newTile.transform.position, transform.rotation);
-        GameObject startingItem = Instantiate(spawnableTileItems[3].onTilePrefab, newTile.transform.position, transform.rotation);
+        GameObject startingItem = Instantiate(spawnableTileItemsTierOne[3].onTilePrefab, newTile.transform.position, transform.rotation);
         startingItem.transform.parent = newTile.transform;
-        newTile.GetComponent<Tile>().UpdateCurrentPlacedItem(spawnableTileItems[3].onTilePrefab.GetComponent<PlacedItem>().itemInfo, startingItem);
+        newTile.GetComponent<Tile>().UpdateCurrentPlacedItem(spawnableTileItemsTierOne[3].onTilePrefab.GetComponent<PlacedItem>().itemInfo, startingItem);
         newTile.GetComponent<Tile>().isOccupiedWithBuilding = true;
         tileType.transform.parent = newTile.transform;
         tileType.GetComponentInParent<Tile>().tileInfo = tileInfoScriptableObjects[2];
-        newTile.GetComponent<CraftingManager>().UpdateAmountLeftToCraft(spawnableTileItems[3].onTilePrefab.GetComponent<PlacedItem>().itemInfo.amountRecipeCanCreate);
+        newTile.GetComponent<CraftingManager>().UpdateAmountLeftToCraft(spawnableTileItemsTierOne[3].onTilePrefab.GetComponent<PlacedItem>().itemInfo.amountRecipeCanCreate);
 
         grid.SetValue(gridLocation, 1);
     }
@@ -186,13 +201,13 @@ public class WorldGeneration : MonoBehaviour
         Vector3 gridLocation = grid.GetWorldPosition(x - 1, y) + new Vector3(cellSize, cellSize) * .5f;
         GameObject newTile = Instantiate(tilePrefab, gridLocation, transform.rotation);
         GameObject tileType = Instantiate(tileInfoScriptableObjects[3].tilePrefab, newTile.transform.position, transform.rotation);
-        GameObject startingItem = Instantiate(spawnableTileItems[5].onTilePrefab, newTile.transform.position, transform.rotation);
+        GameObject startingItem = Instantiate(spawnableTileItemsTierOne[5].onTilePrefab, newTile.transform.position, transform.rotation);
         startingItem.transform.parent = newTile.transform;
-        newTile.GetComponent<Tile>().UpdateCurrentPlacedItem(spawnableTileItems[5].onTilePrefab.GetComponent<PlacedItem>().itemInfo, startingItem);
+        newTile.GetComponent<Tile>().UpdateCurrentPlacedItem(spawnableTileItemsTierOne[5].onTilePrefab.GetComponent<PlacedItem>().itemInfo, startingItem);
         newTile.GetComponent<Tile>().isOccupiedWithBuilding = true;
         tileType.transform.parent = newTile.transform;
         tileType.GetComponentInParent<Tile>().tileInfo = tileInfoScriptableObjects[3];
-        newTile.GetComponent<CraftingManager>().UpdateAmountLeftToCraft(spawnableTileItems[5].onTilePrefab.GetComponent<PlacedItem>().itemInfo.amountRecipeCanCreate);
+        newTile.GetComponent<CraftingManager>().UpdateAmountLeftToCraft(spawnableTileItemsTierOne[5].onTilePrefab.GetComponent<PlacedItem>().itemInfo.amountRecipeCanCreate);
 
         grid.SetValue(gridLocation, 1);
     }
@@ -278,7 +293,7 @@ public class WorldGeneration : MonoBehaviour
 
                             List<ItemInfo> potentialItems = new List<ItemInfo>();
                             
-                            foreach (var potentialItem in spawnableTileItems)
+                            foreach (var potentialItem in spawnableTileItemsTierOne)
                             {
                                 foreach (var validLandTile in potentialItem.tileInfoValidLocations)
                                 {

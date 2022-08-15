@@ -84,7 +84,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arrowPrefab: {fileID: 7841289795254243318, guid: 7bde550d385ac68419052f93f4e141fb, type: 3}
-  myHealth: 12
+  myHealth: 5
   cloudLayerMask:
     serializedVersion: 2
     m_Bits: 1024

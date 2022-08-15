@@ -59,8 +59,32 @@ public class ToolTipManager : MonoBehaviour
                 return;
             }
 
+            if (hit.Length > 1 && hit[0].transform.GetComponent<Food>() && hit[1].transform.GetComponent<Knight>()) {
+                string newStr = "You are about to feed knight " + (hit[0].transform.GetComponent<Food>().foodWorthAmount * hit[0].transform.GetComponent<Stackable>().amountOfChildItems).ToString() + " food";
+                UpdateValues("Feed Knight?", newStr, 0, 0, 0, 0, 0);
+                return;
+            }
+
+            if (hit.Length > 1 && hit[0].transform.GetComponent<Food>() && hit[1].transform.GetComponent<Archer>()) {
+                string newStr = "You are about to feed archer " + (hit[0].transform.GetComponent<Food>().foodWorthAmount * hit[0].transform.GetComponent<Stackable>().amountOfChildItems).ToString() + " food";
+                UpdateValues("Feed archer?", newStr, 0, 0, 0, 0, 0);
+                return;
+            }
+
             if (hit.Length > 1 && hit[0].transform.GetComponent<Weapon>() && hit[1].transform.GetComponent<Worker>()) {
                 string newStr = "You are about to Equip worker with a " + (hit[0].transform.GetComponent<Weapon>().weaponType).ToString();
+                UpdateValues("Equip?", newStr, 0, 0, 0, 0, 0);
+                return;
+            }
+
+            if (hit.Length > 1 && hit[0].transform.GetComponent<Weapon>() && hit[1].transform.GetComponent<Knight>()) {
+                string newStr = "You are about to Equip Knight with a " + (hit[0].transform.GetComponent<Weapon>().weaponType).ToString();
+                UpdateValues("Equip?", newStr, 0, 0, 0, 0, 0);
+                return;
+            }
+
+            if (hit.Length > 1 && hit[0].transform.GetComponent<Weapon>() && hit[1].transform.GetComponent<Archer>()) {
+                string newStr = "You are about to Equip Archer with a " + (hit[0].transform.GetComponent<Weapon>().weaponType).ToString();
                 UpdateValues("Equip?", newStr, 0, 0, 0, 0, 0);
                 return;
             }
@@ -78,15 +102,15 @@ public class ToolTipManager : MonoBehaviour
                     int healthValue = hit[0].transform.GetComponent<Archer>().myHealth;
                     int workStrengthValue = hit[0].transform.GetComponent<Archer>().myWorkingStrength;
                     int hatchetCombatValue = hit[0].transform.GetComponent<Archer>().myCombatValue;
-                    string neededFoodToUpgradeStrength = "Food until power up: " + hit[0].transform.GetComponent<Archer>().foodNeededToUpPickaxeStrengthCurrent.ToString();
-                    UpdateValues(thisItem.itemName, neededFoodToUpgradeStrength, thisItem.foodValue, thisItem.coinValue, healthValue, workStrengthValue, hatchetCombatValue);
+                    string neededFoodToUpgradeStrength = "Food until power up: " + hit[0].transform.GetComponent<Archer>().foodNeededToUpCombatValue.ToString();
+                    UpdateValues(thisItem.itemName, neededFoodToUpgradeStrength, thisItem.foodValue, thisItem.coinValue, healthValue, 0, hatchetCombatValue);
                     return;
                 } else if (hit[0].transform.GetComponent<Knight>()) {
                     int healthValue = hit[0].transform.GetComponent<Knight>().myHealth;
                     int workStrengthValue = hit[0].transform.GetComponent<Knight>().myWorkingStrength;
                     int hatchetCombatValue = hit[0].transform.GetComponent<Knight>().myCombatValue;
-                    string neededFoodToUpgradeStrength = "Food until power up: " + hit[0].transform.GetComponent<Knight>().foodNeededToUpPickaxeStrengthCurrent.ToString();
-                    UpdateValues(thisItem.itemName, neededFoodToUpgradeStrength, thisItem.foodValue, thisItem.coinValue, healthValue, workStrengthValue, hatchetCombatValue);
+                    string neededFoodToUpgradeStrength = "Food until power up: " + hit[0].transform.GetComponent<Knight>().foodNeededToUpCombatValue.ToString();
+                    UpdateValues(thisItem.itemName, neededFoodToUpgradeStrength, thisItem.foodValue, thisItem.coinValue, healthValue, 0, hatchetCombatValue);
                     return;
                 } else {
                     UpdateValues(thisItem.itemName, thisItem.toolTipText, thisItem.foodValue, thisItem.coinValue, 0, 0, 0);
