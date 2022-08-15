@@ -89,7 +89,34 @@ public class DraggableItem : MonoBehaviour
                     if (currentTile.currentPlacedItem && currentTile.currentPlacedItem.GetComponent<House>()) {
                         currentTile.currentPlacedItem.GetComponent<House>().DetectBabyMaking();
                     }
+                    continue;
+                } else { 
+                    DetermineExtraItems(i);
+                    Destroy(gameObject);
+                    return;
+                }
+            }
 
+            // worker
+            if (itemInfo.name == "Archer") {
+                if (currentTile.PlaceArcher(itemInfo.onTilePrefab, gameObject.GetComponent<Archer>().myHealth, gameObject.GetComponent<Archer>().myWorkingStrength)) {
+                    if (i == 1) {
+                        Destroy(gameObject);
+                    }
+                    continue;
+                } else { 
+                    DetermineExtraItems(i);
+                    Destroy(gameObject);
+                    return;
+                }
+            }
+
+            // worker
+            if (itemInfo.name == "Knight") {
+                if (currentTile.PlaceKnight(itemInfo.onTilePrefab, gameObject.GetComponent<Knight>().myHealth, gameObject.GetComponent<Knight>().myWorkingStrength)) {
+                    if (i == 1) {
+                        Destroy(gameObject);
+                    }
                     continue;
                 } else { 
                     DetermineExtraItems(i);

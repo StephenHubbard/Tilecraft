@@ -15,6 +15,7 @@ public class DragAndDrop : MonoBehaviour
     private int interactableLayerMask;
     private Stackable stackable;
     private Worker potentialWorkerToFeed;
+    private GameObject potentialWorkerToEquip;
 
     private void Awake() {
         stackable = GetComponent<Stackable>();
@@ -89,6 +90,32 @@ public class DragAndDrop : MonoBehaviour
             potentialWorkerToFeed = null;
             InputManager.instance.CircleHighlightOff();
         }
+
+        // equipment
+        if (hit2.Length > 1 && GetComponent<Weapon>()) {
+            foreach (var item in hit2)
+            {
+                if (item.transform.GetComponent<Worker>() || item.transform.GetComponent<Knight>() || item.transform.GetComponent<Archer>()) {
+                    if (item.transform.GetComponent<Worker>()) {
+                        potentialWorkerToEquip = item.transform.GetComponent<Worker>().gameObject;
+                    }
+
+                    if (item.transform.GetComponent<Knight>()) {
+                        potentialWorkerToEquip = item.transform.GetComponent<Knight>().gameObject;
+                    }
+
+                    if (item.transform.GetComponent<Archer>()) {
+                        potentialWorkerToEquip = item.transform.GetComponent<Archer>().gameObject;
+                    }
+                    InputManager.instance.CircleHighlightOn();
+                    InputManager.instance.circleHighlight.transform.position = potentialWorkerToEquip.transform.position;
+                    return;
+                }
+            }
+        } else {
+            potentialWorkerToEquip = null;
+            InputManager.instance.CircleHighlightOff();
+        }
     }
 
     public void OnMouseUpCustom() {
@@ -98,6 +125,25 @@ public class DragAndDrop : MonoBehaviour
 
         if (potentialWorkerToFeed) {
             potentialWorkerToFeed.FeedWorker(GetComponent<DraggableItem>().itemInfo.foodValue * stackable.amountOfChildItems, true);
+            InputManager.instance.CircleHighlightOff();
+            Destroy(gameObject);
+            return;
+        }
+
+        if (potentialWorkerToEquip) {
+
+            if (potentialWorkerToEquip.transform.GetComponent<Worker>()) {
+                potentialWorkerToEquip.GetComponent<Worker>().EquipWorker(GetComponent<Weapon>());
+            }
+
+            if (potentialWorkerToEquip.transform.GetComponent<Knight>()) {
+                potentialWorkerToEquip.GetComponent<Knight>().EquipWorker(GetComponent<Weapon>());
+            }
+
+            if (potentialWorkerToEquip.transform.GetComponent<Archer>()) {
+                potentialWorkerToEquip.GetComponent<Archer>().EquipWorker(GetComponent<Weapon>());
+            }
+
             InputManager.instance.CircleHighlightOff();
             Destroy(gameObject);
             return;

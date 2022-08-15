@@ -668,6 +668,7 @@ MonoBehaviour:
   potentialParentItem: {fileID: 0}
   amountOfChildItems: 0
   itemInfo: {fileID: 0}
+  lastChild: {fileID: 0}
   isSellable: 0
 --- !u!114 &-244537642764773173
 MonoBehaviour:
@@ -684,11 +685,10 @@ MonoBehaviour:
   deadWorkerOnTilePrefab: {fileID: 0}
   deadWorkerItemPrefab: {fileID: 0}
   levelUpAnimPrefab: {fileID: 6309947321449810909, guid: 77fd472a8ad3aee4d973ffc89c586e3e, type: 3}
-  starGroup1: {fileID: 2003195017429146219}
-  starGroup2: {fileID: 2530454493488451070}
-  starGroup3: {fileID: 8447484419325590477}
   myWorkingStrength: 1
   myCombatValue: 1
+  archerPrefab: {fileID: 4812397909494241834, guid: c715ab559fc0ebe438735b9bd7581ef4, type: 3}
+  knightPrefab: {fileID: 4812397909494241834, guid: 0a3f66f9d8017864fb7cf306cf6c630d, type: 3}
   foodNeededToUpPickaxeStrengthCurrent: 0
   foodNeededToUpPickaxeStrengthStart: 3
   itemInfo: {fileID: 11400000, guid: 7ecdb19248e9de349ba40029c73a2f12, type: 2}

@@ -52,9 +52,16 @@ public class ToolTipManager : MonoBehaviour
         if (hit.Length > 0) {
         
             ToggleToolTipOn();
+
             if (hit.Length > 1 && hit[0].transform.GetComponent<Food>() && hit[1].transform.GetComponent<Worker>()) {
                 string newStr = "You are about to feed worker " + (hit[0].transform.GetComponent<Food>().foodWorthAmount * hit[0].transform.GetComponent<Stackable>().amountOfChildItems).ToString() + " food";
                 UpdateValues("Feed Worker?", newStr, 0, 0, 0, 0, 0);
+                return;
+            }
+
+            if (hit.Length > 1 && hit[0].transform.GetComponent<Weapon>() && hit[1].transform.GetComponent<Worker>()) {
+                string newStr = "You are about to Equip worker with a " + (hit[0].transform.GetComponent<Weapon>().weaponType).ToString();
+                UpdateValues("Equip?", newStr, 0, 0, 0, 0, 0);
                 return;
             }
 
@@ -65,6 +72,20 @@ public class ToolTipManager : MonoBehaviour
                     int workStrengthValue = hit[0].transform.GetComponent<Worker>().myWorkingStrength;
                     int hatchetCombatValue = hit[0].transform.GetComponent<Worker>().myCombatValue;
                     string neededFoodToUpgradeStrength = "Food until power up: " + hit[0].transform.GetComponent<Worker>().foodNeededToUpPickaxeStrengthCurrent.ToString();
+                    UpdateValues(thisItem.itemName, neededFoodToUpgradeStrength, thisItem.foodValue, thisItem.coinValue, healthValue, workStrengthValue, hatchetCombatValue);
+                    return;
+                } else if (hit[0].transform.GetComponent<Archer>()) {
+                    int healthValue = hit[0].transform.GetComponent<Archer>().myHealth;
+                    int workStrengthValue = hit[0].transform.GetComponent<Archer>().myWorkingStrength;
+                    int hatchetCombatValue = hit[0].transform.GetComponent<Archer>().myCombatValue;
+                    string neededFoodToUpgradeStrength = "Food until power up: " + hit[0].transform.GetComponent<Archer>().foodNeededToUpPickaxeStrengthCurrent.ToString();
+                    UpdateValues(thisItem.itemName, neededFoodToUpgradeStrength, thisItem.foodValue, thisItem.coinValue, healthValue, workStrengthValue, hatchetCombatValue);
+                    return;
+                } else if (hit[0].transform.GetComponent<Knight>()) {
+                    int healthValue = hit[0].transform.GetComponent<Knight>().myHealth;
+                    int workStrengthValue = hit[0].transform.GetComponent<Knight>().myWorkingStrength;
+                    int hatchetCombatValue = hit[0].transform.GetComponent<Knight>().myCombatValue;
+                    string neededFoodToUpgradeStrength = "Food until power up: " + hit[0].transform.GetComponent<Knight>().foodNeededToUpPickaxeStrengthCurrent.ToString();
                     UpdateValues(thisItem.itemName, neededFoodToUpgradeStrength, thisItem.foodValue, thisItem.coinValue, healthValue, workStrengthValue, hatchetCombatValue);
                     return;
                 } else {

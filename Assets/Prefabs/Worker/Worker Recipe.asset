@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66df1655cda175c4da55e2cd2c217479, type: 3}
   m_Name: Worker Recipe
   m_EditorClassIdentifier: 
-  itemInfo: {fileID: 0}
-  neededRecipeItems: []
-  recipeCraftTime: 0
+  itemInfo: {fileID: 11400000, guid: 7ecdb19248e9de349ba40029c73a2f12, type: 2}
+  neededRecipeItems:
+  - {fileID: 11400000, guid: 7ecdb19248e9de349ba40029c73a2f12, type: 2}
+  - {fileID: 11400000, guid: 7ecdb19248e9de349ba40029c73a2f12, type: 2}
+  recipeCraftTime: 111
   craftingClipString: 
   requiresFurnace: 0

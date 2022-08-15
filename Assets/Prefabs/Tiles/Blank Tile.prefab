@@ -682,6 +682,8 @@ MonoBehaviour:
   currentPlacedItem: {fileID: 0}
   currentPlacedResources: []
   workerItemPrefab: {fileID: 4812397909494241834, guid: 4fea6c41e7173da44bdb63fc54b8a34a, type: 3}
+  knightItemPrefab: {fileID: 4812397909494241834, guid: 0a3f66f9d8017864fb7cf306cf6c630d, type: 3}
+  archerItemPrefab: {fileID: 4812397909494241834, guid: c715ab559fc0ebe438735b9bd7581ef4, type: 3}
   workerPoints:
   - {fileID: 619971871}
   - {fileID: 675382289}
@@ -691,9 +693,6 @@ MonoBehaviour:
   - {fileID: 4326491989489227075}
   - {fileID: 5155303251552824129}
   buildingPlacementSmokePrefab: {fileID: 6349002128902621385, guid: 83991efcb26e6c740a104c8ce159d0cc, type: 3}
-  tileDetectionLayerMask:
-    serializedVersion: 2
-    m_Bits: 1216
   isOccupiedWithBuilding: 0
   isOccupiedWithWorkers: 0
   isOccupiedWithResources: 0

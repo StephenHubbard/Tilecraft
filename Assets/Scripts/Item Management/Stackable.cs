@@ -10,7 +10,7 @@ public class Stackable : MonoBehaviour
     public int amountOfChildItems = 0;
 
     public ItemInfo itemInfo;
-    private Transform lastChild;
+    public Transform lastChild;
 
     private AudioManager audioManager;
     private int interactableLayerMask;
@@ -52,7 +52,7 @@ public class Stackable : MonoBehaviour
         }
     }
 
-    private void FindLastChild(Transform thisChild) {
+    public void FindLastChild(Transform thisChild) {
         if (thisChild.childCount < 2) {
             lastChild = thisChild;
         } else {

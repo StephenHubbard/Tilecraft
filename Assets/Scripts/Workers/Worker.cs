@@ -7,11 +7,11 @@ public class Worker : MonoBehaviour
     [SerializeField] private GameObject deadWorkerOnTilePrefab;
     [SerializeField] private GameObject deadWorkerItemPrefab;
     [SerializeField] private GameObject levelUpAnimPrefab;
-    [SerializeField] private GameObject starGroup1;
-    [SerializeField] private GameObject starGroup2;
-    [SerializeField] private GameObject starGroup3;
     [SerializeField] public int myWorkingStrength = 1;
     [SerializeField] public int myCombatValue = 1;
+    [SerializeField] private GameObject archerPrefab;
+    [SerializeField] private GameObject knightPrefab;
+
     [SerializeField] public int foodNeededToUpPickaxeStrengthCurrent;
     [SerializeField] public int foodNeededToUpPickaxeStrengthStart = 3;
     public ItemInfo itemInfo;
@@ -78,13 +78,44 @@ public class Worker : MonoBehaviour
         if (foodNeededToUpPickaxeStrengthCurrent <= 0) {
             LevelUpStrength(leftoverAmountOfFood);
         }
-
-
     }
 
+    public void EquipWorker(Weapon weapon) {
+
+        if (weapon.weaponType == Weapon.WeaponType.sword) {
+            Vector3 spawnItemsVector3 = transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), -1);
+            GameObject newWorker = Instantiate(knightPrefab, spawnItemsVector3, transform.rotation);
+
+            if (transform.childCount > 1) {
+                transform.GetChild(1).transform.SetParent(null);
+            }
+
+            Destroy(gameObject);
+        }
+
+        if (weapon.weaponType == Weapon.WeaponType.bow) {
+            Vector3 spawnItemsVector3 = transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), -1);
+            GameObject newWorker = Instantiate(archerPrefab, spawnItemsVector3, transform.rotation);
+
+            if (transform.childCount > 1) {
+                transform.GetChild(1).transform.SetParent(null);
+            }
+
+            Destroy(gameObject);
+        }
+
+        if (weapon.weaponType == Weapon.WeaponType.pitchfork) {
+            Vector3 spawnItemsVector3 = transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), -1);
+            GameObject newWorker = Instantiate(weapon.gameObject, spawnItemsVector3, transform.rotation);
+        }
+
+        AudioManager.instance.Play("Pop");
+    }
+
+
     public void LevelUpStrength(int leftoverAmountOfFood) {
-        GameObject starPrefab = Instantiate(levelUpAnimPrefab, transform.position, transform.rotation);
-        StartCoroutine(DestroyStarPrefabCo(starPrefab));
+        GameObject levelUpPrefabAnim = Instantiate(levelUpAnimPrefab, transform.position, transform.rotation);
+        StartCoroutine(DestroyStarPrefabCo(levelUpPrefabAnim));
         myWorkingStrength++;
         foodNeededToUpPickaxeStrengthStart *= Mathf.CeilToInt(1.5f);
         foodNeededToUpPickaxeStrengthCurrent = foodNeededToUpPickaxeStrengthStart;
@@ -94,9 +125,9 @@ public class Worker : MonoBehaviour
 
     }
 
-    private IEnumerator DestroyStarPrefabCo(GameObject starPrefab) {
+    private IEnumerator DestroyStarPrefabCo(GameObject levelUpPrefabAnim) {
         yield return new WaitForSeconds(2f);
-        Destroy(starPrefab);
+        Destroy(levelUpPrefabAnim);
     }
 
     private void FindEnemy() {
