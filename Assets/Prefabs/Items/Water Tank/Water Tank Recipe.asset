@@ -10,11 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 66df1655cda175c4da55e2cd2c217479, type: 3}
-  m_Name: Crab Recipe
+  m_Name: Water Tank Recipe
   m_EditorClassIdentifier: 
-  itemInfo: {fileID: 11400000, guid: 3185e8e7e0addb74e9545378aad2659d, type: 2}
+  itemInfo: {fileID: 11400000, guid: 60dfa5edbd711ff4cad9ff27e261a28e, type: 2}
   neededRecipeItems:
-  - {fileID: 11400000, guid: 82a4221057f384b4da215e848da2cead, type: 2}
-  recipeCraftTime: 20
-  craftingClipString: Start Fishing
+  - {fileID: 11400000, guid: 46caf5f13780ccc4397d7e19477d11e0, type: 2}
+  - {fileID: 11400000, guid: a7f0335e0ecbeab46882746bbfdfa2ec, type: 2}
+  - {fileID: 11400000, guid: be97de2e023f6bf498d29f083af8db08, type: 2}
+  recipeCraftTime: 6
+  craftingClipString: Crafting Started
   requiresFurnace: 0

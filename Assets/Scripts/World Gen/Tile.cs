@@ -126,10 +126,11 @@ public class Tile : MonoBehaviour
     }
 
     public void PluckItemsOffTile() {
-        Vector3 spawnItemsVector3 = transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), -1);
         
         if (currentPlacedItem && currentPlacedItem.GetComponent<PlacedItem>().itemInfo.isStationary == false) {
             Destroy(currentPlacedItem);
+            Vector3 spawnItemsVector3 = transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), -1);
+
             GameObject newObject = Instantiate(itemInfo.draggableItemPrefab, spawnItemsVector3, transform.rotation);
             newObject.GetComponent<DraggableItem>().UpdateAmountLeftToHarvest(GetComponent<CraftingManager>().amountLeftToCraft);
             PopTileCleanUp();
@@ -148,18 +149,21 @@ public class Tile : MonoBehaviour
 
             if (worker.childCount == 1) {
                 if (worker.GetChild(0).GetComponent<Worker>()) {
+                    Vector3 spawnItemsVector3 = transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), -1);
                     GameObject newWorker = Instantiate(workerItemPrefab, spawnItemsVector3, transform.rotation);
                     newWorker.GetComponent<Worker>().TransferHealth(worker.GetChild(0).GetComponent<Worker>().myHealth);
                     newWorker.GetComponent<Worker>().TransferStrength(worker.GetChild(0).GetComponent<Worker>().myWorkingStrength);
                 }
 
                 if (worker.GetChild(0).GetComponent<Knight>()) {
+                    Vector3 spawnItemsVector3 = transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), -1);
                     GameObject newKnight = Instantiate(knightItemPrefab, spawnItemsVector3, transform.rotation);
                     newKnight.GetComponent<Knight>().TransferHealth(worker.GetChild(0).GetComponent<Knight>().myHealth);
                     newKnight.GetComponent<Knight>().TransferStrength(worker.GetChild(0).GetComponent<Knight>().myWorkingStrength);
                 }
 
                 if (worker.GetChild(0).GetComponent<Archer>()) {
+                    Vector3 spawnItemsVector3 = transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), -1);
                     GameObject newArcher = Instantiate(archerItemPrefab, spawnItemsVector3, transform.rotation);
                     newArcher.GetComponent<Archer>().TransferHealth(worker.GetChild(0).GetComponent<Archer>().myHealth);
                     newArcher.GetComponent<Archer>().TransferStrength(worker.GetChild(0).GetComponent<Archer>().myWorkingStrength);
@@ -173,6 +177,7 @@ public class Tile : MonoBehaviour
         foreach (var resource in resourcePoints)
         {
             if (resource.childCount == 1) {
+                Vector3 spawnItemsVector3 = transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), -1);
                 Instantiate(resource.GetChild(0).GetComponent<PlacedItem>().itemInfo.draggableItemPrefab, spawnItemsVector3, transform.rotation);
                 Destroy(resource.GetChild(0).transform.gameObject);
                 PopTileCleanUp();

@@ -59,6 +59,7 @@ public class DraggableItem : MonoBehaviour
             if (currentTile.currentPlacedItem && currentTile.currentPlacedItem.GetComponent<Fridge>()) {
                 if (gameObject.GetComponent<Food>()) {
                     currentTile.currentPlacedItem.GetComponent<Fridge>().IncreaseFoodAmount(gameObject.GetComponent<Food>().foodWorthAmount, GetComponent<Stackable>().amountOfChildItems);
+                    AudioManager.instance.Play("Click");
                     Destroy(gameObject);
                     return;
                 }
@@ -69,6 +70,7 @@ public class DraggableItem : MonoBehaviour
                 if (currentTile.currentPlacedItem.GetComponent<Furnace>() && itemInfo.isSmeltable) {
                     if (!currentTile.GetComponent<CraftingManager>().isCrafting) {
                         currentTile.currentPlacedItem.GetComponent<Furnace>().StartSmelting(itemInfo, GetComponent<Stackable>().amountOfChildItems);
+                        AudioManager.instance.Play("Click");
                         Destroy(gameObject);
                         return;
                     } else {

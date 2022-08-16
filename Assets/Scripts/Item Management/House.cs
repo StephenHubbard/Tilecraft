@@ -68,5 +68,7 @@ public class House : MonoBehaviour
         }
 
         timeToHaveBabyCurrent = timeToHaveBabyTotal;
+
+        DetectBabyMaking();
     }
 }

@@ -16,5 +16,5 @@ MonoBehaviour:
   neededRecipeItems:
   - {fileID: 11400000, guid: ded67e27af248f146b7362b141ba2928, type: 2}
   recipeCraftTime: 5
-  craftingClipString: Bush Rustle
+  craftingClipString: Start Fishing
   requiresFurnace: 0

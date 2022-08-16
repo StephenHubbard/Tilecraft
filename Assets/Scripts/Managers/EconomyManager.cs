@@ -55,6 +55,11 @@ public class EconomyManager : MonoBehaviour
 
     public void SellItem(GameObject thisObj, int amount, int stackSize) {
         if (thisObj.GetComponent<Stackable>().isSellable == false) { return; }
+
+        if (thisObj.GetComponent<Worker>()) {
+            HousingManager.instance.DetectHowManyWorkers();
+        }
+
         AudioManager.instance.Play("Sell");
         GameObject thisCoin = Instantiate(spinningCoinPrefab, thisObj.transform.position + new Vector3(0, 1f, 0), transform.rotation);
         StartCoroutine(DestroyCoinCo(thisCoin));

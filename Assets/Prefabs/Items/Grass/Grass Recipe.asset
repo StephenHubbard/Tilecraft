@@ -16,3 +16,4 @@ MonoBehaviour:
   neededRecipeItems: []
   recipeCraftTime: 5
   craftingClipString: 
+  requiresFurnace: 0

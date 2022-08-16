@@ -119,7 +119,7 @@ public class Knight : MonoBehaviour
 
 
     public void LevelUpStrength(int leftoverAmountOfFood) {
-        GameObject levelUpPrefabAnim = Instantiate(levelUpAnimPrefab, transform.position, transform.rotation);
+        GameObject levelUpPrefabAnim = Instantiate(levelUpAnimPrefab, transform.position + new Vector3(0, .5f, 0), transform.rotation);
         StartCoroutine(DestroyStarPrefabCo(levelUpPrefabAnim));
         myWorkingStrength++;
         foodNeeded *= Mathf.CeilToInt(1.5f);

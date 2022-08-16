@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a967a3f0f99c934bb9b8a89e7f72db0, type: 3}
+  m_Name: Water Tank
+  m_EditorClassIdentifier: 
+  itemName: Water Tank
+  itemSprite: {fileID: 21300000, guid: b37656bcac834d2438e2ac95af0bd1ce, type: 3}
+  coinValue: 1
+  draggableItemPrefab: {fileID: 4812397909494241834, guid: f3ef848537687924d9b172dbb813549e, type: 3}
+  onTilePrefab: {fileID: 994099794024727751, guid: 4287a7dbb4b03994da09bbe233498229, type: 3}
+  tileInfoValidLocations:
+  - {fileID: 11400000, guid: 68eb43c7510400947b95468668236dc7, type: 2}
+  recipeInfo: {fileID: 11400000, guid: 92882f81e880bff42b081df64b520a0e, type: 2}
+  amountRecipeCanCreate: 1000
+  potentialOffSpring:
+  - {fileID: 11400000, guid: 315e5f2f6abe26e4396f6075fc0f64e9, type: 2}
+  isResourceOnly: 0
+  isStationary: 1
+  isSmeltable: 0
+  foodValue: 0
+  toolTipText: An unlimited supply of water
+  tierGroup: 1

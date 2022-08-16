@@ -44,22 +44,22 @@ public class Archer : MonoBehaviour
     }
 
     private void DetectCombat() {
-            if (transform.GetComponent<PlacedItem>() && transform.root.GetComponent<Tile>().currentPlacedItem && transform.root.GetComponent<Tile>().currentPlacedItem.GetComponent<OrcRelic>() && enemyTarget == null) {
+        if (transform.GetComponent<PlacedItem>() && transform.root.GetComponent<Tile>().currentPlacedItem && transform.root.GetComponent<Tile>().currentPlacedItem.GetComponent<OrcRelic>() && enemyTarget == null) {
 
-                bool isOccupiedWithEnemies = false;
+            bool isOccupiedWithEnemies = false;
 
-                foreach (var orcSpawnPoint in transform.root.GetComponent<Tile>().currentPlacedItem.GetComponent<OrcRelic>().orcSpawnPoints)
-                {
-                    if (orcSpawnPoint.childCount > 0) {
-                        isOccupiedWithEnemies = true;
-                    }
+            foreach (var orcSpawnPoint in transform.root.GetComponent<Tile>().currentPlacedItem.GetComponent<OrcRelic>().orcSpawnPoints)
+            {
+                if (orcSpawnPoint.childCount > 0) {
+                    isOccupiedWithEnemies = true;
                 }
-                
-                if (isOccupiedWithEnemies) {
-                    StartAttacking();
+            }
+            
+            if (isOccupiedWithEnemies) {
+                StartAttacking();
 
-                    FindEnemy();
-                }
+                FindEnemy();
+            } 
         }
     }
 
@@ -124,7 +124,7 @@ public class Archer : MonoBehaviour
 
 
     public void LevelUpStrength(int leftoverAmountOfFood) {
-        GameObject levelUpPrefabAnim = Instantiate(levelUpAnimPrefab, transform.position, transform.rotation);
+        GameObject levelUpPrefabAnim = Instantiate(levelUpAnimPrefab, transform.position + new Vector3(0, .5f, 0), transform.rotation);
         StartCoroutine(DestroyStarPrefabCo(levelUpPrefabAnim));
         myCombatValue++;
         foodNeeded *= Mathf.CeilToInt(1.5f);
@@ -191,6 +191,7 @@ public class Archer : MonoBehaviour
         if (currentTarget == null) { return; }
 
         GameObject newArrow = Instantiate(archerArrowPrefab, transform.position, transform.rotation);
+        newArrow.GetComponent<ArcherArrow>().archerThatLaunchedArrow = this.transform;
         newArrow.GetComponent<ArcherArrow>().UpdateCurrentTarget(currentTarget.transform);
         AudioManager.instance.Play("Arrow Launch");
     }

@@ -88,9 +88,8 @@ public class Worker : MonoBehaviour
             if (transform.childCount > 1) {
                 transform.GetChild(1).transform.SetParent(null);
             }
-
             AudioManager.instance.Play("Knight Equip");
-
+            HousingManager.instance.DetectHowManyWorkers();
             Destroy(gameObject);
         }
 
@@ -101,7 +100,7 @@ public class Worker : MonoBehaviour
                 transform.GetChild(1).transform.SetParent(null);
             }
             AudioManager.instance.Play("Archer Equip");
-
+            HousingManager.instance.DetectHowManyWorkers();
             Destroy(gameObject);
         }
 
@@ -109,14 +108,12 @@ public class Worker : MonoBehaviour
             Vector3 spawnItemsVector3 = transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), -1);
             GameObject newWorker = Instantiate(weapon.gameObject, spawnItemsVector3, transform.rotation);
             AudioManager.instance.Play("Pop");
-
         }
-
     }
 
 
     public void LevelUpStrength(int leftoverAmountOfFood) {
-        GameObject levelUpPrefabAnim = Instantiate(levelUpAnimPrefab, transform.position, transform.rotation);
+        GameObject levelUpPrefabAnim = Instantiate(levelUpAnimPrefab, transform.position + new Vector3(0, .5f, 0), transform.rotation);
         StartCoroutine(DestroyStarPrefabCo(levelUpPrefabAnim));
         myWorkingStrength++;
         foodNeededToUpPickaxeStrengthStart *= Mathf.CeilToInt(1.5f);

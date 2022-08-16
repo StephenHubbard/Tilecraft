@@ -96,7 +96,7 @@ public class TimeOfDay : MonoBehaviour
         {
             RaycastHit2D hit = Physics2D.Raycast(tile.transform.position, Vector2.zero, 100f, cloudLayerMask);
 
-            if (!hit && tile.currentPlacedItem == null && tile.GetComponent<CraftingManager>().isCrafting == false) {
+            if (!hit && tile.currentPlacedItem == null && !tile.isOccupiedWithResources && tile.GetComponent<CraftingManager>().isCrafting == false) {
                 freeTiles.Add(tile);
             }
         }
