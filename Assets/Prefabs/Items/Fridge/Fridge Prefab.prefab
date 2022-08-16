@@ -66,9 +66,7 @@ MonoBehaviour:
   amountOfFoodContainer: {fileID: 2384481363379938732}
   amountOfFoodText: {fileID: 2399060789524169338}
   currentAmountOfFood: 0
-  placedItemLayerMask:
-    serializedVersion: 2
-    m_Bits: 256
+  appleItemPrefab: {fileID: 4812397909494241834, guid: abc7e33b10ea8974384f00ecc689908a, type: 3}
 --- !u!58 &7536415364194510991
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -501,7 +499,7 @@ PrefabInstance:
     - target: {fileID: 2688622164867275971, guid: 87afe50ee7ec3bb4c8569f0e06430fc2, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 2679111af3ac5e74ba925ed5782eb139, type: 3}
+      objectReference: {fileID: 21300000, guid: 2e3387e8f3688074587415ce0076b31d, type: 3}
     - target: {fileID: 2688622164867275971, guid: 87afe50ee7ec3bb4c8569f0e06430fc2, type: 3}
       propertyPath: m_SortingOrder
       value: 2

@@ -67,8 +67,10 @@ public class DraggableItem : MonoBehaviour
 
             // furnace
             if (currentTile.currentPlacedItem != null) {
-                if (currentTile.currentPlacedItem.GetComponent<Furnace>() && itemInfo.isSmeltable) {
+                if (currentTile.currentPlacedItem.GetComponent<Furnace>() && itemInfo.isSmeltable && !currentTile.currentPlacedItem.GetComponent<Furnace>().occupiedWithResourceInFurance) {
                     if (!currentTile.GetComponent<CraftingManager>().isCrafting) {
+                        currentTile.currentPlacedItem.GetComponent<Furnace>().occupiedWithResourceInFurance = true;
+                        currentTile.currentPlacedItem.GetComponent<Furnace>().UpdateCurrentOccupiedResourceSprite(itemInfo);
                         currentTile.currentPlacedItem.GetComponent<Furnace>().StartSmelting(itemInfo, GetComponent<Stackable>().amountOfChildItems);
                         AudioManager.instance.Play("Click");
                         Destroy(gameObject);
@@ -83,7 +85,7 @@ public class DraggableItem : MonoBehaviour
 
             // worker
             if (itemInfo.name == "Worker") {
-                if (currentTile.PlaceWorker(itemInfo.onTilePrefab, gameObject.GetComponent<Worker>().myHealth, gameObject.GetComponent<Worker>().myWorkingStrength)) {
+                if (currentTile.PlaceWorker(itemInfo.onTilePrefab, gameObject.GetComponent<Worker>().myHealth, gameObject.GetComponent<Worker>().myWorkingStrength, gameObject.GetComponent<Worker>().foodNeededToUpPickaxeStrengthCurrent)) {
                     if (i == 1) {
                         Destroy(gameObject);
                     }
@@ -101,7 +103,7 @@ public class DraggableItem : MonoBehaviour
 
             // worker
             if (itemInfo.name == "Archer") {
-                if (currentTile.PlaceArcher(itemInfo.onTilePrefab, gameObject.GetComponent<Archer>().myHealth, gameObject.GetComponent<Archer>().myWorkingStrength)) {
+                if (currentTile.PlaceArcher(itemInfo.onTilePrefab, gameObject.GetComponent<Archer>().myHealth, gameObject.GetComponent<Archer>().myWorkingStrength, gameObject.GetComponent<Archer>().foodNeededToUpCombatValue)) {
                     if (i == 1) {
                         Destroy(gameObject);
                     }
@@ -115,7 +117,7 @@ public class DraggableItem : MonoBehaviour
 
             // worker
             if (itemInfo.name == "Knight") {
-                if (currentTile.PlaceKnight(itemInfo.onTilePrefab, gameObject.GetComponent<Knight>().myHealth, gameObject.GetComponent<Knight>().myWorkingStrength)) {
+                if (currentTile.PlaceKnight(itemInfo.onTilePrefab, gameObject.GetComponent<Knight>().myHealth, gameObject.GetComponent<Knight>().myWorkingStrength, gameObject.GetComponent<Knight>().foodNeededToUpCombatValue)) {
                     if (i == 1) {
                         Destroy(gameObject);
                     }

@@ -28,6 +28,6 @@ MonoBehaviour:
   isResourceOnly: 1
   isStationary: 0
   isSmeltable: 0
-  foodValue: 2
+  foodValue: 1
   toolTipText: 
   tierGroup: 2

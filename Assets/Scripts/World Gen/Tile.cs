@@ -52,14 +52,14 @@ public class Tile : MonoBehaviour
         Destroy(smokePrefab);
     }
 
-    public bool PlaceWorker(GameObject workerPrefab, int currentHealth, int currentStrength) {
+    public bool PlaceWorker(GameObject workerPrefab, int currentHealth, int currentStrength, int currentFoodNeeded) {
         foreach (var worker in workerPoints)
         {
             if (worker.childCount == 0) {
                 GameObject newWorker = Instantiate(workerPrefab, worker.position, transform.rotation);
                 newWorker.transform.parent = worker;
                 newWorker.GetComponent<Worker>().TransferHealth(currentHealth);
-                newWorker.GetComponent<Worker>().TransferStrength(currentStrength);
+                newWorker.GetComponent<Worker>().TransferStrength(currentStrength, currentFoodNeeded);
                 isOccupiedWithWorkers = true;
                 GetComponent<CraftingManager>().hasWorkers = true;
                 
@@ -74,14 +74,14 @@ public class Tile : MonoBehaviour
         return false;
     }
 
-    public bool PlaceKnight(GameObject knightPrefab, int currentHealth, int currentStrength) {
+    public bool PlaceKnight(GameObject knightPrefab, int currentHealth, int currentStrength, int foodNeeded) {
         foreach (var worker in workerPoints)
         {
             if (worker.childCount == 0) {
                 GameObject newKnight = Instantiate(knightPrefab, worker.position, transform.rotation);
                 newKnight.transform.parent = worker;
                 newKnight.GetComponent<Knight>().TransferHealth(currentHealth);
-                newKnight.GetComponent<Knight>().TransferStrength(currentStrength);
+                newKnight.GetComponent<Knight>().TransferStrength(currentStrength, foodNeeded);
                 isOccupiedWithWorkers = true;
                 AudioManager.instance.Play("Click");
                 return true;
@@ -91,14 +91,14 @@ public class Tile : MonoBehaviour
         return false;
     }
 
-    public bool PlaceArcher(GameObject archerPrefab, int currentHealth, int currentStrength) {
+    public bool PlaceArcher(GameObject archerPrefab, int currentHealth, int currentStrength, int currentFoodNeeded) {
         foreach (var worker in workerPoints)
         {
             if (worker.childCount == 0) {
                 GameObject newArcher = Instantiate(archerPrefab, worker.position, transform.rotation);
                 newArcher.transform.parent = worker;
                 newArcher.GetComponent<Archer>().TransferHealth(currentHealth);
-                newArcher.GetComponent<Archer>().TransferStrength(currentStrength);
+                newArcher.GetComponent<Archer>().TransferStrength(currentStrength, currentFoodNeeded);
                 isOccupiedWithWorkers = true;
                 AudioManager.instance.Play("Click");
                 return true;
@@ -152,21 +152,21 @@ public class Tile : MonoBehaviour
                     Vector3 spawnItemsVector3 = transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), -1);
                     GameObject newWorker = Instantiate(workerItemPrefab, spawnItemsVector3, transform.rotation);
                     newWorker.GetComponent<Worker>().TransferHealth(worker.GetChild(0).GetComponent<Worker>().myHealth);
-                    newWorker.GetComponent<Worker>().TransferStrength(worker.GetChild(0).GetComponent<Worker>().myWorkingStrength);
+                    newWorker.GetComponent<Worker>().TransferStrength(worker.GetChild(0).GetComponent<Worker>().myWorkingStrength, worker.GetChild(0).GetComponent<Worker>().foodNeededToUpPickaxeStrengthCurrent);
                 }
 
                 if (worker.GetChild(0).GetComponent<Knight>()) {
                     Vector3 spawnItemsVector3 = transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), -1);
                     GameObject newKnight = Instantiate(knightItemPrefab, spawnItemsVector3, transform.rotation);
                     newKnight.GetComponent<Knight>().TransferHealth(worker.GetChild(0).GetComponent<Knight>().myHealth);
-                    newKnight.GetComponent<Knight>().TransferStrength(worker.GetChild(0).GetComponent<Knight>().myWorkingStrength);
+                    newKnight.GetComponent<Knight>().TransferStrength(worker.GetChild(0).GetComponent<Knight>().myWorkingStrength, worker.GetChild(0).GetComponent<Knight>().foodNeededToUpCombatValue);
                 }
 
                 if (worker.GetChild(0).GetComponent<Archer>()) {
                     Vector3 spawnItemsVector3 = transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), -1);
                     GameObject newArcher = Instantiate(archerItemPrefab, spawnItemsVector3, transform.rotation);
                     newArcher.GetComponent<Archer>().TransferHealth(worker.GetChild(0).GetComponent<Archer>().myHealth);
-                    newArcher.GetComponent<Archer>().TransferStrength(worker.GetChild(0).GetComponent<Archer>().myWorkingStrength);
+                    newArcher.GetComponent<Archer>().TransferStrength(worker.GetChild(0).GetComponent<Archer>().myWorkingStrength, worker.GetChild(0).GetComponent<Archer>().foodNeededToUpCombatValue);
                 }
 
                 Destroy(worker.GetChild(0).transform.gameObject);

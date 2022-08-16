@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class Furnace : MonoBehaviour
 {
+    [SerializeField] private Transform currentResourceContainer;
+    [SerializeField] private SpriteRenderer currentOccupiedSprite;
+
     private ItemInfo currentlySmeltingItem;
     private int amountLeftToSmelt;
-
+    public bool occupiedWithResourceInFurance = false;
     private CraftingManager craftingManager;
 
 
@@ -30,9 +33,19 @@ public class Furnace : MonoBehaviour
         }
 
         currentlySmeltingItem = null;
+        currentResourceContainer.gameObject.SetActive(false);
     }
 
     public void UpdateFurnaceAmountLeft() {
         amountLeftToSmelt--;
+    }
+
+    public void UpdateCurrentOccupiedResourceSprite(ItemInfo item) {
+        currentResourceContainer.gameObject.SetActive(true);
+        currentOccupiedSprite.sprite = item.itemSprite;
+    }
+
+    public void HideOccupiedSpriteContainer() {
+        currentResourceContainer.gameObject.SetActive(false);
     }
 }

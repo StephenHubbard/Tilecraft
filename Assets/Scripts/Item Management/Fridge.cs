@@ -9,24 +9,35 @@ public class Fridge : MonoBehaviour
     [SerializeField] private Transform amountOfFoodContainer;
     [SerializeField] private TMP_Text amountOfFoodText;
     [SerializeField] public int currentAmountOfFood;
+    [SerializeField] private GameObject appleItemPrefab;
 
     private void Start() {
         currentAmountOfFood = 0;
     }
 
+    private void Update() {
+        amountOfFoodText.text = currentAmountOfFood.ToString();
+    }
+
     private void OnMouseEnter() {
-        ShowAmountOfFood();
+        amountOfFoodContainer.gameObject.SetActive(true);
     }
 
     private void OnMouseExit() {
-        HideAmountOfFood();
+        amountOfFoodContainer.gameObject.SetActive(false);
+    }
+
+    private void OnMouseOver() {
+        if (Input.GetMouseButtonDown(1) && currentAmountOfFood > 0) {
+            Vector3 spawnItemsVector3 = transform.position + new Vector3(1f, 0, 0);
+            Instantiate(appleItemPrefab, spawnItemsVector3, transform.rotation);
+            currentAmountOfFood--;
+        }
     }
 
     public void IncreaseFoodAmount(int amount, int amountInStack) {
         currentAmountOfFood += (amount * amountInStack);
         AudioManager.instance.Play("Click");
-
-        StartCoroutine(FindObjectOfType<FoodManager>().UpdateFoodCo());
 
     }
 
@@ -34,12 +45,5 @@ public class Fridge : MonoBehaviour
         currentAmountOfFood -= amount;
     }
 
-    public void ShowAmountOfFood() {
-        amountOfFoodContainer.gameObject.SetActive(true);
-        amountOfFoodText.text = currentAmountOfFood.ToString();
-    }
 
-    public void HideAmountOfFood() {
-        amountOfFoodContainer.gameObject.SetActive(false);
-    }
 }

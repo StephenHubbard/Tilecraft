@@ -16,7 +16,7 @@ public class Archer : MonoBehaviour
     [SerializeField] private GameObject knightPrefab;
     [SerializeField] private GameObject archerArrowPrefab;
 
-    private Transform currentTarget = null;
+    public Transform currentTarget = null;
 
 
     private Enemy enemyTarget = null;
@@ -27,6 +27,7 @@ public class Archer : MonoBehaviour
 
     private void Awake() {
         myAnimator = GetComponent<Animator>();
+        foodNeededToUpCombatValue = foodNeeded;
     }
 
 
@@ -39,8 +40,13 @@ public class Archer : MonoBehaviour
         DetectCombat();
 
 
-        foodNeededToUpCombatValue = foodNeeded;
         
+    }
+
+    private void Update() {
+        if (currentTarget == null && GetComponent<PlacedItem>()) {
+            StopAttacking();
+        }
     }
 
     private void DetectCombat() {
@@ -63,8 +69,9 @@ public class Archer : MonoBehaviour
         }
     }
 
-    public void TransferStrength(int currentStrength) {
+    public void TransferStrength(int currentStrength, int currentFoodNeeded) {
         myWorkingStrength = currentStrength;
+        foodNeededToUpCombatValue = currentFoodNeeded;
     }
 
         public void TransferHealth(int currentHealth) {

@@ -146,6 +146,11 @@ public class CraftingManager : MonoBehaviour
 
         audioManager.Play("Pop");
         GetComponent<Tile>().currentPlacedResources.Clear();
+
+        if (GetComponent<Tile>().currentPlacedItem && GetComponent<Tile>().currentPlacedItem.GetComponent<Furnace>()) {
+            GetComponent<Tile>().currentPlacedItem.GetComponent<Furnace>().occupiedWithResourceInFurance = false;
+            GetComponent<Tile>().currentPlacedItem.GetComponent<Furnace>().HideOccupiedSpriteContainer();
+        }
     }
 
     public void AllWorkersHaveDiedCheck() {

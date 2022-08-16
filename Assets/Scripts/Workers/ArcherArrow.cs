@@ -17,6 +17,7 @@ public class ArcherArrow : MonoBehaviour
                 Destroy(gameObject);
             }
         } else {
+            archerThatLaunchedArrow.GetComponent<Archer>().currentTarget = null;
             Destroy(gameObject);
         }
     }

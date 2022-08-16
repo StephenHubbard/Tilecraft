@@ -23,6 +23,7 @@ public class Worker : MonoBehaviour
 
     private void Awake() {
         myAnimator = GetComponent<Animator>();
+        foodNeededToUpPickaxeStrengthCurrent = foodNeededToUpPickaxeStrengthStart;
     }
 
     private void Start() {
@@ -35,7 +36,6 @@ public class Worker : MonoBehaviour
 
         itemInfo.toolTipText = "strength value: " + myWorkingStrength.ToString();
 
-        foodNeededToUpPickaxeStrengthCurrent = foodNeededToUpPickaxeStrengthStart;
     }
 
     private void DetectCombat() {
@@ -58,8 +58,9 @@ public class Worker : MonoBehaviour
         }
     }
 
-    public void TransferStrength(int currentStrength) {
+    public void TransferStrength(int currentStrength, int currentFoodNeeded) {
         myWorkingStrength = currentStrength;
+        foodNeededToUpPickaxeStrengthCurrent = currentFoodNeeded;
     }
 
     public void FeedWorker(int amount, bool playCrunch) {

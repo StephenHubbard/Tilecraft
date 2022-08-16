@@ -24,6 +24,7 @@ public class Knight : MonoBehaviour
 
     private void Awake() {
         myAnimator = GetComponent<Animator>();
+        foodNeededToUpCombatValue = foodNeeded;
     }
 
 
@@ -35,7 +36,6 @@ public class Knight : MonoBehaviour
 
         DetectCombat();
 
-        foodNeededToUpCombatValue = foodNeeded;
     }
 
     private void DetectCombat() {
@@ -58,8 +58,9 @@ public class Knight : MonoBehaviour
         }
     }
 
-    public void TransferStrength(int currentStrength) {
+    public void TransferStrength(int currentStrength, int foodNeeded) {
         myWorkingStrength = currentStrength;
+        foodNeededToUpCombatValue = foodNeeded;
     }
 
         public void TransferHealth(int currentHealth) {
@@ -121,7 +122,7 @@ public class Knight : MonoBehaviour
     public void LevelUpStrength(int leftoverAmountOfFood) {
         GameObject levelUpPrefabAnim = Instantiate(levelUpAnimPrefab, transform.position + new Vector3(0, .5f, 0), transform.rotation);
         StartCoroutine(DestroyStarPrefabCo(levelUpPrefabAnim));
-        myWorkingStrength++;
+        myCombatValue++;
         foodNeeded *= Mathf.CeilToInt(1.5f);
         foodNeededToUpCombatValue = foodNeeded;
         if (leftoverAmountOfFood > 0) {
