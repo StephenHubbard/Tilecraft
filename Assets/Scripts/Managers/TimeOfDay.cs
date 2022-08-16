@@ -115,7 +115,6 @@ public class TimeOfDay : MonoBehaviour
 
             if (tier == 2 && WorldGeneration.instance.ReturnTierTwoBoundries(x, y))
             {
-                print(x + " " + y);
                 DetermineWhichItem(allSpawnableItems, tile);
             } else if (tier == 1) {
                 DetermineWhichItem(allSpawnableItems, tile);

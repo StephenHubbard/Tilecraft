@@ -1843,7 +1843,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 6
+  orthographic size: 7.378444
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -3702,9 +3702,9 @@ MonoBehaviour:
     pitch: 1
     source: {fileID: 0}
   - name: Theme Music
-    clip: {fileID: 8300000, guid: 707dab3c1eadefd469ea561fea3666b5, type: 3}
+    clip: {fileID: 8300000, guid: dff850f87763df845b812925470999c7, type: 3}
     loop: 1
-    volume: 0.25
+    volume: 0.4
     pitch: 1
     source: {fileID: 0}
   - name: Sell
@@ -3793,6 +3793,18 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Level Up
     clip: {fileID: 8300000, guid: f496ee49452356c42b44918f0ebc872d, type: 3}
+    loop: 0
+    volume: 0.529
+    pitch: 1
+    source: {fileID: 0}
+  - name: Knight Equip
+    clip: {fileID: 8300000, guid: f3366538b8a9b5340aa99a79aec788c5, type: 3}
+    loop: 0
+    volume: 0.529
+    pitch: 1
+    source: {fileID: 0}
+  - name: Archer Equip
+    clip: {fileID: 8300000, guid: 5d373332e347fab45a1b84377d092d41, type: 3}
     loop: 0
     volume: 0.529
     pitch: 1
@@ -6812,7 +6824,7 @@ MonoBehaviour:
   m_Follow: {fileID: 1741666895}
   m_Lens:
     FieldOfView: 34
-    OrthographicSize: 6
+    OrthographicSize: 7.378444
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
