@@ -17,6 +17,7 @@ public class House : MonoBehaviour
 
     private void Start() {
         HousingManager.instance.DetectHowManyHouses();
+        HousingManager.instance.DetectTotalPopulation();
         workerPoints = GetComponentInParent<Tile>().workerPoints;
         timeToHaveBabyCurrent = timeToHaveBabyTotal;
         DetectBabyMaking();
@@ -43,7 +44,7 @@ public class House : MonoBehaviour
         }
 
         if (amountOfCurrentWorkersOnTile == 2) {
-            if (HousingManager.instance.currentWorkers < HousingManager.instance.maximumWorkers) {
+            if (HousingManager.instance.currentPopulation < HousingManager.instance.maximumPopulation) {
                 StartBabyMaking();
             } else {
                 print("not enough housing");

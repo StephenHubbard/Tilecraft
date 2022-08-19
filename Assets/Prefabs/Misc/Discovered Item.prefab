@@ -97,6 +97,7 @@ MonoBehaviour:
   shownItemsContainer: {fileID: 0}
   isPackIcon: 0
   isEncyclopediaIcon: 1
+  toDoListActiveBorderPrefab: {fileID: 1006484949603519678, guid: 0357f7a78b5adc44988d7fb57b0624ca, type: 3}
 --- !u!114 &3265991888278115662
 MonoBehaviour:
   m_ObjectHideFlags: 0

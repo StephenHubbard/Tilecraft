@@ -10,6 +10,7 @@ public class CraftingManager : MonoBehaviour
     [SerializeField] private float startingCraftTime;
     [SerializeField] private float currentCraftTime;
     [SerializeField] public RecipeInfo recipeInfo;
+    [SerializeField] private GameObject coinSellAnim;
     
     private int amountOfWorkers;
     private int totalWorkerStrength;
@@ -178,7 +179,8 @@ public class CraftingManager : MonoBehaviour
 
     public void PopOutNewItemFromRecipe() {
         Vector3 spawnItemsVector3 = transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), -1);
-        Instantiate(recipeInfo.itemInfo.draggableItemPrefab, spawnItemsVector3, transform.rotation);
+        GameObject craftedItem = Instantiate(recipeInfo.itemInfo.draggableItemPrefab, spawnItemsVector3, transform.rotation);
+        AutoSellCraftedItem(craftedItem);
         encyclopedia.AddItemToDiscoveredList(recipeInfo.itemInfo);
 
         foreach (var recipe in recipeInfo.itemInfo.recipeInfo.neededRecipeItems)
@@ -199,5 +201,12 @@ public class CraftingManager : MonoBehaviour
         }
 
         CheckCanStartCrafting();
+    }
+
+    private void AutoSellCraftedItem(GameObject craftedItem) {
+        if(GetComponent<Tile>().isAutoSellOn) {
+            craftedItem.GetComponent<Stackable>().isSellable = true;
+            EconomyManager.instance.SellItem(craftedItem, craftedItem.GetComponent<DraggableItem>().itemInfo.coinValue, 1);
+        }
     }
 }

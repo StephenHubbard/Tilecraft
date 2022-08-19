@@ -86,7 +86,7 @@ public class Encyclopedia : MonoBehaviour
         OnPointerExitDelegate();
     }
 
-    private void DisplayWhatRecipesCanBeMade(Transform sender) {
+    public void DisplayWhatRecipesCanBeMade(Transform sender) {
         OnPointerExitDelegate();
         bottomContainerText.text = "Can Craft:";
         currentInspectedItem.transform.parent.gameObject.SetActive(true);
@@ -147,11 +147,11 @@ public class Encyclopedia : MonoBehaviour
         discoveredItem.GetComponent<Image>().sprite = newItem.itemSprite;
         discoveredItem.GetComponent<UITooltip>().itemInfo = newItem;
 
-        EventTrigger thisClickTrigger = discoveredItem.GetComponent<EventTrigger>();
-        EventTrigger.Entry clickEntry = new EventTrigger.Entry();
-        clickEntry.eventID = EventTriggerType.PointerClick;
-        clickEntry.callback.AddListener((data) => { DisplayWhatRecipesCanBeMade(discoveredItem.transform); });
-        thisClickTrigger.triggers.Add(clickEntry);
+        // EventTrigger thisClickTrigger = discoveredItem.GetComponent<EventTrigger>();
+        // EventTrigger.Entry clickEntry = new EventTrigger.Entry();
+        // clickEntry.eventID = EventTriggerType.PointerClick;
+        // clickEntry.callback.AddListener((data) => { DisplayWhatRecipesCanBeMade(discoveredItem.transform); });
+        // thisClickTrigger.triggers.Add(clickEntry);
 
         EventTrigger thisHoverTrigger = discoveredItem.GetComponent<EventTrigger>();
         EventTrigger.Entry hoverEntry = new EventTrigger.Entry();

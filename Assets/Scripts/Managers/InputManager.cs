@@ -52,8 +52,8 @@ public class InputManager : MonoBehaviour
             ToolTipManager.instance.isOverUI = false;
         }
 
-        UpdateInteractablesInput();
         UpdateTileInput();
+        UpdateInteractablesInput();
     }
 
     private void UpdateTileInput() {
@@ -81,6 +81,12 @@ public class InputManager : MonoBehaviour
                 if (Input.GetMouseButtonDown(1)) {
                     if (isRayBeingBlocked == false) {
                         thisTile.GetComponent<Tile>().PluckItemsOffTile();
+                    }
+                }
+
+                if (Input.GetMouseButtonDown(0) && Input.GetKey(KeyCode.LeftShift) && thisTile.currentPlacedItem && thisTile.currentPlacedItem.GetComponent<PlacedItem>().itemInfo.isStationary && thisTile.currentPlacedItem.GetComponent<PlacedItem>().itemInfo.potentialOffSpring.Length > 0) {
+                    if (isRayBeingBlocked == false) {
+                        thisTile.GetComponent<Tile>().ToggleAutoSell();
                     }
                 }
             }
@@ -145,34 +151,13 @@ public class InputManager : MonoBehaviour
                 }
                 lowestZGameObject2.GetComponent<Stackable>().FindAmountOfChildren(lowestZGameObject2);
                 EconomyManager.instance.SellItem(lowestZGameObject2.gameObject, lowestZGameObject2.GetComponent<DraggableItem>().itemInfo.coinValue, lowestZGameObject2.GetComponent<Stackable>().amountOfChildItems);
+
+                if (lowestZGameObject2.gameObject.GetComponent<Worker>()) {
+                    StartCoroutine(HousingManager.instance.GetAmountOfTotalPopulationCo());
+                }
             }
         }
 
-        // SPRITE CIRCLE INTERACTABLE HIGHLIGHT - WORKING BUT KINDA ANNOYING 
-        // RaycastHit2D[] hitInteractable = Physics2D.RaycastAll(UtilsClass.GetMouseWorldPosition(), Vector2.zero, 100f, interactableLayerMask);
-
-        // if (hitInteractable.Length > 0) {
-
-        //     Transform lowestZGameObject = null;
-
-        //     foreach (var item in hitInteractable)
-        //     {
-        //         if (lowestZGameObject == null) {
-        //             lowestZGameObject = item.transform;
-        //         } else if (item.transform.position.y < lowestZGameObject.position.y) {
-        //             lowestZGameObject = item.transform;
-        //         }
-        //     }
-
-        //     if (lowestZGameObject != null) {
-        //         CircleHighlightOn();
-        //         circleHighlight.transform.position = lowestZGameObject.transform.position;
-
-        //         return;
-        //     } 
-
-        // } else {
-        //     CircleHighlightOff();
     }
 
     public Vector2 GetCameraMoveVector()

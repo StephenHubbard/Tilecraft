@@ -2,14 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-
+using UnityEngine.UI;
 public class HousingManager : MonoBehaviour
 {
-  [SerializeField] public int maximumWorkers;
-  [SerializeField] public int currentWorkers;
-  [SerializeField] private TMP_Text housingText;
-  [SerializeField] private int startingWorkers;
+  [SerializeField] public int maximumPopulation;
+  [SerializeField] public int currentPopulation;
+  [SerializeField] private int startingPopulation;
   [SerializeField] private int housePopValue = 5;
+  [SerializeField] private Slider slider;
+  [SerializeField] private TMP_Text housingText;
 
   public static HousingManager instance;
 
@@ -20,29 +21,38 @@ public class HousingManager : MonoBehaviour
   }
 
   private void Start() {
-    DetectHowManyWorkers();
     DetectHowManyHouses();
+    DetectTotalPopulation();
   }
 
   private void Update() {
-    housingText.text = currentWorkers.ToString() + "/" + maximumWorkers.ToString();
+    housingText.text = currentPopulation.ToString() + "/" + maximumPopulation.ToString();
+    slider.maxValue = maximumPopulation;
+    slider.value = currentPopulation;
   }
 
-  public void DetectHowManyWorkers() {
-    Worker[] amountOfWorkers = FindObjectsOfType<Worker>();
-    currentWorkers = amountOfWorkers.Length;
+  public void DetectTotalPopulation() {
+    Population[] totalPop = FindObjectsOfType<Population>();
+    currentPopulation = totalPop.Length;
   }
+
 
   public void DetectHowManyHouses() {
     House[] amountOfHouses = FindObjectsOfType<House>();
-    maximumWorkers = (amountOfHouses.Length * housePopValue) + startingWorkers;
+    maximumPopulation = (amountOfHouses.Length * housePopValue) + startingPopulation;
   }
 
   public void AddNewWorker() {
-    currentWorkers++;
+    currentPopulation++;
+    StartCoroutine(GetAmountOfTotalPopulationCo());
+  }
+
+  public IEnumerator GetAmountOfTotalPopulationCo() {
+    yield return new WaitForEndOfFrame();
+    DetectTotalPopulation();
   }
 
   public void AddNewHouse(int amountHouseAdds) {
-    maximumWorkers += amountHouseAdds;
+    maximumPopulation += amountHouseAdds;
   }
 }

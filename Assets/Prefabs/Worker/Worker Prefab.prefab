@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: -5672351691741752047}
   - component: {fileID: 2548897153402979144}
   - component: {fileID: 6258026925614194309}
+  - component: {fileID: 4444923049982846619}
   m_Layer: 8
   m_Name: Worker Prefab
   m_TagString: Untagged
@@ -86,6 +87,10 @@ MonoBehaviour:
   deadWorkerOnTilePrefab: {fileID: 994099794024727751, guid: 6ee3fd62186ba5f4bbffef744e94fd5b, type: 3}
   deadWorkerItemPrefab: {fileID: 4812397909494241834, guid: 9babb8865d7eb6040b2a905aab024264, type: 3}
   levelUpAnimPrefab: {fileID: 0}
+  myWorkingStrength: 1
+  myCombatValue: 1
+  archerPrefab: {fileID: 0}
+  knightPrefab: {fileID: 0}
   foodNeededToUpPickaxeStrengthCurrent: 0
   foodNeededToUpPickaxeStrengthStart: 3
   itemInfo: {fileID: 11400000, guid: 7ecdb19248e9de349ba40029c73a2f12, type: 2}
@@ -127,6 +132,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &4444923049982846619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 994099794024727751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96846f3f0f94fdb47ab30878ee3bc09f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8070009926642562203
 GameObject:
   m_ObjectHideFlags: 0

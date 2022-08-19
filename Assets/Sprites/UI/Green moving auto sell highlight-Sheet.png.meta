@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: befafbb31a074dd46b6efb600b5ef480
+guid: cf4b0b209246b0446ac7eed4d3137f8e
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -104,148 +104,85 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: RankSpriteSheet_0
+      name: Green moving auto sell highlight-Sheet_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 16
-        height: 16
+        width: 53
+        height: 53
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: faefca388077dab4e8eaaed71fca1f49
-      internalID: 1961484188
+      spriteID: e0a7c62112dd58a4fa95ed86bccf7858
+      internalID: 1623396735
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RankSpriteSheet_1
+      name: Green moving auto sell highlight-Sheet_1
       rect:
         serializedVersion: 2
-        x: 16
+        x: 53
         y: 0
-        width: 16
-        height: 16
+        width: 53
+        height: 53
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cfd56cdbfebc2d8438c361d39d51e103
-      internalID: -564852691
+      spriteID: d639968807794b54b8933184d9c3a845
+      internalID: -715667765
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RankSpriteSheet_2
+      name: Green moving auto sell highlight-Sheet_2
       rect:
         serializedVersion: 2
-        x: 32
+        x: 106
         y: 0
-        width: 16
-        height: 16
+        width: 53
+        height: 53
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c503510ad053918439473f4afa8c8998
-      internalID: 1716069513
+      spriteID: 29c9178475b44b04eba384f2a5069113
+      internalID: -625443551
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RankSpriteSheet_3
+      name: Green moving auto sell highlight-Sheet_3
       rect:
         serializedVersion: 2
-        x: 48
+        x: 159
         y: 0
-        width: 16
-        height: 16
+        width: 53
+        height: 53
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fc3ebf6b23aa2f34caf33d2e8b392e84
-      internalID: -1153319899
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: RankSpriteSheet_4
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0da1c83801f55634891f62f1a0ec7a00
-      internalID: -699140302
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: RankSpriteSheet_5
-      rect:
-        serializedVersion: 2
-        x: 80
-        y: 0
-        width: 18
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e614921e644259a4f8d3f311a3f9722c
-      internalID: 44612393
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: RankSpriteSheet_6
-      rect:
-        serializedVersion: 2
-        x: 112
-        y: 0
-        width: 14
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 726707576fac45e4383f061b75f0c9a8
-      internalID: -1847432843
+      spriteID: 5aa7368468794ea408ffb4903d905ca9
+      internalID: -925979476
       vertices: []
       indices: 
       edges: []
@@ -261,13 +198,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      RankSpriteSheet_5: 44612393
-      RankSpriteSheet_0: 1961484188
-      RankSpriteSheet_1: -564852691
-      RankSpriteSheet_3: -1153319899
-      RankSpriteSheet_6: -1847432843
-      RankSpriteSheet_2: 1716069513
-      RankSpriteSheet_4: -699140302
+      Green moving auto sell highlight-Sheet_2: -625443551
+      Green moving auto sell highlight-Sheet_3: -925979476
+      Green moving auto sell highlight-Sheet_1: -715667765
+      Green moving auto sell highlight-Sheet_0: 1623396735
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

@@ -6,11 +6,11 @@ using UnityEngine.UI;
 
 public class EconomyManager : MonoBehaviour
 {
-    // [SerializeField] private TMP_Text coinText;
     [SerializeField] public int currentCoins = 0;
     [SerializeField] public int coinsTillDiscovery = 5;
     [SerializeField] private GameObject spinningCoinPrefab;
     [SerializeField] private Slider slider;
+    [SerializeField] private TMP_Text coinText;
 
     public static EconomyManager instance;
 
@@ -26,7 +26,7 @@ public class EconomyManager : MonoBehaviour
     }
 
     private void Update() {
-        // coinText.text = currentCoins.ToString();
+        coinText.text = currentCoins.ToString() + "/" + coinsTillDiscovery.ToString();
     }
 
     public void CheckDiscovery(int amount) {
@@ -57,7 +57,7 @@ public class EconomyManager : MonoBehaviour
         if (thisObj.GetComponent<Stackable>().isSellable == false) { return; }
 
         if (thisObj.GetComponent<Worker>()) {
-            HousingManager.instance.DetectHowManyWorkers();
+            HousingManager.instance.DetectTotalPopulation();
         }
 
         AudioManager.instance.Play("Sell");

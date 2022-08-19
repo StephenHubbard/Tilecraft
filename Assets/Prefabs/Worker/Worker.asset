@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Worker
   itemSprite: {fileID: -1736298917, guid: 48d8443122268c748a050518cd6fd91d, type: 3}
-  coinValue: 1
+  coinValue: 0
   draggableItemPrefab: {fileID: 4812397909494241834, guid: 4fea6c41e7173da44bdb63fc54b8a34a, type: 3}
   onTilePrefab: {fileID: 994099794024727751, guid: e3ee011d0d473cc43b6160ebf59dfbda, type: 3}
   tileInfoValidLocations:

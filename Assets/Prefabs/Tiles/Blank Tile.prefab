@@ -693,6 +693,8 @@ MonoBehaviour:
   - {fileID: 4326491989489227075}
   - {fileID: 5155303251552824129}
   buildingPlacementSmokePrefab: {fileID: 6349002128902621385, guid: 83991efcb26e6c740a104c8ce159d0cc, type: 3}
+  autoSellPrefabAnim: {fileID: 5839083370916027889, guid: 225ca951a7098fb4087b45b88aa0dec8, type: 3}
+  isAutoSellOn: 0
   isOccupiedWithBuilding: 0
   isOccupiedWithWorkers: 0
   isOccupiedWithResources: 0
@@ -713,6 +715,7 @@ MonoBehaviour:
   startingCraftTime: 10
   currentCraftTime: 0
   recipeInfo: {fileID: 0}
+  coinSellAnim: {fileID: 1739528165412195027, guid: 98ef04f86f1e79e4d92029645517e4cc, type: 3}
   amountLeftToCraft: 0
   startAmountToCraft: 0
   hasCompleteRecipe: 0
@@ -791,7 +794,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: -2
   m_Sprite: {fileID: 21300000, guid: 7db9adc3678093b4c9c34c145fc8e6ef, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

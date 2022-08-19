@@ -15,6 +15,10 @@ public class Tile : MonoBehaviour
     [SerializeField] public Transform[] workerPoints;
     [SerializeField] public Transform[] resourcePoints;
     [SerializeField] private GameObject buildingPlacementSmokePrefab;
+    [SerializeField] private GameObject autoSellPrefabAnim;
+
+    private GameObject thisTileAutoSellBorder;
+    public bool isAutoSellOn = false;
 
     public bool isOccupiedWithBuilding = false;
     public bool isOccupiedWithWorkers = false;
@@ -34,6 +38,20 @@ public class Tile : MonoBehaviour
         currentPlacedResources.Add(itemInfo);
         currentPlacedItem.GetComponent<PlacedItem>().CheckForValidRecipe();
 
+    }
+
+    public void ToggleAutoSell() {
+        if (!isAutoSellOn) {
+            thisTileAutoSellBorder = Instantiate(autoSellPrefabAnim, transform.position, transform.rotation);
+            thisTileAutoSellBorder.transform.SetParent(this.transform);
+            thisTileAutoSellBorder.transform.position = this.transform.position;
+            isAutoSellOn = true;
+            AudioManager.instance.Play("ClickTwo");
+        } else if (isAutoSellOn) {
+            Destroy(thisTileAutoSellBorder);
+            isAutoSellOn = false;
+            AudioManager.instance.Play("ClickTwo");
+        }
     }
 
     public void UpdateCurrentPlacedResourceList(ItemInfo itemInfo) {
@@ -186,8 +204,7 @@ public class Tile : MonoBehaviour
     }
 
     private void PopTileCleanUp() {
-
-        isOccupiedWithWorkers = false;
+        StartCoroutine(WorkerFrameDelay());
         isOccupiedWithResources = false;
 
         if (currentPlacedItem) {
@@ -203,6 +220,11 @@ public class Tile : MonoBehaviour
         }
 
         craftingManager.WorkerCountToZero();
+    }
+
+    private IEnumerator WorkerFrameDelay() {
+        yield return new WaitForEndOfFrame();
+        isOccupiedWithWorkers = false;
     }
 
     public void DoneCraftingDestroyItem() {

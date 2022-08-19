@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
+using UnityEngine.EventSystems;
 
-public class UITooltip : MonoBehaviour
+public class UITooltip : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] public string toolTipName;
 
@@ -19,6 +21,9 @@ public class UITooltip : MonoBehaviour
 
     private EconomyManager economyManager;
     private ToolTipManager toolTipManager;
+
+    [SerializeField] private GameObject toDoListActiveBorderPrefab;
+
 
     private void Awake() {
         economyManager = FindObjectOfType<EconomyManager>();
@@ -36,8 +41,47 @@ public class UITooltip : MonoBehaviour
         }
     }
 
-    private void Update() {
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (eventData.button == PointerEventData.InputButton.Left) {
+            Encyclopedia.instance.DisplayWhatRecipesCanBeMade(transform);
+        }
+
+        if (eventData.button == PointerEventData.InputButton.Right) { 
+
+            if (itemInfo && !IsItemAlreadyInToDoList() && ToDoManager.instance.toDoList.Count < 4) {
+                ToDoManager.instance.SetNewToDoList(itemInfo);
+                GameObject newBorder = Instantiate(toDoListActiveBorderPrefab, transform.position, transform.rotation);
+                newBorder.transform.SetParent(this.transform);
+                newBorder.transform.localScale = new Vector3(1.05f, 1.05f, 1.05f);
+            } else {
+                foreach (var item in ToDoManager.instance.toDoList)
+                {
+                    
+                    if (item.GetComponent<ToDoList>().itemInfo == itemInfo) {
+                        ToDoManager.instance.toDoList.Remove(item.gameObject);
+                        Destroy(item.gameObject);
+                        Destroy(transform.GetChild(0).gameObject);
+                        break;
+                    }
+                }
+            }
+            
+        }
+
     }
+
+    private bool IsItemAlreadyInToDoList() {
+        foreach (var item in ToDoManager.instance.toDoList)
+        {
+            if (item.GetComponent<ToDoList>().itemInfo == itemInfo) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
 
     public void UpdatePackUIToolTip() {
 

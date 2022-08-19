@@ -564,6 +564,7 @@ GameObject:
   - component: {fileID: 4812397909494241839}
   - component: {fileID: -3316961845721695248}
   - component: {fileID: 3348318147238000108}
+  - component: {fileID: 7034581718690885001}
   m_Layer: 6
   m_Name: Item_Knight
   m_TagString: Untagged
@@ -691,6 +692,18 @@ MonoBehaviour:
   archerPrefab: {fileID: 4812397909494241834, guid: c715ab559fc0ebe438735b9bd7581ef4, type: 3}
   workerPrefab: {fileID: 4812397909494241834, guid: 4fea6c41e7173da44bdb63fc54b8a34a, type: 3}
   myHealth: 5
+--- !u!114 &7034581718690885001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4812397909494241834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96846f3f0f94fdb47ab30878ee3bc09f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4812397909912382413
 GameObject:
   m_ObjectHideFlags: 0

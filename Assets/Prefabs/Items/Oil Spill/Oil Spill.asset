@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a967a3f0f99c934bb9b8a89e7f72db0, type: 3}
+  m_Name: Oil Spill
+  m_EditorClassIdentifier: 
+  itemName: Oil Spill
+  itemSprite: {fileID: 21300000, guid: 3d081bf8f9aef674ca33d9890a7301db, type: 3}
+  coinValue: 1
+  draggableItemPrefab: {fileID: 4812397909494241834, guid: 49854a3a301218d439592c3d32d7f774, type: 3}
+  onTilePrefab: {fileID: 994099794024727751, guid: 0915225f9306371449511024d4306191, type: 3}
+  tileInfoValidLocations:
+  - {fileID: 11400000, guid: 5f31d55a53bbe2f479011bab64202e0c, type: 2}
+  recipeInfo: {fileID: 11400000, guid: 1c28b10a3c2fcd5489bb2826373d1816, type: 2}
+  amountRecipeCanCreate: 2
+  potentialOffSpring:
+  - {fileID: 11400000, guid: 843fce4866b3f3a40a4b1d684ae6b44a, type: 2}
+  isResourceOnly: 0
+  isStationary: 0
+  isSmeltable: 0
+  foodValue: 0
+  toolTipText: Can only be placed on a plains tile
+  tierGroup: 1

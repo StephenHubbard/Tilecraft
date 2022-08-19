@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2548897153402979144}
   - component: {fileID: 6258026925614194309}
   - component: {fileID: 1208764631046024892}
+  - component: {fileID: -1398967762191156472}
   m_Layer: 8
   m_Name: Archer Prefab
   m_TagString: Untagged
@@ -124,12 +125,25 @@ MonoBehaviour:
   levelUpAnimPrefab: {fileID: 0}
   myWorkingStrength: 0
   myCombatValue: 1
-  foodNeededToUpPickaxeStrengthCurrent: 0
-  foodNeededToUpPickaxeStrengthStart: 3
+  foodNeededToUpCombatValue: 0
+  foodNeeded: 3
   workerPrefab: {fileID: 4812397909494241834, guid: 4fea6c41e7173da44bdb63fc54b8a34a, type: 3}
   knightPrefab: {fileID: 4812397909494241834, guid: 0a3f66f9d8017864fb7cf306cf6c630d, type: 3}
   archerArrowPrefab: {fileID: 7841289795254243318, guid: 75287fdfb26479d49b0cc45414db2410, type: 3}
+  currentTarget: {fileID: 0}
   myHealth: 6
+--- !u!114 &-1398967762191156472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 994099794024727751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96846f3f0f94fdb47ab30878ee3bc09f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8070009926642562203
 GameObject:
   m_ObjectHideFlags: 0

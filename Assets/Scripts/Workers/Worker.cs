@@ -90,7 +90,7 @@ public class Worker : MonoBehaviour
                 transform.GetChild(1).transform.SetParent(null);
             }
             AudioManager.instance.Play("Knight Equip");
-            HousingManager.instance.DetectHowManyWorkers();
+            HousingManager.instance.GetAmountOfTotalPopulationCo();
             Destroy(gameObject);
         }
 
@@ -101,7 +101,7 @@ public class Worker : MonoBehaviour
                 transform.GetChild(1).transform.SetParent(null);
             }
             AudioManager.instance.Play("Archer Equip");
-            HousingManager.instance.DetectHowManyWorkers();
+            HousingManager.instance.GetAmountOfTotalPopulationCo();
             Destroy(gameObject);
         }
 
