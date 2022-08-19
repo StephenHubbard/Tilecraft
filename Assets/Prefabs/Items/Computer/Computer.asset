@@ -10,23 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7a967a3f0f99c934bb9b8a89e7f72db0, type: 3}
-  m_Name: Battery
+  m_Name: Computer
   m_EditorClassIdentifier: 
-  itemName: Battery
-  itemSprite: {fileID: 21300000, guid: d0aef3b797570344da2b2876c350d8e1, type: 3}
+  itemName: Computer
+  itemSprite: {fileID: 21300000, guid: 0477bced97efd5a49a4ae6824999e359, type: 3}
   coinValue: 1
-  draggableItemPrefab: {fileID: 4812397909494241834, guid: 7ddad830cadd97947a07282865f6bf18, type: 3}
-  onTilePrefab: {fileID: 994099794024727751, guid: 17e5c518a3cab9240957be437f7c01c5, type: 3}
+  draggableItemPrefab: {fileID: 4812397909494241834, guid: 631c71fabd7262b41ac14673bcf73fc9, type: 3}
+  onTilePrefab: {fileID: 994099794024727751, guid: b09607e4798dd7840bc03e5a9d98eda4, type: 3}
   tileInfoValidLocations:
   - {fileID: 11400000, guid: e492befd9aee1b645b08c2b5e24460b2, type: 2}
   - {fileID: 11400000, guid: 5f31d55a53bbe2f479011bab64202e0c, type: 2}
   - {fileID: 11400000, guid: 683019bb58be0914385796f71488de33, type: 2}
   - {fileID: 11400000, guid: 68eb43c7510400947b95468668236dc7, type: 2}
-  recipeInfo: {fileID: 11400000, guid: 7915cff24fc09624c95f62b98bde6904, type: 2}
-  amountRecipeCanCreate: 1000
-  potentialOffSpring:
-  - {fileID: 11400000, guid: 60dfa5edbd711ff4cad9ff27e261a28e, type: 2}
-  - {fileID: 11400000, guid: e7cd8e42349fae04e8c81d15f3768cfe, type: 2}
+  recipeInfo: {fileID: 11400000, guid: 2c7631dcd96744640a56881ab3422ea3, type: 2}
+  amountRecipeCanCreate: 1
+  potentialOffSpring: []
   isResourceOnly: 1
   isStationary: 0
   isSmeltable: 0

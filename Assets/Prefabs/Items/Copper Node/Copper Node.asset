@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a967a3f0f99c934bb9b8a89e7f72db0, type: 3}
+  m_Name: Copper Node
+  m_EditorClassIdentifier: 
+  itemName: Copper Node
+  itemSprite: {fileID: 21300000, guid: 1d93e4bc97231f147b14e0216d16931b, type: 3}
+  coinValue: 1
+  draggableItemPrefab: {fileID: 4812397909494241834, guid: 77ede0deaba48e147ae699bc440065cb, type: 3}
+  onTilePrefab: {fileID: 994099794024727751, guid: 571cb92ac0c59db4d86ce1519af515be, type: 3}
+  tileInfoValidLocations:
+  - {fileID: 11400000, guid: 683019bb58be0914385796f71488de33, type: 2}
+  recipeInfo: {fileID: 11400000, guid: 0ebd9df6212aba943b042a7eb65a2e34, type: 2}
+  amountRecipeCanCreate: 2
+  potentialOffSpring:
+  - {fileID: 11400000, guid: 376c55bd2cb6eb94b88302ce8e5df8bf, type: 2}
+  isResourceOnly: 0
+  isStationary: 0
+  isSmeltable: 0
+  foodValue: 0
+  toolTipText: Placed on a Stone tile to mine copper
+  tierGroup: 2

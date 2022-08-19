@@ -17,12 +17,18 @@ public class WorldGeneration : MonoBehaviour
 
     [SerializeField] private ItemInfo[] spawnableTileItemsTierOne;
     [SerializeField] private ItemInfo[] spawnableTileItemsTierTwo;
+    [SerializeField] private ItemInfo[] spawnableTileItemsTierThree;
     [SerializeField] private LayerMask tileLayerMask = new LayerMask();
 
     [SerializeField] private int tierTwoMinX;
     [SerializeField] private int tierTwoMaxX;
     [SerializeField] private int tierTwoMinY;
     [SerializeField] private int tierTwoMaxY;
+
+    [SerializeField] private int tierThreeMinX;
+    [SerializeField] private int tierThreeMaxX;
+    [SerializeField] private int tierThreeMinY;
+    [SerializeField] private int tierThreeMaxY;
     
     private Grid grid;
     private bool newTileSpawned = false;
@@ -47,6 +53,7 @@ public class WorldGeneration : MonoBehaviour
         GenStartingTilesAroundCenter();
         CreateHolesNearCenter();
         SpawnTierTwoItems();
+        SpawnTierThreeItems();
     }
 
     public Grid ReturnGrid() {
@@ -116,8 +123,55 @@ public class WorldGeneration : MonoBehaviour
                         }
                     }
                 }
+            }
+        }
+    }
 
+    private void SpawnTierThreeItems() {
+        for (int x = 0; x < grid.gridArray.GetLength(0); x ++) {
+            for (int y = 0; y < grid.gridArray.GetLength(1); y++) {
 
+                // non spawnable area for tier 3 items
+                // float cellSize = grid.ReturnCellSize();
+                if (!(x > tierThreeMinX && x < tierThreeMaxX) && !(y > tierThreeMinY && y < tierThreeMaxY)) 
+                { 
+                    if (grid.GetValue(x, y) == 1) {
+                        Vector3 worldPos = grid.GetWorldPosition(x, y);
+                        worldPos.x = worldPos.x + 1f;
+                        worldPos.y = worldPos.y + 1f;
+
+                        RaycastHit2D hit = Physics2D.Raycast(worldPos, Vector2.zero, 100f, tileLayerMask);
+
+                        if (hit && !hit.transform.GetComponent<Tile>().currentPlacedItem) {
+                            int doesSpawnStartingItemNum = Random.Range(1, 4);
+
+                            if (doesSpawnStartingItemNum == 1) {
+
+                                List<ItemInfo> potentialItems = new List<ItemInfo>();
+                                
+                                foreach (var potentialItem in spawnableTileItemsTierThree)
+                                {
+                                    foreach (var validLandTile in potentialItem.tileInfoValidLocations)
+                                    {
+
+                                        if (validLandTile == hit.transform.GetComponent<Tile>().tileInfo) {
+                                            potentialItems.Add(potentialItem);
+                                        }
+                                    }
+                                }
+                                int whichPrefabToSpawnNum = Random.Range(0, potentialItems.Count);
+                                
+                                if (potentialItems.Count == 0) { continue; }
+
+                                GameObject startingPlacedItem = Instantiate(potentialItems[whichPrefabToSpawnNum].onTilePrefab, hit.transform.transform.position, transform.rotation);
+                                startingPlacedItem.transform.parent = hit.transform.transform;
+                                hit.transform.GetComponent<Tile>().UpdateCurrentPlacedItem(startingPlacedItem.GetComponent<PlacedItem>().itemInfo, startingPlacedItem);
+                                hit.transform.GetComponent<Tile>().isOccupiedWithBuilding = true;
+                                hit.transform.GetComponent<CraftingManager>().UpdateAmountLeftToCraft(startingPlacedItem.GetComponent<PlacedItem>().itemInfo.amountRecipeCanCreate);
+                            }
+                        }
+                    }
+                }
             }
         }
     }
