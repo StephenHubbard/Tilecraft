@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66df1655cda175c4da55e2cd2c217479, type: 3}
+  m_Name: Game Win Recipe
+  m_EditorClassIdentifier: 
+  itemInfo: {fileID: 11400000, guid: 6e93d359a55ab514897ed9847d737cdc, type: 2}
+  neededRecipeItems:
+  - {fileID: 11400000, guid: 580b4d101dc44b643a01e7f1d4b220fa, type: 2}
+  - {fileID: 11400000, guid: 1aea73f55fdd4474a80c149f88825229, type: 2}
+  - {fileID: 11400000, guid: 5c3fc869392387947bac26dbb6ad1546, type: 2}
+  recipeCraftTime: 10
+  craftingClipString: Crafting Started
+  requiresFurnace: 0

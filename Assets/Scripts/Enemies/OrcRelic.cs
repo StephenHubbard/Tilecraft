@@ -6,7 +6,9 @@ public class OrcRelic : MonoBehaviour
 {
     [SerializeField] public Transform[] orcSpawnPoints;
     [SerializeField] private GameObject orcPrefab;
+    [SerializeField] private GameObject maskedOrc;
 
+    public bool isDrums = false;
     public bool hasEnemies = true;
 
     private void Start() {
@@ -21,7 +23,13 @@ public class OrcRelic : MonoBehaviour
             foreach (var spawnPoint in orcSpawnPoints)
             {
                 if (spawnPoint.childCount == 0 && howManyOrcsToSpawn > 0) {
-                    GameObject newOrc = Instantiate(orcPrefab, spawnPoint.transform.position, transform.rotation);
+                    GameObject newOrc;
+                    
+                    if (isDrums) {
+                        newOrc = Instantiate(maskedOrc, spawnPoint.transform.position, transform.rotation);
+                    } else {
+                        newOrc = Instantiate(orcPrefab, spawnPoint.transform.position, transform.rotation);
+                    }
                     newOrc.transform.SetParent(spawnPoint);
                     howManyOrcsToSpawn--;
                 }

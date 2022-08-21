@@ -67,7 +67,15 @@ public class DraggableItem : MonoBehaviour
 
             // furnace
             if (currentTile.currentPlacedItem != null) {
+
                 if (currentTile.currentPlacedItem.GetComponent<Furnace>() && itemInfo.isSmeltable && !currentTile.currentPlacedItem.GetComponent<Furnace>().occupiedWithResourceInFurance) {
+                    
+                    if (itemInfo.itemName == "Dead Worker" & !currentTile.currentPlacedItem.GetComponent<Furnace>().isAlter) {
+                        DetermineExtraItems(i);
+                        Destroy(gameObject);
+                        return;
+                    }
+
                     if (!currentTile.GetComponent<CraftingManager>().isCrafting) {
                         currentTile.currentPlacedItem.GetComponent<Furnace>().occupiedWithResourceInFurance = true;
                         currentTile.currentPlacedItem.GetComponent<Furnace>().UpdateCurrentOccupiedResourceSprite(itemInfo);

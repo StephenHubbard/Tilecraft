@@ -12,14 +12,20 @@ public class TimeOfDay : MonoBehaviour
 
     [SerializeField] private LayerMask cloudLayerMask = new LayerMask();
     [SerializeField] private GameObject newTileSmokePrefab;
+
+    public float totalTimeElapsed;
     
     private float clockSpinFactor;
     private bool countDownStarted = false;
 
     private FoodManager foodManager;
 
+    public static TimeOfDay instance;
+
 
     private void Awake() {
+        instance = this;
+
         foodManager = FindObjectOfType<FoodManager>();
     }
 
@@ -30,6 +36,7 @@ public class TimeOfDay : MonoBehaviour
 
     private void Update() {
         timeLeftInDay -= Time.deltaTime;
+        totalTimeElapsed += Time.deltaTime;
 
         handleParent.transform.eulerAngles = new Vector3(0, 0, timeLeftInDay * clockSpinFactor);
 

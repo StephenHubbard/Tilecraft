@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66df1655cda175c4da55e2cd2c217479, type: 3}
+  m_Name: Flint Recipe
+  m_EditorClassIdentifier: 
+  itemInfo: {fileID: 11400000, guid: 5fcc493fe547b424ebe02d85dc10eb99, type: 2}
+  neededRecipeItems:
+  - {fileID: 11400000, guid: 7b333da9a70418f439e2fb040ed4d7e5, type: 2}
+  - {fileID: 11400000, guid: 38fd101fb134f3f41b80b4e2165e3420, type: 2}
+  recipeCraftTime: 5
+  craftingClipString: Crafting Started
+  requiresFurnace: 0

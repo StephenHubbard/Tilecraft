@@ -12,6 +12,7 @@ public class EconomyManager : MonoBehaviour
     [SerializeField] private Slider slider;
     [SerializeField] private TMP_Text coinText;
 
+
     public static EconomyManager instance;
 
     private void Awake() {
@@ -27,6 +28,7 @@ public class EconomyManager : MonoBehaviour
 
     private void Update() {
         coinText.text = currentCoins.ToString() + "/" + coinsTillDiscovery.ToString();
+
     }
 
     public void CheckDiscovery(int amount) {

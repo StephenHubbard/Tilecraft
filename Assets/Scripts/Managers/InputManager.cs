@@ -186,18 +186,22 @@ public class InputManager : MonoBehaviour
 
     public float GetCameraZoomAmount()
     {
-        float zoomAmount = 0f;
+        if (!ToolTipManager.instance.isOverUI) { 
+            float zoomAmount = 0f;
 
-        if (Input.mouseScrollDelta.y > 0)
-        {
-            zoomAmount = -1f;
-        }
-        if (Input.mouseScrollDelta.y < 0)
-        {
-            zoomAmount = +1f;
-        }
+            if (Input.mouseScrollDelta.y > 0)
+            {
+                zoomAmount = -1f;
+            }
+            if (Input.mouseScrollDelta.y < 0)
+            {
+                zoomAmount = +1f;
+            }
 
-        return zoomAmount;
+            return zoomAmount;
+        } else {
+            return 0;
+        }
     }
 
     public void CircleHighlightOn() {

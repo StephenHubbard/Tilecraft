@@ -28,7 +28,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a7f0335e0ecbeab46882746bbfdfa2ec, type: 2}
   isResourceOnly: 1
   isStationary: 0
-  LeftInStack: 1
   isSmeltable: 1
   foodValue: 0
-  toolTipText: Pile of sand used for crafting
+  toolTipText: Requires Furnace
+  tierGroup: 0

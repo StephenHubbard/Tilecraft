@@ -144,6 +144,7 @@ public class Tile : MonoBehaviour
     }
 
     public void PluckItemsOffTile() {
+        if (ToolTipManager.instance.isOverUI) { return; }
         
         if (currentPlacedItem && currentPlacedItem.GetComponent<PlacedItem>().itemInfo.isStationary == false) {
             Destroy(currentPlacedItem);

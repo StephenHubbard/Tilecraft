@@ -7,6 +7,8 @@ public class Furnace : MonoBehaviour
     [SerializeField] private Transform currentResourceContainer;
     [SerializeField] private SpriteRenderer currentOccupiedSprite;
 
+    public bool isAlter = false;
+
     private ItemInfo currentlySmeltingItem;
     private int amountLeftToSmelt;
     public bool occupiedWithResourceInFurance = false;
@@ -33,6 +35,7 @@ public class Furnace : MonoBehaviour
         }
 
         currentlySmeltingItem = null;
+        occupiedWithResourceInFurance = false;
         currentResourceContainer.gameObject.SetActive(false);
     }
 

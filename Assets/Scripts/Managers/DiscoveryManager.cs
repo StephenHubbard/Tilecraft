@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DiscoveryManager : MonoBehaviour
 {
@@ -16,6 +17,9 @@ public class DiscoveryManager : MonoBehaviour
     [SerializeField] public List<ItemInfo> knownTierOneItems = new List<ItemInfo>();
     [SerializeField] public List<ItemInfo> knownTierTwoItems = new List<ItemInfo>();
     [SerializeField] public List<ItemInfo> knownTierThreeItems = new List<ItemInfo>();
+
+    [SerializeField] private GameObject newDiscoveryAnimPrefab;
+    [SerializeField] private Transform canvasUI;
 
     private void Awake() {
         instance = this;
@@ -76,6 +80,7 @@ public class DiscoveryManager : MonoBehaviour
         {
             if (!knownTierOneItems.Contains(item)) {
                 Encyclopedia.instance.AddItemToDiscoveredList(item);
+                NewDiscoveryAnimation(item);
                 return;
             } 
         }
@@ -85,6 +90,7 @@ public class DiscoveryManager : MonoBehaviour
         {
             if (!knownTierTwoItems.Contains(item)) {
                 Encyclopedia.instance.AddItemToDiscoveredList(item);
+                NewDiscoveryAnimation(item);
                 return;
             } 
         }
@@ -94,9 +100,23 @@ public class DiscoveryManager : MonoBehaviour
         {
             if (!knownTierThreeItems.Contains(item)) {
                 Encyclopedia.instance.AddItemToDiscoveredList(item);
+                NewDiscoveryAnimation(item);
                 return;
             } 
         }
+    }
+
+    private void NewDiscoveryAnimation(ItemInfo itemInfo) {
+        GameObject newAnimPrefab = Instantiate(newDiscoveryAnimPrefab, canvasUI.transform.position, transform.rotation);
+        newAnimPrefab.transform.SetParent(canvasUI.transform.parent);
+        newAnimPrefab.transform.localScale = Vector3.one;
+
+        GameObject itemSprite = new GameObject("itemSprite");
+        itemSprite.AddComponent<Image>();
+        itemSprite.GetComponent<Image>().sprite = itemInfo.itemSprite;
+        itemSprite.transform.SetParent(newAnimPrefab.transform);
+        itemSprite.transform.localScale = new Vector3(.5f, .5f, .5f);
+        itemSprite.transform.position = newAnimPrefab.transform.position;
     }
 
     private void ShuffleList<T>(List<T> inputList) {
@@ -108,4 +128,6 @@ public class DiscoveryManager : MonoBehaviour
             inputList[rand] = temp;
         }
     }
+
+    
 }

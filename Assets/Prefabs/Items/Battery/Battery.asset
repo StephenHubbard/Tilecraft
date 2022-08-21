@@ -27,6 +27,8 @@ MonoBehaviour:
   potentialOffSpring:
   - {fileID: 11400000, guid: 60dfa5edbd711ff4cad9ff27e261a28e, type: 2}
   - {fileID: 11400000, guid: e7cd8e42349fae04e8c81d15f3768cfe, type: 2}
+  - {fileID: 11400000, guid: bdc1371f3bca3874fae01fb1238e8d47, type: 2}
+  - {fileID: 11400000, guid: 8b23d5dbc115ee04495c08eace992f9d, type: 2}
   isResourceOnly: 1
   isStationary: 0
   isSmeltable: 0

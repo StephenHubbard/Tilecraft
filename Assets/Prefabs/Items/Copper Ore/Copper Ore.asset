@@ -30,5 +30,5 @@ MonoBehaviour:
   isStationary: 0
   isSmeltable: 1
   foodValue: 0
-  toolTipText: 
+  toolTipText: Requires Furnace
   tierGroup: 0

@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66df1655cda175c4da55e2cd2c217479, type: 3}
+  m_Name: Graduation Hat Recipe
+  m_EditorClassIdentifier: 
+  itemInfo: {fileID: 11400000, guid: d284d36df7b26dc4aa81818f9d54fe86, type: 2}
+  neededRecipeItems:
+  - {fileID: 11400000, guid: 9b59259665b11a8498e27c393ce79a5e, type: 2}
+  recipeCraftTime: 30
+  craftingClipString: Crafting Started
+  requiresFurnace: 0

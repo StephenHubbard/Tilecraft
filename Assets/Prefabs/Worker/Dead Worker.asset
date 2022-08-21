@@ -25,10 +25,11 @@ MonoBehaviour:
   recipeInfo: {fileID: 11400000, guid: 316a42315dc1db544bab7e55a9e0d61f, type: 2}
   amountRecipeCanCreate: 1
   potentialOffSpring:
+  - {fileID: 11400000, guid: 8ca693846393da94eb237f9df66199bb, type: 2}
   - {fileID: 11400000, guid: 3461b2de5af17f642a7ace8a859fee4d, type: 2}
   isResourceOnly: 1
   isStationary: 0
-  isSmeltable: 0
+  isSmeltable: 1
   foodValue: 0
-  toolTipText: 'strength value: 1'
+  toolTipText: Requires Alter
   tierGroup: 0

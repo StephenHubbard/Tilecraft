@@ -67,6 +67,8 @@ MonoBehaviour:
   - {fileID: 7829192130653991549}
   - {fileID: 2410787117929951637}
   orcPrefab: {fileID: 994099794024727751, guid: 80d5a66d3cf4fda4382d83a9f2a03371, type: 3}
+  maskedOrc: {fileID: 994099794024727751, guid: 0fb4610bb14dfcb44923e60a03ddca76, type: 3}
+  isDrums: 0
   hasEnemies: 1
 --- !u!1 &1215329122837263263
 GameObject:

@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a967a3f0f99c934bb9b8a89e7f72db0, type: 3}
+  m_Name: Orc Drum
+  m_EditorClassIdentifier: 
+  itemName: Drum
+  itemSprite: {fileID: 21300000, guid: de55a05ae8c284741a44ab8261a3096a, type: 3}
+  coinValue: 0
+  draggableItemPrefab: {fileID: 0}
+  onTilePrefab: {fileID: 994099794024727751, guid: 0a2a57d4c3b50fe488c0381185f6c297, type: 3}
+  tileInfoValidLocations:
+  - {fileID: 11400000, guid: e492befd9aee1b645b08c2b5e24460b2, type: 2}
+  - {fileID: 11400000, guid: 5f31d55a53bbe2f479011bab64202e0c, type: 2}
+  - {fileID: 11400000, guid: 683019bb58be0914385796f71488de33, type: 2}
+  recipeInfo: {fileID: 11400000, guid: c9d3a655b388f3e41a92c7ba7c52b797, type: 2}
+  amountRecipeCanCreate: 1
+  potentialOffSpring:
+  - {fileID: 11400000, guid: 4a37bba7028741848b57470bcc7d9bec, type: 2}
+  isResourceOnly: 0
+  isStationary: 1
+  isSmeltable: 0
+  foodValue: 0
+  toolTipText: Defeat all orcs to capture their relics.
+  tierGroup: 2

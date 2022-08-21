@@ -26,9 +26,10 @@ MonoBehaviour:
   amountRecipeCanCreate: 3
   potentialOffSpring:
   - {fileID: 11400000, guid: 46caf5f13780ccc4397d7e19477d11e0, type: 2}
+  - {fileID: 11400000, guid: 5fcc493fe547b424ebe02d85dc10eb99, type: 2}
   isResourceOnly: 1
   isStationary: 0
   isSmeltable: 1
   foodValue: 0
-  toolTipText: 
+  toolTipText: Requires Furnace
   tierGroup: 0
