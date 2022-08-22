@@ -59,11 +59,11 @@ public class Knight : MonoBehaviour
     }
 
     public void TransferStrength(int currentStrength, int foodNeeded) {
-        myWorkingStrength = currentStrength;
+        myCombatValue = currentStrength;
         foodNeededToUpCombatValue = foodNeeded;
     }
 
-        public void TransferHealth(int currentHealth) {
+    public void TransferHealth(int currentHealth) {
         myHealth = currentHealth; 
     }
 

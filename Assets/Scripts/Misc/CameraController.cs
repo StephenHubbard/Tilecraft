@@ -61,7 +61,7 @@ public class CameraController : MonoBehaviour
 
         float zoomSpeed = 5f;
 
-        cameraBorderBuffer = FindObjectOfType<CinemachineVirtualCamera>().m_Lens.OrthographicSize;
+        cameraBorderBuffer = FindObjectOfType<CinemachineVirtualCamera>().m_Lens.OrthographicSize * 1.65f;
 
         cinemachineVirtualCamera.m_Lens.OrthographicSize = Mathf.Lerp(currentZoom, targetZoom, Time.deltaTime * zoomSpeed);
     }

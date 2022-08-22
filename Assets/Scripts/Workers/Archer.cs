@@ -70,7 +70,7 @@ public class Archer : MonoBehaviour
     }
 
     public void TransferStrength(int currentStrength, int currentFoodNeeded) {
-        myWorkingStrength = currentStrength;
+        myCombatValue = currentStrength;
         foodNeededToUpCombatValue = currentFoodNeeded;
     }
 

@@ -146,14 +146,14 @@ public class Tile : MonoBehaviour
     public void PluckItemsOffTile() {
         if (ToolTipManager.instance.isOverUI) { return; }
         
-        if (currentPlacedItem && currentPlacedItem.GetComponent<PlacedItem>().itemInfo.isStationary == false) {
-            Destroy(currentPlacedItem);
-            Vector3 spawnItemsVector3 = transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), -1);
+        // if (currentPlacedItem && currentPlacedItem.GetComponent<PlacedItem>().itemInfo.isStationary == false) {
+        //     Destroy(currentPlacedItem);
+        //     Vector3 spawnItemsVector3 = transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), -1);
 
-            GameObject newObject = Instantiate(itemInfo.draggableItemPrefab, spawnItemsVector3, transform.rotation);
-            newObject.GetComponent<DraggableItem>().UpdateAmountLeftToHarvest(GetComponent<CraftingManager>().amountLeftToCraft);
-            PopTileCleanUp();
-        }
+        //     GameObject newObject = Instantiate(itemInfo.draggableItemPrefab, spawnItemsVector3, transform.rotation);
+        //     newObject.GetComponent<DraggableItem>().UpdateAmountLeftToHarvest(GetComponent<CraftingManager>().amountLeftToCraft);
+        //     PopTileCleanUp();
+        // }
 
         if (currentPlacedItem && currentPlacedItem.GetComponent<Furnace>()) {
             currentPlacedItem.GetComponent<Furnace>().AbandonSmelting();
@@ -178,14 +178,14 @@ public class Tile : MonoBehaviour
                     Vector3 spawnItemsVector3 = transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), -1);
                     GameObject newKnight = Instantiate(knightItemPrefab, spawnItemsVector3, transform.rotation);
                     newKnight.GetComponent<Knight>().TransferHealth(worker.GetChild(0).GetComponent<Knight>().myHealth);
-                    newKnight.GetComponent<Knight>().TransferStrength(worker.GetChild(0).GetComponent<Knight>().myWorkingStrength, worker.GetChild(0).GetComponent<Knight>().foodNeededToUpCombatValue);
+                    newKnight.GetComponent<Knight>().TransferStrength(worker.GetChild(0).GetComponent<Knight>().myCombatValue, worker.GetChild(0).GetComponent<Knight>().foodNeededToUpCombatValue);
                 }
 
                 if (worker.GetChild(0).GetComponent<Archer>()) {
                     Vector3 spawnItemsVector3 = transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), -1);
                     GameObject newArcher = Instantiate(archerItemPrefab, spawnItemsVector3, transform.rotation);
                     newArcher.GetComponent<Archer>().TransferHealth(worker.GetChild(0).GetComponent<Archer>().myHealth);
-                    newArcher.GetComponent<Archer>().TransferStrength(worker.GetChild(0).GetComponent<Archer>().myWorkingStrength, worker.GetChild(0).GetComponent<Archer>().foodNeededToUpCombatValue);
+                    newArcher.GetComponent<Archer>().TransferStrength(worker.GetChild(0).GetComponent<Archer>().myCombatValue, worker.GetChild(0).GetComponent<Archer>().foodNeededToUpCombatValue);
                 }
 
                 Destroy(worker.GetChild(0).transform.gameObject);

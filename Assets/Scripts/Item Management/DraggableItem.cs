@@ -111,7 +111,7 @@ public class DraggableItem : MonoBehaviour
 
             // worker
             if (itemInfo.name == "Archer") {
-                if (currentTile.PlaceArcher(itemInfo.onTilePrefab, gameObject.GetComponent<Archer>().myHealth, gameObject.GetComponent<Archer>().myWorkingStrength, gameObject.GetComponent<Archer>().foodNeededToUpCombatValue)) {
+                if (currentTile.PlaceArcher(itemInfo.onTilePrefab, gameObject.GetComponent<Archer>().myHealth, gameObject.GetComponent<Archer>().myCombatValue, gameObject.GetComponent<Archer>().foodNeededToUpCombatValue)) {
                     if (i == 1) {
                         Destroy(gameObject);
                     }
@@ -125,7 +125,7 @@ public class DraggableItem : MonoBehaviour
 
             // worker
             if (itemInfo.name == "Knight") {
-                if (currentTile.PlaceKnight(itemInfo.onTilePrefab, gameObject.GetComponent<Knight>().myHealth, gameObject.GetComponent<Knight>().myWorkingStrength, gameObject.GetComponent<Knight>().foodNeededToUpCombatValue)) {
+                if (currentTile.PlaceKnight(itemInfo.onTilePrefab, gameObject.GetComponent<Knight>().myHealth, gameObject.GetComponent<Knight>().myCombatValue, gameObject.GetComponent<Knight>().foodNeededToUpCombatValue)) {
                     if (i == 1) {
                         Destroy(gameObject);
                     }

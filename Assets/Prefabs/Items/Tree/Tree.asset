@@ -28,3 +28,4 @@ MonoBehaviour:
   isSmeltable: 0
   foodValue: 0
   toolTipText: Can only be placed on a grass tile
+  tierGroup: 0
