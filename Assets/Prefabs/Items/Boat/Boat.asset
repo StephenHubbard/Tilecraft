@@ -27,5 +27,5 @@ MonoBehaviour:
   isStationary: 1
   isSmeltable: 0
   foodValue: 0
-  toolTipText: Catch an infinite amount of crabs
+  toolTipText: Can only be placed on water tile
   tierGroup: 2

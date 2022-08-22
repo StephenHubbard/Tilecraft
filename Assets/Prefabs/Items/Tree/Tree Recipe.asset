@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66df1655cda175c4da55e2cd2c217479, type: 3}
   m_Name: Tree Recipe
   m_EditorClassIdentifier: 
-  name: Tree Recipe
   itemInfo: {fileID: 11400000, guid: 568a013acb7200747b4d15d39ba99de3, type: 2}
   neededRecipeItems: []
-  recipeCraftTime: 5
+  recipeCraftTime: 0
+  craftingClipString: 
+  requiresFurnace: 0

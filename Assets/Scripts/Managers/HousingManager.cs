@@ -11,6 +11,7 @@ public class HousingManager : MonoBehaviour
   [SerializeField] private int housePopValue = 5;
   [SerializeField] private Slider slider;
   [SerializeField] private TMP_Text housingText;
+  [SerializeField] private Animator housingUIAnimator;
 
   public static HousingManager instance;
 
@@ -40,6 +41,10 @@ public class HousingManager : MonoBehaviour
   public void DetectHowManyHouses() {
     House[] amountOfHouses = FindObjectsOfType<House>();
     maximumPopulation = (amountOfHouses.Length * housePopValue) + startingPopulation;
+  }
+
+  public void BlinkNotEnoughWorkersAnim() {
+    housingUIAnimator.SetTrigger("notEnoughHousing");
   }
 
   public void AddNewWorker() {

@@ -3069,7 +3069,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 7.821063
+  orthographic size: 6
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -7330,7 +7330,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1585584815
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7907,7 +7907,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1722884527
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8331,7 +8331,7 @@ MonoBehaviour:
   - {fileID: 3513035001563619480, guid: e8c3ebe0d4903314690a2bd2804744fa, type: 3}
   - {fileID: 3513035001563619480, guid: 8c3f1c4b7c282c94a959a553885da64b, type: 3}
   cloudParent: {fileID: 1467317614}
-  amountOfClouds: 0
+  amountOfClouds: 2
 --- !u!1 &1817764278
 GameObject:
   m_ObjectHideFlags: 0
@@ -8781,7 +8781,7 @@ MonoBehaviour:
   m_Follow: {fileID: 1741666895}
   m_Lens:
     FieldOfView: 34
-    OrthographicSize: 7.821063
+    OrthographicSize: 6
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0

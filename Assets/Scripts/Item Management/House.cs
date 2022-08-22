@@ -28,7 +28,7 @@ public class House : MonoBehaviour
             tileSlider.value = timeToHaveBabyCurrent;
             timeToHaveBabyCurrent -= Time.deltaTime;
             if (timeToHaveBabyCurrent <= 0f) {
-                StopBabyMaking();
+                StopBabyMaking(true);
             }
         }
     }
@@ -47,7 +47,7 @@ public class House : MonoBehaviour
             if (HousingManager.instance.currentPopulation < HousingManager.instance.maximumPopulation) {
                 StartBabyMaking();
             } else {
-                print("not enough housing");
+                HousingManager.instance.BlinkNotEnoughWorkersAnim();
             }
         }
     }
@@ -58,7 +58,7 @@ public class House : MonoBehaviour
         isBabyMaking = true;
     }
 
-    public void StopBabyMaking() {
+    public void StopBabyMaking(bool detectBabyMaking) {
         sliderCanvas.SetActive(false);
         isBabyMaking = false;
 
@@ -70,6 +70,8 @@ public class House : MonoBehaviour
 
         timeToHaveBabyCurrent = timeToHaveBabyTotal;
 
-        DetectBabyMaking();
+        if (detectBabyMaking) {
+            DetectBabyMaking();
+        }
     }
 }

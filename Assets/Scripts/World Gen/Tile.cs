@@ -160,7 +160,7 @@ public class Tile : MonoBehaviour
         }
 
         if (currentPlacedItem && currentPlacedItem.GetComponent<House>()) {
-            currentPlacedItem.GetComponent<House>().StopBabyMaking();
+            currentPlacedItem.GetComponent<House>().StopBabyMaking(false);
         }
 
         foreach (var worker in workerPoints)

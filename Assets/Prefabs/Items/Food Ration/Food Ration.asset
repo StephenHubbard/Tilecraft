@@ -29,5 +29,5 @@ MonoBehaviour:
   isStationary: 0
   isSmeltable: 0
   foodValue: 1
-  toolTipText: Provides food for workers.
+  toolTipText: 
   tierGroup: 0

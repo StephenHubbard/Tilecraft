@@ -27,5 +27,5 @@ MonoBehaviour:
   isStationary: 1
   isSmeltable: 0
   foodValue: 0
-  toolTipText: An unlimited supply of water
+  toolTipText: 
   tierGroup: 1

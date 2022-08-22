@@ -28,5 +28,5 @@ MonoBehaviour:
   isStationary: 1
   isSmeltable: 0
   foodValue: 0
-  toolTipText: Food storage.  Food from fridge will be used first.
+  toolTipText: Can be used to store food
   tierGroup: 2

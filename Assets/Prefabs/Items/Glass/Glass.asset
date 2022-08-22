@@ -31,5 +31,5 @@ MonoBehaviour:
   isStationary: 0
   isSmeltable: 0
   foodValue: 0
-  toolTipText: Use for crafting
+  toolTipText: 
   tierGroup: 1

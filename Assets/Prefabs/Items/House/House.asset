@@ -26,7 +26,7 @@ MonoBehaviour:
   potentialOffSpring: []
   isResourceOnly: 0
   isStationary: 1
-  LeftInStack: 1
   isSmeltable: 0
   foodValue: 0
-  toolTipText: 
+  toolTipText: Place two workers to create new worker
+  tierGroup: 0

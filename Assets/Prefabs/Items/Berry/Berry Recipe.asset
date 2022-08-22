@@ -15,6 +15,6 @@ MonoBehaviour:
   itemInfo: {fileID: 11400000, guid: b4324be3f84016744bdc2029d2dee09d, type: 2}
   neededRecipeItems:
   - {fileID: 11400000, guid: 7b6f06137545f3243acc5e75239f777f, type: 2}
-  recipeCraftTime: 5
+  recipeCraftTime: 10
   craftingClipString: Bush Rustle
   requiresFurnace: 0

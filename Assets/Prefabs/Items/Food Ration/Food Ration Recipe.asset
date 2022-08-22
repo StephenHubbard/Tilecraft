@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemInfo: {fileID: 11400000, guid: b374875f6ec40c446925d5590cb0af55, type: 2}
   neededRecipeItems: []
-  recipeCraftTime: 5
-  craftingClipString: Bush Rustle
+  recipeCraftTime: 0
+  craftingClipString: 
   requiresFurnace: 0

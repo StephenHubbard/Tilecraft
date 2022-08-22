@@ -16,6 +16,6 @@ MonoBehaviour:
   neededRecipeItems:
   - {fileID: 11400000, guid: 46caf5f13780ccc4397d7e19477d11e0, type: 2}
   - {fileID: 11400000, guid: a7f0335e0ecbeab46882746bbfdfa2ec, type: 2}
-  recipeCraftTime: 6
+  recipeCraftTime: 20
   craftingClipString: Crafting Started
   requiresFurnace: 0

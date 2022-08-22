@@ -27,5 +27,5 @@ MonoBehaviour:
   isStationary: 0
   isSmeltable: 0
   foodValue: 0
-  toolTipText: Placed on a grass tile to gather berries.
+  toolTipText: Can only be placed on plains tile
   tierGroup: 0

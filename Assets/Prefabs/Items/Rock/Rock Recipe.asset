@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66df1655cda175c4da55e2cd2c217479, type: 3}
   m_Name: Rock Recipe
   m_EditorClassIdentifier: 
-  name: Rock Recipe
   itemInfo: {fileID: 11400000, guid: 2b9c0844a0446c74c93858e737899656, type: 2}
   neededRecipeItems: []
-  recipeCraftTime: 5
+  recipeCraftTime: 0
+  craftingClipString: 
+  requiresFurnace: 0
