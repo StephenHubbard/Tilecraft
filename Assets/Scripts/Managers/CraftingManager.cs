@@ -183,10 +183,12 @@ public class CraftingManager : MonoBehaviour
         AutoSellCraftedItem(craftedItem);
         encyclopedia.AddItemToDiscoveredList(recipeInfo.itemInfo);
 
-        foreach (var recipe in recipeInfo.itemInfo.recipeInfo.neededRecipeItems)
+        foreach (var item in recipeInfo.itemInfo.recipeInfo.neededRecipeItems)
         {
-        encyclopedia.AddItemToDiscoveredList(recipe);
+            encyclopedia.AddItemToDiscoveredList(item);
         }
+        
+        Encyclopedia.instance.CraftedDiscoveredItem(recipeInfo.itemInfo);
         
         isCrafting = false;
         amountLeftToCraft -= 1;

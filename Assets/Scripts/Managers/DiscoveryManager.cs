@@ -48,16 +48,16 @@ public class DiscoveryManager : MonoBehaviour
     private void FindAllDiscoveredItems() {
         foreach (var item in Encyclopedia.instance.discoveredItems)
         {
-            if (item.tierGroup == ItemInfo.TierGroup.one) {
-                knownTierOneItems.Add(item);
+            if (item.Key.tierGroup == ItemInfo.TierGroup.one) {
+                knownTierOneItems.Add(item.Key);
             }
-            if (item.tierGroup == ItemInfo.TierGroup.two) {
-                knownTierTwoItems.Add(item);
+            if (item.Key.tierGroup == ItemInfo.TierGroup.two) {
+                knownTierTwoItems.Add(item.Key);
             }
-            if (item.tierGroup == ItemInfo.TierGroup.three) {
-                knownTierThreeItems.Add(item);
+            if (item.Key.tierGroup == ItemInfo.TierGroup.three) {
+                knownTierThreeItems.Add(item.Key);
             }
-            allKnownItems.Add(item);
+            allKnownItems.Add(item.Key);
         }
     }
 

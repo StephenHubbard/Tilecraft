@@ -7,6 +7,8 @@ using TMPro;
 
 public class Encyclopedia : MonoBehaviour
 {
+    [SerializeField] private Sprite inactiveButtonSprite;
+    [SerializeField] private Sprite activeButtonSprite;
     [SerializeField] private Image newDiscoveredItemPrefab;
     [SerializeField] private GameObject encylopediaContainer;
     [SerializeField] private GameObject encylopediaGridLayout;
@@ -15,7 +17,8 @@ public class Encyclopedia : MonoBehaviour
     [SerializeField] private Image currentInspectedItem;
     [SerializeField] private GameObject backButton;
     [SerializeField] private TMP_Text bottomContainerText;
-    [SerializeField] public List<ItemInfo> discoveredItems = new List<ItemInfo>();
+    [SerializeField] public Dictionary<ItemInfo, bool> discoveredItems = new Dictionary<ItemInfo, bool>();
+    // [SerializeField] public Dictionary<ItemInfo, bool> hasBeenCraftedItems = new Dictionary<ItemInfo, bool>();
     [SerializeField] private List<ItemInfo> newlyDiscoveredItems = new List<ItemInfo>();
     [SerializeField] private List<ItemInfo> itemsThatCanBeCrafted = new List<ItemInfo>();
 
@@ -24,6 +27,7 @@ public class Encyclopedia : MonoBehaviour
     private GameObject shownItemsContainer;
 
     public static Encyclopedia instance;
+
 
     private void Awake() {
         toolTipManager = FindObjectOfType<ToolTipManager>();
@@ -38,7 +42,7 @@ public class Encyclopedia : MonoBehaviour
     private void Start() {
         foreach (var item in discoveredItems)
         {
-            NewItemToEncyclopedia(item, encylopediaGridLayout.transform, false);
+            NewItemToEncyclopedia(item.Key, encylopediaGridLayout.transform, false);
         }
 
         foreach (var item in newlyDiscoveredItems)
@@ -46,11 +50,10 @@ public class Encyclopedia : MonoBehaviour
             NewItemToEncyclopedia(item, newDiscoveredItemsGridLayout.transform, true);
         }
 
-        FindTierOneItems();
     }
 
-    private void FindTierOneItems() {
-
+    public void CraftedDiscoveredItem(ItemInfo itemInfo) {
+        discoveredItems[itemInfo] = true;
     }
 
     public void OpenEncylopedia() {
@@ -125,8 +128,8 @@ public class Encyclopedia : MonoBehaviour
     }
 
     public void AddItemToDiscoveredList(ItemInfo newItem) {
-        if (!discoveredItems.Contains(newItem)) {
-            discoveredItems.Add(newItem);
+        if (!discoveredItems.ContainsKey(newItem)) {
+            discoveredItems.Add(newItem, false);
             NewItemToEncyclopedia(newItem, encylopediaGridLayout.transform, false);
             newlyDiscoveredItems.Add(newItem);
             NewItemToEncyclopedia(newItem, newDiscoveredItemsGridLayout.transform, true);
@@ -146,12 +149,6 @@ public class Encyclopedia : MonoBehaviour
         if (isNew) { discoveredItem.transform.SetAsFirstSibling(); }
         discoveredItem.GetComponent<Image>().sprite = newItem.itemSprite;
         discoveredItem.GetComponent<UITooltip>().itemInfo = newItem;
-
-        // EventTrigger thisClickTrigger = discoveredItem.GetComponent<EventTrigger>();
-        // EventTrigger.Entry clickEntry = new EventTrigger.Entry();
-        // clickEntry.eventID = EventTriggerType.PointerClick;
-        // clickEntry.callback.AddListener((data) => { DisplayWhatRecipesCanBeMade(discoveredItem.transform); });
-        // thisClickTrigger.triggers.Add(clickEntry);
 
         EventTrigger thisHoverTrigger = discoveredItem.GetComponent<EventTrigger>();
         EventTrigger.Entry hoverEntry = new EventTrigger.Entry();
@@ -178,7 +175,35 @@ public class Encyclopedia : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
+    }
 
-        // shownItemsContainer.SetActive(false);
+
+    public void UnCraftedFilterButton(Transform sender) {
+        if (sender.GetComponent<Image>().sprite == activeButtonSprite) {
+            UncraftedButtonFilterOff();
+            sender.GetComponent<Image>().sprite = inactiveButtonSprite;
+            sender.GetChild(0).GetComponent<RectTransform>().offsetMin = new Vector2(sender.GetChild(0).GetComponent<RectTransform>().offsetMin.x, 5);
+        } else if (sender.GetComponent<Image>().sprite == inactiveButtonSprite) {
+            UncraftedButtonFilterOn();
+            sender.GetComponent<Image>().sprite = activeButtonSprite;
+            sender.GetChild(0).GetComponent<RectTransform>().offsetMin = new Vector2(sender.GetChild(0).GetComponent<RectTransform>().offsetMin.x, 0);
+        }
+    }
+
+
+    private void UncraftedButtonFilterOn() {
+        foreach (Transform item in encylopediaGridLayout.transform)
+        {
+            if (discoveredItems[item.GetComponent<UITooltip>().itemInfo] == true || item.GetComponent<UITooltip>().itemInfo.recipeInfo.neededRecipeItems.Length == 0) {
+                item.gameObject.SetActive(false);
+            }
+        }
+    }
+
+    private void UncraftedButtonFilterOff() {
+        foreach (Transform item in encylopediaGridLayout.transform)
+        {
+            item.gameObject.SetActive(true);
+        }
     }
 }

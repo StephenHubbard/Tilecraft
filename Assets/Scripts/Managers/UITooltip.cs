@@ -43,7 +43,7 @@ public class UITooltip : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (eventData.button == PointerEventData.InputButton.Left) {
+        if (eventData.button == PointerEventData.InputButton.Left && itemInfo != null) {
             Encyclopedia.instance.DisplayWhatRecipesCanBeMade(transform);
         }
 
