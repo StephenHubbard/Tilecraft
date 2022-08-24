@@ -40,7 +40,7 @@ public class EconomyManager : MonoBehaviour
 
         if (currentCoins >= coinsTillDiscovery) {
             NewDiscovery();
-            slider.maxValue = Mathf.Ceil(coinsTillDiscovery * 1.2f);
+            slider.maxValue = Mathf.Ceil(coinsTillDiscovery * 1.1f);
             coinsTillDiscovery = (int)slider.maxValue;
             currentCoins = 0;
             slider.value = currentCoins;

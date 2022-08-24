@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3800486178009987088}
   - component: {fileID: 853084195101498960}
-  - component: {fileID: -5672351691741752047}
   - component: {fileID: 2548897153402979144}
   - component: {fileID: 6258026925614194309}
   m_Layer: 8
@@ -50,22 +49,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemInfo: {fileID: 11400000, guid: ba2fb7b8b790e484ea944d12a1a29087, type: 2}
   amountLeft: 0
---- !u!114 &-5672351691741752047
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 994099794024727751}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88fb9c1437828da47b0877019fb4030c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  deadWorkerOnTilePrefab: {fileID: 0}
-  deadWorkerItemPrefab: {fileID: 0}
-  itemInfo: {fileID: 11400000, guid: ba2fb7b8b790e484ea944d12a1a29087, type: 2}
-  myHealth: 5
 --- !u!58 &2548897153402979144
 CircleCollider2D:
   m_ObjectHideFlags: 0

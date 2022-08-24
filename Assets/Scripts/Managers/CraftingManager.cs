@@ -123,8 +123,8 @@ public class CraftingManager : MonoBehaviour
 
         foreach (var item in GetComponent<Tile>().workerPoints)
         {
-            // bug
-            if (item.childCount > 0 && item.GetChild(0).GetComponent<Worker>()) {
+            if (item.childCount > 0 && item.GetChild(0).GetComponent<Worker>())
+            {
                 item.GetChild(0).GetComponent<Worker>().StartWorking();
             }
         }

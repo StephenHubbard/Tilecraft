@@ -293,7 +293,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -41, y: 52}
+  m_AnchoredPosition: {x: -47.9, y: 52}
   m_SizeDelta: {x: 70, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &15382821
@@ -316,7 +316,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8d5a8cb5cfce8c043b46d19be9b001f8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 584d01d6a899a7341b9b5206e60f8fd5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2488,8 +2488,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.54029846, y: 0}
-  m_SizeDelta: {x: -12.9681, y: 0}
+  m_AnchoredPosition: {x: -0.36600494, y: -0.000011444092}
+  m_SizeDelta: {x: -13.3166, y: -5.6624}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &437897399
 MonoBehaviour:
@@ -4244,7 +4244,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 16.299936, y: -21.900003}
+  m_AnchoredPosition: {x: 24.8, y: -21.900003}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &751670876
@@ -5593,10 +5593,10 @@ MonoBehaviour:
     pitch: 1
     source: {fileID: 0}
   - name: New Discovery
-    clip: {fileID: 8300000, guid: 52320e590bf774734a288886eba557ba, type: 3}
+    clip: {fileID: 8300000, guid: af250a182579f7449ba7641606bd361a, type: 3}
     loop: 0
-    volume: 0.08
-    pitch: 0.6
+    volume: 0.7
+    pitch: 0.7
     source: {fileID: 0}
 --- !u!1 &1073449343
 GameObject:
@@ -8098,7 +8098,7 @@ GameObject:
   - component: {fileID: 1739250847}
   - component: {fileID: 1739250846}
   m_Layer: 5
-  m_Name: Coin Image
+  m_Name: xp image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8121,7 +8121,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 11.4, y: -9.4}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1739250846
@@ -8144,7 +8144,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8d5a8cb5cfce8c043b46d19be9b001f8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 584d01d6a899a7341b9b5206e60f8fd5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8345,8 +8345,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -0.17020035}
+  m_SizeDelta: {x: 0, y: -9.8683}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1791596843
 MonoBehaviour:
@@ -8486,7 +8486,7 @@ MonoBehaviour:
   - {fileID: 3513035001563619480, guid: e8c3ebe0d4903314690a2bd2804744fa, type: 3}
   - {fileID: 3513035001563619480, guid: 8c3f1c4b7c282c94a959a553885da64b, type: 3}
   cloudParent: {fileID: 1467317614}
-  amountOfClouds: 0
+  amountOfClouds: 2
 --- !u!1 &1817764278
 GameObject:
   m_ObjectHideFlags: 0

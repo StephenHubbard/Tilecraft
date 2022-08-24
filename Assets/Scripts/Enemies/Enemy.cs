@@ -5,7 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private GameObject arrowPrefab;
-    [SerializeField] private int myHealth = 3;
+    [SerializeField] public int myHealth = 3;
     [SerializeField] private LayerMask cloudLayerMask = new LayerMask();
     [SerializeField] private GameObject clubSprite;
     private Animator myAnimator;
@@ -34,7 +34,7 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(int amount, Transform attackingWorker) {
         myHealth -= amount;
 
-        if (myHealth <= 0) {
+        if (myHealth == 0) {
             if (attackingWorker.GetComponent<Worker>()) {
                 attackingWorker.GetComponent<Worker>().CurrentEnemyNull();
             }
@@ -46,6 +46,7 @@ public class Enemy : MonoBehaviour
             if (attackingWorker.GetComponent<Archer>()) {
                 attackingWorker.GetComponent<Archer>().CurrentEnemyNull();
             }
+            EconomyManager.instance.CheckDiscovery(1);
             GetComponentInParent<Tile>().currentPlacedItem.GetComponent<OrcRelic>().DetectIfEnemies();
             Destroy(gameObject);
         }

@@ -123,12 +123,34 @@ public class ToolTipManager : MonoBehaviour
                 if (hit[0].transform.GetComponent<Tile>().currentPlacedItem != null) {
                     string newStr = hit[0].transform.GetComponent<Tile>().currentPlacedItem.GetComponent<PlacedItem>().itemInfo.itemName + ": " + hit[0].transform.GetComponent<Tile>().currentPlacedItem.GetComponent<PlacedItem>().itemInfo.toolTipText;
                     UpdateValues(thisTile.name, newStr, 0, 0, 0, 0, 0);
+
+                    if (hit[0].transform.GetComponent<Tile>().currentPlacedItem.GetComponent<OrcRelic>())
+                    {
+                        string orcHealthOne = null;
+                        string orcHealthTwo= null;
+
+                        if (hit[0].transform.GetComponent<Tile>().currentPlacedItem.GetComponent<OrcRelic>().orcSpawnPoints[0].childCount == 1) {
+                            orcHealthOne = hit[0].transform.GetComponent<Tile>().currentPlacedItem.GetComponent<OrcRelic>().orcSpawnPoints[0].GetChild(0).gameObject.GetComponent<Enemy>().myHealth.ToString();
+                        }
+
+                        if (hit[0].transform.GetComponent<Tile>().currentPlacedItem.GetComponent<OrcRelic>().orcSpawnPoints[1].childCount == 1) {
+                            orcHealthTwo = hit[0].transform.GetComponent<Tile>().currentPlacedItem.GetComponent<OrcRelic>().orcSpawnPoints[1].GetChild(0).gameObject.GetComponent<Enemy>().myHealth.ToString();
+                        }
+
+
+                        UpdateValues(thisTile.name, "Orc 1 Health: " + orcHealthOne + "\n" + "Orc 2 Health: " + orcHealthTwo, 0, 0, 0, 0, 0);
+                    }
+
+
                     return;
                 } else {
                     UpdateValues(thisTile.name, null, 0, 0, 0, 0, 0);
                     return;
                 }
             } 
+
+
+
         } else {
             ToggleToolTipOff();
         }
