@@ -33,7 +33,6 @@ public class PackManager : MonoBehaviour
                     encyclopedia.AddItemToDiscoveredList(resourcePackItems[randomNum]);
                 }
             }
-            economyManager.BuyPack(3);
             amountOfPacksOpened++;
             NextPackAvailableCheck();
         }

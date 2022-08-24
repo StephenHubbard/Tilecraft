@@ -207,15 +207,8 @@ public class ToolTipManager : MonoBehaviour
     public void HoverOverUI(Transform sender) {
         if (!isMaximized) { return; }
 
-        if (sender.GetComponent<UITooltip>().isPackIcon || sender.GetComponent<UITooltip>().isEncyclopediaIcon) {
-            sender.GetComponent<UITooltip>().ClearPackUIToolTip();
-        }
-
         isOverUI = true;
         ToggleToolTipOn();
-        if (sender.GetComponent<UITooltip>().isPackIcon || sender.GetComponent<UITooltip>().isEncyclopediaIcon) {
-            sender.GetComponent<UITooltip>().UpdatePackUIToolTip();
-        }
         UpdateValues(sender.GetComponent<UITooltip>().toolTipName, sender.GetComponent<UITooltip>().toolTipText, 0, 0, 0, 0, 0);
     }
 
@@ -225,10 +218,6 @@ public class ToolTipManager : MonoBehaviour
 
         isOverUI = false;
         ToggleToolTipOff();
-        if (sender.GetComponent<UITooltip>().isPackIcon || sender.GetComponent<UITooltip>().isEncyclopediaIcon) {
-            sender.GetComponent<UITooltip>().ClearPackUIToolTip();
-            // sender.GetComponent<UITooltip>().shownItemsContainer.SetActive(false);
-        }
     }
 
 }

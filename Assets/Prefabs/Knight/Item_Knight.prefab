@@ -691,7 +691,7 @@ MonoBehaviour:
   foodNeeded: 3
   archerPrefab: {fileID: 4812397909494241834, guid: c715ab559fc0ebe438735b9bd7581ef4, type: 3}
   workerPrefab: {fileID: 4812397909494241834, guid: 4fea6c41e7173da44bdb63fc54b8a34a, type: 3}
-  myHealth: 5
+  myHealth: 6
 --- !u!114 &7034581718690885001
 MonoBehaviour:
   m_ObjectHideFlags: 0

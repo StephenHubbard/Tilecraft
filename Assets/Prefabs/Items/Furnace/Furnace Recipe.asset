@@ -15,7 +15,6 @@ MonoBehaviour:
   itemInfo: {fileID: 11400000, guid: 1a15c1455f69b214a8d5bc2dcb3677cd, type: 2}
   neededRecipeItems:
   - {fileID: 11400000, guid: 7b333da9a70418f439e2fb040ed4d7e5, type: 2}
-  - {fileID: 11400000, guid: 7b333da9a70418f439e2fb040ed4d7e5, type: 2}
   - {fileID: 11400000, guid: 5fcc493fe547b424ebe02d85dc10eb99, type: 2}
   recipeCraftTime: 10
   craftingClipString: Crafting Started

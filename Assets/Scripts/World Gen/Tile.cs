@@ -85,6 +85,10 @@ public class Tile : MonoBehaviour
                     newWorker.GetComponent<Worker>().StartWorking();
                 }
                 AudioManager.instance.Play("Click");
+
+                if (currentPlacedItem && currentPlacedItem.GetComponent<Hospital>()) {
+                    currentPlacedItem.GetComponent<Hospital>().HealPerson(newWorker);
+                }
                 return true;
             }
         }
@@ -102,6 +106,10 @@ public class Tile : MonoBehaviour
                 newKnight.GetComponent<Knight>().TransferStrength(currentStrength, foodNeeded);
                 isOccupiedWithWorkers = true;
                 AudioManager.instance.Play("Click");
+
+                if (currentPlacedItem.GetComponent<Hospital>()) {
+                    currentPlacedItem.GetComponent<Hospital>().HealPerson(newKnight);
+                }
                 return true;
             }
         }
@@ -119,6 +127,10 @@ public class Tile : MonoBehaviour
                 newArcher.GetComponent<Archer>().TransferStrength(currentStrength, currentFoodNeeded);
                 isOccupiedWithWorkers = true;
                 AudioManager.instance.Play("Click");
+
+                if (currentPlacedItem.GetComponent<Hospital>()) {
+                    currentPlacedItem.GetComponent<Hospital>().HealPerson(newArcher);
+                }
                 return true;
             }
         }
@@ -146,21 +158,16 @@ public class Tile : MonoBehaviour
     public void PluckItemsOffTile() {
         if (ToolTipManager.instance.isOverUI) { return; }
         
-        // if (currentPlacedItem && currentPlacedItem.GetComponent<PlacedItem>().itemInfo.isStationary == false) {
-        //     Destroy(currentPlacedItem);
-        //     Vector3 spawnItemsVector3 = transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), -1);
-
-        //     GameObject newObject = Instantiate(itemInfo.draggableItemPrefab, spawnItemsVector3, transform.rotation);
-        //     newObject.GetComponent<DraggableItem>().UpdateAmountLeftToHarvest(GetComponent<CraftingManager>().amountLeftToCraft);
-        //     PopTileCleanUp();
-        // }
-
         if (currentPlacedItem && currentPlacedItem.GetComponent<Furnace>()) {
             currentPlacedItem.GetComponent<Furnace>().AbandonSmelting();
         }
 
         if (currentPlacedItem && currentPlacedItem.GetComponent<House>()) {
             currentPlacedItem.GetComponent<House>().StopBabyMaking(false);
+        }
+
+        if (currentPlacedItem && currentPlacedItem.GetComponent<Hospital>()) {
+            currentPlacedItem.GetComponent<Hospital>().KillCoroutines();
         }
 
         foreach (var worker in workerPoints)

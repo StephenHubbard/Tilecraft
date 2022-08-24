@@ -9,6 +9,7 @@ public class DiscoveryManager : MonoBehaviour
 
     [SerializeField] public List<ItemInfo> allAvailableItems = new List<ItemInfo>();
 
+
     [SerializeField] public List<ItemInfo> allTierOneItems = new List<ItemInfo>();
     [SerializeField] public List<ItemInfo> allTierTwoItems = new List<ItemInfo>();
     [SerializeField] public List<ItemInfo> allTierThreeItems = new List<ItemInfo>();

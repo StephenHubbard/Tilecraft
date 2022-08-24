@@ -38,9 +38,6 @@ public class Archer : MonoBehaviour
         }
 
         DetectCombat();
-
-
-        
     }
 
     private void Update() {

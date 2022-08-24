@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class CraftingManager : MonoBehaviour
 {
-    [SerializeField] private GameObject sliderCanvas;
-    [SerializeField] private Slider tileSlider;
+    [SerializeField] public GameObject sliderCanvas;
+    [SerializeField] public Slider tileSlider;
     [SerializeField] private float startingCraftTime;
     [SerializeField] private float currentCraftTime;
     [SerializeField] public RecipeInfo recipeInfo;
@@ -31,10 +31,6 @@ public class CraftingManager : MonoBehaviour
         encyclopedia = FindObjectOfType<Encyclopedia>();
     }
 
-
-    private void Start() {
-        // currentCraftTime = 10f;
-    }
 
     private void Update() {
         if (currentCraftTime > 0 && hasCompleteRecipe && isCrafting && hasWorkers) {
@@ -127,7 +123,8 @@ public class CraftingManager : MonoBehaviour
 
         foreach (var item in GetComponent<Tile>().workerPoints)
         {
-            if (item.childCount > 0) {
+            // bug
+            if (item.childCount > 0 && item.GetChild(0).GetComponent<Worker>()) {
                 item.GetChild(0).GetComponent<Worker>().StartWorking();
             }
         }
@@ -178,10 +175,12 @@ public class CraftingManager : MonoBehaviour
     }
 
     public void PopOutNewItemFromRecipe() {
+        EconomyManager.instance.CheckDiscovery(recipeInfo.itemInfo.coinValue);
         Vector3 spawnItemsVector3 = transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), -1);
         GameObject craftedItem = Instantiate(recipeInfo.itemInfo.draggableItemPrefab, spawnItemsVector3, transform.rotation);
         AutoSellCraftedItem(craftedItem);
         encyclopedia.AddItemToDiscoveredList(recipeInfo.itemInfo);
+        ToDoManager.instance.CraftedItemTakeOffToDoList(recipeInfo.itemInfo);
 
         foreach (var item in recipeInfo.itemInfo.recipeInfo.neededRecipeItems)
         {
@@ -189,7 +188,7 @@ public class CraftingManager : MonoBehaviour
         }
         
         Encyclopedia.instance.CraftedDiscoveredItem(recipeInfo.itemInfo);
-        
+
         isCrafting = false;
         amountLeftToCraft -= 1;
 

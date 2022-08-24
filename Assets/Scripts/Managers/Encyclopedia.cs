@@ -11,14 +11,14 @@ public class Encyclopedia : MonoBehaviour
     [SerializeField] private Sprite activeButtonSprite;
     [SerializeField] private Image newDiscoveredItemPrefab;
     [SerializeField] private GameObject encylopediaContainer;
-    [SerializeField] private GameObject encylopediaGridLayout;
+    [SerializeField] public GameObject encylopediaGridLayout;
     [SerializeField] private GameObject newDiscoveredItemsGridLayout;
     [SerializeField] private GameObject itemsThatCanBeCraftedGridLayout;
     [SerializeField] private Image currentInspectedItem;
     [SerializeField] private GameObject backButton;
     [SerializeField] private TMP_Text bottomContainerText;
+    [SerializeField] public List<ItemInfo> startingItems = new List<ItemInfo>();
     [SerializeField] public Dictionary<ItemInfo, bool> discoveredItems = new Dictionary<ItemInfo, bool>();
-    // [SerializeField] public Dictionary<ItemInfo, bool> hasBeenCraftedItems = new Dictionary<ItemInfo, bool>();
     [SerializeField] private List<ItemInfo> newlyDiscoveredItems = new List<ItemInfo>();
     [SerializeField] private List<ItemInfo> itemsThatCanBeCrafted = new List<ItemInfo>();
 
@@ -40,14 +40,9 @@ public class Encyclopedia : MonoBehaviour
     }
 
     private void Start() {
-        foreach (var item in discoveredItems)
+        foreach (var item in startingItems)
         {
-            NewItemToEncyclopedia(item.Key, encylopediaGridLayout.transform, false);
-        }
-
-        foreach (var item in newlyDiscoveredItems)
-        {
-            NewItemToEncyclopedia(item, newDiscoveredItemsGridLayout.transform, true);
+            AddItemToDiscoveredList(item);
         }
 
     }
@@ -161,6 +156,10 @@ public class Encyclopedia : MonoBehaviour
         exitEntry.eventID = EventTriggerType.PointerExit;
         exitEntry.callback.AddListener((data) => { OnPointerExitDelegate(); });
         thisHoverTrigger.triggers.Add(exitEntry);
+
+        if (!isNew && newItem.recipeInfo.neededRecipeItems.Length > 0 && discoveredItems[newItem] == false) {
+            discoveredItem.GetComponent<UITooltip>().AddAutoToDoList();
+        }
     }
 
 

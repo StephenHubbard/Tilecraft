@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a967a3f0f99c934bb9b8a89e7f72db0, type: 3}
   m_Name: Food Ration
   m_EditorClassIdentifier: 
-  itemName: Apple
-  itemSprite: {fileID: 21300000, guid: 2679111af3ac5e74ba925ed5782eb139, type: 3}
+  itemName: Food Ration
+  itemSprite: {fileID: 21300000, guid: 2e3387e8f3688074587415ce0076b31d, type: 3}
   coinValue: 1
   draggableItemPrefab: {fileID: 4812397909494241834, guid: abc7e33b10ea8974384f00ecc689908a, type: 3}
   onTilePrefab: {fileID: 994099794024727751, guid: 759fb6a6f39b7a3498fe5e6e73bc4885, type: 3}

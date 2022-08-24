@@ -27,9 +27,10 @@ MonoBehaviour:
   potentialOffSpring:
   - {fileID: 11400000, guid: bb26a4b7d8c96e344b46984f9198c6ba, type: 2}
   - {fileID: 11400000, guid: 8b23d5dbc115ee04495c08eace992f9d, type: 2}
+  - {fileID: 11400000, guid: c2c77065f6402d346954cdef2fb08a88, type: 2}
   isResourceOnly: 1
   isStationary: 0
   isSmeltable: 0
   foodValue: 0
   toolTipText: 
-  tierGroup: 0
+  tierGroup: 2

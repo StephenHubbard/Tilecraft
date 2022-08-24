@@ -32,4 +32,4 @@ MonoBehaviour:
   isSmeltable: 0
   foodValue: 0
   toolTipText: 
-  tierGroup: 0
+  tierGroup: 2

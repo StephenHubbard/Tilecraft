@@ -40,7 +40,7 @@ public class EconomyManager : MonoBehaviour
 
         if (currentCoins >= coinsTillDiscovery) {
             NewDiscovery();
-            slider.maxValue = Mathf.Floor(coinsTillDiscovery * 1.5f);
+            slider.maxValue = Mathf.Ceil(coinsTillDiscovery * 1.2f);
             coinsTillDiscovery = (int)slider.maxValue;
             currentCoins = 0;
             slider.value = currentCoins;
@@ -74,11 +74,6 @@ public class EconomyManager : MonoBehaviour
     private IEnumerator DestroyCoinCo(GameObject thisCoin) {
         yield return new WaitForSeconds(.7f);
         Destroy(thisCoin);
-    }
-
-    public void BuyPack(int amount) {
-        currentCoins -= amount;
-        AudioManager.instance.Play("Pop");
     }
 
     

@@ -16,7 +16,6 @@ public class UITooltip : MonoBehaviour, IPointerClickHandler
 
     [HideInInspector]
     public GameObject shownItemsContainer;
-    public bool isPackIcon = false;
     public bool isEncyclopediaIcon = false;
 
     private EconomyManager economyManager;
@@ -45,9 +44,10 @@ public class UITooltip : MonoBehaviour, IPointerClickHandler
     {
         if (eventData.button == PointerEventData.InputButton.Left && itemInfo != null) {
             Encyclopedia.instance.DisplayWhatRecipesCanBeMade(transform);
+            AudioManager.instance.Play("UI Click");
         }
 
-        if (eventData.button == PointerEventData.InputButton.Right) { 
+        if (eventData.button == PointerEventData.InputButton.Right && itemInfo != null) { 
 
             if (itemInfo && !IsItemAlreadyInToDoList() && ToDoManager.instance.toDoList.Count < 4) {
                 ToDoManager.instance.SetNewToDoList(itemInfo);
@@ -57,7 +57,6 @@ public class UITooltip : MonoBehaviour, IPointerClickHandler
             } else {
                 foreach (var item in ToDoManager.instance.toDoList)
                 {
-                    
                     if (item.GetComponent<ToDoList>().itemInfo == itemInfo) {
                         ToDoManager.instance.toDoList.Remove(item.gameObject);
                         Destroy(item.gameObject);
@@ -66,9 +65,41 @@ public class UITooltip : MonoBehaviour, IPointerClickHandler
                     }
                 }
             }
-            
-        }
 
+            AudioManager.instance.Play("UI Click");
+        }
+    }
+
+    public void ItemCraftedTakeOffToDoList(ItemInfo itemInfo) {
+        foreach (var item in ToDoManager.instance.toDoList)
+        {
+            if (item.GetComponent<ToDoList>().itemInfo == itemInfo) {
+                ToDoManager.instance.toDoList.Remove(item.gameObject);
+                Destroy(item.gameObject);
+                Destroy(transform.GetChild(0).gameObject);
+                break;
+            }
+        }
+    }
+
+    public void AddAutoToDoList() {
+        if (itemInfo && !IsItemAlreadyInToDoList() && ToDoManager.instance.toDoList.Count < 4) {
+            ToDoManager.instance.SetNewToDoList(itemInfo);
+            GameObject newBorder = Instantiate(toDoListActiveBorderPrefab, transform.position, transform.rotation);
+            newBorder.transform.SetParent(this.transform);
+            newBorder.transform.localScale = new Vector3(1.05f, 1.05f, 1.05f);
+        } else {
+            foreach (var item in ToDoManager.instance.toDoList)
+            {
+                if (item.GetComponent<ToDoList>().itemInfo == itemInfo) {
+                    ToDoManager.instance.toDoList.Remove(item.gameObject);
+                    Destroy(item.gameObject);
+                    Destroy(transform.GetChild(0).gameObject);
+                    break;
+                }
+            }
+        }
+        
     }
 
     private bool IsItemAlreadyInToDoList() {
@@ -124,12 +155,5 @@ public class UITooltip : MonoBehaviour, IPointerClickHandler
         }
     }
 
-    public void ClearPackUIToolTip() {
-        if (isPackIcon || isEncyclopediaIcon) {
-            foreach (Transform child in shownItemsContainer.transform)
-            {
-                Destroy(child.gameObject);
-            }
-        }
-    }
+    
 }

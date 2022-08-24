@@ -15,11 +15,11 @@ public class Worker : MonoBehaviour
     [SerializeField] public int foodNeededToUpPickaxeStrengthCurrent;
     [SerializeField] public int foodNeededToUpPickaxeStrengthStart = 3;
     public ItemInfo itemInfo;
-    public int myHealth = 10;
+    public int myHealth;
 
     private Enemy enemyTarget = null;
 
-    private Animator myAnimator;
+    public Animator myAnimator;
 
     private void Awake() {
         myAnimator = GetComponent<Animator>();

@@ -29,6 +29,18 @@ public class ToDoManager : MonoBehaviour
             toDoContainer.SetActive(true);
             maximizeButton.SetActive(false);
         }
+
+        AudioManager.instance.Play("UI Click");
+
+    }
+
+    public void CraftedItemTakeOffToDoList(ItemInfo itemInfo) {
+        foreach (Transform item in Encyclopedia.instance.encylopediaGridLayout.transform)
+        {
+            if (item.GetComponent<UITooltip>().itemInfo == itemInfo) {
+                item.GetComponent<UITooltip>().ItemCraftedTakeOffToDoList(itemInfo);
+            }
+        }
     }
 
     public void SetNewToDoList(ItemInfo itemInfo) {

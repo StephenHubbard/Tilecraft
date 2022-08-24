@@ -31,4 +31,4 @@ MonoBehaviour:
   isSmeltable: 1
   foodValue: 0
   toolTipText: Requires Furnace
-  tierGroup: 0
+  tierGroup: 2

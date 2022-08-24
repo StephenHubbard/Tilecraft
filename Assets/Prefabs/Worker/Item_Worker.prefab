@@ -693,7 +693,8 @@ MonoBehaviour:
   foodNeededToUpPickaxeStrengthCurrent: 0
   foodNeededToUpPickaxeStrengthStart: 3
   itemInfo: {fileID: 11400000, guid: 7ecdb19248e9de349ba40029c73a2f12, type: 2}
-  myHealth: 4
+  myHealth: 3
+  myAnimator: {fileID: 0}
 --- !u!114 &6964081956427774314
 MonoBehaviour:
   m_ObjectHideFlags: 0

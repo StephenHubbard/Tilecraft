@@ -693,7 +693,7 @@ MonoBehaviour:
   knightPrefab: {fileID: 4812397909494241834, guid: 0a3f66f9d8017864fb7cf306cf6c630d, type: 3}
   archerArrowPrefab: {fileID: 0}
   currentTarget: {fileID: 0}
-  myHealth: 5
+  myHealth: 4
 --- !u!114 &-2436233452540949055
 MonoBehaviour:
   m_ObjectHideFlags: 0

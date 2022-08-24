@@ -10,11 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 66df1655cda175c4da55e2cd2c217479, type: 3}
-  m_Name: Fish Recipe
+  m_Name: Hospital Recipe
   m_EditorClassIdentifier: 
-  itemInfo: {fileID: 11400000, guid: 2c977b769381c434c9c587b76049cc2a, type: 2}
+  itemInfo: {fileID: 11400000, guid: c2c77065f6402d346954cdef2fb08a88, type: 2}
   neededRecipeItems:
-  - {fileID: 11400000, guid: ded67e27af248f146b7362b141ba2928, type: 2}
-  recipeCraftTime: 5
-  craftingClipString: Start Fishing
+  - {fileID: 11400000, guid: 14a62113a04f8aa4e9ce5e060ae05011, type: 2}
+  - {fileID: 11400000, guid: adc48f454ea6b9847b093dab583e7af1, type: 2}
+  - {fileID: 11400000, guid: a32e162b1166cdf4fab2cea6bb5a0314, type: 2}
+  recipeCraftTime: 20
+  craftingClipString: Crafting Started
   requiresFurnace: 0
