@@ -20,7 +20,6 @@ public class Knight : MonoBehaviour
 
     private Enemy enemyTarget = null;
 
-
     private Animator myAnimator;
 
     private void Awake() {
@@ -38,6 +37,7 @@ public class Knight : MonoBehaviour
         DetectCombat();
 
     }
+
 
     private void DetectCombat() {
             if (transform.GetComponent<PlacedItem>() && transform.root.GetComponent<Tile>().currentPlacedItem && transform.root.GetComponent<Tile>().currentPlacedItem.GetComponent<OrcRelic>() && enemyTarget == null) {

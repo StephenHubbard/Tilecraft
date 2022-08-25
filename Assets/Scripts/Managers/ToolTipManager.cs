@@ -228,8 +228,6 @@ public class ToolTipManager : MonoBehaviour
 
     // event listener in inspector
     public void HoverOverUI(Transform sender) {
-        if (!isMaximized) { return; }
-
         isOverUI = true;
         ToggleToolTipOn();
         UpdateValues(sender.GetComponent<UITooltip>().toolTipName, sender.GetComponent<UITooltip>().toolTipText, 0, 0, 0, 0, 0);
@@ -237,9 +235,7 @@ public class ToolTipManager : MonoBehaviour
     }
 
     // event listener in inspector
-    public void ExitUI(Transform sender) {
-        if (!isMaximized) { return; }
-
+    public void ExitUI() {
         isOverUI = false;
         ToggleToolTipOff();
     }

@@ -12,6 +12,7 @@ public class HousingManager : MonoBehaviour
   [SerializeField] private Slider slider;
   [SerializeField] private TMP_Text housingText;
   [SerializeField] private Animator housingUIAnimator;
+  [SerializeField] private GameObject workerItemPrefab;
 
   public static HousingManager instance;
 
@@ -55,6 +56,22 @@ public class HousingManager : MonoBehaviour
     yield return new WaitForEndOfFrame();
     Population[] totalPop = FindObjectsOfType<Population>();
     currentPopulation = totalPop.Length;
+
+    House[] houseLengthNullCheck = FindObjectsOfType<House>();
+    if (houseLengthNullCheck.Length > 0) { 
+      Transform randomHousePostion = FindObjectOfType<House>().transform;
+
+      if (currentPopulation == 1) {
+        Instantiate(workerItemPrefab, randomHousePostion.position, randomHousePostion.rotation);
+      }
+
+      if (currentPopulation == 0) {
+        Instantiate(workerItemPrefab, randomHousePostion.position, randomHousePostion.rotation);
+        Instantiate(workerItemPrefab, randomHousePostion.position, randomHousePostion.rotation);
+      }
+    } else {
+      // can use tutorial guy later
+    }
   }
 
   public void AddNewHouse(int amountHouseAdds) {

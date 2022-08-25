@@ -23,6 +23,7 @@ public class DraggableItem : MonoBehaviour
         tileHighlight.GetComponent<SpriteRenderer>().enabled = false;
     }
 
+
     private void Update() {
         if (currentTile != null) {
             tileHighlight.GetComponent<SpriteRenderer>().enabled = true;
@@ -54,7 +55,6 @@ public class DraggableItem : MonoBehaviour
     public void PlaceItemOnTile(int amountInStack) {
         for (int i = amountInStack; i > 0; i--)
         {
-
             // fridge
             if (currentTile.currentPlacedItem && currentTile.currentPlacedItem.GetComponent<Fridge>()) {
                 if (gameObject.GetComponent<Food>()) {
@@ -193,9 +193,10 @@ public class DraggableItem : MonoBehaviour
         for (int i = 0; i < amountExtra; i++)
         {
             Vector3 spawnItemsVector3 = transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), -1);
-            Instantiate(itemInfo.draggableItemPrefab, spawnItemsVector3, transform.rotation);
-            audioManager.Play("Pop");
+
+            NewItemManager.instance.SpawnNewItem(spawnItemsVector3, itemInfo);
         }
     }
+
 
 }

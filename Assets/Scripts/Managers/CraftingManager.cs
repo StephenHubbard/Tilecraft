@@ -49,6 +49,11 @@ public class CraftingManager : MonoBehaviour
     }
 
     public void CheckCanStartCrafting() {
+        if (GetComponent<Tile>().currentPlacedItem && GetComponent<Tile>().currentPlacedItem.GetComponent<Tower>()) {
+            hasCompleteRecipe = true;
+            recipeInfo = GetComponent<Tile>().currentPlacedItem.GetComponent<PlacedItem>().itemInfo.recipeInfo;
+        }
+
         if (hasCompleteRecipe && hasWorkers && !isCrafting && amountLeftToCraft > 0 && !recipeInfo.requiresFurnace) {
             if (CheckIfTileHasEnemies() == false) {
                 StartCrafting();
@@ -142,7 +147,6 @@ public class CraftingManager : MonoBehaviour
             }
         }
 
-        audioManager.Play("Pop");
         GetComponent<Tile>().currentPlacedResources.Clear();
 
         if (GetComponent<Tile>().currentPlacedItem && GetComponent<Tile>().currentPlacedItem.GetComponent<Furnace>()) {

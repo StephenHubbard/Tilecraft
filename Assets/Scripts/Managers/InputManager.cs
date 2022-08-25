@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using CodeMonkey.Utils;
 using UnityEngine.SceneManagement;
-using UnityEngine.Rendering;
+using UnityEngine.UI;
+using System;
 
 public class InputManager : MonoBehaviour
 {
@@ -18,6 +19,8 @@ public class InputManager : MonoBehaviour
     [SerializeField] private CursorManager.CursorType cursorTypeArrow;
     [SerializeField] private CursorManager.CursorType cursorOpenHand;
     [SerializeField] private CursorManager.CursorType cursorClosedHand;
+
+    [SerializeField] private Scrollbar scrollbar;
 
     private DragAndDrop activeObject;
 
@@ -54,9 +57,26 @@ public class InputManager : MonoBehaviour
 
         UpdateTileInput();
         UpdateInteractablesInput();
+        UpdateEncyclopediaScroll();
+    }
+
+    private void UpdateEncyclopediaScroll()
+    {
+        if (ToolTipManager.instance.isOverUI == false) { return; }
+
+        if (Input.mouseScrollDelta.y > 0)
+            {
+                scrollbar.value += .3f;
+            }
+            if (Input.mouseScrollDelta.y < 0)
+            {
+                scrollbar.value -= .3f;
+            }
     }
 
     private void UpdateTileInput() {
+        if (ToolTipManager.instance.isOverUI) { return; }
+
         RaycastHit2D[] hitArray = Physics2D.RaycastAll(UtilsClass.GetMouseWorldPosition(), Vector2.zero, 100f, tileDetectionLayerMask);
 
         Tile thisTile = null;
@@ -64,6 +84,7 @@ public class InputManager : MonoBehaviour
         bool isRayBeingBlocked = false;
 
         if (hitArray.Length > 0) {
+
 
             foreach (var item in hitArray)
             {
@@ -102,6 +123,8 @@ public class InputManager : MonoBehaviour
     }
 
     private void UpdateInteractablesInput() {
+            if (ToolTipManager.instance.isOverUI) { return; }
+
             Transform lowestZGameObject = null;
 
             RaycastHit2D[] hit = Physics2D.RaycastAll(UtilsClass.GetMouseWorldPosition(), Vector2.zero, 100f, interactableLayerMask);

@@ -199,6 +199,7 @@ public class WorldGeneration : MonoBehaviour
                     startingTower.transform.parent = newTile.transform;
                     newTile.GetComponent<Tile>().UpdateCurrentPlacedItem(towerPrefab.GetComponent<PlacedItem>().itemInfo, startingTower);
                     newTile.GetComponent<Tile>().isOccupiedWithBuilding = true;
+                    newTile.GetComponent<CraftingManager>().UpdateAmountLeftToCraft(towerPrefab.GetComponent<PlacedItem>().itemInfo.amountRecipeCanCreate);
                     tileType.transform.parent = newTile.transform;
                     tileType.GetComponentInParent<Tile>().tileInfo = tileInfoScriptableObjects[0];
                     grid.SetValue(gridLocation, 1);

@@ -157,6 +157,8 @@ public class Tile : MonoBehaviour
 
     public void PluckItemsOffTile() {
         if (ToolTipManager.instance.isOverUI) { return; }
+
+        AudioManager.instance.Play("Pop");
         
         if (currentPlacedItem && currentPlacedItem.GetComponent<Furnace>()) {
             currentPlacedItem.GetComponent<Furnace>().AbandonSmelting();

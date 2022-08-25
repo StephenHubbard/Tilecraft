@@ -44,15 +44,15 @@ public class ToDoManager : MonoBehaviour
     }
 
     // not sure if needed tbd - currently not useds
-    public void FillNextToDoListItem() {
-        foreach (Transform item in Encyclopedia.instance.encylopediaGridLayout.transform)
-        {
-            if (Encyclopedia.instance.discoveredItems[item.GetComponent<UITooltip>().itemInfo] == false) {
-                item.GetComponent<UITooltip>().AddAutoToDoList();
-                return;
-            }
-        }
-    }
+    // public void FillNextToDoListItem() {
+    //     foreach (Transform item in Encyclopedia.instance.encylopediaGridLayout.transform)
+    //     {
+    //         if (Encyclopedia.instance.discoveredItems[item.GetComponent<UITooltip>().itemInfo] == false) {
+    //             item.GetComponent<UITooltip>().AddAutoToDoList();
+    //             return;
+    //         }
+    //     }
+    // }
 
     public void SetNewToDoList(ItemInfo itemInfo) {
         GameObject newList = Instantiate(toDoListPrefab, toDoContainer.transform.position, transform.rotation);

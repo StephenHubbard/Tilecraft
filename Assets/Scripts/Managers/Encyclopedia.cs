@@ -128,9 +128,9 @@ public class Encyclopedia : MonoBehaviour
                 DiscoveryManager.instance.NewDiscoveryAnimation(newItem);
             }
             discoveredItems.Add(newItem, false);
-            NewItemToEncyclopedia(newItem, encylopediaGridLayout.transform, false);
+            NewItemToEncyclopedia(newItem, encylopediaGridLayout.transform, true);
             newlyDiscoveredItems.Add(newItem);
-            NewItemToEncyclopedia(newItem, newDiscoveredItemsGridLayout.transform, true);
+            NewItemToEncyclopedia(newItem, newDiscoveredItemsGridLayout.transform, false);
             DiscoveryManager.instance.NewDiscoveredItem(newItem);
 
             if (newDiscoveredItemsGridLayout.transform.childCount > 7) {
@@ -160,7 +160,7 @@ public class Encyclopedia : MonoBehaviour
         exitEntry.callback.AddListener((data) => { OnPointerExitDelegate(); });
         thisHoverTrigger.triggers.Add(exitEntry);
 
-        if (!isNew && newItem.recipeInfo.neededRecipeItems.Length > 0 && discoveredItems[newItem] == false) {
+        if (isNew && newItem.recipeInfo.neededRecipeItems.Length > 0 && discoveredItems[newItem] == false) {
             discoveredItem.GetComponent<UITooltip>().AddAutoToDoList();
         }
     }
@@ -178,6 +178,8 @@ public class Encyclopedia : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
+
+        toolTipManager.ExitUI();
     }
 
 
@@ -201,6 +203,9 @@ public class Encyclopedia : MonoBehaviour
                 item.gameObject.SetActive(false);
             }
         }
+
+        AudioManager.instance.Play("UI Click");
+
     }
 
     private void UncraftedButtonFilterOff() {
@@ -208,5 +213,8 @@ public class Encyclopedia : MonoBehaviour
         {
             item.gameObject.SetActive(true);
         }
+
+        AudioManager.instance.Play("UI Click");
+
     }
 }

@@ -263,6 +263,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemInfo: {fileID: 11400000, guid: 3541cebb65418d543904013ad5efe8ec, type: 2}
   currentTile: {fileID: 0}
+  amountLeft: 0
 --- !u!50 &4812397909494241839
 Rigidbody2D:
   serializedVersion: 4
@@ -299,6 +300,8 @@ MonoBehaviour:
   potentialParentItem: {fileID: 0}
   amountOfChildItems: 0
   itemInfo: {fileID: 0}
+  lastChild: {fileID: 0}
+  isSellable: 0
 --- !u!1 &4812397909912382413
 GameObject:
   m_ObjectHideFlags: 0

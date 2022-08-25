@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
-public class UITooltip : MonoBehaviour, IPointerClickHandler
+public class UITooltip : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerMoveHandler, IPointerExitHandler
 {
     [SerializeField] public string toolTipName;
 
@@ -39,6 +39,7 @@ public class UITooltip : MonoBehaviour, IPointerClickHandler
         }
     }
 
+
     public void OnPointerClick(PointerEventData eventData)
     {
         if (eventData.button == PointerEventData.InputButton.Left && itemInfo != null) {
@@ -46,8 +47,7 @@ public class UITooltip : MonoBehaviour, IPointerClickHandler
             AudioManager.instance.Play("UI Click");
         }
 
-        if (eventData.button == PointerEventData.InputButton.Right && itemInfo != null) { 
-
+        if (eventData.button == PointerEventData.InputButton.Right && itemInfo != null  && transform.parent.name != "Potential Items Container Grid Layout") { 
             if (itemInfo && !IsItemAlreadyInToDoList() && ToDoManager.instance.toDoList.Count < 4) {
                 ToDoManager.instance.SetNewToDoList(itemInfo);
                 GameObject newBorder = Instantiate(toDoListActiveBorderPrefab, transform.position, transform.rotation);
@@ -93,7 +93,9 @@ public class UITooltip : MonoBehaviour, IPointerClickHandler
                 if (item.GetComponent<ToDoList>().itemInfo == itemInfo) {
                     ToDoManager.instance.toDoList.Remove(item.gameObject);
                     Destroy(item.gameObject);
-                    Destroy(transform.GetChild(0).gameObject);
+                    if (transform.childCount > 0) {
+                        Destroy(transform.GetChild(0).gameObject);
+                    }
                     break;
                 }
             }
@@ -139,5 +141,20 @@ public class UITooltip : MonoBehaviour, IPointerClickHandler
         }
     }
 
-    
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        ToolTipManager.instance.isOverUI = false;
+    }
+
+    public void OnPointerMove(PointerEventData eventData)
+    {
+        ToolTipManager.instance.isOverUI = true;
+        ToolTipManager.instance.UpdateValues(toolTipName, toolTipText, 0, 0, 0, 0, 0);
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        ToolTipManager.instance.isOverUI = true;
+        ToolTipManager.instance.UpdateValues(toolTipName, toolTipText, 0, 0, 0, 0, 0);
+    }
 }

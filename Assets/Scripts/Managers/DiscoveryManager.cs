@@ -9,7 +9,6 @@ public class DiscoveryManager : MonoBehaviour
 
     [SerializeField] public List<ItemInfo> allAvailableItems = new List<ItemInfo>();
 
-
     [SerializeField] public List<ItemInfo> allTierOneItems = new List<ItemInfo>();
     [SerializeField] public List<ItemInfo> allTierTwoItems = new List<ItemInfo>();
     [SerializeField] public List<ItemInfo> allTierThreeItems = new List<ItemInfo>();
@@ -34,6 +33,16 @@ public class DiscoveryManager : MonoBehaviour
     private void Start() {
         SortAllItems();
         FindAllDiscoveredItems();
+
+        // DiscoverAllItems();
+    }
+
+    // debug use only
+    private void DiscoverAllItems() {
+        for (int i = 0; i < allAvailableItems.Count; i++)
+        {
+            Encyclopedia.instance.AddItemToDiscoveredList(allAvailableItems[i], false);
+        }
     }
 
     private void SortAllItems() {
