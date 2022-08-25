@@ -19,6 +19,7 @@ public class ItemInfo : ScriptableObject
     public bool isStationary = false;
     public bool isSmeltable = false;
     public int foodValue = 0;
+    public ItemInfo[] itemsNextToDiscover;
 
     [TextArea]
     public string toolTipText;
@@ -27,8 +28,17 @@ public class ItemInfo : ScriptableObject
     public enum TierGroup {
         one, 
         two, 
-        three
+        three, 
+        four, 
+        five
     };
+
+    public void NextInLineToDiscover() {
+        foreach (var item in itemsNextToDiscover)
+        {
+            Encyclopedia.instance.AddItemToDiscoveredList(item, true);
+        }
+    }
 
     public bool checkValidTiles(TileInfo tileInfo) { 
         foreach (var tile in tileInfoValidLocations)

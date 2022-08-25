@@ -107,7 +107,7 @@ public class Tile : MonoBehaviour
                 isOccupiedWithWorkers = true;
                 AudioManager.instance.Play("Click");
 
-                if (currentPlacedItem.GetComponent<Hospital>()) {
+                if (currentPlacedItem && currentPlacedItem.GetComponent<Hospital>()) {
                     currentPlacedItem.GetComponent<Hospital>().HealPerson(newKnight);
                 }
                 return true;
@@ -128,7 +128,7 @@ public class Tile : MonoBehaviour
                 isOccupiedWithWorkers = true;
                 AudioManager.instance.Play("Click");
 
-                if (currentPlacedItem.GetComponent<Hospital>()) {
+                if (currentPlacedItem && currentPlacedItem.GetComponent<Hospital>()) {
                     currentPlacedItem.GetComponent<Hospital>().HealPerson(newArcher);
                 }
                 return true;
@@ -220,7 +220,7 @@ public class Tile : MonoBehaviour
                 isOccupiedWithBuilding = false;
             }
 
-            if (!currentPlacedItem.GetComponent<UnlimitedHarvest>() && !currentPlacedItem.GetComponent<OrcRelic>()) {
+            if (!currentPlacedItem.GetComponent<UnlimitedHarvest>() && !currentPlacedItem.GetComponent<OrcRelic>() && currentPlacedItem.GetComponent<PlacedItem>().itemInfo.isStationary) {
                 craftingManager.DoneCrafting();
             }
         } else {

@@ -14,7 +14,6 @@ public class UITooltip : MonoBehaviour, IPointerClickHandler
 
     [SerializeField] public ItemInfo itemInfo;
 
-    [HideInInspector]
     public GameObject shownItemsContainer;
     public bool isEncyclopediaIcon = false;
 
@@ -114,23 +113,9 @@ public class UITooltip : MonoBehaviour, IPointerClickHandler
     }
 
 
-    public void UpdatePackUIToolTip() {
+    public void UpdateEncyclopediaToolTip() {
 
         if (!toolTipManager.isMaximized) { return; }
-
-        if (GetComponent<PackManager>()) {
-            shownItemsContainer.SetActive(true);
-
-            foreach (var availableItem in GetComponent<PackManager>().resourcePackItems)
-            {
-                // could later on turn resourcePackItems into a dictionary and display unknown resources in the pack as question marks
-                GameObject newImageObject = new GameObject("available item");
-                newImageObject.transform.SetParent(shownItemsContainer.transform);
-                newImageObject.transform.localScale = Vector3.one;
-                newImageObject.AddComponent<Image>();
-                newImageObject.GetComponent<Image>().sprite = availableItem.itemSprite;
-            }
-        }
 
         if (isEncyclopediaIcon) {
             if (shownItemsContainer == null) {
@@ -138,7 +123,6 @@ public class UITooltip : MonoBehaviour, IPointerClickHandler
             }
 
             shownItemsContainer.SetActive(true);
-
         
             foreach (var requiredResource in itemInfo.recipeInfo.neededRecipeItems)
             {

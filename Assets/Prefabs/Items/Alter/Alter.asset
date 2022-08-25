@@ -28,5 +28,7 @@ MonoBehaviour:
   isStationary: 1
   isSmeltable: 0
   foodValue: 0
+  itemsNextToDiscover:
+  - {fileID: 11400000, guid: 8ca693846393da94eb237f9df66199bb, type: 2}
   toolTipText: Sacrifice Workers
-  tierGroup: 2
+  tierGroup: 3

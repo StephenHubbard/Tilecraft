@@ -32,5 +32,7 @@ MonoBehaviour:
   isStationary: 0
   isSmeltable: 0
   foodValue: 0
+  itemsNextToDiscover:
+  - {fileID: 11400000, guid: 855316e0c92bea843b6ce2d9671bd864, type: 2}
   toolTipText: 
   tierGroup: 0

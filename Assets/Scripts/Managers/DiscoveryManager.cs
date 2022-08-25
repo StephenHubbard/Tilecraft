@@ -13,11 +13,16 @@ public class DiscoveryManager : MonoBehaviour
     [SerializeField] public List<ItemInfo> allTierOneItems = new List<ItemInfo>();
     [SerializeField] public List<ItemInfo> allTierTwoItems = new List<ItemInfo>();
     [SerializeField] public List<ItemInfo> allTierThreeItems = new List<ItemInfo>();
+    [SerializeField] public List<ItemInfo> allTierFourItems = new List<ItemInfo>();
+    [SerializeField] public List<ItemInfo> allTierFiveItems = new List<ItemInfo>();
 
     [SerializeField] public List<ItemInfo> allKnownItems = new List<ItemInfo>();
+
     [SerializeField] public List<ItemInfo> knownTierOneItems = new List<ItemInfo>();
     [SerializeField] public List<ItemInfo> knownTierTwoItems = new List<ItemInfo>();
     [SerializeField] public List<ItemInfo> knownTierThreeItems = new List<ItemInfo>();
+    [SerializeField] public List<ItemInfo> knownTierFourItems = new List<ItemInfo>();
+    [SerializeField] public List<ItemInfo> knownTierFiveItems = new List<ItemInfo>();
 
     [SerializeField] private GameObject newDiscoveryAnimPrefab;
     [SerializeField] private Transform canvasUI;
@@ -43,6 +48,12 @@ public class DiscoveryManager : MonoBehaviour
             if (item.tierGroup == ItemInfo.TierGroup.three) {
                 allTierThreeItems.Add(item);
             }
+            if (item.tierGroup == ItemInfo.TierGroup.four) {
+                allTierFourItems.Add(item);
+            }
+            if (item.tierGroup == ItemInfo.TierGroup.five) {
+                allTierFiveItems.Add(item);
+            }
         }
     }
 
@@ -58,21 +69,33 @@ public class DiscoveryManager : MonoBehaviour
             if (item.Key.tierGroup == ItemInfo.TierGroup.three) {
                 knownTierThreeItems.Add(item.Key);
             }
+            if (item.Key.tierGroup == ItemInfo.TierGroup.four) {
+                knownTierFourItems.Add(item.Key);
+            }
+            if (item.Key.tierGroup == ItemInfo.TierGroup.five) {
+                knownTierFiveItems.Add(item.Key);
+            }
             allKnownItems.Add(item.Key);
         }
     }
 
     public void NewDiscoveredItem(ItemInfo item) {
         if (item.tierGroup == ItemInfo.TierGroup.one) {
-                knownTierOneItems.Add(item);
-            }
-            if (item.tierGroup == ItemInfo.TierGroup.two) {
-                knownTierTwoItems.Add(item);
-            }
-            if (item.tierGroup == ItemInfo.TierGroup.three) {
-                knownTierThreeItems.Add(item);
-            }
-            allKnownItems.Add(item);
+            knownTierOneItems.Add(item);
+        }
+        if (item.tierGroup == ItemInfo.TierGroup.two) {
+            knownTierTwoItems.Add(item);
+        }
+        if (item.tierGroup == ItemInfo.TierGroup.three) {
+            knownTierThreeItems.Add(item);
+        }
+        if (item.tierGroup == ItemInfo.TierGroup.four) {
+            knownTierFourItems.Add(item);
+        }
+        if (item.tierGroup == ItemInfo.TierGroup.five) {
+            knownTierFiveItems.Add(item);
+        }
+        allKnownItems.Add(item);
     }
 
     public void DetermineNewDiscovery() {
@@ -80,7 +103,7 @@ public class DiscoveryManager : MonoBehaviour
         foreach (var item in allTierOneItems)
         {
             if (!knownTierOneItems.Contains(item)) {
-                Encyclopedia.instance.AddItemToDiscoveredList(item);
+                Encyclopedia.instance.AddItemToDiscoveredList(item, true);
                 NewDiscoveryAnimation(item);
                 return;
             } 
@@ -90,7 +113,7 @@ public class DiscoveryManager : MonoBehaviour
         foreach (var item in allTierTwoItems)
         {
             if (!knownTierTwoItems.Contains(item)) {
-                Encyclopedia.instance.AddItemToDiscoveredList(item);
+                Encyclopedia.instance.AddItemToDiscoveredList(item, true);
                 NewDiscoveryAnimation(item);
                 return;
             } 
@@ -100,14 +123,34 @@ public class DiscoveryManager : MonoBehaviour
         foreach (var item in allTierThreeItems)
         {
             if (!knownTierThreeItems.Contains(item)) {
-                Encyclopedia.instance.AddItemToDiscoveredList(item);
+                Encyclopedia.instance.AddItemToDiscoveredList(item, true);
+                NewDiscoveryAnimation(item);
+                return;
+            } 
+        }
+
+        ShuffleList(allTierFourItems);
+        foreach (var item in allTierFourItems)
+        {
+            if (!knownTierFourItems.Contains(item)) {
+                Encyclopedia.instance.AddItemToDiscoveredList(item, true);
+                NewDiscoveryAnimation(item);
+                return;
+            } 
+        }
+
+        ShuffleList(allTierFiveItems);
+        foreach (var item in allTierFiveItems)
+        {
+            if (!knownTierFiveItems.Contains(item)) {
+                Encyclopedia.instance.AddItemToDiscoveredList(item, true);
                 NewDiscoveryAnimation(item);
                 return;
             } 
         }
     }
 
-    private void NewDiscoveryAnimation(ItemInfo itemInfo) {
+    public void NewDiscoveryAnimation(ItemInfo itemInfo) {
         GameObject newAnimPrefab = Instantiate(newDiscoveryAnimPrefab, canvasUI.transform.position, transform.rotation);
         newAnimPrefab.transform.SetParent(canvasUI.transform.parent);
         newAnimPrefab.transform.localScale = Vector3.one;

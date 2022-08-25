@@ -27,5 +27,7 @@ MonoBehaviour:
   isStationary: 0
   isSmeltable: 0
   foodValue: 0
+  itemsNextToDiscover:
+  - {fileID: 11400000, guid: d10aca6c2f1b23346885ae9deb3d17db, type: 2}
   toolTipText: Can only be placed on a water tile
   tierGroup: 1

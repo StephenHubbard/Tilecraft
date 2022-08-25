@@ -134,7 +134,7 @@ public class ToolTipManager : MonoBehaviour
                         }
 
                         if (hit[0].transform.GetComponent<Tile>().currentPlacedItem.GetComponent<OrcRelic>().orcSpawnPoints[1].childCount == 1) {
-                            orcHealthTwo = hit[0].transform.GetComponent<Tile>().currentPlacedItem.GetComponent<OrcRelic>().orcSpawnPoints[1].GetChild(0).gameObject.GetComponent<Enemy>().myHealth.ToString();
+                            orcHealthTwo = hit[0].transform.GetComponent<Tile>().currentPlacedItem.GetComponent<OrcRelic>().orcSpawnPoints[0].GetChild(0).gameObject.GetComponent<Enemy>().myHealth.ToString();
                         }
 
 
@@ -232,6 +232,7 @@ public class ToolTipManager : MonoBehaviour
         isOverUI = true;
         ToggleToolTipOn();
         UpdateValues(sender.GetComponent<UITooltip>().toolTipName, sender.GetComponent<UITooltip>().toolTipText, 0, 0, 0, 0, 0);
+        sender.GetComponent<UITooltip>().UpdateEncyclopediaToolTip();
     }
 
     // event listener in inspector

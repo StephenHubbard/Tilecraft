@@ -28,5 +28,6 @@ MonoBehaviour:
   isStationary: 1
   isSmeltable: 0
   foodValue: 0
+  itemsNextToDiscover: []
   toolTipText: Place two workers to create new worker
   tierGroup: 0

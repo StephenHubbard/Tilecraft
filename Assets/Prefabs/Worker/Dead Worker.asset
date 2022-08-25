@@ -31,5 +31,6 @@ MonoBehaviour:
   isStationary: 0
   isSmeltable: 1
   foodValue: 0
+  itemsNextToDiscover: []
   toolTipText: Requires Alter
-  tierGroup: 0
+  tierGroup: 1

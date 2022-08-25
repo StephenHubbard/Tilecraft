@@ -42,7 +42,7 @@ public class Encyclopedia : MonoBehaviour
     private void Start() {
         foreach (var item in startingItems)
         {
-            AddItemToDiscoveredList(item);
+            AddItemToDiscoveredList(item, false);
         }
 
     }
@@ -122,8 +122,11 @@ public class Encyclopedia : MonoBehaviour
         }
     }
 
-    public void AddItemToDiscoveredList(ItemInfo newItem) {
+    public void AddItemToDiscoveredList(ItemInfo newItem, bool fireAnim) {
         if (!discoveredItems.ContainsKey(newItem)) {
+            if (fireAnim) {
+                DiscoveryManager.instance.NewDiscoveryAnimation(newItem);
+            }
             discoveredItems.Add(newItem, false);
             NewItemToEncyclopedia(newItem, encylopediaGridLayout.transform, false);
             newlyDiscoveredItems.Add(newItem);
@@ -166,6 +169,7 @@ public class Encyclopedia : MonoBehaviour
     public void OnPointerHoverDelegate(Transform discoveredItem)
     {
         toolTipManager.HoverOverUI(discoveredItem);
+        
     }
 
     public void OnPointerExitDelegate()

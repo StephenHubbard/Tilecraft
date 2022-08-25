@@ -30,4 +30,4 @@ MonoBehaviour:
   isSmeltable: 0
   foodValue: 0
   toolTipText: Equip on a knight or archer to turn into a worker
-  tierGroup: 0
+  tierGroup: 1

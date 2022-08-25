@@ -28,4 +28,4 @@ MonoBehaviour:
   isSmeltable: 0
   foodValue: 0
   toolTipText: Can only be placed on plains tile
-  tierGroup: 0
+  tierGroup: 1

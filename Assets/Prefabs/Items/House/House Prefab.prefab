@@ -312,6 +312,7 @@ MonoBehaviour:
   timeToHaveBabyTotal: 10
   workerPoints: []
   workerItemPrefab: {fileID: 4812397909494241834, guid: 4fea6c41e7173da44bdb63fc54b8a34a, type: 3}
+  workerItemInfo: {fileID: 11400000, guid: 7ecdb19248e9de349ba40029c73a2f12, type: 2}
   isBabyMaking: 0
 --- !u!1 &1703971825862980863
 GameObject:

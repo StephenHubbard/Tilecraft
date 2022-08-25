@@ -26,9 +26,11 @@ MonoBehaviour:
   potentialOffSpring:
   - {fileID: 11400000, guid: 46caf5f13780ccc4397d7e19477d11e0, type: 2}
   - {fileID: 11400000, guid: a7f0335e0ecbeab46882746bbfdfa2ec, type: 2}
+  - {fileID: 11400000, guid: adc48f454ea6b9847b093dab583e7af1, type: 2}
   isResourceOnly: 0
   isStationary: 1
   isSmeltable: 0
   foodValue: 0
+  itemsNextToDiscover: []
   toolTipText: Used to smelt some resources.
   tierGroup: 0
