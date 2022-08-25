@@ -34,9 +34,11 @@ public class ItemInfo : ScriptableObject
     };
 
     public void NextInLineToDiscover() {
-        foreach (var item in itemsNextToDiscover)
-        {
-            Encyclopedia.instance.AddItemToDiscoveredList(item, true);
+        if (itemsNextToDiscover != null) {
+            foreach (var item in itemsNextToDiscover)
+            {
+                Encyclopedia.instance.AddItemToDiscoveredList(item, true);
+            }
         }
     }
 

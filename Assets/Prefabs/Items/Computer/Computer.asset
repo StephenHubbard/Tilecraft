@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Computer
   itemSprite: {fileID: 21300000, guid: 0477bced97efd5a49a4ae6824999e359, type: 3}
-  coinValue: 1
+  coinValue: 3
   draggableItemPrefab: {fileID: 4812397909494241834, guid: 631c71fabd7262b41ac14673bcf73fc9, type: 3}
   onTilePrefab: {fileID: 994099794024727751, guid: b09607e4798dd7840bc03e5a9d98eda4, type: 3}
   tileInfoValidLocations:
@@ -30,5 +30,6 @@ MonoBehaviour:
   isStationary: 0
   isSmeltable: 0
   foodValue: 0
+  itemsNextToDiscover: []
   toolTipText: 
   tierGroup: 3

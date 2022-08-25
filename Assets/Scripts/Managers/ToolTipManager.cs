@@ -134,13 +134,17 @@ public class ToolTipManager : MonoBehaviour
                         }
 
                         if (hit[0].transform.GetComponent<Tile>().currentPlacedItem.GetComponent<OrcRelic>().orcSpawnPoints[1].childCount == 1) {
-                            orcHealthTwo = hit[0].transform.GetComponent<Tile>().currentPlacedItem.GetComponent<OrcRelic>().orcSpawnPoints[0].GetChild(0).gameObject.GetComponent<Enemy>().myHealth.ToString();
+                            orcHealthTwo = hit[0].transform.GetComponent<Tile>().currentPlacedItem.GetComponent<OrcRelic>().orcSpawnPoints[1].GetChild(0).gameObject.GetComponent<Enemy>().myHealth.ToString();
                         }
 
-
-                        UpdateValues(thisTile.name, "Orc 1 Health: " + orcHealthOne + "\n" + "Orc 2 Health: " + orcHealthTwo, 0, 0, 0, 0, 0);
+                        if (orcHealthOne != null && orcHealthTwo != null) {
+                            UpdateValues(thisTile.name, "Orc 1 Health: " + orcHealthOne + "\n" + "Orc 2 Health: " + orcHealthTwo, 0, 0, 0, 0, 0);
+                        } else if (orcHealthOne != null && orcHealthTwo == null) {
+                            UpdateValues(thisTile.name, "Orc 1 Health: " + orcHealthOne, 0, 0, 0, 0, 0);
+                        } else if (orcHealthOne == null && orcHealthTwo != null) {
+                            UpdateValues(thisTile.name,"Orc 2 Health: " + orcHealthTwo, 0, 0, 0, 0, 0);
+                        }
                     }
-
 
                     return;
                 } else {
@@ -148,9 +152,6 @@ public class ToolTipManager : MonoBehaviour
                     return;
                 }
             } 
-
-
-
         } else {
             ToggleToolTipOff();
         }

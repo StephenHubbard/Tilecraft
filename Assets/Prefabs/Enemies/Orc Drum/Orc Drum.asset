@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Orc Drumb
   itemSprite: {fileID: 21300000, guid: de55a05ae8c284741a44ab8261a3096a, type: 3}
-  coinValue: 0
+  coinValue: 3
   draggableItemPrefab: {fileID: 0}
   onTilePrefab: {fileID: 994099794024727751, guid: 0a2a57d4c3b50fe488c0381185f6c297, type: 3}
   tileInfoValidLocations:
@@ -29,5 +29,6 @@ MonoBehaviour:
   isStationary: 1
   isSmeltable: 0
   foodValue: 0
+  itemsNextToDiscover: []
   toolTipText: Defeat all orcs to capture their relics.
   tierGroup: 3

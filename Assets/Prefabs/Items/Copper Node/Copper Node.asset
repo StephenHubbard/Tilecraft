@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Copper Node
   itemSprite: {fileID: 21300000, guid: 1d93e4bc97231f147b14e0216d16931b, type: 3}
-  coinValue: 1
+  coinValue: 3
   draggableItemPrefab: {fileID: 4812397909494241834, guid: 77ede0deaba48e147ae699bc440065cb, type: 3}
   onTilePrefab: {fileID: 994099794024727751, guid: 571cb92ac0c59db4d86ce1519af515be, type: 3}
   tileInfoValidLocations:
@@ -27,5 +27,6 @@ MonoBehaviour:
   isStationary: 0
   isSmeltable: 0
   foodValue: 0
+  itemsNextToDiscover: []
   toolTipText: Can only be placed on stone tile
   tierGroup: 2

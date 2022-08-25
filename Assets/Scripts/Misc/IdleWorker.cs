@@ -15,7 +15,7 @@ public class IdleWorker : MonoBehaviour
 
         foreach (var worker in allWorkers)
         {
-            if (worker.GetComponent<PlacedItem>() && worker.myAnimator.GetBool("isWorking") == false) {
+            if (worker.GetComponent<PlacedItem>() && worker.myAnimator.GetBool("isWorking") == false && worker.isBabyMaking == false) {
                 cameraController.transform.position = worker.transform.position + new Vector3(0, -2f, 0);
                 return;
             }

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Game Win
   itemSprite: {fileID: 21300000, guid: 5d6380d75bc66604aa68fa378fcd8c69, type: 3}
-  coinValue: 1
+  coinValue: 0
   draggableItemPrefab: {fileID: 4812397909494241834, guid: 8db72f51fc3dd6947a73016a548eda19, type: 3}
   onTilePrefab: {fileID: 994099794024727751, guid: 65db0cc8c8008364685f38366596c671, type: 3}
   tileInfoValidLocations:
@@ -29,5 +29,6 @@ MonoBehaviour:
   isStationary: 0
   isSmeltable: 0
   foodValue: 0
+  itemsNextToDiscover: []
   toolTipText: 
   tierGroup: 4

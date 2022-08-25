@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Copper Ore
   itemSprite: {fileID: 21300000, guid: 11383704cef01654da44a8a7d03fb72d, type: 3}
-  coinValue: 1
+  coinValue: 2
   draggableItemPrefab: {fileID: 4812397909494241834, guid: 4699b89f32e61b247a37f28f73e190d4, type: 3}
   onTilePrefab: {fileID: 994099794024727751, guid: 650ad1e0ec8c9ec4e80ce593ec8208bc, type: 3}
   tileInfoValidLocations:

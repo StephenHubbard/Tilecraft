@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Warrior Pendant
   itemSprite: {fileID: 21300000, guid: 0668402438308694687bc541ab44cdcc, type: 3}
-  coinValue: 1
+  coinValue: 9
   draggableItemPrefab: {fileID: 4812397909494241834, guid: 09b08ed73edbf31488d6c5d58d90124b, type: 3}
   onTilePrefab: {fileID: 994099794024727751, guid: bc73fdc7723c24d409d5545d36599a0f, type: 3}
   tileInfoValidLocations:
@@ -30,5 +30,6 @@ MonoBehaviour:
   isStationary: 0
   isSmeltable: 0
   foodValue: 0
+  itemsNextToDiscover: []
   toolTipText: 
   tierGroup: 4

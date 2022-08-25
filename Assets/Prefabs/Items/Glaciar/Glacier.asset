@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Glacier
   itemSprite: {fileID: 21300000, guid: e94ba573fef1fd046855bc747dc48c5d, type: 3}
-  coinValue: 1
+  coinValue: 2
   draggableItemPrefab: {fileID: 4812397909494241834, guid: 8e532f4e86f8c924a9ff7caf23c4d76f, type: 3}
   onTilePrefab: {fileID: 994099794024727751, guid: 751f9993d8dd78c438bbb2b9f54edc9d, type: 3}
   tileInfoValidLocations:

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Boat
   itemSprite: {fileID: 21300000, guid: 3c9ccb76f0bfae64c914d92737fddd99, type: 3}
-  coinValue: 1
+  coinValue: 3
   draggableItemPrefab: {fileID: 4812397909494241834, guid: fbe67481c89815e429d5245f1f41be07, type: 3}
   onTilePrefab: {fileID: 994099794024727751, guid: 745161ae8d6bed240b801ea71cacae9c, type: 3}
   tileInfoValidLocations:

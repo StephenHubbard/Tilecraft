@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Book
   itemSprite: {fileID: 21300000, guid: fdaf3442cbff5da47b589ad2c036c5ff, type: 3}
-  coinValue: 1
+  coinValue: 2
   draggableItemPrefab: {fileID: 4812397909494241834, guid: 7147627da97967a48ac762b10b3cf4b0, type: 3}
   onTilePrefab: {fileID: 994099794024727751, guid: c188949a7f50d7143be72f014b7e2bce, type: 3}
   tileInfoValidLocations:

@@ -33,8 +33,7 @@ public class HousingManager : MonoBehaviour
   }
 
   public void DetectTotalPopulation() {
-    Population[] totalPop = FindObjectsOfType<Population>();
-    currentPopulation = totalPop.Length;
+    StartCoroutine(GetAmountOfTotalPopulationEndOfFrameCo());
   }
 
 
@@ -49,15 +48,30 @@ public class HousingManager : MonoBehaviour
 
   public void AddNewWorker() {
     currentPopulation++;
-    StartCoroutine(GetAmountOfTotalPopulationCo());
+    StartCoroutine(GetAmountOfTotalPopulationEndOfFrameCo());
   }
 
-  public IEnumerator GetAmountOfTotalPopulationCo() {
+  public IEnumerator GetAmountOfTotalPopulationEndOfFrameCo() {
     yield return new WaitForEndOfFrame();
-    DetectTotalPopulation();
+    Population[] totalPop = FindObjectsOfType<Population>();
+    currentPopulation = totalPop.Length;
   }
 
   public void AddNewHouse(int amountHouseAdds) {
     maximumPopulation += amountHouseAdds;
+  }
+
+  public void AllHousesDetectBabyMaking() {
+    StartCoroutine(BabyMakingEndOfFrameCo());
+  }
+
+  private IEnumerator BabyMakingEndOfFrameCo() {
+    yield return new WaitForEndOfFrame();
+
+    House[] allHouses = FindObjectsOfType<House>();
+    foreach (House house in allHouses)
+    {
+      house.DetectBabyMaking();
+    }
   }
 }

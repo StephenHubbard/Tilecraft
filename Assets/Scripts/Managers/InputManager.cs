@@ -153,7 +153,18 @@ public class InputManager : MonoBehaviour
                 EconomyManager.instance.SellItem(lowestZGameObject2.gameObject, lowestZGameObject2.GetComponent<DraggableItem>().itemInfo.coinValue, lowestZGameObject2.GetComponent<Stackable>().amountOfChildItems);
 
                 if (lowestZGameObject2.gameObject.GetComponent<Worker>()) {
-                    StartCoroutine(HousingManager.instance.GetAmountOfTotalPopulationCo());
+                    HousingManager.instance.DetectTotalPopulation();
+                    HousingManager.instance.AllHousesDetectBabyMaking();
+                }
+
+                if (lowestZGameObject2.gameObject.GetComponent<Archer>()) {
+                    HousingManager.instance.DetectTotalPopulation();
+                    HousingManager.instance.AllHousesDetectBabyMaking();
+                }
+
+                if (lowestZGameObject2.gameObject.GetComponent<Knight>()) {
+                    HousingManager.instance.DetectTotalPopulation();
+                    HousingManager.instance.AllHousesDetectBabyMaking();
                 }
             }
         }

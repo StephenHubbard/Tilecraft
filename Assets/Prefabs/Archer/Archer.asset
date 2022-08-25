@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Archer
   itemSprite: {fileID: 2049823649, guid: b8950377d5c209a428d2612d600403d0, type: 3}
-  coinValue: 1
+  coinValue: 2
   draggableItemPrefab: {fileID: 4812397909494241834, guid: c715ab559fc0ebe438735b9bd7581ef4, type: 3}
   onTilePrefab: {fileID: 994099794024727751, guid: 839dd0c0841842942960ff78051ebb53, type: 3}
   tileInfoValidLocations:
@@ -29,5 +29,6 @@ MonoBehaviour:
   isStationary: 0
   isSmeltable: 0
   foodValue: 0
+  itemsNextToDiscover: []
   toolTipText: 
   tierGroup: 1

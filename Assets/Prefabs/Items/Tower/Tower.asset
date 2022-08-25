@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Tower
   itemSprite: {fileID: 21300000, guid: 306454ca157847649badb46ddfe34df1, type: 3}
-  coinValue: 1
+  coinValue: 2
   draggableItemPrefab: {fileID: 4812397909494241834, guid: ccdde166ebea3304b8be7377a6a6fcbd, type: 3}
   onTilePrefab: {fileID: 994099794024727751, guid: 80d1c8f5de5a25f438d0acafde184359, type: 3}
   tileInfoValidLocations:
@@ -28,5 +28,6 @@ MonoBehaviour:
   isStationary: 0
   isSmeltable: 0
   foodValue: 0
+  itemsNextToDiscover: []
   toolTipText: Reveals more available space on the map.
   tierGroup: 0

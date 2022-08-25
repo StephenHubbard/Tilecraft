@@ -7,9 +7,9 @@ public class Enemy : MonoBehaviour
     [SerializeField] private GameObject arrowPrefab;
     [SerializeField] public int myHealth = 3;
     [SerializeField] private LayerMask cloudLayerMask = new LayerMask();
-    [SerializeField] private GameObject clubSprite;
-    private Animator myAnimator;
-    private Transform currentTarget = null;
+    [SerializeField] public GameObject clubSprite;
+    public Animator myAnimator;
+    public Transform currentTarget = null;
     public bool isUncoveredByClouds = false;
 
     public bool isMaskedOrc = false;
@@ -24,6 +24,7 @@ public class Enemy : MonoBehaviour
     }
 
     private void Update() {
+
         RaycastHit2D[] hit = Physics2D.RaycastAll(transform.position, Vector2.zero, 100f, cloudLayerMask);
 
         if (hit.Length == 0) {
@@ -34,7 +35,7 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(int amount, Transform attackingWorker) {
         myHealth -= amount;
 
-        if (myHealth == 0) {
+        if (myHealth <= 0) {
             if (attackingWorker.GetComponent<Worker>()) {
                 attackingWorker.GetComponent<Worker>().CurrentEnemyNull();
             }
@@ -46,7 +47,10 @@ public class Enemy : MonoBehaviour
             if (attackingWorker.GetComponent<Archer>()) {
                 attackingWorker.GetComponent<Archer>().CurrentEnemyNull();
             }
-            EconomyManager.instance.CheckDiscovery(1);
+
+            if (myHealth == 0) {
+                EconomyManager.instance.CheckDiscovery(1);
+            }
             GetComponentInParent<Tile>().currentPlacedItem.GetComponent<OrcRelic>().DetectIfEnemies();
             Destroy(gameObject);
         }
@@ -64,14 +68,17 @@ public class Enemy : MonoBehaviour
             AudioManager.instance.Play("Orc Attack");
         }
 
-        Archer archer = other.gameObject.GetComponent<Archer>();
-        if (archer && currentTarget == null && archer.GetComponent<PlacedItem>() && isUncoveredByClouds) {
-            myAnimator.SetBool("isAttacking", true);
-            if (isMaskedOrc) {
-                clubSprite.SetActive(true);
-            }            myAnimator.Play("Attack", -1, Random.Range(0f,1f));
-            currentTarget = archer.transform;
-            AudioManager.instance.Play("Orc Attack");
+        if (!isMaskedOrc) {
+            Archer archer = other.gameObject.GetComponent<Archer>();
+            if (archer && currentTarget == null && archer.GetComponent<PlacedItem>() && isUncoveredByClouds) {
+                myAnimator.SetBool("isAttacking", true);
+                if (isMaskedOrc) {
+                    clubSprite.SetActive(true);
+                }            
+                myAnimator.Play("Attack", -1, Random.Range(0f,1f));
+                currentTarget = archer.transform;
+                AudioManager.instance.Play("Orc Attack");
+            }
         }
 
         Knight knight = other.gameObject.GetComponent<Knight>();
@@ -79,7 +86,8 @@ public class Enemy : MonoBehaviour
             myAnimator.SetBool("isAttacking", true);
             if (isMaskedOrc) {
                 clubSprite.SetActive(true);
-            }            myAnimator.Play("Attack", -1, Random.Range(0f,1f));
+            }            
+            myAnimator.Play("Attack", -1, Random.Range(0f,1f));
             currentTarget = knight.transform;
             AudioManager.instance.Play("Orc Attack");
         }

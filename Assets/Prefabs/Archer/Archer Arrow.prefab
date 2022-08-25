@@ -97,3 +97,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b246f2446b5a27479ad9c34c7c4915f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  archerThatLaunchedArrow: {fileID: 0}
+  chinkVFXPrefab: {fileID: 2265998448015882087, guid: b1b91f2ee4245da41a984e2640847ab0, type: 3}

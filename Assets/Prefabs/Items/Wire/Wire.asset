@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Wire
   itemSprite: {fileID: 21300000, guid: c6428bfe45bc8c140a5252d0b3ac1420, type: 3}
-  coinValue: 1
+  coinValue: 4
   draggableItemPrefab: {fileID: 4812397909494241834, guid: 6cc8b473bbeab0341aeca959bdfe4b04, type: 3}
   onTilePrefab: {fileID: 994099794024727751, guid: e93cff389a5a38543a3ef4b71b577c98, type: 3}
   tileInfoValidLocations:

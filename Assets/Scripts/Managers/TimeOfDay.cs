@@ -75,6 +75,7 @@ public class TimeOfDay : MonoBehaviour
             AudioManager.instance.Play("End Of Day Bell");
             SpawnNewItems(1);
             SpawnNewItems(2);
+            SpawnNewItems(3);
         }
     }
 
@@ -90,6 +91,13 @@ public class TimeOfDay : MonoBehaviour
             foreach (var item in WorldGeneration.instance.ReturnSpawnableItemsTierTwo())
             {
                 if (item.itemName != "Orc Relic") {
+                    allSpawnableItems.Add(item);
+                }
+            }
+        } else if (tier == 3) {
+            foreach (var item in WorldGeneration.instance.ReturnSpawnableItemsTierThree())
+            {
+                if (item.itemName != "Orc Relic" || item.itemName != "Orc Drum") {
                     allSpawnableItems.Add(item);
                 }
             }
@@ -119,8 +127,10 @@ public class TimeOfDay : MonoBehaviour
 
             grid.GetXY(tilePosition, out x, out y);
 
-
-            if (tier == 2 && WorldGeneration.instance.ReturnTierTwoBoundries(x, y))
+            if (tier == 3 && WorldGeneration.instance.ReturnTierThreeBoundries(x, y))
+            {
+                DetermineWhichItem(allSpawnableItems, tile);
+            } else if (tier == 2 && WorldGeneration.instance.ReturnTierTwoBoundries(x, y))
             {
                 DetermineWhichItem(allSpawnableItems, tile);
             } else if (tier == 1) {

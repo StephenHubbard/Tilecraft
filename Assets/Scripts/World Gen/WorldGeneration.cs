@@ -68,11 +68,21 @@ public class WorldGeneration : MonoBehaviour
         return spawnableTileItemsTierTwo;
     }
 
-    public bool ReturnTierTwoBoundries(int x, int y) {
-        // print(x + " " + y);
+    public ItemInfo[] ReturnSpawnableItemsTierThree() {
+        return spawnableTileItemsTierThree;
+    }
 
-        // float cellSize = grid.ReturnCellSize();
+    public bool ReturnTierTwoBoundries(int x, int y) {
         if ((x >= tierTwoMinX && x <= tierTwoMaxX) && (y >= tierTwoMinY && y <= tierTwoMaxY)) 
+        { 
+            return false;
+        } 
+
+        return true;
+    }
+
+    public bool ReturnTierThreeBoundries(int x, int y) {
+        if ((x >= tierThreeMinX && x <= tierThreeMaxX) && (y >= tierThreeMinY && y <= tierThreeMaxY)) 
         { 
             return false;
         } 
@@ -143,7 +153,7 @@ public class WorldGeneration : MonoBehaviour
                         RaycastHit2D hit = Physics2D.Raycast(worldPos, Vector2.zero, 100f, tileLayerMask);
 
                         if (hit && !hit.transform.GetComponent<Tile>().currentPlacedItem) {
-                            int doesSpawnStartingItemNum = Random.Range(1, 4);
+                            int doesSpawnStartingItemNum = Random.Range(1, 3);
 
                             if (doesSpawnStartingItemNum == 1) {
 

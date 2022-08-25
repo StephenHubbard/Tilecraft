@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Rope
   itemSprite: {fileID: 21300000, guid: 2a1b3561fb40fa846ad90dc42d7e1d11, type: 3}
-  coinValue: 1
+  coinValue: 2
   draggableItemPrefab: {fileID: 4812397909494241834, guid: 61aacfcf3613a4141b8ca866632e15f6, type: 3}
   onTilePrefab: {fileID: 994099794024727751, guid: 77299f426bc3d414f80d8a6cfb87b529, type: 3}
   tileInfoValidLocations:

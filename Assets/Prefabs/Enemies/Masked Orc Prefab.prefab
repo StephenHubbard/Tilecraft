@@ -186,7 +186,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arrowPrefab: {fileID: 0}
-  myHealth: 3
+  myHealth: 10
   cloudLayerMask:
     serializedVersion: 2
     m_Bits: 0

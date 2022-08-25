@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: School
   itemSprite: {fileID: 21300000, guid: 0b8e1227df2d34042ad245647225f978, type: 3}
-  coinValue: 1
+  coinValue: 3
   draggableItemPrefab: {fileID: 4812397909494241834, guid: 868a42e41dc18974b8892855d06fa3e3, type: 3}
   onTilePrefab: {fileID: 994099794024727751, guid: be4502d89c5f1434ea049dc6467f4b26, type: 3}
   tileInfoValidLocations:
@@ -22,12 +22,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 683019bb58be0914385796f71488de33, type: 2}
   - {fileID: 11400000, guid: 5f31d55a53bbe2f479011bab64202e0c, type: 2}
   recipeInfo: {fileID: 11400000, guid: 3e18845db97f61f4781f5a3d0e220a01, type: 2}
-  amountRecipeCanCreate: 1
+  amountRecipeCanCreate: 1000
   potentialOffSpring:
   - {fileID: 11400000, guid: d284d36df7b26dc4aa81818f9d54fe86, type: 2}
   isResourceOnly: 0
   isStationary: 1
   isSmeltable: 0
   foodValue: 0
+  itemsNextToDiscover: []
   toolTipText: 
   tierGroup: 2

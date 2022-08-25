@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Glass
   itemSprite: {fileID: 21300000, guid: 7c75b8665f0b2e04e9373842e74930d0, type: 3}
-  coinValue: 1
+  coinValue: 2
   draggableItemPrefab: {fileID: 4812397909494241834, guid: ccf51a271fa8cdc48a09f92a589ce6fe, type: 3}
   onTilePrefab: {fileID: 994099794024727751, guid: 97a6e146508200f4495503fae28b5816, type: 3}
   tileInfoValidLocations:

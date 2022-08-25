@@ -16,6 +16,9 @@ public class Worker : MonoBehaviour
     [SerializeField] public int foodNeededToUpPickaxeStrengthStart = 3;
     public ItemInfo itemInfo;
     public int myHealth;
+    public int maxHealth = 3;
+
+    public bool isBabyMaking = false;
 
     private Enemy enemyTarget = null;
 
@@ -90,7 +93,6 @@ public class Worker : MonoBehaviour
                 transform.GetChild(1).transform.SetParent(null);
             }
             AudioManager.instance.Play("Knight Equip");
-            HousingManager.instance.GetAmountOfTotalPopulationCo();
             Destroy(gameObject);
         }
 
@@ -101,7 +103,6 @@ public class Worker : MonoBehaviour
                 transform.GetChild(1).transform.SetParent(null);
             }
             AudioManager.instance.Play("Archer Equip");
-            HousingManager.instance.GetAmountOfTotalPopulationCo();
             Destroy(gameObject);
         }
 
@@ -114,9 +115,12 @@ public class Worker : MonoBehaviour
 
 
     public void LevelUpStrength(int leftoverAmountOfFood) {
+        EconomyManager.instance.CheckDiscovery(1);
         GameObject levelUpPrefabAnim = Instantiate(levelUpAnimPrefab, transform.position + new Vector3(0, .5f, 0), transform.rotation);
         StartCoroutine(DestroyStarPrefabCo(levelUpPrefabAnim));
         myWorkingStrength++;
+        maxHealth++;
+        myHealth = maxHealth;
         foodNeededToUpPickaxeStrengthStart *= Mathf.CeilToInt(1.5f);
         foodNeededToUpPickaxeStrengthCurrent = foodNeededToUpPickaxeStrengthStart;
         if (leftoverAmountOfFood > 0) {
@@ -148,6 +152,8 @@ public class Worker : MonoBehaviour
             Vector3 spawnItemsVector3 = transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), -1);
             Instantiate(deadWorkerItemPrefab, spawnItemsVector3, transform.rotation);    
             AudioManager.instance.Play("Worker Death");
+            HousingManager.instance.DetectTotalPopulation();
+            HousingManager.instance.AllHousesDetectBabyMaking();
             Destroy(gameObject);
         }
     }

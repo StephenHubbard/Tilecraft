@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Bow
   itemSprite: {fileID: 21300000, guid: 096b064111095cc44b0b98a602b86734, type: 3}
-  coinValue: 1
+  coinValue: 2
   draggableItemPrefab: {fileID: 4812397909494241834, guid: 57e751bcf3ca81748b8833947cbb959d, type: 3}
   onTilePrefab: {fileID: 994099794024727751, guid: 7991fdaf8c7c65f49aaa4ce519f21649, type: 3}
   tileInfoValidLocations:
@@ -29,5 +29,6 @@ MonoBehaviour:
   isStationary: 0
   isSmeltable: 0
   foodValue: 0
+  itemsNextToDiscover: []
   toolTipText: Equip on a worker to make an archer
   tierGroup: 1

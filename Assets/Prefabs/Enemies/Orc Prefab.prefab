@@ -88,7 +88,9 @@ MonoBehaviour:
   cloudLayerMask:
     serializedVersion: 2
     m_Bits: 1024
+  clubSprite: {fileID: 0}
   isUncoveredByClouds: 0
+  isMaskedOrc: 0
 --- !u!58 &6816163836829188929
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -104,7 +106,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 2.3
+  m_Radius: 2
 --- !u!50 &7975863331759471787
 Rigidbody2D:
   serializedVersion: 4

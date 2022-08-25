@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Knight
   itemSprite: {fileID: -1187868931, guid: faf7125e6a89cd2448460f22ddd0e519, type: 3}
-  coinValue: 1
+  coinValue: 2
   draggableItemPrefab: {fileID: 4812397909494241834, guid: 0a3f66f9d8017864fb7cf306cf6c630d, type: 3}
   onTilePrefab: {fileID: 994099794024727751, guid: ce6d3a5e14e7a6846893382153237441, type: 3}
   tileInfoValidLocations:
@@ -29,5 +29,6 @@ MonoBehaviour:
   isStationary: 0
   isSmeltable: 0
   foodValue: 0
+  itemsNextToDiscover: []
   toolTipText: 
   tierGroup: 1

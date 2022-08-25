@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Ash
   itemSprite: {fileID: 21300000, guid: 053a0a1c638adf54eb64384cff0333ed, type: 3}
-  coinValue: 1
+  coinValue: 2
   draggableItemPrefab: {fileID: 4812397909494241834, guid: 82a23acedb4f37944bc188e4ac2024b2, type: 3}
   onTilePrefab: {fileID: 994099794024727751, guid: 64827d5ff0e911b41beb82874e312e03, type: 3}
   tileInfoValidLocations:

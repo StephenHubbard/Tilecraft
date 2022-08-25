@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Crab
   itemSprite: {fileID: 21300000, guid: 38ecc833a8c10dd40ad2745d212931fe, type: 3}
-  coinValue: 1
+  coinValue: 2
   draggableItemPrefab: {fileID: 4812397909494241834, guid: 76d3354372cf3a44fa69266a62404d6b, type: 3}
   onTilePrefab: {fileID: 994099794024727751, guid: 25129deee61951447bc4c9298cae1def, type: 3}
   tileInfoValidLocations:
@@ -29,5 +29,6 @@ MonoBehaviour:
   isStationary: 0
   isSmeltable: 0
   foodValue: 1
+  itemsNextToDiscover: []
   toolTipText: 
   tierGroup: 2

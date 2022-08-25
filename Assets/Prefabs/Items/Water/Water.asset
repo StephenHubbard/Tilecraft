@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Water
   itemSprite: {fileID: 21300000, guid: 66d55eeb73cd8b245b7bbd6959fc2024, type: 3}
-  coinValue: 1
+  coinValue: 2
   draggableItemPrefab: {fileID: 4812397909494241834, guid: 747c2ca6d82f8a64abf9995f250be918, type: 3}
   onTilePrefab: {fileID: 994099794024727751, guid: 298751a8ba6199149b71e1c14968128f, type: 3}
   tileInfoValidLocations:

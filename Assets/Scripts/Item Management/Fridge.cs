@@ -6,7 +6,6 @@ using CodeMonkey.Utils;
 
 public class Fridge : MonoBehaviour
 {
-    [SerializeField] private Transform amountOfFoodContainer;
     [SerializeField] private TMP_Text amountOfFoodText;
     [SerializeField] public int currentAmountOfFood;
     [SerializeField] private GameObject appleItemPrefab;
@@ -19,13 +18,6 @@ public class Fridge : MonoBehaviour
         amountOfFoodText.text = currentAmountOfFood.ToString();
     }
 
-    private void OnMouseEnter() {
-        amountOfFoodContainer.gameObject.SetActive(true);
-    }
-
-    private void OnMouseExit() {
-        amountOfFoodContainer.gameObject.SetActive(false);
-    }
 
     private void OnMouseOver() {
         if (Input.GetMouseButtonDown(1) && currentAmountOfFood > 0) {

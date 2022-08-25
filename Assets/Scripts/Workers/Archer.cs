@@ -22,6 +22,8 @@ public class Archer : MonoBehaviour
     private Enemy enemyTarget = null;
 
     public int myHealth = 5;
+    public int maxHealth = 4;
+
 
     private Animator myAnimator;
 
@@ -128,9 +130,12 @@ public class Archer : MonoBehaviour
 
 
     public void LevelUpStrength(int leftoverAmountOfFood) {
+        EconomyManager.instance.CheckDiscovery(1);
         GameObject levelUpPrefabAnim = Instantiate(levelUpAnimPrefab, transform.position + new Vector3(0, .5f, 0), transform.rotation);
         StartCoroutine(DestroyStarPrefabCo(levelUpPrefabAnim));
         myCombatValue++;
+        maxHealth++;
+        myHealth = maxHealth;
         foodNeeded *= Mathf.CeilToInt(1.5f);
         foodNeededToUpCombatValue = foodNeeded;
         if (leftoverAmountOfFood > 0) {
@@ -162,6 +167,8 @@ public class Archer : MonoBehaviour
             Vector3 spawnItemsVector3 = transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), -1);
             Instantiate(deadWorkerItemPrefab, spawnItemsVector3, transform.rotation);    
             AudioManager.instance.Play("Worker Death");
+            HousingManager.instance.DetectTotalPopulation();
+            HousingManager.instance.AllHousesDetectBabyMaking();
             Destroy(gameObject);
         }
     }

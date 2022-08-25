@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Ice
   itemSprite: {fileID: 21300000, guid: cf7287200b31f234ca613997d0093b90, type: 3}
-  coinValue: 1
+  coinValue: 2
   draggableItemPrefab: {fileID: 4812397909494241834, guid: c8d13ea1f3d95424291df6d7400a2efd, type: 3}
   onTilePrefab: {fileID: 994099794024727751, guid: 817c12cd2cf50d24ca2a5ab0305fa39e, type: 3}
   tileInfoValidLocations:

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Iron
   itemSprite: {fileID: 21300000, guid: 971b328e1d80f784aa380201724c2320, type: 3}
-  coinValue: 1
+  coinValue: 2
   draggableItemPrefab: {fileID: 4812397909494241834, guid: 2f57d7d7f570a9540ab3218859d9cb0a, type: 3}
   onTilePrefab: {fileID: 994099794024727751, guid: 20c51c3820983ed4485a0c278c310fe5, type: 3}
   tileInfoValidLocations:

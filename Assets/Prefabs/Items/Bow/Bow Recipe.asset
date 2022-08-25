@@ -14,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemInfo: {fileID: 11400000, guid: 7270c4c97c15cf0478785030c0514466, type: 2}
   neededRecipeItems:
-  - {fileID: 11400000, guid: 46caf5f13780ccc4397d7e19477d11e0, type: 2}
   - {fileID: 11400000, guid: 2411593c1d9b1c74cb4c36169072d07a, type: 2}
   - {fileID: 11400000, guid: cdc6c77c63a25e84ea9a037f25a90331, type: 2}
   recipeCraftTime: 10

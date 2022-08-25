@@ -56,16 +56,30 @@ public class House : MonoBehaviour
         sliderCanvas.SetActive(true);
         tileSlider.maxValue = timeToHaveBabyCurrent;
         isBabyMaking = true;
+        foreach (var workerPoint in workerPoints)
+        {
+            if (workerPoint.childCount > 0) {
+                workerPoint.GetChild(0).GetComponent<Worker>().isBabyMaking = true;
+            }
+        }
     }
 
     public void StopBabyMaking(bool detectBabyMaking) {
         sliderCanvas.SetActive(false);
         isBabyMaking = false;
 
+        foreach (var workerPoint in workerPoints)
+        {
+            if (workerPoint.childCount > 0) {
+                workerPoint.GetChild(0).GetComponent<Worker>().isBabyMaking = false;
+            }
+        }
+
         if (timeToHaveBabyCurrent <= .1f) {
             Vector3 spawnItemsVector3 = transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), -1);
             Instantiate(workerItemPrefab, spawnItemsVector3, transform.rotation);
             HousingManager.instance.AddNewWorker();
+            EconomyManager.instance.CheckDiscovery(1);
         }
 
         timeToHaveBabyCurrent = timeToHaveBabyTotal;

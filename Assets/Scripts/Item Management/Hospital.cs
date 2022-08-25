@@ -28,15 +28,15 @@ public class Hospital : MonoBehaviour
                 doneHealing = true;
 
                 if (person.gameObject.GetComponent<Worker>()) {
-                    person.gameObject.GetComponent<Worker>().myHealth = 3;
+                    person.gameObject.GetComponent<Worker>().myHealth = person.gameObject.GetComponent<Worker>().maxHealth;
                 }
 
                 if (person.gameObject.GetComponent<Archer>()) {
-                    person.gameObject.GetComponent<Archer>().myHealth = 4;
+                    person.gameObject.GetComponent<Archer>().myHealth = person.gameObject.GetComponent<Archer>().maxHealth;
                 }
 
                 if (person.gameObject.GetComponent<Knight>()) {
-                    person.gameObject.GetComponent<Knight>().myHealth = 6;
+                    person.gameObject.GetComponent<Knight>().myHealth = person.gameObject.GetComponent<Knight>().maxHealth;
                 }
             }
 
