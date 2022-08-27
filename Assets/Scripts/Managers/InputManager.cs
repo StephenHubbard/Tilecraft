@@ -55,6 +55,10 @@ public class InputManager : MonoBehaviour
             ToolTipManager.instance.isOverUI = false;
         }
 
+        if (Input.GetKeyDown(KeyCode.Alpha1)) {
+            FindObjectOfType<IdleWorker>().FindIdleWorkerButton();
+        }
+
         UpdateTileInput();
         UpdateInteractablesInput();
         UpdateEncyclopediaScroll();
@@ -98,6 +102,7 @@ public class InputManager : MonoBehaviour
                         isRayBeingBlocked = true;
                     } 
                 }
+
 
                 if (Input.GetMouseButtonDown(1)) {
                     if (isRayBeingBlocked == false) {

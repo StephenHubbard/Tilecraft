@@ -140,6 +140,8 @@ public class CraftingManager : MonoBehaviour
         hasCompleteRecipe = false;
         isCrafting = false;
 
+        AudioManager.instance.Play("Pop");
+
         foreach (var item in GetComponent<Tile>().workerPoints)
         {
             if (item.childCount > 0 && item.GetChild(0).GetComponent<Worker>()) {
@@ -186,10 +188,13 @@ public class CraftingManager : MonoBehaviour
         AutoSellCraftedItem(craftedItem);
         encyclopedia.AddItemToDiscoveredList(recipeInfo.itemInfo, true);
         ToDoManager.instance.CraftedItemTakeOffToDoList(recipeInfo.itemInfo);
+        StartCoroutine(Encyclopedia.instance.CraftedNewItemToggleCraftButton());
 
         foreach (var item in recipeInfo.itemInfo.recipeInfo.neededRecipeItems)
         {
-            encyclopedia.AddItemToDiscoveredList(item, true);
+            if (item.itemName != "Dead Worker") {
+                encyclopedia.AddItemToDiscoveredList(item, true);
+            }
         }
         
         Encyclopedia.instance.CraftedDiscoveredItem(recipeInfo.itemInfo);

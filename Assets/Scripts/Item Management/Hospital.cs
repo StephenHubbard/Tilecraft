@@ -7,6 +7,7 @@ public class Hospital : MonoBehaviour
 {
 
     [SerializeField] private float healTime = 20f;
+    [SerializeField] private GameObject healVFXprefab;
 
     public void HealPerson(GameObject person) {
 
@@ -40,10 +41,13 @@ public class Hospital : MonoBehaviour
                 }
             }
 
+
             yield return null;
 
         }
 
+        AudioManager.instance.Play("Heal Complete");
+        Instantiate(healVFXprefab, transform.position, transform.rotation);
         GetComponentInParent<CraftingManager>().sliderCanvas.SetActive(false);
     }
 

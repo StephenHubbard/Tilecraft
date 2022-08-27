@@ -116,21 +116,21 @@ public class Enemy : MonoBehaviour
 
     public void dealClubDamage() {
         if (currentTarget == null) { 
-            myAnimator.SetBool("isAttacking", false);
             clubSprite.SetActive(false);
+            myAnimator.SetBool("isAttacking", false);
             return; 
         }
 
         if (currentTarget.GetComponent<Worker>()) {
-            currentTarget.GetComponent<Worker>().TakeDamage(3);
+            currentTarget.GetComponent<Worker>().TakeDamage(1);
         }
 
         if (currentTarget.GetComponent<Knight>()) {
-            currentTarget.GetComponent<Knight>().TakeDamage(3);
+            currentTarget.GetComponent<Knight>().TakeDamage(1);
         }
 
         if (currentTarget.GetComponent<Archer>()) {
-            currentTarget.GetComponent<Archer>().TakeDamage(3);
+            currentTarget.GetComponent<Archer>().TakeDamage(1);
         }
     }
 }

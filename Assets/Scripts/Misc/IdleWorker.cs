@@ -19,6 +19,11 @@ public class IdleWorker : MonoBehaviour
                 cameraController.transform.position = worker.transform.position + new Vector3(0, -2f, 0);
                 return;
             }
+
+            if (!worker.GetComponent<PlacedItem>()) {
+                cameraController.transform.position = worker.transform.position + new Vector3(0, -2f, 0);
+                return;
+            }
         }
     }
 }

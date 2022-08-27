@@ -9,8 +9,8 @@ public class Furnace : MonoBehaviour
 
     public bool isAlter = false;
 
-    private ItemInfo currentlySmeltingItem;
-    private int amountLeftToSmelt;
+    public ItemInfo currentlySmeltingItem;
+    public int amountLeftToSmelt;
     public bool occupiedWithResourceInFurance = false;
     private CraftingManager craftingManager;
 
@@ -46,6 +46,7 @@ public class Furnace : MonoBehaviour
     public void UpdateCurrentOccupiedResourceSprite(ItemInfo item) {
         currentResourceContainer.gameObject.SetActive(true);
         currentOccupiedSprite.sprite = item.itemSprite;
+        currentlySmeltingItem = item;
     }
 
     public void HideOccupiedSpriteContainer() {

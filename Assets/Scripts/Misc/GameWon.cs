@@ -9,11 +9,18 @@ public class GameWon : MonoBehaviour
     [SerializeField] private TMP_Text timeToWinText;
 
 
+
     public void GameHasBeenWon()
     {
         GameWonContainer.SetActive(true);
 
-        timeToWinText.text = "You won in: " + TimeOfDay.instance.totalTimeElapsed.ToString() + " seconds!";
+        float totalDays = TimeOfDay.instance.totalTimeElapsed / TimeOfDay.instance.howLongIsOneDay;
+        string totalDaysString = totalDays.ToString().Substring(0, 1);
+        float fractionOfADay = (TimeOfDay.instance.totalTimeElapsed / TimeOfDay.instance.howLongIsOneDay);
+        string fractionOfADayString = (fractionOfADay.ToString()).Substring(2, 2);
+
+
+        timeToWinText.text = "You won in: " + totalDaysString + "." + fractionOfADayString + " days!";
         
         Time.timeScale = 0;
     }

@@ -144,16 +144,19 @@ public class UITooltip : MonoBehaviour, IPointerClickHandler, IPointerEnterHandl
     public void OnPointerExit(PointerEventData eventData)
     {
         ToolTipManager.instance.isOverUI = false;
+        ToolTipManager.instance.ToggleToolTipOff();
     }
 
     public void OnPointerMove(PointerEventData eventData)
     {
+        ToolTipManager.instance.ToggleToolTipOn();
         ToolTipManager.instance.isOverUI = true;
         ToolTipManager.instance.UpdateValues(toolTipName, toolTipText, 0, 0, 0, 0, 0);
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        ToolTipManager.instance.ToggleToolTipOn();
         ToolTipManager.instance.isOverUI = true;
         ToolTipManager.instance.UpdateValues(toolTipName, toolTipText, 0, 0, 0, 0, 0);
     }

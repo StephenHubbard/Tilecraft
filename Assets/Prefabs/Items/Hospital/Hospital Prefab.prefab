@@ -283,6 +283,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3964e7a9635122c4ea13cf2d24559d70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healTime: 5
+  healVFXprefab: {fileID: 175590, guid: c83a45822d0d3f94991e76a87670125c, type: 3}
 --- !u!1 &5500272206185524622
 GameObject:
   m_ObjectHideFlags: 0

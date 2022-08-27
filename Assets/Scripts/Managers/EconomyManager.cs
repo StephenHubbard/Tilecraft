@@ -12,8 +12,11 @@ public class EconomyManager : MonoBehaviour
     [SerializeField] private Slider slider;
     [SerializeField] private TMP_Text coinText;
 
+    [SerializeField] private GameObject lockOnXPContainer;
 
     public static EconomyManager instance;
+
+    public bool allItemsDiscovered = false;
 
     private void Awake() {
         if (instance == null) {
@@ -33,6 +36,8 @@ public class EconomyManager : MonoBehaviour
 
     public void CheckDiscovery(int amount) {
 
+        if (allItemsDiscovered == true) { return; }
+
         int leftoverAmount = (coinsTillDiscovery - currentCoins) - amount;
 
         currentCoins += amount;
@@ -40,7 +45,7 @@ public class EconomyManager : MonoBehaviour
 
         if (currentCoins >= coinsTillDiscovery) {
             NewDiscovery();
-            slider.maxValue = Mathf.Ceil(coinsTillDiscovery * 1.1f);
+            slider.maxValue = coinsTillDiscovery + 1;
             coinsTillDiscovery = (int)slider.maxValue;
             currentCoins = 0;
             slider.value = currentCoins;
@@ -49,6 +54,13 @@ public class EconomyManager : MonoBehaviour
         if (leftoverAmount < 0) {
             CheckDiscovery(Mathf.Abs(leftoverAmount));
         }
+    }
+
+    public void AllItemsDiscovered() {
+        allItemsDiscovered = true;
+        lockOnXPContainer.SetActive(true);
+        slider.value = slider.maxValue;
+        coinText.gameObject.SetActive(false);
     }
 
     public void NewDiscovery() {

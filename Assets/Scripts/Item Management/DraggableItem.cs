@@ -69,7 +69,6 @@ public class DraggableItem : MonoBehaviour
             if (currentTile.currentPlacedItem != null) {
 
                 if (currentTile.currentPlacedItem.GetComponent<Furnace>() && itemInfo.isSmeltable && !currentTile.currentPlacedItem.GetComponent<Furnace>().occupiedWithResourceInFurance) {
-                    
                     if (itemInfo.itemName == "Dead Worker" & !currentTile.currentPlacedItem.GetComponent<Furnace>().isAlter) {
                         DetermineExtraItems(i);
                         Destroy(gameObject);
@@ -88,7 +87,13 @@ public class DraggableItem : MonoBehaviour
                         Destroy(gameObject);
                         return;
                     }
-                } 
+                } else if (currentTile.currentPlacedItem.GetComponent<Furnace>() && itemInfo == currentTile.currentPlacedItem.GetComponent<Furnace>().currentlySmeltingItem) {
+                        currentTile.GetComponent<CraftingManager>().amountLeftToCraft += GetComponent<Stackable>().amountOfChildItems;
+                        currentTile.currentPlacedItem.GetComponent<Furnace>().amountLeftToSmelt += GetComponent<Stackable>().amountOfChildItems;
+                        AudioManager.instance.Play("Click");
+                        Destroy(gameObject);
+                        return;
+                    }
             }
 
             // worker
@@ -103,6 +108,8 @@ public class DraggableItem : MonoBehaviour
                     }
                     continue;
                 } else { 
+                    currentTile.GetComponent<CraftingManager>().CheckCanStartCrafting();
+
                     DetermineExtraItems(i);
                     Destroy(gameObject);
                     return;
@@ -166,7 +173,7 @@ public class DraggableItem : MonoBehaviour
                 DetermineExtraItems(i - 1);
                 currentTile.GetComponent<CraftingManager>().CheckCanStartCrafting();
                 currentTile.GetComponent<CraftingManager>().UpdateAmountLeftToCraft(amountLeft);
-                if (itemInfo.isStationary) {
+                if (itemInfo.isStationary || itemInfo.itemName == "Tower") {
                     AudioManager.instance.Play("Building Placement");
                     currentTile.InstantiateSmokePrefab();
                 } else {

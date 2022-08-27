@@ -8,7 +8,7 @@ public class TimeOfDay : MonoBehaviour
     [SerializeField] private float timeLeftInDay;
 
     [Header("How long a day is in seconds")]
-    [SerializeField] private float howLongIsOneDay;
+    [SerializeField] public float howLongIsOneDay;
 
     [SerializeField] private LayerMask cloudLayerMask = new LayerMask();
     [SerializeField] private GameObject newTileSmokePrefab;

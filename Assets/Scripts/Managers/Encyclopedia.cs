@@ -7,6 +7,7 @@ using TMPro;
 
 public class Encyclopedia : MonoBehaviour
 {
+    [SerializeField] private GameObject uncraftedFilterButton;
     [SerializeField] private Sprite inactiveButtonSprite;
     [SerializeField] private Sprite activeButtonSprite;
     [SerializeField] private Image newDiscoveredItemPrefab;
@@ -163,6 +164,8 @@ public class Encyclopedia : MonoBehaviour
         if (isNew && newItem.recipeInfo.neededRecipeItems.Length > 0 && discoveredItems[newItem] == false) {
             discoveredItem.GetComponent<UITooltip>().AddAutoToDoList();
         }
+
+        
     }
 
 
@@ -188,12 +191,34 @@ public class Encyclopedia : MonoBehaviour
             UncraftedButtonFilterOff();
             sender.GetComponent<Image>().sprite = inactiveButtonSprite;
             sender.GetChild(0).GetComponent<RectTransform>().offsetMin = new Vector2(sender.GetChild(0).GetComponent<RectTransform>().offsetMin.x, 5);
+        
         } else if (sender.GetComponent<Image>().sprite == inactiveButtonSprite) {
             UncraftedButtonFilterOn();
             sender.GetComponent<Image>().sprite = activeButtonSprite;
             sender.GetChild(0).GetComponent<RectTransform>().offsetMin = new Vector2(sender.GetChild(0).GetComponent<RectTransform>().offsetMin.x, 0);
         }
+
+        AudioManager.instance.Play("UI Click");
     }
+
+    public bool UncraftedBoolCheck() {
+        if (uncraftedFilterButton.GetComponent<Image>().sprite == activeButtonSprite) {
+            return true;
+        } else if (uncraftedFilterButton.GetComponent<Image>().sprite == inactiveButtonSprite) {
+            return false;
+        }
+
+        return false;
+    }
+
+    public IEnumerator CraftedNewItemToggleCraftButton() {
+        yield return new WaitForEndOfFrame();
+        if (UncraftedBoolCheck()) {
+            UncraftedButtonFilterOff();
+            UncraftedButtonFilterOn();
+        }
+    }
+
 
 
     private void UncraftedButtonFilterOn() {
@@ -204,7 +229,6 @@ public class Encyclopedia : MonoBehaviour
             }
         }
 
-        AudioManager.instance.Play("UI Click");
 
     }
 
@@ -214,7 +238,6 @@ public class Encyclopedia : MonoBehaviour
             item.gameObject.SetActive(true);
         }
 
-        AudioManager.instance.Play("UI Click");
 
     }
 }

@@ -191,6 +191,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   clubSprite: {fileID: 627247815655829535}
+  myAnimator: {fileID: 0}
+  currentTarget: {fileID: 0}
   isUncoveredByClouds: 0
   isMaskedOrc: 1
 --- !u!95 &-9190544060313587555

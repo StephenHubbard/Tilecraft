@@ -30,7 +30,8 @@ public class ItemInfo : ScriptableObject
         two, 
         three, 
         four, 
-        five
+        five, 
+        six
     };
 
     public void NextInLineToDiscover() {

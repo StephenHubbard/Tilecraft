@@ -14,6 +14,7 @@ public class DiscoveryManager : MonoBehaviour
     [SerializeField] public List<ItemInfo> allTierThreeItems = new List<ItemInfo>();
     [SerializeField] public List<ItemInfo> allTierFourItems = new List<ItemInfo>();
     [SerializeField] public List<ItemInfo> allTierFiveItems = new List<ItemInfo>();
+    [SerializeField] public List<ItemInfo> allTierSixItems = new List<ItemInfo>();
 
     [SerializeField] public List<ItemInfo> allKnownItems = new List<ItemInfo>();
 
@@ -22,9 +23,12 @@ public class DiscoveryManager : MonoBehaviour
     [SerializeField] public List<ItemInfo> knownTierThreeItems = new List<ItemInfo>();
     [SerializeField] public List<ItemInfo> knownTierFourItems = new List<ItemInfo>();
     [SerializeField] public List<ItemInfo> knownTierFiveItems = new List<ItemInfo>();
+    [SerializeField] public List<ItemInfo> knownTierSixItems = new List<ItemInfo>();
 
     [SerializeField] private GameObject newDiscoveryAnimPrefab;
     [SerializeField] private Transform canvasUI;
+
+    
 
     private void Awake() {
         instance = this;
@@ -63,6 +67,9 @@ public class DiscoveryManager : MonoBehaviour
             if (item.tierGroup == ItemInfo.TierGroup.five) {
                 allTierFiveItems.Add(item);
             }
+            if (item.tierGroup == ItemInfo.TierGroup.six) {
+                allTierSixItems.Add(item);
+            }
         }
     }
 
@@ -84,6 +91,9 @@ public class DiscoveryManager : MonoBehaviour
             if (item.Key.tierGroup == ItemInfo.TierGroup.five) {
                 knownTierFiveItems.Add(item.Key);
             }
+            if (item.Key.tierGroup == ItemInfo.TierGroup.six) {
+                knownTierSixItems.Add(item.Key);
+            }
             allKnownItems.Add(item.Key);
         }
     }
@@ -103,6 +113,9 @@ public class DiscoveryManager : MonoBehaviour
         }
         if (item.tierGroup == ItemInfo.TierGroup.five) {
             knownTierFiveItems.Add(item);
+        }
+        if (item.tierGroup == ItemInfo.TierGroup.six) {
+            knownTierSixItems.Add(item);
         }
         allKnownItems.Add(item);
     }
@@ -157,7 +170,21 @@ public class DiscoveryManager : MonoBehaviour
                 return;
             } 
         }
+
+        ShuffleList(allTierSixItems);
+        foreach (var item in allTierSixItems)
+        {
+            if (!knownTierSixItems.Contains(item)) {
+                Encyclopedia.instance.AddItemToDiscoveredList(item, true);
+                NewDiscoveryAnimation(item);
+                return;
+            } 
+        }
+
+        EconomyManager.instance.AllItemsDiscovered();
     }
+
+    
 
     public void NewDiscoveryAnimation(ItemInfo itemInfo) {
         GameObject newAnimPrefab = Instantiate(newDiscoveryAnimPrefab, canvasUI.transform.position, transform.rotation);
