@@ -100,7 +100,14 @@ public class InputManager : MonoBehaviour
                 {
                     if (item.transform.GetComponent<Stackable>() || item.transform.GetComponent<Cloud>()) { 
                         isRayBeingBlocked = true;
+
+                        if (item.transform.GetComponent<Stackable>()) {
+                            if (item.transform.GetComponent<DragAndDrop>().isActive) {
+                                isRayBeingBlocked = false;
+                            }
+                        }
                     } 
+
                 }
 
 

@@ -41,18 +41,22 @@ public class ToDoManager : MonoBehaviour
                 item.GetComponent<UITooltip>().ItemCraftedTakeOffToDoList(itemInfo);
             }
         }
+
+        FillNextToDoListItem();
     }
 
-    // not sure if needed tbd - currently not useds
-    // public void FillNextToDoListItem() {
-    //     foreach (Transform item in Encyclopedia.instance.encylopediaGridLayout.transform)
-    //     {
-    //         if (Encyclopedia.instance.discoveredItems[item.GetComponent<UITooltip>().itemInfo] == false) {
-    //             item.GetComponent<UITooltip>().AddAutoToDoList();
-    //             return;
-    //         }
-    //     }
-    // }
+    // not sure if needed tbd - currently not used
+    public void FillNextToDoListItem() {
+        if (toDoList.Count < 4) {
+            foreach (Transform item in Encyclopedia.instance.encylopediaGridLayout.transform)
+            {
+                if (Encyclopedia.instance.discoveredItems[item.GetComponent<UITooltip>().itemInfo] == false) {
+                    item.GetComponent<UITooltip>().AddAutoToDoList();
+                    return;
+                }
+            }
+        }
+    }
 
     public void SetNewToDoList(ItemInfo itemInfo) {
         GameObject newList = Instantiate(toDoListPrefab, toDoContainer.transform.position, transform.rotation);

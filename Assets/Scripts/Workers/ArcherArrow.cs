@@ -21,12 +21,12 @@ public class ArcherArrow : MonoBehaviour
                     if (Vector3.Distance(transform.position, archerThatLaunchedArrow.transform.position) < 1f) {
                         currentTarget.GetComponent<Enemy>().currentTarget = archerThatLaunchedArrow;
                         currentTarget.GetComponent<Enemy>().myAnimator.SetBool("isAttacking", true);
-                        currentTarget.GetComponent<Enemy>().clubSprite.SetActive(true);
                     }
 
                 } else {
                     if (currentTarget != null) {
                         currentTarget.GetComponent<Enemy>().TakeDamage(1, archerThatLaunchedArrow);
+                        AudioManager.instance.Play("Arrow Hit");
                     }
                 }
             

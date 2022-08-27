@@ -12,6 +12,7 @@ public class CameraController : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera cinemachineVirtualCamera;
     [SerializeField] private Collider2D cameraConfiner;
     [SerializeField] private float cameraBorderBuffer = 7f;
+    [SerializeField] private Camera mainCam;
 
     private CinemachineTransposer cinemachineTransposer;
 

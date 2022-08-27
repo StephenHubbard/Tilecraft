@@ -146,7 +146,7 @@ public class Worker : MonoBehaviour
             }
     }
 
-    private void DetectDeath() {
+    private void DetectDeath(Enemy myEnemy) {
         if (myHealth <= 0) {
             GetComponentInParent<CraftingManager>().AllWorkersHaveDiedCheck();
             Vector3 spawnItemsVector3 = transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), -1);
@@ -154,13 +154,16 @@ public class Worker : MonoBehaviour
             AudioManager.instance.Play("Worker Death");
             HousingManager.instance.DetectTotalPopulation();
             HousingManager.instance.AllHousesDetectBabyMaking();
+            if (myEnemy != null) {
+                myEnemy.myAnimator.SetBool("isAttacking", false);
+            }
             Destroy(gameObject);
         }
     }
 
-    public void TakeDamage(int amount) {
+    public void TakeDamage(int amount, Enemy myEnemy) {
         myHealth -= amount;
-        DetectDeath();
+        DetectDeath(myEnemy);
     }
 
     public void StartWorking() {

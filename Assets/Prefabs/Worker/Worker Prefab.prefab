@@ -95,6 +95,9 @@ MonoBehaviour:
   foodNeededToUpPickaxeStrengthStart: 3
   itemInfo: {fileID: 11400000, guid: 7ecdb19248e9de349ba40029c73a2f12, type: 2}
   myHealth: 4
+  maxHealth: 3
+  isBabyMaking: 0
+  myAnimator: {fileID: 0}
 --- !u!58 &2548897153402979144
 CircleCollider2D:
   m_ObjectHideFlags: 0

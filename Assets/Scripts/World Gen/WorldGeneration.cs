@@ -52,8 +52,9 @@ public class WorldGeneration : MonoBehaviour
         GenerateMidTile();
         GenStartingTilesAroundCenter();
         CreateHolesNearCenter();
-        SpawnTierTwoItems();
         SpawnTierThreeItems();
+        SpawnTierTwoItems();
+        CheckThereIsEnoughSpreadResources();
     }
 
     public Grid ReturnGrid() {
@@ -77,7 +78,6 @@ public class WorldGeneration : MonoBehaviour
         { 
             return false;
         } 
-
         return true;
     }
 
@@ -86,8 +86,78 @@ public class WorldGeneration : MonoBehaviour
         { 
             return false;
         } 
-
         return true;
+    }
+
+    private void CheckThereIsEnoughSpreadResources() {
+        PlacedItem[] allPlacedItemsOfThisType = FindObjectsOfType<PlacedItem>();
+        
+        foreach (var item in spawnableTileItemsTierThree)
+        {
+            int amountOfThisType = 0;
+
+            foreach (var placedItem in allPlacedItemsOfThisType)
+            {
+                if (item == placedItem.itemInfo) {
+                    amountOfThisType++;
+                }
+            }
+
+            if (item.itemName == "Copper Node" || item.itemName == "Oil Spill") {
+                if (amountOfThisType < 9) {
+                    SpawnSpecificItem(item);
+                }
+            }
+
+        }
+    }
+
+    private void SpawnSpecificItem(ItemInfo itemInfo) {
+        for (int x = 0; x < grid.gridArray.GetLength(0); x ++) {
+            for (int y = 0; y < grid.gridArray.GetLength(1); y++) {
+
+                // non spawnable area for tier 3 items
+                if (!(x > tierThreeMinX && x < tierThreeMaxX) && !(y > tierThreeMinY && y < tierThreeMaxY)) 
+                { 
+                    if (grid.GetValue(x, y) == 1) {
+                        Vector3 worldPos = grid.GetWorldPosition(x, y);
+                        worldPos.x = worldPos.x + 1f;
+                        worldPos.y = worldPos.y + 1f;
+
+                        RaycastHit2D hit = Physics2D.Raycast(worldPos, Vector2.zero, 100f, tileLayerMask);
+
+                        if (hit && !hit.transform.GetComponent<Tile>().currentPlacedItem) {
+                            int doesSpawnStartingItemNum = Random.Range(1, 3);
+
+                            if (doesSpawnStartingItemNum == 1) {
+
+                                List<ItemInfo> potentialItems = new List<ItemInfo>();
+                                
+                                foreach (var potentialItem in spawnableTileItemsTierThree)
+                                {
+                                    foreach (var validLandTile in potentialItem.tileInfoValidLocations)
+                                    {
+
+                                        if (validLandTile == hit.transform.GetComponent<Tile>().tileInfo) {
+                                            potentialItems.Add(potentialItem);
+                                        }
+                                    }
+                                }
+                                int whichPrefabToSpawnNum = Random.Range(0, potentialItems.Count);
+                                
+                                if (potentialItems.Count == 0) { continue; }
+
+                                GameObject startingPlacedItem = Instantiate(itemInfo.onTilePrefab, hit.transform.transform.position, transform.rotation);
+                                startingPlacedItem.transform.parent = hit.transform.transform;
+                                hit.transform.GetComponent<Tile>().UpdateCurrentPlacedItem(startingPlacedItem.GetComponent<PlacedItem>().itemInfo, startingPlacedItem);
+                                hit.transform.GetComponent<Tile>().isOccupiedWithBuilding = true;
+                                hit.transform.GetComponent<CraftingManager>().UpdateAmountLeftToCraft(startingPlacedItem.GetComponent<PlacedItem>().itemInfo.amountRecipeCanCreate);
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 
     private void SpawnTierTwoItems() {
@@ -95,7 +165,6 @@ public class WorldGeneration : MonoBehaviour
             for (int y = 0; y < grid.gridArray.GetLength(1); y++) {
 
                 // non spawnable area for tier 2 items
-                // float cellSize = grid.ReturnCellSize();
                 if (!(x > tierTwoMinX && x < tierTwoMaxX) && !(y > tierTwoMinY && y < tierTwoMaxY)) 
                 { 
                     if (grid.GetValue(x, y) == 1) {
@@ -142,7 +211,6 @@ public class WorldGeneration : MonoBehaviour
             for (int y = 0; y < grid.gridArray.GetLength(1); y++) {
 
                 // non spawnable area for tier 3 items
-                // float cellSize = grid.ReturnCellSize();
                 if (!(x > tierThreeMinX && x < tierThreeMaxX) && !(y > tierThreeMinY && y < tierThreeMaxY)) 
                 { 
                     if (grid.GetValue(x, y) == 1) {
@@ -192,7 +260,7 @@ public class WorldGeneration : MonoBehaviour
                 
                 if (x == gridWidth / 2 && y == gridHeight / 2) {
                     Vector3 gridLocation = grid.GetWorldPosition(x, y) + new Vector3(cellSize, cellSize) * .5f;
-                    // always spawns grass tile at center
+                    // always spawns grass and tower tile at center
                     GameObject newTile = Instantiate(tilePrefab, gridLocation, transform.rotation);
                     GameObject tileType = Instantiate(tileInfoScriptableObjects[0].tilePrefab, newTile.transform.position, transform.rotation);
                     GameObject startingTower = Instantiate(towerPrefab, newTile.transform.position, transform.rotation);

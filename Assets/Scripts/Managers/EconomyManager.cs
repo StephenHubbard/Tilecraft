@@ -36,7 +36,10 @@ public class EconomyManager : MonoBehaviour
 
     public void CheckDiscovery(int amount) {
 
-        if (allItemsDiscovered == true) { return; }
+        if (allItemsDiscovered == true) { 
+            slider.value = slider.maxValue;
+            return; 
+        }
 
         int leftoverAmount = (coinsTillDiscovery - currentCoins) - amount;
 
@@ -59,8 +62,15 @@ public class EconomyManager : MonoBehaviour
     public void AllItemsDiscovered() {
         allItemsDiscovered = true;
         lockOnXPContainer.SetActive(true);
+        slider.maxValue = 1;
         slider.value = slider.maxValue;
         coinText.gameObject.SetActive(false);
+        StartCoroutine(AllItemsDiscoveredEndOfFrameCo());
+    }
+
+    private IEnumerator AllItemsDiscoveredEndOfFrameCo() {
+        yield return new WaitForEndOfFrame();
+        CheckDiscovery(0);
     }
 
     public void NewDiscovery() {

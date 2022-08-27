@@ -133,9 +133,13 @@ public class ToolTipManager : MonoBehaviour
                             orcHealthOne = hit[0].transform.GetComponent<Tile>().currentPlacedItem.GetComponent<OrcRelic>().orcSpawnPoints[0].GetChild(0).gameObject.GetComponent<Enemy>().myHealth.ToString();
                         }
 
-                        if (hit[0].transform.GetComponent<Tile>().currentPlacedItem.GetComponent<OrcRelic>().orcSpawnPoints[1].childCount == 1) {
-                            orcHealthTwo = hit[0].transform.GetComponent<Tile>().currentPlacedItem.GetComponent<OrcRelic>().orcSpawnPoints[1].GetChild(0).gameObject.GetComponent<Enemy>().myHealth.ToString();
+
+                        if (hit[0].transform.GetComponent<Tile>().currentPlacedItem.GetComponent<OrcRelic>().orcSpawnPoints.Length > 1) {
+                            if (hit[0].transform.GetComponent<Tile>().currentPlacedItem.GetComponent<OrcRelic>().orcSpawnPoints[1].childCount == 1) {
+                                orcHealthTwo = hit[0].transform.GetComponent<Tile>().currentPlacedItem.GetComponent<OrcRelic>().orcSpawnPoints[1].GetChild(0).gameObject.GetComponent<Enemy>().myHealth.ToString();
+                            }
                         }
+
 
                         if (orcHealthOne != null && orcHealthTwo != null) {
                             UpdateValues(thisTile.name, "Orc 1 Health: " + orcHealthOne + "\n" + "Orc 2 Health: " + orcHealthTwo, 0, 0, 0, 0, 0);
