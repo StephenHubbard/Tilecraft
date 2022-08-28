@@ -41,18 +41,17 @@ public class ToDoManager : MonoBehaviour
                 item.GetComponent<UITooltip>().ItemCraftedTakeOffToDoList(itemInfo);
             }
         }
-
-        FillNextToDoListItem();
     }
 
-    // not sure if needed tbd - currently not used
     public void FillNextToDoListItem() {
-        if (toDoList.Count < 4) {
+        int amountOfIterations = 4 - toDoList.Count;
+
+        for (int i = 0; i < amountOfIterations; i++)
+        {
             foreach (Transform item in Encyclopedia.instance.encylopediaGridLayout.transform)
             {
-                if (Encyclopedia.instance.discoveredItems[item.GetComponent<UITooltip>().itemInfo] == false) {
-                    item.GetComponent<UITooltip>().AddAutoToDoList();
-                    return;
+                if (Encyclopedia.instance.discoveredItems[item.GetComponent<UITooltip>().itemInfo] == false && item.GetComponent<UITooltip>().itemInfo.recipeInfo.neededRecipeItems.Length > 0) {
+                    item.GetComponent<UITooltip>().AddNextToDoListItemFromUncraftedList();
                 }
             }
         }

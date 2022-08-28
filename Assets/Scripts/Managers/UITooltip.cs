@@ -100,7 +100,15 @@ public class UITooltip : MonoBehaviour, IPointerClickHandler, IPointerEnterHandl
                 }
             }
         }
-        
+    }
+
+    public void AddNextToDoListItemFromUncraftedList() {
+        if (itemInfo && !IsItemAlreadyInToDoList() && ToDoManager.instance.toDoList.Count < 4) {
+            ToDoManager.instance.SetNewToDoList(itemInfo);
+            GameObject newBorder = Instantiate(toDoListActiveBorderPrefab, transform.position, transform.rotation);
+            newBorder.transform.SetParent(this.transform);
+            newBorder.transform.localScale = new Vector3(1.05f, 1.05f, 1.05f);
+        } 
     }
 
     private bool IsItemAlreadyInToDoList() {

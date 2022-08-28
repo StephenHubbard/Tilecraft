@@ -66,6 +66,8 @@ MonoBehaviour:
   currentResourceContainer: {fileID: 7869743062835009356}
   currentOccupiedSprite: {fileID: 8404551349328943388}
   isAlter: 0
+  currentlySmeltingItem: {fileID: 0}
+  amountLeftToSmelt: 0
   occupiedWithResourceInFurance: 0
 --- !u!95 &1582293500633585184
 Animator:
@@ -164,7 +166,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3445839181820591008}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.297, y: 0.732, z: 0}
+  m_LocalPosition: {x: -0.297, y: 0.925, z: 0}
   m_LocalScale: {x: 0.33188283, y: 0.33188283, z: 0.33188283}
   m_ConstrainProportionsScale: 0
   m_Children:

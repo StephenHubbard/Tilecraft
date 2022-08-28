@@ -50,6 +50,8 @@ public class Encyclopedia : MonoBehaviour
 
     public void CraftedDiscoveredItem(ItemInfo itemInfo) {
         discoveredItems[itemInfo] = true;
+        
+        ToDoManager.instance.FillNextToDoListItem();
     }
 
     public void OpenEncylopedia() {
