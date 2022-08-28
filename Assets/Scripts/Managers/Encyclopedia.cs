@@ -136,7 +136,7 @@ public class Encyclopedia : MonoBehaviour
             NewItemToEncyclopedia(newItem, newDiscoveredItemsGridLayout.transform, false);
             DiscoveryManager.instance.NewDiscoveredItem(newItem);
 
-            if (newDiscoveredItemsGridLayout.transform.childCount > 7) {
+            if (newDiscoveredItemsGridLayout.transform.childCount > 5) {
                 Destroy(newDiscoveredItemsGridLayout.transform.GetChild(newDiscoveredItemsGridLayout.transform.childCount - 1).gameObject);
             }
         } 
@@ -147,7 +147,7 @@ public class Encyclopedia : MonoBehaviour
         GameObject discoveredItem = Instantiate(newDiscoveredItemPrefab.gameObject, transform.position, transform.rotation);
         discoveredItem.transform.SetParent(parentTransform);
         discoveredItem.transform.localScale = Vector3.one;
-        if (isNew) { discoveredItem.transform.SetAsFirstSibling(); }
+        if (!isNew) { discoveredItem.transform.SetAsFirstSibling(); }
         discoveredItem.GetComponent<Image>().sprite = newItem.itemSprite;
         discoveredItem.GetComponent<UITooltip>().itemInfo = newItem;
 
