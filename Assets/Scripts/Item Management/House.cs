@@ -21,6 +21,22 @@ public class House : MonoBehaviour
         workerPoints = GetComponentInParent<Tile>().workerPoints;
         timeToHaveBabyCurrent = timeToHaveBabyTotal;
         DetectBabyMaking();
+
+        CompleteHouseTutorial();
+    }
+
+    private void CompleteHouseTutorial() {
+        if (TutorialManager.instance.tutorialIndexNum == 3) {
+            TutorialManager.instance.tutorialIndexNum++;
+            TutorialManager.instance.ActivateNextTutorial();
+        }
+    }
+
+    private void CompleteFirstBabyTutorial() {
+        if (TutorialManager.instance.tutorialIndexNum == 4) {
+            TutorialManager.instance.tutorialIndexNum++;
+            TutorialManager.instance.ActivateNextTutorial();
+        }
     }
 
     private void Update() {
@@ -80,6 +96,7 @@ public class House : MonoBehaviour
             Instantiate(workerItemPrefab, spawnItemsVector3, transform.rotation);
             HousingManager.instance.AddNewWorker();
             EconomyManager.instance.CheckDiscovery(1);
+            CompleteFirstBabyTutorial();
         }
 
         timeToHaveBabyCurrent = timeToHaveBabyTotal;

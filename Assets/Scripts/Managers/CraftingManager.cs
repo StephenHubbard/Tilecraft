@@ -32,6 +32,7 @@ public class CraftingManager : MonoBehaviour
     }
 
 
+
     private void Update() {
         if (currentCraftTime > 0 && hasCompleteRecipe && isCrafting && hasWorkers) {
             tileSlider.value = currentCraftTime;
@@ -41,6 +42,20 @@ public class CraftingManager : MonoBehaviour
         if (currentCraftTime < .1f && hasCompleteRecipe && hasWorkers && isCrafting) {
             PopOutNewItemFromRecipe();
         } 
+    }
+
+    public void CompleteFirstStepTutorial() {
+        if (TutorialManager.instance.tutorialIndexNum == 0) {
+            TutorialManager.instance.tutorialIndexNum++;
+            TutorialManager.instance.ActivateNextTutorial();
+        }
+    }
+
+    private void CompleteTowerTutorial() {
+        if (recipeInfo.itemInfo.itemName == "Tower" && TutorialManager.instance.tutorialIndexNum == 1) {
+            TutorialManager.instance.tutorialIndexNum++;
+            TutorialManager.instance.ActivateNextTutorial();
+        }
     }
 
     public void UpdateAmountLeftToCraft(int amountLeft) {
@@ -212,6 +227,9 @@ public class CraftingManager : MonoBehaviour
         }
 
         CheckCanStartCrafting();
+
+        CompleteTowerTutorial();
+        CompleteFirstStepTutorial();
     }
 
     private void AutoSellCraftedItem(GameObject craftedItem) {

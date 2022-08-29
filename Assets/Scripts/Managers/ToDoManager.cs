@@ -63,6 +63,8 @@ public class ToDoManager : MonoBehaviour
         newList.transform.localScale = Vector3.one;
 
         newList.transform.GetChild(0).GetComponent<Image>().sprite = itemInfo.itemSprite;
+        newList.transform.GetChild(0).GetComponent<UITooltip>().itemInfo = itemInfo;
+        newList.transform.GetChild(0).GetComponent<UITooltip>().toolTipText = itemInfo.toolTipText;
 
         // not craftable
         if (itemInfo.recipeInfo.neededRecipeItems.Length == 0) {
@@ -74,11 +76,15 @@ public class ToDoManager : MonoBehaviour
         
         if (itemInfo.recipeInfo.neededRecipeItems.Length > 0) {
             newList.transform.GetChild(2).GetComponent<Image>().enabled = true;
+            newList.transform.GetChild(2).GetComponent<UITooltip>().itemInfo = itemInfo.recipeInfo.neededRecipeItems[0];
+            newList.transform.GetChild(2).GetComponent<UITooltip>().toolTipText = itemInfo.recipeInfo.neededRecipeItems[0].toolTipText;
             newList.transform.GetChild(2).GetComponent<Image>().sprite = itemInfo.recipeInfo.neededRecipeItems[0].itemSprite;
         } 
 
         if (itemInfo.recipeInfo.neededRecipeItems.Length > 1) {
             newList.transform.GetChild(2).GetComponent<Image>().enabled = true;
+            newList.transform.GetChild(3).GetComponent<UITooltip>().itemInfo = itemInfo.recipeInfo.neededRecipeItems[1];
+            newList.transform.GetChild(3).GetComponent<UITooltip>().toolTipText = itemInfo.recipeInfo.neededRecipeItems[1].toolTipText;
             newList.transform.GetChild(3).GetComponent<Image>().sprite = itemInfo.recipeInfo.neededRecipeItems[1].itemSprite;
         } else {
             newList.transform.GetChild(3).GetComponent<Image>().enabled = false;
@@ -86,6 +92,8 @@ public class ToDoManager : MonoBehaviour
 
         if (itemInfo.recipeInfo.neededRecipeItems.Length > 2) {
             newList.transform.GetChild(2).GetComponent<Image>().enabled = true;
+            newList.transform.GetChild(4).GetComponent<UITooltip>().toolTipText = itemInfo.recipeInfo.neededRecipeItems[2].toolTipText;
+            newList.transform.GetChild(4).GetComponent<UITooltip>().itemInfo = itemInfo.recipeInfo.neededRecipeItems[2];
             newList.transform.GetChild(4).GetComponent<Image>().sprite = itemInfo.recipeInfo.neededRecipeItems[2].itemSprite;
         } else {
             newList.transform.GetChild(4).GetComponent<Image>().enabled = false;

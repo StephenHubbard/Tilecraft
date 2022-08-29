@@ -24,7 +24,7 @@ public class Stackable : MonoBehaviour
     }
 
     private void Start() {
-        FindNearbySameQOL();
+        FindNearbySameQOL(false);
         FindAmountOfChildren(this.transform);
         StartCoroutine(CanSellCo());
     }
@@ -76,7 +76,7 @@ public class Stackable : MonoBehaviour
         
     }
 
-    public void FindNearbySameQOL() {
+    public void FindNearbySameQOL(bool playClickSound) {
         Collider2D[] allNearbyItems = Physics2D.OverlapCircleAll(transform.position, 1.8f, interactableLayerMask);
 
         foreach (var item in allNearbyItems)
@@ -88,7 +88,7 @@ public class Stackable : MonoBehaviour
                 } else {
                     potentialParentItem = item.transform;
                 }
-                AttachToParent(false);
+                AttachToParent(playClickSound);
                 return;
             }
         }

@@ -61,6 +61,10 @@ public class HousingManager : MonoBehaviour
     if (houseLengthNullCheck.Length > 0) { 
       Transform randomHousePostion = FindObjectOfType<House>().transform;
 
+      if (randomHousePostion == null) {
+        randomHousePostion = FindObjectOfType<Tower>().transform;
+      }
+
       if (currentPopulation == 1) {
         Instantiate(workerItemPrefab, randomHousePostion.position, randomHousePostion.rotation);
       }

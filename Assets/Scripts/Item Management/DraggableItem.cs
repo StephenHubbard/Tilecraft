@@ -21,6 +21,7 @@ public class DraggableItem : MonoBehaviour
 
     private void Start() {
         tileHighlight.GetComponent<SpriteRenderer>().enabled = false;
+
     }
 
 
@@ -30,6 +31,8 @@ public class DraggableItem : MonoBehaviour
             tileHighlight.transform.position = currentTile.transform.position;
         }
     }
+
+    
 
 
     public void UpdateAmountLeftToHarvest(int amountLeft) {

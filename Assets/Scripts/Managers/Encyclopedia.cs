@@ -62,15 +62,34 @@ public class Encyclopedia : MonoBehaviour
 
         if (encylopediaContainer.activeInHierarchy) {
             encylopediaContainer.SetActive(false);
+            CompleteTutorialEncyclopediaStepTwo();
             OnPointerExitDelegate();
         } else {
             encylopediaContainer.SetActive(true);
+            CompleteTutorialEncyclopediaStep();
             BackButton();
+        }
+    }
+
+    private void CompleteTutorialEncyclopediaStep() {
+        if (TutorialManager.instance.tutorialIndexNum == 5) {
+            TutorialManager.instance.tutorialIndexNum++;
+            TutorialManager.instance.ActivateNextTutorial();
+            TutorialManager.instance.MoveBoxToLeft();
+        }
+    }
+
+    private void CompleteTutorialEncyclopediaStepTwo() {
+        if (TutorialManager.instance.tutorialIndexNum == 6) {
+            TutorialManager.instance.tutorialIndexNum++;
+            TutorialManager.instance.ActivateNextTutorial();
+            TutorialManager.instance.MoveBoxToBottom();
         }
     }
 
     // minimize icon button
     public void CloseEncylopedia() {
+        CompleteTutorialEncyclopediaStep();
         encylopediaContainer.SetActive(false);
         OnPointerExitDelegate();
     }
@@ -137,9 +156,18 @@ public class Encyclopedia : MonoBehaviour
             DiscoveryManager.instance.NewDiscoveredItem(newItem);
 
             if (newDiscoveredItemsGridLayout.transform.childCount > 5) {
-                Destroy(newDiscoveredItemsGridLayout.transform.GetChild(newDiscoveredItemsGridLayout.transform.childCount - 1).gameObject);
+                Destroy(newDiscoveredItemsGridLayout.transform.GetChild(newDiscoveredItemsGridLayout.transform.childCount - 1).gameObject); 
+                StartCoroutine(DestroySixItemInNewList());
             }
         } 
+    }
+
+    private IEnumerator DestroySixItemInNewList() {
+        yield return 0;
+        if (newDiscoveredItemsGridLayout.transform.childCount > 5) {
+            Destroy(newDiscoveredItemsGridLayout.transform.GetChild(newDiscoveredItemsGridLayout.transform.childCount - 1).gameObject); 
+            StartCoroutine(DestroySixItemInNewList());
+        }
     }
 
 

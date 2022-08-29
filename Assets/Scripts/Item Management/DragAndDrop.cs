@@ -187,5 +187,9 @@ public class DragAndDrop : MonoBehaviour
             draggableItem.PlaceItemOnTile(stackable.amountOfChildItems);
             return;
         }
+
+        if (stackable.amountOfChildItems == 1) {
+            GetComponent<Stackable>().FindNearbySameQOL(true);
+        }
     }
 }

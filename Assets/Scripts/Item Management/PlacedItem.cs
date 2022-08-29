@@ -12,6 +12,17 @@ public class PlacedItem : MonoBehaviour
         amountLeft = 1;
     }
 
+    private void Start() {
+        CompleteTowerTutorial();
+    }
+
+    private void CompleteTowerTutorial() {
+        if (itemInfo.itemName == "Tower" && TutorialManager.instance.tutorialIndexNum == 2) {
+            TutorialManager.instance.tutorialIndexNum++;
+            TutorialManager.instance.ActivateNextTutorial();
+        }
+    }
+
     public bool CheckForValidRecipe() {
         CraftingManager craftingManager = GetComponentInParent<CraftingManager>();
 

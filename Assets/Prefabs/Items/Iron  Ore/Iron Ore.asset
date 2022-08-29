@@ -33,5 +33,5 @@ MonoBehaviour:
   foodValue: 0
   itemsNextToDiscover:
   - {fileID: 11400000, guid: 5fcc493fe547b424ebe02d85dc10eb99, type: 2}
-  toolTipText: Requires Furnace
+  toolTipText: Can be smelted in furnace
   tierGroup: 0

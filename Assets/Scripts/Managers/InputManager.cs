@@ -41,6 +41,14 @@ public class InputManager : MonoBehaviour
         return Input.mousePosition;
     }
 
+    private void CompleteSellItemTutorial() {
+        if (TutorialManager.instance.tutorialIndexNum == 7) {
+            TutorialManager.instance.tutorialIndexNum++;
+            TutorialManager.instance.ActivateNextTutorial();
+            TutorialManager.instance.ShowCloseButton();
+        }
+    }
+
     private void Update() {
         if (Input.GetKeyDown(KeyCode.Escape)) {
             Application.Quit();
@@ -186,6 +194,8 @@ public class InputManager : MonoBehaviour
                 }
                 lowestZGameObject2.GetComponent<Stackable>().FindAmountOfChildren(lowestZGameObject2);
                 EconomyManager.instance.SellItem(lowestZGameObject2.gameObject, lowestZGameObject2.GetComponent<DraggableItem>().itemInfo.coinValue, lowestZGameObject2.GetComponent<Stackable>().amountOfChildItems);
+
+                CompleteSellItemTutorial();
 
                 if (lowestZGameObject2.gameObject.GetComponent<Worker>()) {
                     HousingManager.instance.DetectTotalPopulation();
