@@ -21,8 +21,8 @@ public class CloudGeneration : MonoBehaviour
     }
 
     private void SpawnCloudsOnGrid() {
-        for (int x = -1; x < grid.gridArray.GetLength(0) + 1; x ++) {
-            for (int y = -1; y < grid.gridArray.GetLength(1) + 1; y++) {
+        for (int x = -1; x < grid.gridArray.GetLength(0) + 2; x ++) {
+            for (int y = -1; y < grid.gridArray.GetLength(1) + 2; y++) {
                 for (int t = 1; t <= amountOfClouds; t++)
                 {
                     Vector3 gridLocation = grid.GetWorldPosition(x, y) + new Vector3(worldGeneration.cellSize - 3f, worldGeneration.cellSize, -1f) * .5f + new Vector3(amountOfClouds / t, amountOfClouds / t);

@@ -50,13 +50,6 @@ public class InputManager : MonoBehaviour
     }
 
     private void Update() {
-        if (Input.GetKeyDown(KeyCode.Escape)) {
-            Application.Quit();
-        }
-
-        if (Input.GetKeyDown(KeyCode.R)) {
-            SceneManager.LoadScene(0);
-        }
 
         if (Input.GetKeyDown(KeyCode.Space)) {
             Encyclopedia.instance.OpenEncylopedia();
@@ -192,10 +185,13 @@ public class InputManager : MonoBehaviour
                         lowestZGameObject2 = item.transform;
                     }
                 }
-                lowestZGameObject2.GetComponent<Stackable>().FindAmountOfChildren(lowestZGameObject2);
-                EconomyManager.instance.SellItem(lowestZGameObject2.gameObject, lowestZGameObject2.GetComponent<DraggableItem>().itemInfo.coinValue, lowestZGameObject2.GetComponent<Stackable>().amountOfChildItems);
 
-                CompleteSellItemTutorial();
+                if (lowestZGameObject2.GetComponent<DraggableItem>().itemInfo.itemName != "Worker") {
+                    lowestZGameObject2.GetComponent<Stackable>().FindAmountOfChildren(lowestZGameObject2);
+                    EconomyManager.instance.SellItem(lowestZGameObject2.gameObject, lowestZGameObject2.GetComponent<DraggableItem>().itemInfo.coinValue, lowestZGameObject2.GetComponent<Stackable>().amountOfChildItems);
+
+                    CompleteSellItemTutorial();
+                }
 
                 if (lowestZGameObject2.gameObject.GetComponent<Worker>()) {
                     HousingManager.instance.DetectTotalPopulation();

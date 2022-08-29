@@ -89,7 +89,7 @@ public class Encyclopedia : MonoBehaviour
 
     // minimize icon button
     public void CloseEncylopedia() {
-        CompleteTutorialEncyclopediaStep();
+        CompleteTutorialEncyclopediaStepTwo();
         encylopediaContainer.SetActive(false);
         OnPointerExitDelegate();
     }
