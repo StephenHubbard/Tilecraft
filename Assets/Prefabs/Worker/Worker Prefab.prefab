@@ -84,6 +84,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88fb9c1437828da47b0877019fb4030c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cloudLayerMask:
+    serializedVersion: 2
+    m_Bits: 1024
   deadWorkerOnTilePrefab: {fileID: 994099794024727751, guid: 6ee3fd62186ba5f4bbffef744e94fd5b, type: 3}
   deadWorkerItemPrefab: {fileID: 4812397909494241834, guid: 9babb8865d7eb6040b2a905aab024264, type: 3}
   levelUpAnimPrefab: {fileID: 0}

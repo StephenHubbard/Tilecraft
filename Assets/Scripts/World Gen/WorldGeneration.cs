@@ -147,7 +147,7 @@ public class WorldGeneration : MonoBehaviour
                                 
                                 if (potentialItems.Count == 0) { continue; }
 
-                                GameObject startingPlacedItem = Instantiate(itemInfo.onTilePrefab, hit.transform.transform.position, transform.rotation);
+                                GameObject startingPlacedItem = Instantiate(itemInfo.onTilePrefab, hit.transform.position, transform.rotation);
                                 startingPlacedItem.transform.parent = hit.transform.transform;
                                 hit.transform.GetComponent<Tile>().UpdateCurrentPlacedItem(startingPlacedItem.GetComponent<PlacedItem>().itemInfo, startingPlacedItem);
                                 hit.transform.GetComponent<Tile>().isOccupiedWithBuilding = true;
@@ -193,7 +193,7 @@ public class WorldGeneration : MonoBehaviour
                                 }
                                 int whichPrefabToSpawnNum = Random.Range(0, potentialItems.Count);
 
-                                GameObject startingPlacedItem = Instantiate(potentialItems[whichPrefabToSpawnNum].onTilePrefab, hit.transform.transform.position, transform.rotation);
+                                GameObject startingPlacedItem = Instantiate(potentialItems[whichPrefabToSpawnNum].onTilePrefab, hit.transform.position, transform.rotation);
                                 startingPlacedItem.transform.parent = hit.transform.transform;
                                 hit.transform.GetComponent<Tile>().UpdateCurrentPlacedItem(startingPlacedItem.GetComponent<PlacedItem>().itemInfo, startingPlacedItem);
                                 hit.transform.GetComponent<Tile>().isOccupiedWithBuilding = true;
@@ -241,7 +241,7 @@ public class WorldGeneration : MonoBehaviour
                                 
                                 if (potentialItems.Count == 0) { continue; }
 
-                                GameObject startingPlacedItem = Instantiate(potentialItems[whichPrefabToSpawnNum].onTilePrefab, hit.transform.transform.position, transform.rotation);
+                                GameObject startingPlacedItem = Instantiate(potentialItems[whichPrefabToSpawnNum].onTilePrefab, hit.transform.position, transform.rotation);
                                 startingPlacedItem.transform.parent = hit.transform.transform;
                                 hit.transform.GetComponent<Tile>().UpdateCurrentPlacedItem(startingPlacedItem.GetComponent<PlacedItem>().itemInfo, startingPlacedItem);
                                 hit.transform.GetComponent<Tile>().isOccupiedWithBuilding = true;
