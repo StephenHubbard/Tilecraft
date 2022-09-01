@@ -55,6 +55,8 @@ public class Encyclopedia : MonoBehaviour
     }
 
     public void OpenEncylopedia() {
+        
+
         if (backButton.GetComponent<Image>().enabled == true) {
             BackButton();
             return;
@@ -69,6 +71,8 @@ public class Encyclopedia : MonoBehaviour
             CompleteTutorialEncyclopediaStep();
             BackButton();
         }
+
+        AudioManager.instance.Play("UI Click");
     }
 
     private void CompleteTutorialEncyclopediaStep() {

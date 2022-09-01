@@ -28,5 +28,8 @@ MonoBehaviour:
   isSmeltable: 0
   foodValue: 0
   itemsNextToDiscover: []
-  toolTipText: 
+  toolTipText: 'Can only be placed on water tile
+
+
+    produces water'
   tierGroup: 2

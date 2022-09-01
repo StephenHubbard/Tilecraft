@@ -20,6 +20,8 @@ public class TutorialManager : MonoBehaviour
 
     private Animator myAnimator;
 
+    public bool hasShownAutoSellTutorial = false;
+
 
     private void Awake() {
         instance = this;
@@ -48,6 +50,19 @@ public class TutorialManager : MonoBehaviour
 
         tutorialText.text = tutorialStrings[tutorialIndexNum];
         tutorialContainer.SetActive(true);
+    }
+
+    public void ShowAutoSellTutorial() {
+        if (!showTutorial) { return; }
+
+        if (hasShownAutoSellTutorial == false) {
+            hasShownAutoSellTutorial = true;
+            TutorialManager.instance.tutorialIndexNum = 9;
+            tutorialText.text = tutorialStrings[tutorialIndexNum];
+            tutorialContainer.SetActive(true);
+            ShowCloseButton();
+        }
+
     }
 
     public void ShowCloseButton() {

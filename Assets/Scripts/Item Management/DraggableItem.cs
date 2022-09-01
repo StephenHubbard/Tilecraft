@@ -32,9 +32,6 @@ public class DraggableItem : MonoBehaviour
         }
     }
 
-    
-
-
     public void UpdateAmountLeftToHarvest(int amountLeft) {
         this.amountLeft = amountLeft;
     }
@@ -167,7 +164,13 @@ public class DraggableItem : MonoBehaviour
             }
 
             // main item
-            if (currentTile != null && !currentTile.isOccupiedWithBuilding && itemInfo.checkValidTiles(currentTile.GetComponent<Tile>().tileInfo) && !currentTile.isOccupiedWithResources) {
+            if (currentTile != null && itemInfo.checkValidTiles(currentTile.GetComponent<Tile>().tileInfo) && !currentTile.isOccupiedWithResources && itemInfo.isStationary) {
+
+                if (currentTile.currentPlacedItem && !currentTile.currentPlacedItem.GetComponent<PlacedItem>().itemInfo.isStationary) {
+                    currentTile.GetComponent<CraftingManager>().DoneCrafting();
+                    Destroy(currentTile.currentPlacedItem);
+                }
+
                 GameObject thisItem = Instantiate(itemInfo.onTilePrefab, currentTile.transform.position, transform.rotation);
                 thisItem.GetComponent<PlacedItem>().UpdateAmountLeftToHarvest(amountLeft);
                 thisItem.transform.parent = currentTile.transform;
@@ -202,7 +205,7 @@ public class DraggableItem : MonoBehaviour
 
         for (int i = 0; i < amountExtra; i++)
         {
-            Vector3 spawnItemsVector3 = transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), -1);
+            Vector3 spawnItemsVector3 = transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0);
 
             NewItemManager.instance.SpawnNewItem(spawnItemsVector3, itemInfo);
         }

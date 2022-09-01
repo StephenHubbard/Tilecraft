@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a967a3f0f99c934bb9b8a89e7f72db0, type: 3}
+  m_Name: Child
+  m_EditorClassIdentifier: 
+  itemName: Child
+  itemSprite: {fileID: 21300000, guid: 50f81c2e56357e640bf3d230ba2b1bd9, type: 3}
+  coinValue: 1
+  draggableItemPrefab: {fileID: 4812397909494241834, guid: 5c97e4db6dad4d340be79021de2fb874, type: 3}
+  onTilePrefab: {fileID: 994099794024727751, guid: 5cd078298c518894b8c95259e8716659, type: 3}
+  tileInfoValidLocations:
+  - {fileID: 11400000, guid: e492befd9aee1b645b08c2b5e24460b2, type: 2}
+  - {fileID: 11400000, guid: 5f31d55a53bbe2f479011bab64202e0c, type: 2}
+  - {fileID: 11400000, guid: 683019bb58be0914385796f71488de33, type: 2}
+  - {fileID: 11400000, guid: 68eb43c7510400947b95468668236dc7, type: 2}
+  recipeInfo: {fileID: 11400000, guid: dec2f320028e697458fbef6fdf9d0aaf, type: 2}
+  amountRecipeCanCreate: 1
+  potentialOffSpring:
+  - {fileID: 11400000, guid: 7ecdb19248e9de349ba40029c73a2f12, type: 2}
+  - {fileID: 11400000, guid: 095b7d547fde57a47807f4ee4d0b69d9, type: 2}
+  - {fileID: 11400000, guid: ea5cfccaa8e77fe4eabdf280c946787c, type: 2}
+  isResourceOnly: 1
+  isStationary: 0
+  isSmeltable: 0
+  foodValue: 0
+  itemsNextToDiscover: []
+  toolTipText: Can be combined with a piece of equipment to choose a profession
+  tierGroup: 1

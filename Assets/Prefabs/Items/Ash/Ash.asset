@@ -29,7 +29,7 @@ MonoBehaviour:
   isResourceOnly: 1
   isStationary: 0
   isSmeltable: 0
-  foodValue: 1
+  foodValue: 0
   itemsNextToDiscover:
   - {fileID: 11400000, guid: 10e8d244ed8dbd94f859cf716e846be1, type: 2}
   toolTipText: 

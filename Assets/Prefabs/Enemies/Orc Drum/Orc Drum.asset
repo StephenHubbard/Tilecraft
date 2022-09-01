@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a967a3f0f99c934bb9b8a89e7f72db0, type: 3}
   m_Name: Orc Drum
   m_EditorClassIdentifier: 
-  itemName: Orc Drumb
+  itemName: Orc Drum
   itemSprite: {fileID: 21300000, guid: de55a05ae8c284741a44ab8261a3096a, type: 3}
   coinValue: 3
   draggableItemPrefab: {fileID: 0}

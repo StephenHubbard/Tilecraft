@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Furnace : MonoBehaviour
 {
     [SerializeField] private Transform currentResourceContainer;
     [SerializeField] private SpriteRenderer currentOccupiedSprite;
+    [SerializeField] private TMP_Text amountText;
 
     public bool isAlter = false;
 
@@ -14,6 +16,9 @@ public class Furnace : MonoBehaviour
     public bool occupiedWithResourceInFurance = false;
     private CraftingManager craftingManager;
 
+    private void Update() {
+        amountText.text = amountLeftToSmelt.ToString();
+    }
 
     public void StartSmelting(ItemInfo itemInfo, int amountInStack) {
         craftingManager = GetComponentInParent<CraftingManager>();

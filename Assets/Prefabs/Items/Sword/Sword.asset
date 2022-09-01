@@ -24,11 +24,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 68eb43c7510400947b95468668236dc7, type: 2}
   recipeInfo: {fileID: 11400000, guid: 6268d1e672b25184488187b010518453, type: 2}
   amountRecipeCanCreate: 1
-  potentialOffSpring: []
+  potentialOffSpring:
+  - {fileID: 11400000, guid: ea5cfccaa8e77fe4eabdf280c946787c, type: 2}
   isResourceOnly: 1
   isStationary: 0
   isSmeltable: 0
   foodValue: 0
   itemsNextToDiscover: []
-  toolTipText: Equip on a worker to make a knight
+  toolTipText: Combine with a child to make a knight
   tierGroup: 1

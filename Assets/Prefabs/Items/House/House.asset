@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: House
   m_EditorClassIdentifier: 
   itemName: House
-  itemSprite: {fileID: 21300000, guid: cda92bac8e1db4741ae4ba4baed5289b, type: 3}
+  itemSprite: {fileID: 21300000, guid: 163babccbf65ed54b8d83f353d5bc1a4, type: 3}
   coinValue: 2
   draggableItemPrefab: {fileID: 4812397909494241834, guid: 560ab673ad8be8a448b090d628cc165a, type: 3}
   onTilePrefab: {fileID: 994099794024727751, guid: 6e82e1102fbdf134e88ac08f157e7599, type: 3}

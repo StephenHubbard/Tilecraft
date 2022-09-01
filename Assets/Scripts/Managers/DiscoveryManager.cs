@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class DiscoveryManager : MonoBehaviour
 {
+    public bool discoverAllItems = false;
+
     public static DiscoveryManager instance { get; set;}
 
     [SerializeField] public List<ItemInfo> allAvailableItems = new List<ItemInfo>();
@@ -38,7 +40,9 @@ public class DiscoveryManager : MonoBehaviour
         SortAllItems();
         FindAllDiscoveredItems();
 
-        // DiscoverAllItems();
+        if (discoverAllItems) {
+            DiscoverAllItems();
+        }
     }
 
     // debug use only

@@ -48,6 +48,7 @@ public class UITooltip : MonoBehaviour, IPointerClickHandler, IPointerEnterHandl
         }
 
         if (eventData.button == PointerEventData.InputButton.Right && itemInfo != null  && transform.parent.name != "Potential Items Container Grid Layout") { 
+        
             if (itemInfo && !IsItemAlreadyInToDoList() && ToDoManager.instance.toDoList.Count < 4) {
                 ToDoManager.instance.SetNewToDoList(itemInfo);
                 GameObject newBorder = Instantiate(toDoListActiveBorderPrefab, transform.position, transform.rotation);
@@ -68,6 +69,7 @@ public class UITooltip : MonoBehaviour, IPointerClickHandler, IPointerEnterHandl
             AudioManager.instance.Play("UI Click");
         }
     }
+
 
     public void ItemCraftedTakeOffToDoList(ItemInfo itemInfo) {
         foreach (var item in ToDoManager.instance.toDoList)
@@ -153,19 +155,31 @@ public class UITooltip : MonoBehaviour, IPointerClickHandler, IPointerEnterHandl
     {
         ToolTipManager.instance.isOverUI = false;
         ToolTipManager.instance.ToggleToolTipOff();
+        Encyclopedia.instance.OnPointerExitDelegate();
     }
 
     public void OnPointerMove(PointerEventData eventData)
     {
-        ToolTipManager.instance.ToggleToolTipOn();
         ToolTipManager.instance.isOverUI = true;
+        
+        if (!ToolTipManager.instance.isMaximized) { return; }
+
+        ToolTipManager.instance.ToggleToolTipOn();
         ToolTipManager.instance.UpdateValues(toolTipName, toolTipText, 0, 0, 0, 0, 0);
+
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        ToolTipManager.instance.ToggleToolTipOn();
         ToolTipManager.instance.isOverUI = true;
+
+        if (!ToolTipManager.instance.isMaximized) { return; }
+
+        ToolTipManager.instance.ToggleToolTipOn();
         ToolTipManager.instance.UpdateValues(toolTipName, toolTipText, 0, 0, 0, 0, 0);
+
+        if (isEncyclopediaIcon) {
+            UpdateEncyclopediaToolTip();
+        }
     }
 }

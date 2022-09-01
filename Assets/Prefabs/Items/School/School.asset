@@ -30,5 +30,5 @@ MonoBehaviour:
   isSmeltable: 0
   foodValue: 0
   itemsNextToDiscover: []
-  toolTipText: 
+  toolTipText: produces graduation cap
   tierGroup: 2

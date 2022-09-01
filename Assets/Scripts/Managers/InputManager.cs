@@ -51,12 +51,17 @@ public class InputManager : MonoBehaviour
 
     private void Update() {
 
-        if (Input.GetKeyDown(KeyCode.Space)) {
+        if (Input.GetKeyDown(KeyCode.Tab)) {
             Encyclopedia.instance.OpenEncylopedia();
-            ToolTipManager.instance.isOverUI = false;
+            // ToolTipManager.instance.isOverUI = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha1)) {
+        // for debugging disable before uploading build
+        if (Input.GetKeyDown(KeyCode.R)) {
+            SceneManager.LoadScene(0);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space)) {
             FindObjectOfType<IdleWorker>().FindIdleWorkerButton();
         }
 
@@ -143,7 +148,7 @@ public class InputManager : MonoBehaviour
             RaycastHit2D[] hit = Physics2D.RaycastAll(UtilsClass.GetMouseWorldPosition(), Vector2.zero, 100f, interactableLayerMask);
 
             if (hit.Length > 0) {
-                CursorManager.Instance.SetActiveCursorType(cursorOpenHand);
+                CursorManager.instance.SetActiveCursorType(cursorOpenHand);
 
                 if (Input.GetMouseButtonDown(0)) {
                     foreach (var item in hit)
@@ -158,16 +163,16 @@ public class InputManager : MonoBehaviour
                     activeObject.OnMouseDownCustom();
                 } 
             } else {
-                CursorManager.Instance.SetActiveCursorType(cursorTypeArrow);
+                CursorManager.instance.SetActiveCursorType(cursorTypeArrow);
             }
 
         if (activeObject) {
-            CursorManager.Instance.SetActiveCursorType(cursorClosedHand);
+            CursorManager.instance.SetActiveCursorType(cursorClosedHand);
 
             if (Input.GetMouseButtonUp(0)) {
                 activeObject.OnMouseUpCustom();
                 activeObject = null;
-                CursorManager.Instance.SetActiveCursorType(cursorOpenHand);
+                CursorManager.instance.SetActiveCursorType(cursorOpenHand);
             }
         }
 
@@ -186,12 +191,10 @@ public class InputManager : MonoBehaviour
                     }
                 }
 
-                if (lowestZGameObject2.GetComponent<DraggableItem>().itemInfo.itemName != "Worker") {
-                    lowestZGameObject2.GetComponent<Stackable>().FindAmountOfChildren(lowestZGameObject2);
-                    EconomyManager.instance.SellItem(lowestZGameObject2.gameObject, lowestZGameObject2.GetComponent<DraggableItem>().itemInfo.coinValue, lowestZGameObject2.GetComponent<Stackable>().amountOfChildItems);
+                lowestZGameObject2.GetComponent<Stackable>().FindAmountOfChildren(lowestZGameObject2);
+                EconomyManager.instance.SellItem(lowestZGameObject2.gameObject, lowestZGameObject2.GetComponent<DraggableItem>().itemInfo.coinValue, lowestZGameObject2.GetComponent<Stackable>().amountOfChildItems);
 
-                    CompleteSellItemTutorial();
-                }
+                CompleteSellItemTutorial();
 
                 if (lowestZGameObject2.gameObject.GetComponent<Worker>()) {
                     HousingManager.instance.DetectTotalPopulation();

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class CursorManager : MonoBehaviour {
 
-    public static CursorManager Instance { get; private set; }
+    public static CursorManager instance { get; private set; }
 
     public event EventHandler<OnCursorChangedEventArgs> OnCursorChanged;
     public class OnCursorChangedEventArgs : EventArgs {
@@ -24,10 +24,11 @@ public class CursorManager : MonoBehaviour {
         Arrow,
         Open,
         Close,
+        DragMove,
     }
 
     private void Awake() {
-        Instance = this;
+        instance = this;
     }
 
     private void Start() {
@@ -41,6 +42,18 @@ public class CursorManager : MonoBehaviour {
             currentFrame = (currentFrame + 1) % frameCount;
             Cursor.SetCursor(cursorAnimation.textureArray[currentFrame], cursorAnimation.offset, CursorMode.Auto);
         }
+
+        if (ToolTipManager.instance.isOverUI) {
+            CursorTypeArrow();
+        }
+    }
+
+    public void CursorTypeArrow() {
+        SetActiveCursorType(CursorType.Arrow);
+    }
+
+    public void CursorTypeDragMove() {
+        SetActiveCursorType(CursorType.DragMove);
     }
 
     public void SetActiveCursorType(CursorType cursorType) {

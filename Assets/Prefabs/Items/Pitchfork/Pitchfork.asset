@@ -24,11 +24,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 68eb43c7510400947b95468668236dc7, type: 2}
   recipeInfo: {fileID: 11400000, guid: ee1c4c3e4ae8aae4a95d36544c3766f8, type: 2}
   amountRecipeCanCreate: 1
-  potentialOffSpring: []
+  potentialOffSpring:
+  - {fileID: 11400000, guid: 7ecdb19248e9de349ba40029c73a2f12, type: 2}
   isResourceOnly: 1
   isStationary: 0
   isSmeltable: 0
   foodValue: 0
   itemsNextToDiscover: []
-  toolTipText: Equip on a knight or archer to turn into a worker
+  toolTipText: Combine with a child to make a worker
   tierGroup: 1

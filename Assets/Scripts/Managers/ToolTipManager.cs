@@ -13,7 +13,6 @@ public class ToolTipManager : MonoBehaviour
     [SerializeField] private GameObject coinContainer;
     [SerializeField] private GameObject heartContainer;
     [SerializeField] private GameObject hatchetContainer;
-    // [SerializeField] private GameObject availablePackItemsContainer;
     [SerializeField] private TMP_Text foodValueText;
     [SerializeField] private TMP_Text coinValueText;
     [SerializeField] private TMP_Text heartValueText;
@@ -71,23 +70,6 @@ public class ToolTipManager : MonoBehaviour
                 return;
             }
 
-            if (hit.Length > 1 && hit[0].transform.GetComponent<Weapon>() && hit[1].transform.GetComponent<Worker>()) {
-                string newStr = "You are about to Equip worker with a " + (hit[0].transform.GetComponent<Weapon>().weaponType).ToString();
-                UpdateValues("Equip?", newStr, 0, 0, 0, 0, 0);
-                return;
-            }
-
-            if (hit.Length > 1 && hit[0].transform.GetComponent<Weapon>() && hit[1].transform.GetComponent<Knight>()) {
-                string newStr = "You are about to Equip Knight with a " + (hit[0].transform.GetComponent<Weapon>().weaponType).ToString();
-                UpdateValues("Equip?", newStr, 0, 0, 0, 0, 0);
-                return;
-            }
-
-            if (hit.Length > 1 && hit[0].transform.GetComponent<Weapon>() && hit[1].transform.GetComponent<Archer>()) {
-                string newStr = "You are about to Equip Archer with a " + (hit[0].transform.GetComponent<Weapon>().weaponType).ToString();
-                UpdateValues("Equip?", newStr, 0, 0, 0, 0, 0);
-                return;
-            }
 
             else if (hit[0].transform.GetComponent<DraggableItem>()) {
                 ItemInfo thisItem = hit[0].transform.GetComponent<DraggableItem>().itemInfo;
@@ -233,6 +215,9 @@ public class ToolTipManager : MonoBehaviour
     // event listener in inspector
     public void HoverOverUI(Transform sender) {
         isOverUI = true;
+        
+        if (!isMaximized) { return; }
+
         ToggleToolTipOn();
         UpdateValues(sender.GetComponent<UITooltip>().toolTipName, sender.GetComponent<UITooltip>().toolTipText, 0, 0, 0, 0, 0);
         sender.GetComponent<UITooltip>().UpdateEncyclopediaToolTip();

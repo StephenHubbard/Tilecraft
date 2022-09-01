@@ -7,10 +7,13 @@ public class CraftingManager : MonoBehaviour
 {
     [SerializeField] public GameObject sliderCanvas;
     [SerializeField] public Slider tileSlider;
+    [SerializeField] public Image sliderBackgroundColor;
     [SerializeField] private float startingCraftTime;
     [SerializeField] private float currentCraftTime;
     [SerializeField] public RecipeInfo recipeInfo;
     [SerializeField] private GameObject coinSellAnim;
+    [SerializeField] private Color defaultGreen;
+
     
     private int amountOfWorkers;
     private int totalWorkerStrength;
@@ -29,9 +32,12 @@ public class CraftingManager : MonoBehaviour
     private void Awake() {
         audioManager = FindObjectOfType<AudioManager>();
         encyclopedia = FindObjectOfType<Encyclopedia>();
+        defaultGreen = sliderBackgroundColor.color;
     }
 
-
+    private void Start() {
+        ResetStartingValuesSlider();
+    }
 
     private void Update() {
         if (currentCraftTime > 0 && hasCompleteRecipe && isCrafting && hasWorkers) {
@@ -41,7 +47,19 @@ public class CraftingManager : MonoBehaviour
 
         if (currentCraftTime < .1f && hasCompleteRecipe && hasWorkers && isCrafting) {
             PopOutNewItemFromRecipe();
+
+            if (recipeInfo.itemInfo.itemName == "Tower") {
+                ResetStartingValuesSlider();
+
+                sliderBackgroundColor.color = defaultGreen;
+            }
         } 
+    }
+
+    public void ResetStartingValuesSlider() {
+        tileSlider.value = currentCraftTime;
+        tileSlider.maxValue = 100;
+        tileSlider.value = 100;
     }
 
     public void CompleteFirstStepTutorial() {
@@ -64,6 +82,11 @@ public class CraftingManager : MonoBehaviour
     }
 
     public void CheckCanStartCrafting() {
+
+        if (GetComponent<Tile>().currentPlacedItem) {
+            hasCompleteRecipe = true;
+        }
+
         if (GetComponent<Tile>().currentPlacedItem && GetComponent<Tile>().currentPlacedItem.GetComponent<Tower>()) {
             hasCompleteRecipe = true;
             recipeInfo = GetComponent<Tile>().currentPlacedItem.GetComponent<PlacedItem>().itemInfo.recipeInfo;

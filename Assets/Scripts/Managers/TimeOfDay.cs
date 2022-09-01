@@ -90,16 +90,12 @@ public class TimeOfDay : MonoBehaviour
         } else if (tier == 2) {
             foreach (var item in WorldGeneration.instance.ReturnSpawnableItemsTierTwo())
             {
-                if (item.itemName != "Orc Relic") {
-                    allSpawnableItems.Add(item);
-                }
+                allSpawnableItems.Add(item);
             }
         } else if (tier == 3) {
             foreach (var item in WorldGeneration.instance.ReturnSpawnableItemsTierThree())
             {
-                if (item.itemName != "Orc Relic" || item.itemName != "Orc Drum") {
-                    allSpawnableItems.Add(item);
-                }
+                allSpawnableItems.Add(item);
             }
         }
 
@@ -159,7 +155,7 @@ public class TimeOfDay : MonoBehaviour
         if (potentialItems.Count > 0) {
             int whichPrefabToSpawnNum = Random.Range(0, potentialItems.Count);
 
-            int spawnChance = Random.Range(0, 3);
+            int spawnChance = Random.Range(0, 9);
 
             if (spawnChance == 1)
             {

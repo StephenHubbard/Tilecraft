@@ -79,6 +79,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54384290d74e50c4bb15669036349fbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pastelRed: {r: 0.9294118, g: 0.14509805, b: 0.30588236, a: 0}
+  pastelGreen: {r: 0.31764707, g: 1, b: 0.30588236, a: 0}
 --- !u!95 &9039387805499844905
 Animator:
   serializedVersion: 4

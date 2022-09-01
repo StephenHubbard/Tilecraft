@@ -11,7 +11,7 @@ public class House : MonoBehaviour
     [SerializeField] private float timeToHaveBabyCurrent;
     [SerializeField] private float timeToHaveBabyTotal = 10f;
     [SerializeField] private Transform[] workerPoints;
-    [SerializeField] private GameObject workerItemPrefab;
+    [SerializeField] private GameObject childPrefab;
 
     public bool isBabyMaking = false;
 
@@ -93,7 +93,7 @@ public class House : MonoBehaviour
 
         if (timeToHaveBabyCurrent <= .1f) {
             Vector3 spawnItemsVector3 = transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), -1);
-            Instantiate(workerItemPrefab, spawnItemsVector3, transform.rotation);
+            Instantiate(childPrefab, spawnItemsVector3, transform.rotation);
             HousingManager.instance.AddNewWorker();
             EconomyManager.instance.CheckDiscovery(1);
             CompleteFirstBabyTutorial();

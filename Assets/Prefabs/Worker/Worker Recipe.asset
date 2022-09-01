@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemInfo: {fileID: 11400000, guid: 7ecdb19248e9de349ba40029c73a2f12, type: 2}
   neededRecipeItems:
-  - {fileID: 11400000, guid: 7ecdb19248e9de349ba40029c73a2f12, type: 2}
-  - {fileID: 11400000, guid: 7ecdb19248e9de349ba40029c73a2f12, type: 2}
-  recipeCraftTime: 0
+  - {fileID: 11400000, guid: 35fa9f6730af71b428cd2751da4cd287, type: 2}
+  - {fileID: 11400000, guid: e84195656fe4b6442862262d61424209, type: 2}
+  recipeCraftTime: 10
   craftingClipString: 
   requiresFurnace: 0

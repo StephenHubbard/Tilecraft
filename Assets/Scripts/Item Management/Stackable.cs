@@ -27,6 +27,7 @@ public class Stackable : MonoBehaviour
         FindNearbySameQOL(false);
         FindAmountOfChildren(this.transform);
         StartCoroutine(CanSellCo());
+
     }
 
     private void OnMouseExit() {
@@ -35,7 +36,12 @@ public class Stackable : MonoBehaviour
 
     private IEnumerator CanSellCo() {
         yield return new WaitForEndOfFrame();
-        isSellable = true;
+
+        if (itemInfo.itemName == "Explorer Pendant" || itemInfo.itemName == "Warrior Pendant" ||itemInfo.itemName == "Tech Pendant") {
+            isSellable = false;
+        } else {
+            isSellable = true;
+        }
     }
 
     public void AttachToParent(bool playClickSound) {
