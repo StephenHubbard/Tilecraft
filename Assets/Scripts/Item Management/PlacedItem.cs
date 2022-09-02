@@ -43,8 +43,6 @@ public class PlacedItem : MonoBehaviour
                 resourcesNeededForRecipeLookup.Add(neededRecipeItemsInOffspring);
             }
 
-            
-
             if (AreListsEqual(GetComponentInParent<Tile>().currentPlacedResources, resourcesNeededForRecipeLookup)) {
                 GetComponentInParent<CraftingManager>().UpdateAmountLeftToCraft(amountLeft);
                 GetComponentInParent<CraftingManager>().recipeInfo = potentialOffSpring.recipeInfo;

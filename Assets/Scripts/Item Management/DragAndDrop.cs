@@ -111,10 +111,13 @@ public class DragAndDrop : MonoBehaviour
 
         StorageContainer.instance.ActivateWhiteBorderOff();
 
-        if (StorageContainer.instance.isOverStorage) {
-            StorageContainer.instance.AddItemToInventory(draggableItem.itemInfo, stackable.amountOfChildItems);
+        if (StorageContainer.instance.isOverStorage && StorageContainer.instance.CheckIfStorageHasSpace(GetComponent<DraggableItem>().itemInfo)) {
+            StorageContainer.instance.AddToStorage(draggableItem.itemInfo, stackable.amountOfChildItems);
             Destroy(gameObject);
             return;
+        } else if (StorageContainer.instance.isOverStorage) {
+            transform.position = transform.position + new Vector3(0, -1f, 0);
+            AudioManager.instance.Play("Pop");
         }
 
         if (stackable.potentialParentItem) {

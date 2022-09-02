@@ -13,8 +13,9 @@ public class Furnace : MonoBehaviour
 
     public ItemInfo currentlySmeltingItem;
     public int amountLeftToSmelt;
-    public bool occupiedWithResourceInFurance = false;
+    public bool occupiedWithResourceInFurnace = false;
     private CraftingManager craftingManager;
+    public bool isSmelting = false;
 
     private void Update() {
         amountText.text = amountLeftToSmelt.ToString();
@@ -39,9 +40,14 @@ public class Furnace : MonoBehaviour
             Instantiate(currentlySmeltingItem.draggableItemPrefab, spawnItemsVector3, transform.rotation);
         }
 
+        isSmelting = false;
         currentlySmeltingItem = null;
-        occupiedWithResourceInFurance = false;
+        occupiedWithResourceInFurnace = false;
         currentResourceContainer.gameObject.SetActive(false);
+        GetComponentInParent<CraftingManager>().hasCompleteRecipe = false;
+        GetComponentInParent<CraftingManager>().recipeInfo = null;
+
+        AudioManager.instance.Play("Pop");
     }
 
     public void UpdateFurnaceAmountLeft() {

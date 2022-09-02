@@ -13,7 +13,7 @@ public class TutorialManager : MonoBehaviour
 
     public int tutorialIndexNum = 0;
 
-    [TextArea]
+    [TextArea(10, 10)]
     [SerializeField] private string[] tutorialStrings;
 
     public static TutorialManager instance;

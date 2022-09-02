@@ -16,8 +16,14 @@ public class StorageContainer : MonoBehaviour, IPointerEnterHandler, IPointerMov
 
     public static StorageContainer instance;
 
+    private Animator myAnimator;
+
     private void Awake() {
         instance = this;
+    }
+
+    private void Start() {
+        myAnimator = GetComponent<Animator>();
     }
 
     public void ActivateWhiteBorderOn() {
@@ -28,7 +34,7 @@ public class StorageContainer : MonoBehaviour, IPointerEnterHandler, IPointerMov
         whiteBorder.SetActive(false);
     }
 
-    public void AddItemToInventory(ItemInfo itemInfo, int amount) {
+    public void AddToStorage(ItemInfo itemInfo, int amount) {
         AudioManager.instance.Play("UI Click");
 
         if (isAlreadyExistingInStorage(itemInfo)) {
@@ -48,7 +54,19 @@ public class StorageContainer : MonoBehaviour, IPointerEnterHandler, IPointerMov
             newItem.GetComponent<StorageItem>().IncreaseAmount(amount);
             newItem.transform.SetAsFirstSibling();
         }
+    }
 
+    public bool CheckIfStorageHasSpace(ItemInfo itemInfo) {
+        if (isAlreadyExistingInStorage(itemInfo)) {
+            return true;
+        }
+
+        if (gridLayoutContainer.transform.childCount > 9) {
+            myAnimator.SetTrigger("Storage Full");
+            return false;
+        } 
+
+        return true;
     }
 
     private bool isAlreadyExistingInStorage(ItemInfo itemInfo) {

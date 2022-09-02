@@ -57,25 +57,31 @@ public class HousingManager : MonoBehaviour
     Population[] totalPop = FindObjectsOfType<Population>();
     currentPopulation = totalPop.Length;
 
+    Transform spawnPosition = null;
+
     House[] houseLengthNullCheck = FindObjectsOfType<House>();
-    if (houseLengthNullCheck.Length > 0) { 
-      Transform randomHousePostion = FindObjectOfType<House>().transform;
 
-      if (randomHousePostion == null) {
-        randomHousePostion = FindObjectOfType<Tower>().transform;
-      }
+    if (houseLengthNullCheck.Length > 0) {
+      spawnPosition = FindObjectOfType<House>().transform;
+    }
+      
+    Tower[] TowerLengthNullCheck = FindObjectsOfType<Tower>();
 
+    if (TowerLengthNullCheck.Length > 0 && spawnPosition == null) {
+      spawnPosition = FindObjectOfType<Tower>().transform;
+    }
+
+    if (spawnPosition) {
       if (currentPopulation == 1) {
-        Instantiate(workerItemPrefab, randomHousePostion.position, randomHousePostion.rotation);
+        Instantiate(workerItemPrefab, spawnPosition.position, spawnPosition.rotation);
       }
 
       if (currentPopulation == 0) {
-        Instantiate(workerItemPrefab, randomHousePostion.position, randomHousePostion.rotation);
-        Instantiate(workerItemPrefab, randomHousePostion.position, randomHousePostion.rotation);
+        Instantiate(workerItemPrefab, spawnPosition.position, spawnPosition.rotation);
+        Instantiate(workerItemPrefab, spawnPosition.position, spawnPosition.rotation);
       }
-    } else {
-      // can use tutorial guy later
     }
+    
   }
 
   public void AddNewHouse(int amountHouseAdds) {

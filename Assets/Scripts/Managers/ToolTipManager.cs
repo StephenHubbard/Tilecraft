@@ -66,7 +66,7 @@ public class ToolTipManager : MonoBehaviour
 
             if (hit.Length > 1 && hit[0].transform.GetComponent<Food>() && hit[1].transform.GetComponent<Archer>()) {
                 string newStr = "You are about to feed archer " + (hit[0].transform.GetComponent<Food>().foodWorthAmount * hit[0].transform.GetComponent<Stackable>().amountOfChildItems).ToString() + " food";
-                UpdateValues("Feed archer?", newStr, 0, 0, 0, 0, 0);
+                UpdateValues("p archer?", newStr, 0, 0, 0, 0, 0);
                 return;
             }
 

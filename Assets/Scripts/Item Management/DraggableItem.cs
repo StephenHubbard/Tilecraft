@@ -61,7 +61,7 @@ public class DraggableItem : MonoBehaviour
     }
 
     public void PlaceItemOnTile(int amountInStack) {
-        if (!CanPlaceOnTile) { return; }
+        if (!CanPlaceOnTile || ToolTipManager.instance.isOverUI) { return; }
 
         for (int i = amountInStack; i > 0; i--)
         {
@@ -78,15 +78,22 @@ public class DraggableItem : MonoBehaviour
             // furnace
             if (currentTile.currentPlacedItem != null) {
 
-                if (currentTile.currentPlacedItem.GetComponent<Furnace>() && itemInfo.isSmeltable && !currentTile.currentPlacedItem.GetComponent<Furnace>().occupiedWithResourceInFurance) {
+                if (currentTile.currentPlacedItem.GetComponent<Furnace>() && itemInfo.isSmeltable && !currentTile.currentPlacedItem.GetComponent<Furnace>().occupiedWithResourceInFurnace) {
                     if (itemInfo.itemName == "Dead Worker" & !currentTile.currentPlacedItem.GetComponent<Furnace>().isAlter) {
                         DetermineExtraItems(i);
                         Destroy(gameObject);
                         return;
+                    } else if (!currentTile.GetComponent<CraftingManager>().isCrafting && itemInfo.itemName == "Dead Worker" & currentTile.currentPlacedItem.GetComponent<Furnace>().isAlter) {
+                        currentTile.currentPlacedItem.GetComponent<Furnace>().occupiedWithResourceInFurnace = true;
+                        currentTile.currentPlacedItem.GetComponent<Furnace>().UpdateCurrentOccupiedResourceSprite(itemInfo);
+                        currentTile.currentPlacedItem.GetComponent<Furnace>().StartSmelting(itemInfo, GetComponent<Stackable>().amountOfChildItems);
+                        AudioManager.instance.Play("Click");
+                        Destroy(gameObject);
+                        return;
                     }
 
-                    if (!currentTile.GetComponent<CraftingManager>().isCrafting) {
-                        currentTile.currentPlacedItem.GetComponent<Furnace>().occupiedWithResourceInFurance = true;
+                    if (!currentTile.GetComponent<CraftingManager>().isCrafting && !currentTile.currentPlacedItem.GetComponent<Furnace>().isAlter) {
+                        currentTile.currentPlacedItem.GetComponent<Furnace>().occupiedWithResourceInFurnace = true;
                         currentTile.currentPlacedItem.GetComponent<Furnace>().UpdateCurrentOccupiedResourceSprite(itemInfo);
                         currentTile.currentPlacedItem.GetComponent<Furnace>().StartSmelting(itemInfo, GetComponent<Stackable>().amountOfChildItems);
                         AudioManager.instance.Play("Click");
@@ -174,13 +181,14 @@ public class DraggableItem : MonoBehaviour
             }
 
             // main item
-            if (currentTile != null && itemInfo.checkValidTiles(currentTile.GetComponent<Tile>().tileInfo) && !currentTile.isOccupiedWithResources && itemInfo.isStationary) {
+            if (currentTile != null && itemInfo.checkValidTiles(currentTile.GetComponent<Tile>().tileInfo) && !currentTile.isOccupiedWithResources && !itemInfo.isResourceOnly) {
 
                 if (currentTile.currentPlacedItem && !currentTile.currentPlacedItem.GetComponent<PlacedItem>().itemInfo.isStationary) {
                     currentTile.GetComponent<CraftingManager>().DoneCrafting();
                     Destroy(currentTile.currentPlacedItem);
                 }
 
+                currentTile.GetComponent<CraftingManager>().recipeInfo = null;
                 GameObject thisItem = Instantiate(itemInfo.onTilePrefab, currentTile.transform.position, transform.rotation);
                 thisItem.GetComponent<PlacedItem>().UpdateAmountLeftToHarvest(amountLeft);
                 thisItem.transform.parent = currentTile.transform;
@@ -192,6 +200,7 @@ public class DraggableItem : MonoBehaviour
                 if (itemInfo.isStationary || itemInfo.itemName == "Tower") {
                     AudioManager.instance.Play("Building Placement");
                     currentTile.InstantiateSmokePrefab();
+                    currentTile.GetComponent<CraftingManager>().CheckCanStartCrafting();
                 } else {
                     AudioManager.instance.Play("Click");
                 }

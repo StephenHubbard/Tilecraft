@@ -31,6 +31,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b99b74b9779be8f46a37d09aeb7626a5, type: 2}
   - {fileID: 11400000, guid: 60dfa5edbd711ff4cad9ff27e261a28e, type: 2}
   - {fileID: 11400000, guid: bb26a4b7d8c96e344b46984f9198c6ba, type: 2}
+  - {fileID: 11400000, guid: e84195656fe4b6442862262d61424209, type: 2}
   isResourceOnly: 1
   isStationary: 0
   isSmeltable: 0

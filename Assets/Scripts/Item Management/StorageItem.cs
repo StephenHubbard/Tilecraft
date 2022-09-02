@@ -27,17 +27,17 @@ public class StorageItem : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (Input.GetKey(KeyCode.LeftShift) && eventData.button == PointerEventData.InputButton.Right) {
+        if (Input.GetKey(KeyCode.LeftShift) && (eventData.button == PointerEventData.InputButton.Right || eventData.button == PointerEventData.InputButton.Left)) {
             for (int i = amountInStorage; i > 1; i--)
             {
                 amountInStorage--;
-                Instantiate(itemInfo.draggableItemPrefab, transform.position + new Vector3(0, 0, 0), transform.rotation);
+                Instantiate(itemInfo.draggableItemPrefab, transform.position + new Vector3(0, 0, -90f), transform.rotation);
                 AudioManager.instance.Play("Pop");
             }
         }
-        if (eventData.button == PointerEventData.InputButton.Right) {
+        if (eventData.button == PointerEventData.InputButton.Right || eventData.button == PointerEventData.InputButton.Left) {
             amountInStorage--;
-            Instantiate(itemInfo.draggableItemPrefab, transform.position + new Vector3(0, -1.5f, 0), transform.rotation);
+            Instantiate(itemInfo.draggableItemPrefab, transform.position + new Vector3(0, -1.5f, -90f), transform.rotation);
             AudioManager.instance.Play("Pop");
         }
 

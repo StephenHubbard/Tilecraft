@@ -15,8 +15,8 @@ public class CraftingManager : MonoBehaviour
     [SerializeField] private Color defaultGreen;
 
     
-    private int amountOfWorkers;
-    private int totalWorkerStrength;
+    public int amountOfWorkers;
+    public int totalWorkerStrength;
     public int amountLeftToCraft;
     public int startAmountToCraft;
 
@@ -48,7 +48,7 @@ public class CraftingManager : MonoBehaviour
         if (currentCraftTime < .1f && hasCompleteRecipe && hasWorkers && isCrafting) {
             PopOutNewItemFromRecipe();
 
-            if (recipeInfo.itemInfo.itemName == "Tower") {
+            if (recipeInfo && recipeInfo.itemInfo.itemName == "Tower") {
                 ResetStartingValuesSlider();
 
                 sliderBackgroundColor.color = defaultGreen;
@@ -70,7 +70,7 @@ public class CraftingManager : MonoBehaviour
     }
 
     private void CompleteTowerTutorial() {
-        if (recipeInfo.itemInfo.itemName == "Tower" && TutorialManager.instance.tutorialIndexNum == 1) {
+        if (recipeInfo && recipeInfo.itemInfo.itemName == "Tower" && TutorialManager.instance.tutorialIndexNum == 1) {
             TutorialManager.instance.tutorialIndexNum++;
             TutorialManager.instance.ActivateNextTutorial();
         }
@@ -92,7 +92,7 @@ public class CraftingManager : MonoBehaviour
             recipeInfo = GetComponent<Tile>().currentPlacedItem.GetComponent<PlacedItem>().itemInfo.recipeInfo;
         }
 
-        if (hasCompleteRecipe && hasWorkers && !isCrafting && amountLeftToCraft > 0 && !recipeInfo.requiresFurnace) {
+        if (hasCompleteRecipe && hasWorkers && !isCrafting && amountLeftToCraft > 0 && recipeInfo && !recipeInfo.requiresFurnace) {
             if (CheckIfTileHasEnemies() == false) {
                 StartCrafting();
                 if (startAmountToCraft == amountLeftToCraft) {
@@ -100,7 +100,7 @@ public class CraftingManager : MonoBehaviour
                 }
             }
 
-        } else if (hasCompleteRecipe && hasWorkers && !isCrafting && amountLeftToCraft > 0 && recipeInfo.requiresFurnace) {
+        } else if (hasCompleteRecipe && hasWorkers && !isCrafting && amountLeftToCraft > 0 && recipeInfo && recipeInfo.requiresFurnace) {
             if (GetComponent<Tile>().currentPlacedItem && GetComponent<Tile>().currentPlacedItem.GetComponent<Furnace>()) {
                 StartCrafting();
                 if (startAmountToCraft == amountLeftToCraft) {
@@ -119,7 +119,6 @@ public class CraftingManager : MonoBehaviour
 
         return false;
     }
-
     
 
     public void IncreaseWorkerCount() {
@@ -153,6 +152,26 @@ public class CraftingManager : MonoBehaviour
     public void WorkerCountToZero() {
         amountOfWorkers = 0;
         hasWorkers = false;
+
+        StartCoroutine(FindWorkersEndOfFrame());
+    }
+
+    private IEnumerator FindWorkersEndOfFrame() {
+        yield return new WaitForEndOfFrame();
+
+        foreach (var item in GetComponent<Tile>().workerPoints)
+        {
+            if (item.childCount > 0) {
+                amountOfWorkers++;
+            }
+        }
+
+        if (amountOfWorkers > 0) {
+            hasWorkers = true;
+        } else {
+            DoneCrafting();
+            ResetStartingValuesSlider();
+        }
     }
 
     private void StartCrafting() {
@@ -178,7 +197,6 @@ public class CraftingManager : MonoBehaviour
         hasCompleteRecipe = false;
         isCrafting = false;
 
-        AudioManager.instance.Play("Pop");
 
         foreach (var item in GetComponent<Tile>().workerPoints)
         {
@@ -189,10 +207,15 @@ public class CraftingManager : MonoBehaviour
 
         GetComponent<Tile>().currentPlacedResources.Clear();
 
-        if (GetComponent<Tile>().currentPlacedItem && GetComponent<Tile>().currentPlacedItem.GetComponent<Furnace>()) {
-            GetComponent<Tile>().currentPlacedItem.GetComponent<Furnace>().occupiedWithResourceInFurance = false;
-            GetComponent<Tile>().currentPlacedItem.GetComponent<Furnace>().HideOccupiedSpriteContainer();
+        if (!hasWorkers) {
+            if (GetComponent<Tile>().currentPlacedItem && GetComponent<Tile>().currentPlacedItem.GetComponent<Furnace>()) {
+                GetComponent<Tile>().currentPlacedItem.GetComponent<Furnace>().occupiedWithResourceInFurnace = false;
+                GetComponent<Tile>().currentPlacedItem.GetComponent<Furnace>().HideOccupiedSpriteContainer();
+                GetComponent<Tile>().currentPlacedItem.GetComponent<Furnace>().AbandonSmelting();
+            }
         }
+
+        
     }
 
     public void AllWorkersHaveDiedCheck() {
@@ -228,6 +251,13 @@ public class CraftingManager : MonoBehaviour
         ToDoManager.instance.CraftedItemTakeOffToDoList(recipeInfo.itemInfo);
         StartCoroutine(Encyclopedia.instance.CraftedNewItemToggleCraftButton());
 
+        foreach (var item in GetComponent<Tile>().resourcePoints)
+        {
+            if (item.childCount > 0) {
+                Destroy(item.GetChild(0).gameObject);
+            }
+        }
+
         foreach (var item in recipeInfo.itemInfo.recipeInfo.neededRecipeItems)
         {
             if (item.itemName != "Dead Worker") {
@@ -247,6 +277,10 @@ public class CraftingManager : MonoBehaviour
 
         if (transform.GetComponent<Tile>().currentPlacedItem && transform.GetComponent<Tile>().currentPlacedItem.GetComponent<Furnace>()) {
             transform.GetComponent<Tile>().currentPlacedItem.GetComponent<Furnace>().UpdateFurnaceAmountLeft();
+        }
+
+        if (amountLeftToCraft == 0) {
+            GetComponent<Tile>().currentPlacedItem.GetComponent<Furnace>().AbandonSmelting();
         }
 
         CheckCanStartCrafting();

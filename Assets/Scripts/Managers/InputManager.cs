@@ -234,9 +234,11 @@ public class InputManager : MonoBehaviour
                     }
                 }
 
-                lowestZGameObject2.GetComponent<Stackable>().FindAmountOfChildren(lowestZGameObject2);
-                StorageContainer.instance.AddItemToInventory(lowestZGameObject2.GetComponent<Stackable>().itemInfo, lowestZGameObject2.GetComponent<Stackable>().amountOfChildItems);
-                Destroy(lowestZGameObject.gameObject);
+                if (StorageContainer.instance.CheckIfStorageHasSpace(lowestZGameObject2.GetComponent<Stackable>().itemInfo)) {
+                    lowestZGameObject2.GetComponent<Stackable>().FindAmountOfChildren(lowestZGameObject2);
+                    StorageContainer.instance.AddToStorage(lowestZGameObject2.GetComponent<Stackable>().itemInfo, lowestZGameObject2.GetComponent<Stackable>().amountOfChildItems);
+                    Destroy(lowestZGameObject.gameObject);
+                }
             }
         }
 

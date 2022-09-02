@@ -56,7 +56,12 @@ public class Tile : MonoBehaviour
 
     public void UpdateCurrentPlacedResourceList(ItemInfo itemInfo) {
         currentPlacedResources.Add(itemInfo);
-        resourcePoints[0].GetChild(0).GetComponent<PlacedItem>().CheckForValidRecipe();
+        foreach (var item in resourcePoints)
+        {
+            if (item.childCount > 0) {
+                item.GetChild(0).GetComponent<PlacedItem>().CheckForValidRecipe();
+            }
+        }
     }
 
 
@@ -74,14 +79,15 @@ public class Tile : MonoBehaviour
         foreach (var worker in workerPoints)
         {
             if (worker.childCount == 0) {
+                StartCoroutine(CheckValideRecipeEndOfFrameCo());
                 GameObject newWorker = Instantiate(workerPrefab, worker.position, transform.rotation);
                 newWorker.transform.parent = worker;
                 newWorker.GetComponent<Worker>().TransferHealth(currentHealth);
                 newWorker.GetComponent<Worker>().TransferStrength(currentStrength, currentFoodNeeded);
                 isOccupiedWithWorkers = true;
-                GetComponent<CraftingManager>().hasWorkers = true;
+                craftingManager.hasWorkers = true;
                 
-                if (GetComponent<CraftingManager>().isCrafting) {
+                if (craftingManager.isCrafting) {
                     newWorker.GetComponent<Worker>().StartWorking();
                 }
                 AudioManager.instance.Play("Click");
@@ -158,11 +164,14 @@ public class Tile : MonoBehaviour
     public void PluckItemsOffTile() {
         if (ToolTipManager.instance.isOverUI) { return; }
 
+        StartCoroutine(CheckValideRecipeEndOfFrameCo());
+
+
         if (isOccupiedWithResources || isOccupiedWithWorkers) {
             AudioManager.instance.Play("Pop");
         }
 
-        if (currentPlacedItem && currentPlacedItem.GetComponent<Furnace>()) {
+        if (currentPlacedItem && currentPlacedItem.GetComponent<Furnace>() && !isOccupiedWithWorkers) {
             currentPlacedItem.GetComponent<Furnace>().AbandonSmelting();
         }
 
@@ -174,6 +183,8 @@ public class Tile : MonoBehaviour
             currentPlacedItem.GetComponent<Hospital>().KillCoroutines();
         }
 
+        
+
         foreach (var worker in workerPoints)
         {
             if (worker.childCount == 1) {
@@ -182,6 +193,7 @@ public class Tile : MonoBehaviour
                     GameObject newWorker = Instantiate(workerItemPrefab, spawnItemsVector3, transform.rotation);
                     newWorker.GetComponent<Worker>().TransferHealth(worker.GetChild(0).GetComponent<Worker>().myHealth);
                     newWorker.GetComponent<Worker>().TransferStrength(worker.GetChild(0).GetComponent<Worker>().myWorkingStrength, worker.GetChild(0).GetComponent<Worker>().foodNeededToUpPickaxeStrengthCurrent);
+                    craftingManager.totalWorkerStrength--;
                     Destroy(worker.GetChild(0).transform.gameObject);
                     PopTileCleanUp();
                     return;
@@ -216,19 +228,43 @@ public class Tile : MonoBehaviour
                 Instantiate(resource.GetChild(0).GetComponent<PlacedItem>().itemInfo.draggableItemPrefab, spawnItemsVector3, transform.rotation);
                 Destroy(resource.GetChild(0).transform.gameObject);
                 PopTileCleanUp();
-                return;
+                isOccupiedWithResources = true;
+                break;
+            } else {
+                isOccupiedWithResources = false;
             }
         }
+
+
+    }
+
+    private IEnumerator CheckValideRecipeEndOfFrameCo() {
+        yield return new WaitForEndOfFrame();
+
+        currentPlacedResources.Clear();
+
+        foreach (var resource in resourcePoints)
+        {
+            if (resource.childCount > 0) {
+                currentPlacedResources.Add(resource.GetChild(0).GetComponent<PlacedItem>().itemInfo);
+                resource.GetChild(0).GetComponent<PlacedItem>().CheckForValidRecipe();
+            }
+        }
+
+        craftingManager.CheckCanStartCrafting();
     }
 
     public void PluckItemsOffTileAll() {
         if (ToolTipManager.instance.isOverUI) { return; }
 
+        StartCoroutine(CheckValideRecipeEndOfFrameCo());
+
+
         if (isOccupiedWithResources || isOccupiedWithWorkers) {
             AudioManager.instance.Play("Pop");
         }
 
-        if (currentPlacedItem && currentPlacedItem.GetComponent<Furnace>()) {
+        if (currentPlacedItem && currentPlacedItem.GetComponent<Furnace>() && !isOccupiedWithWorkers) {
             currentPlacedItem.GetComponent<Furnace>().AbandonSmelting();
         }
 
@@ -269,9 +305,9 @@ public class Tile : MonoBehaviour
                     Destroy(worker.GetChild(0).transform.gameObject);
                     PopTileCleanUp();
                 }
-
-                
             }
+
+            craftingManager.DoneCrafting();
         }
 
         foreach (var resource in resourcePoints)
@@ -280,14 +316,18 @@ public class Tile : MonoBehaviour
                 Vector3 spawnItemsVector3 = transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0);
                 Instantiate(resource.GetChild(0).GetComponent<PlacedItem>().itemInfo.draggableItemPrefab, spawnItemsVector3, transform.rotation);
                 Destroy(resource.GetChild(0).transform.gameObject);
+                isOccupiedWithResources = true;
                 PopTileCleanUp();
+            } else {
+                isOccupiedWithResources = false;
             }
         }
+
+        
     }
 
     private void PopTileCleanUp() {
         StartCoroutine(WorkerFrameDelay());
-        isOccupiedWithResources = false;
 
         if (currentPlacedItem) {
             if (currentPlacedItem.GetComponent<PlacedItem>().itemInfo.isStationary == false) {
@@ -295,18 +335,34 @@ public class Tile : MonoBehaviour
             }
 
             if (!currentPlacedItem.GetComponent<UnlimitedHarvest>() && !currentPlacedItem.GetComponent<OrcRelic>() && currentPlacedItem.GetComponent<PlacedItem>().itemInfo.isStationary) {
+                print("pop tile 1");
                 craftingManager.DoneCrafting();
             }
+        } else if (isOccupiedWithResources) {
+            // print("keep crafting");
         } else {
+            print("pop tile 2");
             craftingManager.DoneCrafting();
         }
 
+        craftingManager.CheckCanStartCrafting();
         craftingManager.WorkerCountToZero();
     }
 
     private IEnumerator WorkerFrameDelay() {
         yield return new WaitForEndOfFrame();
         isOccupiedWithWorkers = false;
+
+        foreach (var item in workerPoints)
+        {
+            if (item.childCount > 0) {
+                isOccupiedWithWorkers = true;
+            }
+        }
+
+        if (currentPlacedItem.GetComponent<House>()) {
+            currentPlacedItem.GetComponent<House>().DetectBabyMaking();
+        }
     }
 
     public void DoneCraftingDestroyItem() {
