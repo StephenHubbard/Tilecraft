@@ -12,6 +12,8 @@ public class DraggableItem : MonoBehaviour
 
     private AudioManager audioManager;
 
+    private bool CanPlaceOnTile = false;
+
     private void Awake() {
         tileHighlight = GameObject.Find("Highlighted Border - Square");
         audioManager = FindObjectOfType<AudioManager>();
@@ -22,6 +24,12 @@ public class DraggableItem : MonoBehaviour
     private void Start() {
         tileHighlight.GetComponent<SpriteRenderer>().enabled = false;
 
+        StartCoroutine(CanPlaceItemOnTileDelay());
+    }
+
+    private IEnumerator CanPlaceItemOnTileDelay() {
+        yield return new WaitForSeconds(.5f);
+        CanPlaceOnTile = true;
     }
 
 
@@ -53,6 +61,8 @@ public class DraggableItem : MonoBehaviour
     }
 
     public void PlaceItemOnTile(int amountInStack) {
+        if (!CanPlaceOnTile) { return; }
+
         for (int i = amountInStack; i > 0; i--)
         {
             // fridge

@@ -117,7 +117,13 @@ public class InputManager : MonoBehaviour
                 }
 
 
-                if (Input.GetMouseButtonDown(1)) {
+                if (Input.GetKey(KeyCode.LeftShift) && Input.GetMouseButtonDown(1)) { 
+                    if (isRayBeingBlocked == false) {
+                        thisTile.GetComponent<Tile>().PluckItemsOffTileAll();
+                    }
+                }
+
+                if (!Input.GetKey(KeyCode.LeftShift) && Input.GetMouseButtonDown(1)) {
                     if (isRayBeingBlocked == false) {
                         thisTile.GetComponent<Tile>().PluckItemsOffTile();
                     }
@@ -141,7 +147,7 @@ public class InputManager : MonoBehaviour
     }
 
     private void UpdateInteractablesInput() {
-            if (ToolTipManager.instance.isOverUI) { return; }
+            // if (ToolTipManager.instance.isOverUI) { return; }
 
             Transform lowestZGameObject = null;
 
@@ -210,6 +216,27 @@ public class InputManager : MonoBehaviour
                     HousingManager.instance.DetectTotalPopulation();
                     HousingManager.instance.AllHousesDetectBabyMaking();
                 }
+            }
+        }
+
+        if (Input.GetKey(KeyCode.LeftShift) && Input.GetMouseButtonDown(0)) {
+            Transform lowestZGameObject2 = null;
+
+            RaycastHit2D[] hit2 = Physics2D.RaycastAll(UtilsClass.GetMouseWorldPosition(), Vector2.zero, 100f, interactableLayerMask);
+
+            if (hit.Length > 0) {
+                foreach (var item in hit)
+                {
+                    if (lowestZGameObject2 == null) {
+                        lowestZGameObject2 = item.transform;
+                    } else if (item.transform.position.y < lowestZGameObject2.position.y) {
+                        lowestZGameObject2 = item.transform;
+                    }
+                }
+
+                lowestZGameObject2.GetComponent<Stackable>().FindAmountOfChildren(lowestZGameObject2);
+                StorageContainer.instance.AddItemToInventory(lowestZGameObject2.GetComponent<Stackable>().itemInfo, lowestZGameObject2.GetComponent<Stackable>().amountOfChildItems);
+                Destroy(lowestZGameObject.gameObject);
             }
         }
 

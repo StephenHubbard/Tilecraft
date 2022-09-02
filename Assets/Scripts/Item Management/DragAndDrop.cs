@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using CodeMonkey.Utils;
+using UnityEngine.Rendering;
 
 public class DragAndDrop : MonoBehaviour
 {
@@ -42,10 +43,7 @@ public class DragAndDrop : MonoBehaviour
         OnMouseDragCustom();
     }
 
-
-    public void OnMouseDragCustom() {
-        transform.position = UtilsClass.GetMouseWorldPosition() + dragOffset;
-
+    private void HandleTileAndClouds() {
         // tile and cloud detection
         RaycastHit2D[] hit = Physics2D.RaycastAll(gameObject.transform.position, Vector2.zero, 100f, tileCloudLayerMask);
         if (hit.Length > 0) {
@@ -74,136 +72,50 @@ public class DragAndDrop : MonoBehaviour
         } else {
             stackable.potentialParentItem = null;
         }
+    }
 
-        // feeding workers
-        // if (hit2.Length > 1 && GetComponent<Food>()) {
-        //     foreach (var item in hit2)
-        //     {
-        //         if (item.transform.GetComponent<Worker>()) {
-        //             potentialToFeed = item.transform.GetComponent<Worker>().gameObject;
-        //             InputManager.instance.CircleHighlightOn();
-        //             InputManager.instance.circleHighlight.transform.position = potentialToFeed.transform.position;
-        //             return;
-        //         }
+    private void HandleOverStorageDetection() {
+        DragAndDrop[] allChildItems = GetComponentsInChildren<DragAndDrop>();
 
-        //         if (item.transform.GetComponent<Archer>()) {
-        //             potentialToFeed = item.transform.GetComponent<Archer>().gameObject;
-        //             InputManager.instance.CircleHighlightOn();
-        //             InputManager.instance.circleHighlight.transform.position = potentialToFeed.transform.position;
-        //             return;
-        //         }
+        if (StorageContainer.instance.isOverStorage) {
+            StorageContainer.instance.ActivateWhiteBorderOn();
 
-        //         if (item.transform.GetComponent<Knight>()) {
-        //             potentialToFeed = item.transform.GetComponent<Knight>().gameObject;
-        //             InputManager.instance.CircleHighlightOn();
-        //             InputManager.instance.circleHighlight.transform.position = potentialToFeed.transform.position;
-        //             return;
-        //         }
-        //     }
-        // } else {
-        //     potentialToFeed = null;
-        //     InputManager.instance.CircleHighlightOff();
-        // }
+            foreach (var item in allChildItems)
+            {
+                item.transform.GetChild(0).GetComponent<SortingGroup>().sortingOrder = 2;
+            }
+        } else {
+            StorageContainer.instance.ActivateWhiteBorderOff();
 
-        // if (hit2.Length > 1 && (GetComponent<Worker>() || GetComponent<Archer>() || GetComponent<Knight>())) {
-        //     foreach (var item in hit2)
-        //     {
-        //         if (item.transform.GetComponent<Food>()) {
-        //             if (GetComponent<Worker>()) {
-        //                 potentialToFeed = GetComponent<Worker>().gameObject;
-        //             }
+            foreach (var item in allChildItems)
+            {
+                item.transform.GetChild(0).GetComponent<SortingGroup>().sortingOrder = 0;
+            }
+        }
+    }
 
-        //             if (GetComponent<Archer>()) {
-        //                 potentialToFeed = GetComponent<Archer>().gameObject;
-        //             }
 
-        //             if (GetComponent<Knight>()) {
-        //                 potentialToFeed = GetComponent<Knight>().gameObject;
-        //             }
+    public void OnMouseDragCustom() {
+        transform.position = UtilsClass.GetMouseWorldPosition() + dragOffset;
 
-        //             InputManager.instance.CircleHighlightOn();
-        //             InputManager.instance.circleHighlight.transform.position = item.transform.position;
-        //             return;
-        //         }
+        HandleOverStorageDetection();
 
-        //     }
-        // } else {
-        //     potentialToFeed = null;
-        //     InputManager.instance.CircleHighlightOff();
-        // }
+        HandleTileAndClouds();
 
-        // equipment
-        // if (hit2.Length > 1 && GetComponent<Weapon>()) {
-        //     foreach (var item in hit2)
-        //     {
-        //         if (item.transform.GetComponent<Worker>() || item.transform.GetComponent<Knight>() || item.transform.GetComponent<Archer>()) {
-        //             if (item.transform.GetComponent<Worker>()) {
-        //                 potentialWorkerToEquip = item.transform.GetComponent<Worker>().gameObject;
-        //             }
-
-        //             if (item.transform.GetComponent<Knight>()) {
-        //                 potentialWorkerToEquip = item.transform.GetComponent<Knight>().gameObject;
-        //             }
-
-        //             if (item.transform.GetComponent<Archer>()) {
-        //                 potentialWorkerToEquip = item.transform.GetComponent<Archer>().gameObject;
-        //             }
-        //             InputManager.instance.CircleHighlightOn();
-        //             InputManager.instance.circleHighlight.transform.position = potentialWorkerToEquip.transform.position;
-        //             return;
-        //         }
-        //     }
-        // } else {
-        //     potentialWorkerToEquip = null;
-        //     InputManager.instance.CircleHighlightOff();
-        // }
+        
     }
 
     public void OnMouseUpCustom() {
         isActive = false;
         stackable.FindAmountOfChildren(transform);
 
+        StorageContainer.instance.ActivateWhiteBorderOff();
 
-        // if (potentialToFeed) {
-        //     if (potentialToFeed.GetComponent<Worker>()) {
-        //         potentialToFeed.GetComponent<Worker>().FeedWorker(GetComponent<DraggableItem>().itemInfo.foodValue * stackable.amountOfChildItems, true);
-        //         InputManager.instance.CircleHighlightOff();
-        //         Destroy(gameObject);
-        //         return;
-        //     }
-
-        //     if (potentialToFeed.GetComponent<Knight>()) {
-        //         potentialToFeed.GetComponent<Knight>().FeedWorker(GetComponent<DraggableItem>().itemInfo.foodValue * stackable.amountOfChildItems, true);
-        //         InputManager.instance.CircleHighlightOff();
-        //         Destroy(gameObject);
-        //         return;
-        //     }
-        //     if (potentialToFeed.GetComponent<Archer>()) {
-        //         potentialToFeed.GetComponent<Archer>().FeedWorker(GetComponent<DraggableItem>().itemInfo.foodValue * stackable.amountOfChildItems, true);
-        //         InputManager.instance.CircleHighlightOff();
-        //         Destroy(gameObject);
-        //         return;
-        //     }
-        // }
-
-        // if (potentialWorkerToEquip) {
-
-        //     if (potentialWorkerToEquip.transform.GetComponent<Worker>()) {
-        //         potentialWorkerToEquip.GetComponent<Worker>().EquipWorker(GetComponent<Weapon>());
-        //     }
-
-        //     if (potentialWorkerToEquip.transform.GetComponent<Knight>()) {
-        //         potentialWorkerToEquip.GetComponent<Knight>().EquipWorker(GetComponent<Weapon>());
-        //     }
-
-        //     if (potentialWorkerToEquip.transform.GetComponent<Archer>()) {
-        //         potentialWorkerToEquip.GetComponent<Archer>().EquipWorker(GetComponent<Weapon>());
-        //     }
-
-        //     InputManager.instance.CircleHighlightOff();
-        //     Destroy(gameObject);
-        //     return;
-        // }
+        if (StorageContainer.instance.isOverStorage) {
+            StorageContainer.instance.AddItemToInventory(draggableItem.itemInfo, stackable.amountOfChildItems);
+            Destroy(gameObject);
+            return;
+        }
 
         if (stackable.potentialParentItem) {
             stackable.AttachToParent(true);

@@ -249,7 +249,7 @@ MonoBehaviour:
   toolTipText: 
   itemInfo: {fileID: 0}
   shownItemsContainer: {fileID: 0}
-  isEncyclopediaIcon: 1
+  isEncyclopediaIcon: 0
   toDoListActiveBorderPrefab: {fileID: 0}
 --- !u!1 &5378058619522714274
 GameObject:
@@ -344,7 +344,7 @@ MonoBehaviour:
   toolTipText: 
   itemInfo: {fileID: 0}
   shownItemsContainer: {fileID: 0}
-  isEncyclopediaIcon: 1
+  isEncyclopediaIcon: 0
   toDoListActiveBorderPrefab: {fileID: 0}
 --- !u!1 &7933916016581849988
 GameObject:
@@ -439,7 +439,7 @@ MonoBehaviour:
   toolTipText: 
   itemInfo: {fileID: 0}
   shownItemsContainer: {fileID: 0}
-  isEncyclopediaIcon: 1
+  isEncyclopediaIcon: 0
   toDoListActiveBorderPrefab: {fileID: 0}
 --- !u!1 &8028326548514558209
 GameObject:
@@ -534,5 +534,5 @@ MonoBehaviour:
   toolTipText: 
   itemInfo: {fileID: 0}
   shownItemsContainer: {fileID: 0}
-  isEncyclopediaIcon: 1
+  isEncyclopediaIcon: 0
   toDoListActiveBorderPrefab: {fileID: 0}

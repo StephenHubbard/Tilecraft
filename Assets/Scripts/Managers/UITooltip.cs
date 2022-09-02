@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
 public class UITooltip : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerMoveHandler, IPointerExitHandler
@@ -42,12 +41,14 @@ public class UITooltip : MonoBehaviour, IPointerClickHandler, IPointerEnterHandl
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        if (!isEncyclopediaIcon) { return; }
+
         if (eventData.button == PointerEventData.InputButton.Left && itemInfo != null) {
             Encyclopedia.instance.DisplayWhatRecipesCanBeMade(transform);
             AudioManager.instance.Play("UI Click");
         }
 
-        if (eventData.button == PointerEventData.InputButton.Right && itemInfo != null  && transform.parent.name != "Potential Items Container Grid Layout") { 
+        if (isEncyclopediaIcon && eventData.button == PointerEventData.InputButton.Right && itemInfo != null  && transform.parent.name != "Potential Items Container Grid Layout") { 
         
             if (itemInfo && !IsItemAlreadyInToDoList() && ToDoManager.instance.toDoList.Count < 4) {
                 ToDoManager.instance.SetNewToDoList(itemInfo);
@@ -166,7 +167,6 @@ public class UITooltip : MonoBehaviour, IPointerClickHandler, IPointerEnterHandl
 
         ToolTipManager.instance.ToggleToolTipOn();
         ToolTipManager.instance.UpdateValues(toolTipName, toolTipText, 0, 0, 0, 0, 0);
-
     }
 
     public void OnPointerEnter(PointerEventData eventData)

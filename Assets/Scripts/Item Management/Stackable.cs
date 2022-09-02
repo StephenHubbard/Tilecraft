@@ -27,7 +27,6 @@ public class Stackable : MonoBehaviour
         FindNearbySameQOL(false);
         FindAmountOfChildren(this.transform);
         StartCoroutine(CanSellCo());
-
     }
 
     private void OnMouseExit() {

@@ -178,10 +178,78 @@ public class Tile : MonoBehaviour
         {
             if (worker.childCount == 1) {
                 if (worker.GetChild(0).GetComponent<Worker>()) {
-                    Vector3 spawnItemsVector3 = transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0);
+                    Vector3 spawnItemsVector3 = transform.position + new Vector3(1.2f, .5f, 0);
                     GameObject newWorker = Instantiate(workerItemPrefab, spawnItemsVector3, transform.rotation);
                     newWorker.GetComponent<Worker>().TransferHealth(worker.GetChild(0).GetComponent<Worker>().myHealth);
                     newWorker.GetComponent<Worker>().TransferStrength(worker.GetChild(0).GetComponent<Worker>().myWorkingStrength, worker.GetChild(0).GetComponent<Worker>().foodNeededToUpPickaxeStrengthCurrent);
+                    Destroy(worker.GetChild(0).transform.gameObject);
+                    PopTileCleanUp();
+                    return;
+                }
+
+                if (worker.GetChild(0).GetComponent<Knight>()) {
+                    Vector3 spawnItemsVector3 = transform.position + new Vector3(1.2f, .5f, 0);
+                    GameObject newKnight = Instantiate(knightItemPrefab, spawnItemsVector3, transform.rotation);
+                    newKnight.GetComponent<Knight>().TransferHealth(worker.GetChild(0).GetComponent<Knight>().myHealth);
+                    newKnight.GetComponent<Knight>().TransferStrength(worker.GetChild(0).GetComponent<Knight>().myCombatValue, worker.GetChild(0).GetComponent<Knight>().foodNeededToUpCombatValue);
+                    Destroy(worker.GetChild(0).transform.gameObject);
+                    PopTileCleanUp();
+                    return;
+                }
+
+                if (worker.GetChild(0).GetComponent<Archer>()) {
+                    Vector3 spawnItemsVector3 = transform.position + new Vector3(1.2f, .5f, 0);
+                    GameObject newArcher = Instantiate(archerItemPrefab, spawnItemsVector3, transform.rotation);
+                    newArcher.GetComponent<Archer>().TransferHealth(worker.GetChild(0).GetComponent<Archer>().myHealth);
+                    newArcher.GetComponent<Archer>().TransferStrength(worker.GetChild(0).GetComponent<Archer>().myCombatValue, worker.GetChild(0).GetComponent<Archer>().foodNeededToUpCombatValue);
+                    Destroy(worker.GetChild(0).transform.gameObject);
+                    PopTileCleanUp();
+                    return;
+                }
+            }
+        }
+
+        foreach (var resource in resourcePoints)
+        {
+            if (resource.childCount == 1) {
+                Vector3 spawnItemsVector3 = transform.position + new Vector3(Random.Range(-1f, -1.5f), Random.Range(-1f, 1f), 0);
+                Instantiate(resource.GetChild(0).GetComponent<PlacedItem>().itemInfo.draggableItemPrefab, spawnItemsVector3, transform.rotation);
+                Destroy(resource.GetChild(0).transform.gameObject);
+                PopTileCleanUp();
+                return;
+            }
+        }
+    }
+
+    public void PluckItemsOffTileAll() {
+        if (ToolTipManager.instance.isOverUI) { return; }
+
+        if (isOccupiedWithResources || isOccupiedWithWorkers) {
+            AudioManager.instance.Play("Pop");
+        }
+
+        if (currentPlacedItem && currentPlacedItem.GetComponent<Furnace>()) {
+            currentPlacedItem.GetComponent<Furnace>().AbandonSmelting();
+        }
+
+        if (currentPlacedItem && currentPlacedItem.GetComponent<House>()) {
+            currentPlacedItem.GetComponent<House>().StopBabyMaking(false);
+        }
+
+        if (currentPlacedItem && currentPlacedItem.GetComponent<Hospital>()) {
+            currentPlacedItem.GetComponent<Hospital>().KillCoroutines();
+        }
+
+        foreach (var worker in workerPoints)
+        {
+            if (worker.childCount == 1) {
+                if (worker.GetChild(0).GetComponent<Worker>()) {
+                    Vector3 spawnItemsVector3 = transform.position + new Vector3(1.2f, 1f, 0);
+                    GameObject newWorker = Instantiate(workerItemPrefab, spawnItemsVector3, transform.rotation);
+                    newWorker.GetComponent<Worker>().TransferHealth(worker.GetChild(0).GetComponent<Worker>().myHealth);
+                    newWorker.GetComponent<Worker>().TransferStrength(worker.GetChild(0).GetComponent<Worker>().myWorkingStrength, worker.GetChild(0).GetComponent<Worker>().foodNeededToUpPickaxeStrengthCurrent);
+                    Destroy(worker.GetChild(0).transform.gameObject);
+                    PopTileCleanUp();
                 }
 
                 if (worker.GetChild(0).GetComponent<Knight>()) {
@@ -189,6 +257,8 @@ public class Tile : MonoBehaviour
                     GameObject newKnight = Instantiate(knightItemPrefab, spawnItemsVector3, transform.rotation);
                     newKnight.GetComponent<Knight>().TransferHealth(worker.GetChild(0).GetComponent<Knight>().myHealth);
                     newKnight.GetComponent<Knight>().TransferStrength(worker.GetChild(0).GetComponent<Knight>().myCombatValue, worker.GetChild(0).GetComponent<Knight>().foodNeededToUpCombatValue);
+                    Destroy(worker.GetChild(0).transform.gameObject);
+                    PopTileCleanUp();
                 }
 
                 if (worker.GetChild(0).GetComponent<Archer>()) {
@@ -196,10 +266,11 @@ public class Tile : MonoBehaviour
                     GameObject newArcher = Instantiate(archerItemPrefab, spawnItemsVector3, transform.rotation);
                     newArcher.GetComponent<Archer>().TransferHealth(worker.GetChild(0).GetComponent<Archer>().myHealth);
                     newArcher.GetComponent<Archer>().TransferStrength(worker.GetChild(0).GetComponent<Archer>().myCombatValue, worker.GetChild(0).GetComponent<Archer>().foodNeededToUpCombatValue);
+                    Destroy(worker.GetChild(0).transform.gameObject);
+                    PopTileCleanUp();
                 }
 
-                Destroy(worker.GetChild(0).transform.gameObject);
-                PopTileCleanUp();
+                
             }
         }
 
