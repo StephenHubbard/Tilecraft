@@ -19,6 +19,8 @@ public class Tower : MonoBehaviour
     }
 
     private void OnDestroy() {
-        GetComponentInParent<CraftingManager>().sliderBackgroundColor.color = GetComponentInParent<CraftingManager>().defaultGreen;
+        if (GetComponentInParent<CraftingManager>()) {
+            GetComponentInParent<CraftingManager>().sliderBackgroundColor.color = GetComponentInParent<CraftingManager>().defaultGreen;
+        }
     }
 }

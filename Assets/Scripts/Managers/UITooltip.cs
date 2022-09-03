@@ -51,7 +51,7 @@ public class UITooltip : MonoBehaviour, IPointerClickHandler, IPointerEnterHandl
     {
         if (!isEncyclopediaIcon) { return; }
 
-        if (eventData.button == PointerEventData.InputButton.Left && itemInfo != null) {
+        if (eventData.button == PointerEventData.InputButton.Left && itemInfo != null && !isStorageIcon) {
             Encyclopedia.instance.DisplayWhatRecipesCanBeMade(transform);
             AudioManager.instance.Play("UI Click");
         }

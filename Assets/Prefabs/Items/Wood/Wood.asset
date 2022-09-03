@@ -21,6 +21,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e492befd9aee1b645b08c2b5e24460b2, type: 2}
   - {fileID: 11400000, guid: 5f31d55a53bbe2f479011bab64202e0c, type: 2}
   - {fileID: 11400000, guid: 683019bb58be0914385796f71488de33, type: 2}
+  - {fileID: 11400000, guid: 68eb43c7510400947b95468668236dc7, type: 2}
   recipeInfo: {fileID: 11400000, guid: 785e907fbaffd414d901ecc8927e640c, type: 2}
   amountRecipeCanCreate: 3
   potentialOffSpring:
@@ -30,11 +31,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b99b74b9779be8f46a37d09aeb7626a5, type: 2}
   - {fileID: 11400000, guid: 7270c4c97c15cf0478785030c0514466, type: 2}
   - {fileID: 11400000, guid: e84195656fe4b6442862262d61424209, type: 2}
+  - {fileID: 11400000, guid: 9c2df03fdcc9796438d0dbf6f62b71e0, type: 2}
   isResourceOnly: 1
   isStationary: 0
   isSmeltable: 0
   foodValue: 0
   itemsNextToDiscover:
   - {fileID: 11400000, guid: 855316e0c92bea843b6ce2d9671bd864, type: 2}
+  isPopulation: 0
   toolTipText: 
   tierGroup: 0

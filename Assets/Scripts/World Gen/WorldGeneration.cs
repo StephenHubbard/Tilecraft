@@ -55,6 +55,10 @@ public class WorldGeneration : MonoBehaviour
         SpawnTierThreeItems();
         SpawnTierTwoItems();
         CheckThereIsEnoughSpreadResources();
+
+        if (!InputManager.instance.isOnMainMenu) {
+            HousingManager.instance.SpawnStartingThreeWorkers();
+        }
     }
 
     public Grid ReturnGrid() {

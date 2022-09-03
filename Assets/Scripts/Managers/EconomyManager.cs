@@ -73,21 +73,26 @@ public class EconomyManager : MonoBehaviour
         CheckDiscovery(0);
     }
 
+    public void FarmXP(int amount) {
+        print("hit");
+        CheckDiscovery(amount);
+    }
+
     public void NewDiscovery() {
         DiscoveryManager.instance.DetermineNewDiscovery();
     }
 
-    public void SellItem(GameObject thisObj, int amount, int stackSize) {
-        if (thisObj.GetComponent<Stackable>().isSellable == false) { return; }
+    // public void SellItem(GameObject thisObj, int amount, int stackSize) {
+    //     if (thisObj.GetComponent<Stackable>().isSellable == false) { return; }
 
-        AudioManager.instance.Play("Sell");
-        GameObject thisCoin = Instantiate(spinningCoinPrefab, thisObj.transform.position + new Vector3(0, 1f, 0), transform.rotation);
-        StartCoroutine(DestroyCoinCo(thisCoin));
-        CheckDiscovery(amount * stackSize);
+    //     AudioManager.instance.Play("Sell");
+    //     GameObject thisCoin = Instantiate(spinningCoinPrefab, thisObj.transform.position + new Vector3(0, 1f, 0), transform.rotation);
+    //     StartCoroutine(DestroyCoinCo(thisCoin));
+    //     CheckDiscovery(amount * stackSize);
 
 
-        Destroy(thisObj);
-    }
+    //     Destroy(thisObj);
+    // }
 
     private IEnumerator DestroyCoinCo(GameObject thisCoin) {
         yield return new WaitForSeconds(.7f);

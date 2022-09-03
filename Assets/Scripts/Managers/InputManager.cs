@@ -24,7 +24,7 @@ public class InputManager : MonoBehaviour
 
     private DragAndDrop activeObject;
 
-    public bool isOnMainMenu = true;
+    public bool isOnMainMenu = false;
 
     private void Awake()
     {
@@ -184,32 +184,33 @@ public class InputManager : MonoBehaviour
             }
         }
 
-        if (Input.GetMouseButtonDown(1)) {
-            Transform lowestZGameObject2 = null;
+        // PREVIOUS SELL ITEM
+        // if (Input.GetMouseButtonDown(1)) {
+        //     Transform lowestZGameObject2 = null;
 
-            RaycastHit2D[] hit2 = Physics2D.RaycastAll(UtilsClass.GetMouseWorldPosition(), Vector2.zero, 100f, interactableLayerMask);
+        //     RaycastHit2D[] hit2 = Physics2D.RaycastAll(UtilsClass.GetMouseWorldPosition(), Vector2.zero, 100f, interactableLayerMask);
 
-            if (hit.Length > 0) {
-                foreach (var item in hit)
-                {
-                    if (lowestZGameObject2 == null) {
-                        lowestZGameObject2 = item.transform;
-                    } else if (item.transform.position.y < lowestZGameObject2.position.y) {
-                        lowestZGameObject2 = item.transform;
-                    }
-                }
+        //     if (hit.Length > 0) {
+        //         foreach (var item in hit)
+        //         {
+        //             if (lowestZGameObject2 == null) {
+        //                 lowestZGameObject2 = item.transform;
+        //             } else if (item.transform.position.y < lowestZGameObject2.position.y) {
+        //                 lowestZGameObject2 = item.transform;
+        //             }
+        //         }
 
-                lowestZGameObject2.GetComponent<Stackable>().FindAmountOfChildren(lowestZGameObject2);
-                EconomyManager.instance.SellItem(lowestZGameObject2.gameObject, lowestZGameObject2.GetComponent<DraggableItem>().itemInfo.coinValue, lowestZGameObject2.GetComponent<Stackable>().amountOfChildItems);
+        //         lowestZGameObject2.GetComponent<Stackable>().FindAmountOfChildren(lowestZGameObject2);
+        //         EconomyManager.instance.SellItem(lowestZGameObject2.gameObject, lowestZGameObject2.GetComponent<DraggableItem>().itemInfo.coinValue, lowestZGameObject2.GetComponent<Stackable>().amountOfChildItems);
 
-                CompleteSellItemTutorial();
+        //         CompleteSellItemTutorial();
 
-                if (lowestZGameObject2.gameObject.GetComponent<DraggableItem>().itemInfo.isPopulation) {
-                    HousingManager.instance.DetectTotalPopulation();
-                    HousingManager.instance.AllHousesDetectBabyMaking();
-                }
-            }
-        }
+        //         if (lowestZGameObject2.gameObject.GetComponent<DraggableItem>().itemInfo.isPopulation) {
+        //             HousingManager.instance.DetectTotalPopulation();
+        //             HousingManager.instance.AllHousesDetectBabyMaking();
+        //         }
+        //     }
+        // }
 
         if (Input.GetKey(KeyCode.LeftShift) && Input.GetMouseButtonDown(0)) {
             Transform lowestZGameObject2 = null;

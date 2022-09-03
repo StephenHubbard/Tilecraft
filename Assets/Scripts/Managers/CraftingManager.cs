@@ -242,7 +242,7 @@ public class CraftingManager : MonoBehaviour
     }
 
     public void PopOutNewItemFromRecipe() {
-        EconomyManager.instance.CheckDiscovery(recipeInfo.itemInfo.coinValue);
+        // EconomyManager.instance.CheckDiscovery(recipeInfo.itemInfo.coinValue);
         Vector3 spawnItemsVector3 = transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), -1);
         GameObject craftedItem = Instantiate(recipeInfo.itemInfo.draggableItemPrefab, spawnItemsVector3, transform.rotation);
         recipeInfo.itemInfo.NextInLineToDiscover();
@@ -292,7 +292,7 @@ public class CraftingManager : MonoBehaviour
     private void AutoSellCraftedItem(GameObject craftedItem) {
         if(GetComponent<Tile>().isAutoSellOn) {
             craftedItem.GetComponent<Stackable>().isSellable = true;
-            EconomyManager.instance.SellItem(craftedItem, craftedItem.GetComponent<DraggableItem>().itemInfo.coinValue, 1);
+            // EconomyManager.instance.SellItem(craftedItem, craftedItem.GetComponent<DraggableItem>().itemInfo.coinValue, 1);
         }
     }
 }

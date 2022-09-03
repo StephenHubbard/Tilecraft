@@ -121,7 +121,7 @@ public class Knight : MonoBehaviour
 
 
     public void LevelUpStrength(int leftoverAmountOfFood) {
-        EconomyManager.instance.CheckDiscovery(1);
+        // EconomyManager.instance.CheckDiscovery(1);
         GameObject levelUpPrefabAnim = Instantiate(levelUpAnimPrefab, transform.position + new Vector3(0, .5f, 0), transform.rotation);
         StartCoroutine(DestroyStarPrefabCo(levelUpPrefabAnim));
         myCombatValue++;

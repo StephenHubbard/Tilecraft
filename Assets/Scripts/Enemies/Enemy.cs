@@ -48,7 +48,7 @@ public class Enemy : MonoBehaviour
             }
 
             if (myHealth == 0) {
-                EconomyManager.instance.CheckDiscovery(1);
+                // EconomyManager.instance.CheckDiscovery(1);
             }
             GetComponentInParent<Tile>().currentPlacedItem.GetComponent<OrcRelic>().DetectIfEnemies();
             Destroy(gameObject);

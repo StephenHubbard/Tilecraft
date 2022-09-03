@@ -95,7 +95,7 @@ public class House : MonoBehaviour
             Vector3 spawnItemsVector3 = transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), -1);
             Instantiate(childPrefab, spawnItemsVector3, transform.rotation);
             HousingManager.instance.AddNewWorker();
-            EconomyManager.instance.CheckDiscovery(1);
+            // EconomyManager.instance.CheckDiscovery(1);
             CompleteFirstBabyTutorial();
         }
 

@@ -8,6 +8,9 @@ public class StartingMenu : MonoBehaviour
     [SerializeField] private GameObject uiCanvas;
     [SerializeField] private GameObject startingMenuCanvas;
 
+    private void Start() {
+        InputManager.instance.isOnMainMenu = true;
+    }
 
     public void NewGameButton() {
         AudioManager.instance.Play("UI Click");
