@@ -33,10 +33,14 @@ public class Encyclopedia : MonoBehaviour
     private void Awake() {
         toolTipManager = FindObjectOfType<ToolTipManager>();
 
-        shownItemsContainer = GameObject.Find("ShownItemsContainer");
-
         if (instance == null) {
             instance = this;
+        }
+    }
+
+    private void Update() {
+        if (shownItemsContainer == null) {
+            shownItemsContainer = GameObject.Find("ShownItemsContainer");
         }
     }
 
@@ -183,17 +187,17 @@ public class Encyclopedia : MonoBehaviour
         discoveredItem.GetComponent<Image>().sprite = newItem.itemSprite;
         discoveredItem.GetComponent<UITooltip>().itemInfo = newItem;
 
-        EventTrigger thisHoverTrigger = discoveredItem.GetComponent<EventTrigger>();
-        EventTrigger.Entry hoverEntry = new EventTrigger.Entry();
-        hoverEntry.eventID = EventTriggerType.PointerEnter;
-        hoverEntry.callback.AddListener((data) => { OnPointerHoverDelegate(discoveredItem.transform); });
-        thisHoverTrigger.triggers.Add(hoverEntry);
+        // EventTrigger thisHoverTrigger = discoveredItem.GetComponent<EventTrigger>();
+        // EventTrigger.Entry hoverEntry = new EventTrigger.Entry();
+        // hoverEntry.eventID = EventTriggerType.PointerEnter;
+        // hoverEntry.callback.AddListener((data) => { OnPointerHoverDelegate(discoveredItem.transform); });
+        // thisHoverTrigger.triggers.Add(hoverEntry);
         
         EventTrigger thisExitTrigger = discoveredItem.GetComponent<EventTrigger>();
         EventTrigger.Entry exitEntry = new EventTrigger.Entry();
         exitEntry.eventID = EventTriggerType.PointerExit;
         exitEntry.callback.AddListener((data) => { OnPointerExitDelegate(); });
-        thisHoverTrigger.triggers.Add(exitEntry);
+        // thisHoverTrigger.triggers.Add(exitEntry);
 
         if (isNew && newItem.recipeInfo.neededRecipeItems.Length > 0 && discoveredItems[newItem] == false) {
             discoveredItem.GetComponent<UITooltip>().AddAutoToDoList();
@@ -206,7 +210,6 @@ public class Encyclopedia : MonoBehaviour
     public void OnPointerHoverDelegate(Transform discoveredItem)
     {
         toolTipManager.HoverOverUI(discoveredItem);
-        
     }
 
     public void OnPointerExitDelegate()

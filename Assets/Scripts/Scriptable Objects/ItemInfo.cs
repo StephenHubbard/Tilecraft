@@ -20,6 +20,7 @@ public class ItemInfo : ScriptableObject
     public bool isSmeltable = false;
     public int foodValue = 0;
     public ItemInfo[] itemsNextToDiscover;
+    public bool isPopulation = false;
 
     [TextArea]
     public string toolTipText;

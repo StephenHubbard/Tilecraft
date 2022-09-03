@@ -17,4 +17,8 @@ public class Tower : MonoBehaviour
             other.gameObject.GetComponent<Cloud>().FadeDestroyCloud();
         }
     }
+
+    private void OnDestroy() {
+        GetComponentInParent<CraftingManager>().sliderBackgroundColor.color = GetComponentInParent<CraftingManager>().defaultGreen;
+    }
 }

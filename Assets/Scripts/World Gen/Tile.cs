@@ -335,13 +335,11 @@ public class Tile : MonoBehaviour
             }
 
             if (!currentPlacedItem.GetComponent<UnlimitedHarvest>() && !currentPlacedItem.GetComponent<OrcRelic>() && currentPlacedItem.GetComponent<PlacedItem>().itemInfo.isStationary) {
-                print("pop tile 1");
                 craftingManager.DoneCrafting();
             }
         } else if (isOccupiedWithResources) {
             // print("keep crafting");
         } else {
-            print("pop tile 2");
             craftingManager.DoneCrafting();
         }
 
@@ -360,7 +358,7 @@ public class Tile : MonoBehaviour
             }
         }
 
-        if (currentPlacedItem.GetComponent<House>()) {
+        if (currentPlacedItem && currentPlacedItem.GetComponent<House>()) {
             currentPlacedItem.GetComponent<House>().DetectBabyMaking();
         }
     }

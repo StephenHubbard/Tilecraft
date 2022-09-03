@@ -33,5 +33,6 @@ MonoBehaviour:
   isSmeltable: 0
   foodValue: 0
   itemsNextToDiscover: []
+  isPopulation: 1
   toolTipText: Can be combined with a piece of equipment to choose a profession
   tierGroup: 1

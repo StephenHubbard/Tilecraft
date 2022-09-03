@@ -265,17 +265,24 @@ public class WorldGeneration : MonoBehaviour
                     GameObject tileType = Instantiate(tileInfoScriptableObjects[0].tilePrefab, newTile.transform.position, transform.rotation);
                     GameObject startingTower = Instantiate(towerPrefab, newTile.transform.position, transform.rotation);
                     startingTower.transform.parent = newTile.transform;
-                    newTile.GetComponent<Tile>().UpdateCurrentPlacedItem(towerPrefab.GetComponent<PlacedItem>().itemInfo, startingTower);
-                    newTile.GetComponent<Tile>().isOccupiedWithBuilding = true;
-                    newTile.GetComponent<CraftingManager>().UpdateAmountLeftToCraft(towerPrefab.GetComponent<PlacedItem>().itemInfo.amountRecipeCanCreate);
+                    // newTile.GetComponent<Tile>().UpdateCurrentPlacedItem(towerPrefab.GetComponent<PlacedItem>().itemInfo, startingTower);
+                    // newTile.GetComponent<Tile>().isOccupiedWithBuilding = true;
+                    // newTile.GetComponent<CraftingManager>().UpdateAmountLeftToCraft(towerPrefab.GetComponent<PlacedItem>().itemInfo.amountRecipeCanCreate);
                     tileType.transform.parent = newTile.transform;
                     tileType.GetComponentInParent<Tile>().tileInfo = tileInfoScriptableObjects[0];
                     grid.SetValue(gridLocation, 1);
 
                     SpawnFourAdjacentTiles(x, y);
+                    
+                    StartCoroutine(DestroyStartingTower(startingTower));
                 }
             }
         }
+    }
+
+    private IEnumerator DestroyStartingTower(GameObject startingTower) {
+        yield return new WaitForEndOfFrame();
+        Destroy(startingTower);
     }
 
     private void SpawnFourAdjacentTiles(int x, int y) {

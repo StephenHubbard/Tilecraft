@@ -30,5 +30,6 @@ MonoBehaviour:
   isSmeltable: 0
   foodValue: 0
   itemsNextToDiscover: []
+  isPopulation: 1
   toolTipText: 
   tierGroup: 1

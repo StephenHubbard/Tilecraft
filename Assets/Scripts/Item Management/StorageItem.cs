@@ -9,7 +9,7 @@ public class StorageItem : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] private TMP_Text amountText;
 
-    private ItemInfo itemInfo;
+    public ItemInfo itemInfo;
 
     public int amountInStorage = 0;
 

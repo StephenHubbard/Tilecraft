@@ -24,6 +24,8 @@ public class InputManager : MonoBehaviour
 
     private DragAndDrop activeObject;
 
+    public bool isOnMainMenu = true;
+
     private void Awake()
     {
         if (instance != null)
@@ -202,17 +204,7 @@ public class InputManager : MonoBehaviour
 
                 CompleteSellItemTutorial();
 
-                if (lowestZGameObject2.gameObject.GetComponent<Worker>()) {
-                    HousingManager.instance.DetectTotalPopulation();
-                    HousingManager.instance.AllHousesDetectBabyMaking();
-                }
-
-                if (lowestZGameObject2.gameObject.GetComponent<Archer>()) {
-                    HousingManager.instance.DetectTotalPopulation();
-                    HousingManager.instance.AllHousesDetectBabyMaking();
-                }
-
-                if (lowestZGameObject2.gameObject.GetComponent<Knight>()) {
+                if (lowestZGameObject2.gameObject.GetComponent<DraggableItem>().itemInfo.isPopulation) {
                     HousingManager.instance.DetectTotalPopulation();
                     HousingManager.instance.AllHousesDetectBabyMaking();
                 }
@@ -247,22 +239,24 @@ public class InputManager : MonoBehaviour
     public Vector2 GetCameraMoveVector()
     {
         Vector2 inputMoveDir = new Vector2(0, 0);
-
-        if (Input.GetKey(KeyCode.W))
-        {
-            inputMoveDir.y = +1f;
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
-            inputMoveDir.y = -1f;
-        }
-        if (Input.GetKey(KeyCode.A))
-        {
-            inputMoveDir.x = -1f;
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            inputMoveDir.x = +1f;
+        
+        if (!isOnMainMenu) { 
+            if (Input.GetKey(KeyCode.W))
+            {
+                inputMoveDir.y = +1f;
+            }
+            if (Input.GetKey(KeyCode.S))
+            {
+                inputMoveDir.y = -1f;
+            }
+            if (Input.GetKey(KeyCode.A))
+            {
+                inputMoveDir.x = -1f;
+            }
+            if (Input.GetKey(KeyCode.D))
+            {
+                inputMoveDir.x = +1f;
+            }
         }
 
         return inputMoveDir;
@@ -270,22 +264,26 @@ public class InputManager : MonoBehaviour
 
     public float GetCameraZoomAmount()
     {
-        if (!ToolTipManager.instance.isOverUI) { 
-            float zoomAmount = 0f;
+        if (!isOnMainMenu) { 
+            if (!ToolTipManager.instance.isOverUI) { 
+                float zoomAmount = 0f;
 
-            if (Input.mouseScrollDelta.y > 0)
-            {
-                zoomAmount = -1f;
-            }
-            if (Input.mouseScrollDelta.y < 0)
-            {
-                zoomAmount = +1f;
-            }
+                if (Input.mouseScrollDelta.y > 0)
+                {
+                    zoomAmount = -1f;
+                }
+                if (Input.mouseScrollDelta.y < 0)
+                {
+                    zoomAmount = +1f;
+                }
 
-            return zoomAmount;
-        } else {
-            return 0;
+                return zoomAmount;
+            } else {
+                return 0;
+            }
         }
+
+        return 0;
     }
 
     public void CircleHighlightOn() {

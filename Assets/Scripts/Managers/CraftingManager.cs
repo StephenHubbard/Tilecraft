@@ -12,7 +12,7 @@ public class CraftingManager : MonoBehaviour
     [SerializeField] private float currentCraftTime;
     [SerializeField] public RecipeInfo recipeInfo;
     [SerializeField] private GameObject coinSellAnim;
-    [SerializeField] private Color defaultGreen;
+    [SerializeField] public Color defaultGreen;
 
     
     public int amountOfWorkers;
@@ -279,7 +279,7 @@ public class CraftingManager : MonoBehaviour
             transform.GetComponent<Tile>().currentPlacedItem.GetComponent<Furnace>().UpdateFurnaceAmountLeft();
         }
 
-        if (amountLeftToCraft == 0) {
+        if (GetComponent<Tile>().currentPlacedItem && amountLeftToCraft == 0 && GetComponent<Tile>().currentPlacedItem.GetComponent<Furnace>()) {
             GetComponent<Tile>().currentPlacedItem.GetComponent<Furnace>().AbandonSmelting();
         }
 
