@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 4812397909172993938}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.008, y: 0.14, z: 0}
-  m_LocalScale: {x: 0.9040638, y: 0.9040638, z: 0.9040638}
+  m_LocalScale: {x: 1, y: 1, z: 0.9040638}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4812397909208000542}
@@ -264,6 +264,7 @@ MonoBehaviour:
   itemInfo: {fileID: 11400000, guid: 315e5f2f6abe26e4396f6075fc0f64e9, type: 2}
   currentTile: {fileID: 0}
   amountLeft: 0
+  CanPlaceOnTile: 0
 --- !u!50 &4812397909494241839
 Rigidbody2D:
   serializedVersion: 4

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Hospital
   m_EditorClassIdentifier: 
   itemName: Hospital
-  itemSprite: {fileID: 21300000, guid: 2c8a69b6caf487a4fb7c55054bc51751, type: 3}
+  itemSprite: {fileID: 21300000, guid: f864916b6bc766142ac827e4e2039d3d, type: 3}
   coinValue: 3
   draggableItemPrefab: {fileID: 4812397909494241834, guid: 7ad936a3048732b42998db3db9f21f56, type: 3}
   onTilePrefab: {fileID: 994099794024727751, guid: 32d9dcada8a59c348b2afc89f7934579, type: 3}
@@ -28,6 +28,6 @@ MonoBehaviour:
   isStationary: 1
   isSmeltable: 0
   foodValue: 0
-  itemsNextToDiscover: []
+  isPopulation: 0
   toolTipText: Heals workers, knights, and archers
   tierGroup: 2

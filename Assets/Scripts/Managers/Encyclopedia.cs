@@ -47,7 +47,7 @@ public class Encyclopedia : MonoBehaviour
     private void Start() {
         foreach (var item in startingItems)
         {
-            AddItemToDiscoveredList(item, false);
+            AddItemToDiscoveredList(item, false, false);
         }
 
     }
@@ -152,7 +152,7 @@ public class Encyclopedia : MonoBehaviour
         }
     }
 
-    public void AddItemToDiscoveredList(ItemInfo newItem, bool fireAnim) {
+    public void AddItemToDiscoveredList(ItemInfo newItem, bool fireAnim, bool isFarmDiscovery) {
         if (!discoveredItems.ContainsKey(newItem)) {
             if (fireAnim) {
                 DiscoveryManager.instance.NewDiscoveryAnimation(newItem);
@@ -167,7 +167,18 @@ public class Encyclopedia : MonoBehaviour
                 Destroy(newDiscoveredItemsGridLayout.transform.GetChild(newDiscoveredItemsGridLayout.transform.childCount - 1).gameObject); 
                 StartCoroutine(DestroySixItemInNewList());
             }
+            return;
         } 
+
+        if (discoveredItems.ContainsKey(newItem) && isFarmDiscovery) {
+            StartCoroutine(DetermineNewDiscoveryCheckFrameByFrame(newItem, isFarmDiscovery));
+        }
+
+    }
+
+    private IEnumerator DetermineNewDiscoveryCheckFrameByFrame(ItemInfo newItem, bool isFarmDiscovery) {
+        yield return new WaitForEndOfFrame();
+        DiscoveryManager.instance.DetermineNewDiscovery();
     }
 
     private IEnumerator DestroySixItemInNewList() {

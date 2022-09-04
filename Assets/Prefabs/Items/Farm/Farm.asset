@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Farm
   m_EditorClassIdentifier: 
   itemName: Farm
-  itemSprite: {fileID: 21300000, guid: d2b9f17d5b207d8428ba111b7b37d53e, type: 3}
+  itemSprite: {fileID: 21300000, guid: 348aeffb4c60ff641850314c17e03fdf, type: 3}
   coinValue: 1
   draggableItemPrefab: {fileID: 4812397909494241834, guid: 798d2929bacb5434583b949da2c02828, type: 3}
   onTilePrefab: {fileID: 994099794024727751, guid: 32c3c62a640e2dd4db009b6aad94c61c, type: 3}
@@ -29,7 +29,6 @@ MonoBehaviour:
   isStationary: 1
   isSmeltable: 0
   foodValue: 0
-  itemsNextToDiscover: []
   isPopulation: 0
   toolTipText: Produces XP for new Recipes
   tierGroup: 2

@@ -12,7 +12,7 @@ public class DraggableItem : MonoBehaviour
 
     private AudioManager audioManager;
 
-    private bool CanPlaceOnTile = false;
+    public bool CanPlaceOnTile = false;
 
     private void Awake() {
         tileHighlight = GameObject.Find("Highlighted Border - Square");
@@ -27,8 +27,8 @@ public class DraggableItem : MonoBehaviour
         StartCoroutine(CanPlaceItemOnTileDelay());
     }
 
-    private IEnumerator CanPlaceItemOnTileDelay() {
-        yield return new WaitForSeconds(.5f);
+    public IEnumerator CanPlaceItemOnTileDelay() {
+        yield return new WaitForSeconds(.05f);
         CanPlaceOnTile = true;
     }
 
@@ -115,7 +115,7 @@ public class DraggableItem : MonoBehaviour
 
             // worker
             if (itemInfo.name == "Worker") {
-                if (currentTile.PlaceWorker(itemInfo.onTilePrefab, gameObject.GetComponent<Worker>().myHealth, gameObject.GetComponent<Worker>().myWorkingStrength, gameObject.GetComponent<Worker>().foodNeededToUpPickaxeStrengthCurrent)) {
+                if (currentTile.PlaceWorker(itemInfo.onTilePrefab, gameObject.GetComponent<Worker>().myHealth, gameObject.GetComponent<Worker>().myWorkingStrength, gameObject.GetComponent<Worker>().foodNeededToUpPickaxeStrengthCurrent, gameObject.GetComponent<Population>().currentLevel)) {
                     if (i == 1) {
                         Destroy(gameObject);
                     }
@@ -135,7 +135,7 @@ public class DraggableItem : MonoBehaviour
 
             // worker
             if (itemInfo.name == "Archer") {
-                if (currentTile.PlaceArcher(itemInfo.onTilePrefab, gameObject.GetComponent<Archer>().myHealth, gameObject.GetComponent<Archer>().myCombatValue, gameObject.GetComponent<Archer>().foodNeededToUpCombatValue)) {
+                if (currentTile.PlaceArcher(itemInfo.onTilePrefab, gameObject.GetComponent<Archer>().myHealth, gameObject.GetComponent<Archer>().myCombatValue, gameObject.GetComponent<Archer>().foodNeededToUpCombatValue, gameObject.GetComponent<Population>().currentLevel)) {
                     if (i == 1) {
                         Destroy(gameObject);
                     }
@@ -149,7 +149,7 @@ public class DraggableItem : MonoBehaviour
 
             // worker
             if (itemInfo.name == "Knight") {
-                if (currentTile.PlaceKnight(itemInfo.onTilePrefab, gameObject.GetComponent<Knight>().myHealth, gameObject.GetComponent<Knight>().myCombatValue, gameObject.GetComponent<Knight>().foodNeededToUpCombatValue)) {
+                if (currentTile.PlaceKnight(itemInfo.onTilePrefab, gameObject.GetComponent<Knight>().myHealth, gameObject.GetComponent<Knight>().myCombatValue, gameObject.GetComponent<Knight>().foodNeededToUpCombatValue, gameObject.GetComponent<Population>().currentLevel)) {
                     if (i == 1) {
                         Destroy(gameObject);
                     }
@@ -181,11 +181,30 @@ public class DraggableItem : MonoBehaviour
             }
 
             // main item
-            if (currentTile != null && itemInfo.checkValidTiles(currentTile.GetComponent<Tile>().tileInfo) && !currentTile.isOccupiedWithResources && !itemInfo.isResourceOnly) {
+            if (currentTile != null && itemInfo.checkValidTiles(currentTile.GetComponent<Tile>().tileInfo) && !itemInfo.isResourceOnly) {
+
+                if (currentTile.isOccupiedWithResources) {
+                    foreach (Transform resource in currentTile.resourcePoints)
+                    {
+                        if (resource.childCount > 0) {
+                            Destroy(resource.GetChild(0).gameObject);
+                            Vector3 spawnItemsVector3 = transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0);
+                            Instantiate(resource.GetChild(0).GetComponent<PlacedItem>().itemInfo.draggableItemPrefab, spawnItemsVector3, transform.rotation);
+                        }
+                    }
+                }
 
                 if (currentTile.currentPlacedItem && !currentTile.currentPlacedItem.GetComponent<PlacedItem>().itemInfo.isStationary) {
                     currentTile.GetComponent<CraftingManager>().DoneCrafting();
                     Destroy(currentTile.currentPlacedItem);
+                } else if (currentTile.currentPlacedItem && currentTile.currentPlacedItem.GetComponent<PlacedItem>().itemInfo.isStationary) {
+                    if (i - 1 == 0) {
+                    DetermineExtraItems(i);
+                    } else {
+                        DetermineExtraItems(i);
+                    }
+                    Destroy(gameObject);
+                    return;
                 }
 
                 currentTile.GetComponent<CraftingManager>().recipeInfo = null;

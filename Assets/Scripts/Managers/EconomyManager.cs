@@ -35,7 +35,6 @@ public class EconomyManager : MonoBehaviour
     }
 
     public void CheckDiscovery(int amount) {
-
         if (allItemsDiscovered == true) { 
             slider.value = slider.maxValue;
             return; 
@@ -74,7 +73,6 @@ public class EconomyManager : MonoBehaviour
     }
 
     public void FarmXP(int amount) {
-        print("hit");
         CheckDiscovery(amount);
     }
 

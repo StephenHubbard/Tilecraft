@@ -35,9 +35,7 @@ public class Knight : MonoBehaviour
         }
 
         DetectCombat();
-
     }
-
 
     private void DetectCombat() {
             if (transform.GetComponent<PlacedItem>() && transform.root.GetComponent<Tile>().currentPlacedItem && transform.root.GetComponent<Tile>().currentPlacedItem.GetComponent<OrcRelic>() && enemyTarget == null) {
@@ -59,9 +57,10 @@ public class Knight : MonoBehaviour
         }
     }
 
-    public void TransferStrength(int currentStrength, int foodNeeded) {
+    public void TransferStrength(int currentStrength, int foodNeeded, int currentLevel) {
         myCombatValue = currentStrength;
         foodNeededToUpCombatValue = foodNeeded;
+        GetComponent<Population>().TransferLevel(currentLevel);
     }
 
     public void TransferHealth(int currentHealth) {
@@ -127,12 +126,23 @@ public class Knight : MonoBehaviour
         myCombatValue++;
         maxHealth++;
         myHealth = maxHealth;
-        foodNeeded *= Mathf.CeilToInt(1.5f);
         foodNeededToUpCombatValue = foodNeeded;
         if (leftoverAmountOfFood > 0) {
             FeedWorker(leftoverAmountOfFood, false);
         }
+        GetComponent<Population>().UpLevelStars(true);
+        DetermineFoodNeeded();
+    }
 
+    private void DetermineFoodNeeded() {
+        
+        if (GetComponent<Population>().currentLevel == 1) {
+            foodNeededToUpCombatValue = 4;
+        }
+
+        if (GetComponent<Population>().currentLevel == 2) {
+            foodNeededToUpCombatValue = 5;
+        }
     }
 
     private IEnumerator DestroyStarPrefabCo(GameObject levelUpPrefabAnim) {
@@ -183,7 +193,7 @@ public class Knight : MonoBehaviour
 
     public void HitTarget() {
         if (enemyTarget) {
-            enemyTarget.TakeDamage(1, this.transform);
+            enemyTarget.TakeDamage(myCombatValue, this.transform);
             AudioManager.instance.Play("Pitchfork Attack");
 
         } else {

@@ -5,6 +5,7 @@ using CodeMonkey.Utils;
 
 public class Worker : MonoBehaviour
 {
+    
     [SerializeField] private LayerMask cloudLayerMask = new LayerMask();
     [SerializeField] private GameObject deadWorkerOnTilePrefab;
     [SerializeField] private GameObject deadWorkerItemPrefab;
@@ -13,9 +14,8 @@ public class Worker : MonoBehaviour
     [SerializeField] public int myCombatValue = 1;
     [SerializeField] private GameObject archerPrefab;
     [SerializeField] private GameObject knightPrefab;
-
     [SerializeField] public int foodNeededToUpPickaxeStrengthCurrent;
-    [SerializeField] public int foodNeededToUpPickaxeStrengthStart = 3;
+    [SerializeField] public int foodNeeded = 3;
     public ItemInfo itemInfo;
     public int myHealth;
     public int maxHealth = 3;
@@ -28,7 +28,7 @@ public class Worker : MonoBehaviour
 
     private void Awake() {
         myAnimator = GetComponent<Animator>();
-        foodNeededToUpPickaxeStrengthCurrent = foodNeededToUpPickaxeStrengthStart;
+        foodNeededToUpPickaxeStrengthCurrent = foodNeeded;
     }
 
     private void Start() {
@@ -46,6 +46,8 @@ public class Worker : MonoBehaviour
     {
         DetectCloudWhileWorking();
     }
+
+    
 
     private void DetectCloudWhileWorking()
     {
@@ -118,10 +120,12 @@ public class Worker : MonoBehaviour
         }
     }
 
-    public void TransferStrength(int currentStrength, int currentFoodNeeded) {
+    public void TransferStrength(int currentStrength, int currentFoodNeeded, int currentLevel) {
         myWorkingStrength = currentStrength;
         foodNeededToUpPickaxeStrengthCurrent = currentFoodNeeded;
+        GetComponent<Population>().TransferLevel(currentLevel);
     }
+    
 
     public void FeedWorker(int amount, bool playCrunch) {
         if (playCrunch) {
@@ -173,18 +177,31 @@ public class Worker : MonoBehaviour
 
     public void LevelUpStrength(int leftoverAmountOfFood) {
         // EconomyManager.instance.CheckDiscovery(1);
+        
         GameObject levelUpPrefabAnim = Instantiate(levelUpAnimPrefab, transform.position + new Vector3(0, .5f, 0), transform.rotation);
         StartCoroutine(DestroyStarPrefabCo(levelUpPrefabAnim));
         myWorkingStrength++;
         maxHealth++;
         myHealth = maxHealth;
-        foodNeededToUpPickaxeStrengthStart *= Mathf.CeilToInt(1.5f);
-        foodNeededToUpPickaxeStrengthCurrent = foodNeededToUpPickaxeStrengthStart;
+        foodNeededToUpPickaxeStrengthCurrent = foodNeeded;
         if (leftoverAmountOfFood > 0) {
             FeedWorker(leftoverAmountOfFood, false);
         }
-
+        GetComponent<Population>().UpLevelStars(true);
+        DetermineFoodNeeded();
     }
+
+    private void DetermineFoodNeeded() {
+        
+        if (GetComponent<Population>().currentLevel == 1) {
+            foodNeededToUpPickaxeStrengthCurrent = 4;
+        }
+
+        if (GetComponent<Population>().currentLevel == 2) {
+            foodNeededToUpPickaxeStrengthCurrent = 5;
+        }
+    }
+    
 
     private IEnumerator DestroyStarPrefabCo(GameObject levelUpPrefabAnim) {
         yield return new WaitForSeconds(2f);
@@ -258,7 +275,7 @@ public class Worker : MonoBehaviour
 
     public void HitTarget() {
         if (enemyTarget) {
-            enemyTarget.TakeDamage(1, this.transform);
+            enemyTarget.TakeDamage(myCombatValue, this.transform);
             AudioManager.instance.Play("Pitchfork Attack");
 
         } else {

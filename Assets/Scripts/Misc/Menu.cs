@@ -19,13 +19,12 @@ public class Menu : MonoBehaviour
         }
     }
 
-    public void QuitButton() {
-        Application.Quit();
+    public void MainMenuButton() {
+        
     }
 
-    public void RestartButton() {
-        Time.timeScale = 1;
-        SceneManager.LoadScene(0);
+    public void SaveGameButton() {
+        print("not implemented");
     }
 
     public void ResumeButton() {

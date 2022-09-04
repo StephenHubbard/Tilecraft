@@ -22,6 +22,7 @@ public class ToolTipManager : MonoBehaviour
     [SerializeField] private GameObject maximizeButton;
     [SerializeField] private GameObject minimizeButton;
     [SerializeField] private LayerMask toolTipLayerMask = new LayerMask();
+    [SerializeField] private Transform shownItemsContainer;
 
     public bool isMaximized = true;
     public bool isOverUI = false;
@@ -41,6 +42,32 @@ public class ToolTipManager : MonoBehaviour
 
     private void Update() {
         RaycastMouseOver();
+
+        if (shownItemsContainer.childCount > 0) {
+            toolTipText.text = "Required Components:";
+        }
+    }
+
+    public void DetectFeedPopTooltip(GameObject go) {
+        if (go.GetComponent<Worker>()) {
+            string newStr = "You are about to feed worker ";
+            UpdateValues("Feed worker?", newStr, 0, 0, 0, 0, 0);
+        }
+
+        if (go.GetComponent<Knight>()) {
+            string newStr = "You are about to feed Knight ";
+            UpdateValues("Feed Knight?", newStr, 0, 0, 0, 0, 0);
+        }
+
+        if (go.GetComponent<Archer>()) {
+            string newStr = "You are about to feed Archer ";
+            UpdateValues("Feed Archer?", newStr, 0, 0, 0, 0, 0);
+        }
+
+        // if (go.GetComponent<Population>().isMaxLevel) {
+        //     UpdateValues(go.GetComponent<DraggableItem>().itemInfo.itemName, "You cannot level up this" + go.GetComponent<DraggableItem>().itemInfo.itemName + "any more", 0, 0, 0, 0, 0);
+        // }
+
     }
 
     private void RaycastMouseOver() {
@@ -52,46 +79,43 @@ public class ToolTipManager : MonoBehaviour
         
             ToggleToolTipOn();
 
-            if (hit.Length > 1 && hit[0].transform.GetComponent<Food>() && hit[1].transform.GetComponent<Worker>()) {
-                string newStr = "You are about to feed worker " + (hit[0].transform.GetComponent<Food>().foodWorthAmount * hit[0].transform.GetComponent<Stackable>().amountOfChildItems).ToString() + " food";
-                UpdateValues("Feed Worker?", newStr, 0, 0, 0, 0, 0);
-                return;
-            }
-
-            if (hit.Length > 1 && hit[0].transform.GetComponent<Food>() && hit[1].transform.GetComponent<Knight>()) {
-                string newStr = "You are about to feed knight " + (hit[0].transform.GetComponent<Food>().foodWorthAmount * hit[0].transform.GetComponent<Stackable>().amountOfChildItems).ToString() + " food";
-                UpdateValues("Feed Knight?", newStr, 0, 0, 0, 0, 0);
-                return;
-            }
-
-            if (hit.Length > 1 && hit[0].transform.GetComponent<Food>() && hit[1].transform.GetComponent<Archer>()) {
-                string newStr = "You are about to feed archer " + (hit[0].transform.GetComponent<Food>().foodWorthAmount * hit[0].transform.GetComponent<Stackable>().amountOfChildItems).ToString() + " food";
-                UpdateValues("p archer?", newStr, 0, 0, 0, 0, 0);
-                return;
-            }
-
-
-            else if (hit[0].transform.GetComponent<DraggableItem>()) {
+            if (hit[0].transform.GetComponent<DraggableItem>()) {
                 ItemInfo thisItem = hit[0].transform.GetComponent<DraggableItem>().itemInfo;
                 if (hit[0].transform.GetComponent<Worker>()) {
                     int healthValue = hit[0].transform.GetComponent<Worker>().myHealth;
                     int workStrengthValue = hit[0].transform.GetComponent<Worker>().myWorkingStrength;
                     int hatchetCombatValue = hit[0].transform.GetComponent<Worker>().myCombatValue;
-                    string neededFoodToUpgradeStrength = "Food until power up: " + hit[0].transform.GetComponent<Worker>().foodNeededToUpPickaxeStrengthCurrent.ToString();
+                    string neededFoodToUpgradeStrength;
+                    if (hit[0].transform.GetComponent<Population>().isMaxLevel) {
+                        neededFoodToUpgradeStrength = "Max Level";
+                    } else {
+                        neededFoodToUpgradeStrength = "Food until power up: " + hit[0].transform.GetComponent<Worker>().foodNeededToUpPickaxeStrengthCurrent.ToString() + "\n" + "\n" + "basic working unit";
+                    }
+
                     UpdateValues(thisItem.itemName, neededFoodToUpgradeStrength, thisItem.foodValue, thisItem.coinValue, healthValue, workStrengthValue, hatchetCombatValue);
                     return;
                 } else if (hit[0].transform.GetComponent<Archer>()) {
                     int healthValue = hit[0].transform.GetComponent<Archer>().myHealth;
                     int workStrengthValue = hit[0].transform.GetComponent<Archer>().myWorkingStrength;
                     int hatchetCombatValue = hit[0].transform.GetComponent<Archer>().myCombatValue;
-                    string neededFoodToUpgradeStrength = "Food until power up: " + hit[0].transform.GetComponent<Archer>().foodNeededToUpCombatValue.ToString();
+                    string neededFoodToUpgradeStrength;
+                    if (hit[0].transform.GetComponent<Population>().isMaxLevel) {
+                        neededFoodToUpgradeStrength = "Max Level";
+                    } else {
+                        neededFoodToUpgradeStrength = "Food until power up: " + hit[0].transform.GetComponent<Archer>().foodNeededToUpCombatValue.ToString() + "\n" + "\n" + "ranged unit";
+                    }
                     UpdateValues(thisItem.itemName, neededFoodToUpgradeStrength, thisItem.foodValue, thisItem.coinValue, healthValue, 0, hatchetCombatValue);
                     return;
                 } else if (hit[0].transform.GetComponent<Knight>()) {
                     int healthValue = hit[0].transform.GetComponent<Knight>().myHealth;
                     int workStrengthValue = hit[0].transform.GetComponent<Knight>().myWorkingStrength;
                     int hatchetCombatValue = hit[0].transform.GetComponent<Knight>().myCombatValue;
-                    string neededFoodToUpgradeStrength = "Food until power up: " + hit[0].transform.GetComponent<Knight>().foodNeededToUpCombatValue.ToString();
+                    string neededFoodToUpgradeStrength;
+                    if (hit[0].transform.GetComponent<Population>().isMaxLevel) {
+                        neededFoodToUpgradeStrength = "Max Level";
+                    } else {
+                        neededFoodToUpgradeStrength = "Food until power up: " + hit[0].transform.GetComponent<Knight>().foodNeededToUpCombatValue.ToString() + "\n" + "\n" + "melee unit";
+                    }
                     UpdateValues(thisItem.itemName, neededFoodToUpgradeStrength, thisItem.foodValue, thisItem.coinValue, healthValue, 0, hatchetCombatValue);
                     return;
                 } else {
@@ -115,13 +139,11 @@ public class ToolTipManager : MonoBehaviour
                             orcHealthOne = hit[0].transform.GetComponent<Tile>().currentPlacedItem.GetComponent<OrcRelic>().orcSpawnPoints[0].GetChild(0).gameObject.GetComponent<Enemy>().myHealth.ToString();
                         }
 
-
                         if (hit[0].transform.GetComponent<Tile>().currentPlacedItem.GetComponent<OrcRelic>().orcSpawnPoints.Length > 1) {
                             if (hit[0].transform.GetComponent<Tile>().currentPlacedItem.GetComponent<OrcRelic>().orcSpawnPoints[1].childCount == 1) {
                                 orcHealthTwo = hit[0].transform.GetComponent<Tile>().currentPlacedItem.GetComponent<OrcRelic>().orcSpawnPoints[1].GetChild(0).gameObject.GetComponent<Enemy>().myHealth.ToString();
                             }
                         }
-
 
                         if (orcHealthOne != null && orcHealthTwo != null) {
                             UpdateValues(thisTile.name, "Orc 1 Health: " + orcHealthOne + "\n" + "Orc 2 Health: " + orcHealthTwo, 0, 0, 0, 0, 0);

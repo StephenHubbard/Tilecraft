@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Alter
   m_EditorClassIdentifier: 
   itemName: Alter
-  itemSprite: {fileID: 21300000, guid: e121e9691f2915846a9ec2f720970d08, type: 3}
+  itemSprite: {fileID: 21300000, guid: 03f16808f395e784caf1409bc22ee878, type: 3}
   coinValue: 3
   draggableItemPrefab: {fileID: 4812397909494241834, guid: e589f366b4c372c4d8ac4c8290890abb, type: 3}
   onTilePrefab: {fileID: 994099794024727751, guid: b48a0aec411709a4bbb52f068abe9d4c, type: 3}
@@ -28,7 +28,6 @@ MonoBehaviour:
   isStationary: 1
   isSmeltable: 0
   foodValue: 0
-  itemsNextToDiscover:
-  - {fileID: 11400000, guid: 8ca693846393da94eb237f9df66199bb, type: 2}
+  isPopulation: 0
   toolTipText: Sacrifice Dead Workers
   tierGroup: 3

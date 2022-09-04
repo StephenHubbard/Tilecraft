@@ -244,10 +244,19 @@ public class CraftingManager : MonoBehaviour
     public void PopOutNewItemFromRecipe() {
         // EconomyManager.instance.CheckDiscovery(recipeInfo.itemInfo.coinValue);
         Vector3 spawnItemsVector3 = transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), -1);
+        if (recipeInfo.itemInfo.itemName == "XP") {
+            spawnItemsVector3 = transform.position + new Vector3(0, 1, 0);
+        }
         GameObject craftedItem = Instantiate(recipeInfo.itemInfo.draggableItemPrefab, spawnItemsVector3, transform.rotation);
+        // craft x2 if it's a weapon
+        if (craftedItem.GetComponent<Weapon>()) {
+            Instantiate(recipeInfo.itemInfo.draggableItemPrefab, spawnItemsVector3, transform.rotation);
+        }
         recipeInfo.itemInfo.NextInLineToDiscover();
         AutoSellCraftedItem(craftedItem);
-        encyclopedia.AddItemToDiscoveredList(recipeInfo.itemInfo, true);
+        if (recipeInfo.itemInfo.itemName != "XP") {
+            encyclopedia.AddItemToDiscoveredList(recipeInfo.itemInfo, true, false);
+        }
         ToDoManager.instance.CraftedItemTakeOffToDoList(recipeInfo.itemInfo);
         StartCoroutine(Encyclopedia.instance.CraftedNewItemToggleCraftButton());
 
@@ -258,12 +267,12 @@ public class CraftingManager : MonoBehaviour
             }
         }
 
-        foreach (var item in recipeInfo.itemInfo.recipeInfo.neededRecipeItems)
-        {
-            if (item.itemName != "Dead Worker") {
-                encyclopedia.AddItemToDiscoveredList(item, true);
-            }
-        }
+        // foreach (var item in recipeInfo.itemInfo.recipeInfo.neededRecipeItems)
+        // {
+        //     if (item.itemName != "Dead Worker") {
+        //         encyclopedia.AddItemToDiscoveredList(item, true, false);
+        //     }
+        // }
         
         Encyclopedia.instance.CraftedDiscoveredItem(recipeInfo.itemInfo);
 

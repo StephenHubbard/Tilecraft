@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Fridge
   m_EditorClassIdentifier: 
   itemName: Fridge
-  itemSprite: {fileID: 21300000, guid: 19f3efdd03a244848aa64d920a0d2ed1, type: 3}
+  itemSprite: {fileID: 21300000, guid: f5b9146a249d31f44baa30023d0d57d4, type: 3}
   coinValue: 3
   draggableItemPrefab: {fileID: 4812397909494241834, guid: 6626467f318c54940874bcebcce0ebe3, type: 3}
   onTilePrefab: {fileID: 994099794024727751, guid: 36a3568b0b89f724ca5383cc5bc749b1, type: 3}
@@ -28,6 +28,6 @@ MonoBehaviour:
   isStationary: 1
   isSmeltable: 0
   foodValue: 0
-  itemsNextToDiscover: []
+  isPopulation: 0
   toolTipText: Can be used to store food
   tierGroup: 2

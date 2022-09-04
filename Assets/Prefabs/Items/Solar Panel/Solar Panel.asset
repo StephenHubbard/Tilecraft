@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Solar Panel
   m_EditorClassIdentifier: 
   itemName: Solar Panel
-  itemSprite: {fileID: 21300000, guid: 7e8f412dc7e1867459b5f22ab45743e7, type: 3}
+  itemSprite: {fileID: 21300000, guid: 1fceae3c7bd672b43a9d9a0e18c8cc61, type: 3}
   coinValue: 3
   draggableItemPrefab: {fileID: 4812397909494241834, guid: e74738fe918aa894ab8d001e43bd52b3, type: 3}
   onTilePrefab: {fileID: 994099794024727751, guid: 47fc124a6a565c04e957d7a0c1af7a62, type: 3}
@@ -29,7 +29,6 @@ MonoBehaviour:
   isStationary: 1
   isSmeltable: 0
   foodValue: 0
-  itemsNextToDiscover:
-  - {fileID: 11400000, guid: be97de2e023f6bf498d29f083af8db08, type: 2}
+  isPopulation: 0
   toolTipText: Produces Batteries
   tierGroup: 2

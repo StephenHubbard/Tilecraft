@@ -25,8 +25,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4812397909172993938}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.0069999695, y: 0.18, z: 0}
-  m_LocalScale: {x: 0.49885675, y: 0.49885675, z: 0.49885675}
+  m_LocalPosition: {x: 0.016, y: 0.18, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 0.49885675}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4812397909208000542}
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 320324999
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 2c8a69b6caf487a4fb7c55054bc51751, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f864916b6bc766142ac827e4e2039d3d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

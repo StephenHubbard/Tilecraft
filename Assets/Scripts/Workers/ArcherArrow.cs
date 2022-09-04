@@ -25,7 +25,7 @@ public class ArcherArrow : MonoBehaviour
 
                 } else {
                     if (currentTarget != null) {
-                        currentTarget.GetComponent<Enemy>().TakeDamage(1, archerThatLaunchedArrow);
+                        currentTarget.GetComponent<Enemy>().TakeDamage(archerThatLaunchedArrow.GetComponent<Archer>().myCombatValue, archerThatLaunchedArrow);
                         AudioManager.instance.Play("Arrow Hit");
                     }
                 }

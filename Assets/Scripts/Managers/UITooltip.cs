@@ -17,12 +17,10 @@ public class UITooltip : MonoBehaviour, IPointerClickHandler, IPointerEnterHandl
     public bool isEncyclopediaIcon = false;
     public bool isStorageIcon = false;
 
-    private EconomyManager economyManager;
 
     [SerializeField] private GameObject toDoListActiveBorderPrefab;
 
     private void Awake() {
-        economyManager = FindObjectOfType<EconomyManager>();
     }
 
     private void Start() {
@@ -39,10 +37,6 @@ public class UITooltip : MonoBehaviour, IPointerClickHandler, IPointerEnterHandl
     private void Update() {
         if (shownItemsContainer == null) {
             shownItemsContainer = GameObject.Find("ShownItemsContainer");
-        }
-        
-        if (shownItemsContainer.activeInHierarchy) {
-            toolTipText = "Required Components:";
         }
     }
 

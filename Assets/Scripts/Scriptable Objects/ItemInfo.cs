@@ -19,7 +19,6 @@ public class ItemInfo : ScriptableObject
     public bool isStationary = false;
     public bool isSmeltable = false;
     public int foodValue = 0;
-    public ItemInfo[] itemsNextToDiscover;
     public bool isPopulation = false;
 
     [TextArea]
@@ -35,13 +34,14 @@ public class ItemInfo : ScriptableObject
         six
     };
 
+    // OLD DISCOVERY SYSTEM
     public void NextInLineToDiscover() {
-        if (itemsNextToDiscover != null) {
-            foreach (var item in itemsNextToDiscover)
-            {
-                Encyclopedia.instance.AddItemToDiscoveredList(item, true);
-            }
-        }
+        // if (itemsNextToDiscover != null) {
+        //     foreach (var item in itemsNextToDiscover)
+        //     {
+        //         Encyclopedia.instance.AddItemToDiscoveredList(item, true);
+        //     }
+        // }
     }
 
     public bool checkValidTiles(TileInfo tileInfo) { 

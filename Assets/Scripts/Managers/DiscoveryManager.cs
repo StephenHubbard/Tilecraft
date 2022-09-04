@@ -10,6 +10,8 @@ public class DiscoveryManager : MonoBehaviour
     public static DiscoveryManager instance { get; set;}
 
     [SerializeField] public List<ItemInfo> allAvailableItems = new List<ItemInfo>();
+    [SerializeField] public List<ItemInfo> allAvailableItemsInOrder = new List<ItemInfo>();
+    [SerializeField] public int discoveryIndex = 0;
 
     [SerializeField] public List<ItemInfo> allTierOneItems = new List<ItemInfo>();
     [SerializeField] public List<ItemInfo> allTierTwoItems = new List<ItemInfo>();
@@ -49,7 +51,7 @@ public class DiscoveryManager : MonoBehaviour
     private void DiscoverAllItems() {
         for (int i = 0; i < allAvailableItems.Count; i++)
         {
-            Encyclopedia.instance.AddItemToDiscoveredList(allAvailableItems[i], false);
+            Encyclopedia.instance.AddItemToDiscoveredList(allAvailableItems[i], false, false);
         }
     }
 
@@ -125,68 +127,15 @@ public class DiscoveryManager : MonoBehaviour
     }
 
     public void DetermineNewDiscovery() {
-        ShuffleList(allTierOneItems);
-        foreach (var item in allTierOneItems)
-        {
-            if (!knownTierOneItems.Contains(item)) {
-                Encyclopedia.instance.AddItemToDiscoveredList(item, true);
-                NewDiscoveryAnimation(item);
-                return;
-            } 
-        }
+        Encyclopedia.instance.AddItemToDiscoveredList(allAvailableItemsInOrder[discoveryIndex], true, true);
+        AudioManager.instance.Play("Sell");
+        discoveryIndex++;
 
-        ShuffleList(allTierTwoItems);
-        foreach (var item in allTierTwoItems)
-        {
-            if (!knownTierTwoItems.Contains(item)) {
-                Encyclopedia.instance.AddItemToDiscoveredList(item, true);
-                NewDiscoveryAnimation(item);
-                return;
-            } 
+        if (discoveryIndex > allAvailableItemsInOrder.Count) {
+            EconomyManager.instance.AllItemsDiscovered();
         }
-
-        ShuffleList(allTierThreeItems);
-        foreach (var item in allTierThreeItems)
-        {
-            if (!knownTierThreeItems.Contains(item)) {
-                Encyclopedia.instance.AddItemToDiscoveredList(item, true);
-                NewDiscoveryAnimation(item);
-                return;
-            } 
-        }
-
-        ShuffleList(allTierFourItems);
-        foreach (var item in allTierFourItems)
-        {
-            if (!knownTierFourItems.Contains(item)) {
-                Encyclopedia.instance.AddItemToDiscoveredList(item, true);
-                NewDiscoveryAnimation(item);
-                return;
-            } 
-        }
-
-        ShuffleList(allTierFiveItems);
-        foreach (var item in allTierFiveItems)
-        {
-            if (!knownTierFiveItems.Contains(item)) {
-                Encyclopedia.instance.AddItemToDiscoveredList(item, true);
-                NewDiscoveryAnimation(item);
-                return;
-            } 
-        }
-
-        ShuffleList(allTierSixItems);
-        foreach (var item in allTierSixItems)
-        {
-            if (!knownTierSixItems.Contains(item)) {
-                Encyclopedia.instance.AddItemToDiscoveredList(item, true);
-                NewDiscoveryAnimation(item);
-                return;
-            } 
-        }
-
-        EconomyManager.instance.AllItemsDiscovered();
     }
+
 
     
 

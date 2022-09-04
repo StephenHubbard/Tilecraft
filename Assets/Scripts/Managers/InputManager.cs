@@ -8,7 +8,6 @@ using System;
 
 public class InputManager : MonoBehaviour
 {
-    [SerializeField] public GameObject circleHighlight;
     [SerializeField] public GameObject tileHighlight;
 
     public static InputManager instance { get; private set; }
@@ -21,6 +20,7 @@ public class InputManager : MonoBehaviour
     [SerializeField] private CursorManager.CursorType cursorClosedHand;
 
     [SerializeField] private Scrollbar scrollbar;
+    [SerializeField] private GameObject pauseMenu;
 
     private DragAndDrop activeObject;
 
@@ -131,11 +131,11 @@ public class InputManager : MonoBehaviour
                     }
                 }
 
-                if (Input.GetMouseButtonDown(0) && Input.GetKey(KeyCode.LeftShift) && thisTile.currentPlacedItem && thisTile.currentPlacedItem.GetComponent<PlacedItem>().itemInfo.isStationary && thisTile.currentPlacedItem.GetComponent<PlacedItem>().itemInfo.potentialOffSpring.Length > 0) {
-                    if (isRayBeingBlocked == false) {
-                        thisTile.GetComponent<Tile>().ToggleAutoSell();
-                    }
-                }
+                // if (Input.GetMouseButtonDown(0) && Input.GetKey(KeyCode.LeftShift) && thisTile.currentPlacedItem && thisTile.currentPlacedItem.GetComponent<PlacedItem>().itemInfo.isStationary && thisTile.currentPlacedItem.GetComponent<PlacedItem>().itemInfo.potentialOffSpring.Length > 0) {
+                //     if (isRayBeingBlocked == false) {
+                //         thisTile.GetComponent<Tile>().ToggleAutoSell();
+                //     }
+                // }
             }
 
             if (isRayBeingBlocked == false && thisTile != null) {
@@ -287,11 +287,4 @@ public class InputManager : MonoBehaviour
         return 0;
     }
 
-    public void CircleHighlightOn() {
-        circleHighlight.GetComponent<SpriteRenderer>().enabled = true;
-    }
-
-    public void CircleHighlightOff() {
-        circleHighlight.GetComponent<SpriteRenderer>().enabled = false;
-    }
 }

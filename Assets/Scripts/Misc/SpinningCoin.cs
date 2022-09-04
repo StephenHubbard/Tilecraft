@@ -7,7 +7,6 @@ public class SpinningCoin : MonoBehaviour
 
     private void Start() {
         EconomyManager.instance.FarmXP(1);
-        AudioManager.instance.Play("Sell");
     }
 
     public void DestroySelf() {

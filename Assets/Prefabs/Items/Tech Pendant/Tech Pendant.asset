@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Tech Pendant
   m_EditorClassIdentifier: 
   itemName: Tech Pendant
-  itemSprite: {fileID: 21300000, guid: b8398a0a70bae58418b655a6f1312c13, type: 3}
+  itemSprite: {fileID: 21300000, guid: 616e8c803ca924b48afae586f9666848, type: 3}
   coinValue: 0
   draggableItemPrefab: {fileID: 4812397909494241834, guid: 338d472a93bfa2047b56a12dfba9ea4c, type: 3}
   onTilePrefab: {fileID: 994099794024727751, guid: e045b92223f538d408ce12ed8cc6d3ae, type: 3}
@@ -30,6 +30,6 @@ MonoBehaviour:
   isStationary: 0
   isSmeltable: 0
   foodValue: 0
-  itemsNextToDiscover: []
+  isPopulation: 0
   toolTipText: One of three pendants to win the game
   tierGroup: 4

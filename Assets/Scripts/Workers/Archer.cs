@@ -68,9 +68,11 @@ public class Archer : MonoBehaviour
         }
     }
 
-    public void TransferStrength(int currentStrength, int currentFoodNeeded) {
+    public void TransferStrength(int currentStrength, int currentFoodNeeded, int currentLevel) {
         myCombatValue = currentStrength;
         foodNeededToUpCombatValue = currentFoodNeeded;
+        GetComponent<Population>().TransferLevel(currentLevel);
+
     }
 
         public void TransferHealth(int currentHealth) {
@@ -136,12 +138,23 @@ public class Archer : MonoBehaviour
         myCombatValue++;
         maxHealth++;
         myHealth = maxHealth;
-        foodNeeded *= Mathf.CeilToInt(1.5f);
         foodNeededToUpCombatValue = foodNeeded;
         if (leftoverAmountOfFood > 0) {
             FeedWorker(leftoverAmountOfFood, false);
         }
+        GetComponent<Population>().UpLevelStars(true);
+        DetermineFoodNeeded();
+    }
 
+    private void DetermineFoodNeeded() {
+        
+        if (GetComponent<Population>().currentLevel == 1) {
+            foodNeededToUpCombatValue = 4;
+        }
+
+        if (GetComponent<Population>().currentLevel == 2) {
+            foodNeededToUpCombatValue = 5;
+        }
     }
 
     private IEnumerator DestroyStarPrefabCo(GameObject levelUpPrefabAnim) {

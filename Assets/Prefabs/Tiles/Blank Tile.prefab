@@ -794,6 +794,9 @@ MonoBehaviour:
   currentCraftTime: 0
   recipeInfo: {fileID: 0}
   coinSellAnim: {fileID: 1739528165412195027, guid: 98ef04f86f1e79e4d92029645517e4cc, type: 3}
+  defaultGreen: {r: 0, g: 0, b: 0, a: 0}
+  amountOfWorkers: 0
+  totalWorkerStrength: 0
   amountLeftToCraft: 0
   startAmountToCraft: 0
   hasCompleteRecipe: 0

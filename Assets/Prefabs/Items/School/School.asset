@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: School
   m_EditorClassIdentifier: 
   itemName: School
-  itemSprite: {fileID: 21300000, guid: 0b8e1227df2d34042ad245647225f978, type: 3}
+  itemSprite: {fileID: 21300000, guid: 9322576ba4ff495478185a3ff1d7e911, type: 3}
   coinValue: 3
   draggableItemPrefab: {fileID: 4812397909494241834, guid: 868a42e41dc18974b8892855d06fa3e3, type: 3}
   onTilePrefab: {fileID: 994099794024727751, guid: be4502d89c5f1434ea049dc6467f4b26, type: 3}
@@ -29,6 +29,6 @@ MonoBehaviour:
   isStationary: 1
   isSmeltable: 0
   foodValue: 0
-  itemsNextToDiscover: []
+  isPopulation: 0
   toolTipText: produces graduation cap
   tierGroup: 2
