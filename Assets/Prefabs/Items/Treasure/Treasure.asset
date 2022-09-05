@@ -27,6 +27,6 @@ MonoBehaviour:
   isStationary: 0
   isSmeltable: 0
   foodValue: 0
-  itemsNextToDiscover: []
-  toolTipText: 
+  isPopulation: 0
+  toolTipText: produces a crown
   tierGroup: 3

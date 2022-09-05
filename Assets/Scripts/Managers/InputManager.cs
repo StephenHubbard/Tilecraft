@@ -117,9 +117,14 @@ public class InputManager : MonoBehaviour
 
                 }
 
-                if (thisTile.currentPlacedItem && thisTile.currentPlacedItem.GetComponent<Garbage>() && activeObject && activeObject.GetComponent<DraggableItem>().itemInfo.isResourceOnly) {
+                if (thisTile.currentPlacedItem && thisTile.currentPlacedItem.GetComponent<Garbage>() && activeObject && (activeObject.GetComponent<DraggableItem>().itemInfo.isResourceOnly || activeObject.GetComponent<DraggableItem>().itemInfo.isStationary)) {
                     thisTile.currentPlacedItem.GetComponent<Garbage>().GarbageSpriteOpen();
-                } 
+                } else {
+                    foreach (var garbage in FindObjectsOfType<Garbage>())
+                    {
+                        garbage.GarbageSpriteClosed();
+                    }
+                }
 
 
                 if (Input.GetKey(KeyCode.LeftShift) && Input.GetMouseButtonDown(1)) { 
@@ -134,11 +139,6 @@ public class InputManager : MonoBehaviour
                     }
                 }
 
-                // if (Input.GetMouseButtonDown(0) && Input.GetKey(KeyCode.LeftShift) && thisTile.currentPlacedItem && thisTile.currentPlacedItem.GetComponent<PlacedItem>().itemInfo.isStationary && thisTile.currentPlacedItem.GetComponent<PlacedItem>().itemInfo.potentialOffSpring.Length > 0) {
-                //     if (isRayBeingBlocked == false) {
-                //         thisTile.GetComponent<Tile>().ToggleAutoSell();
-                //     }
-                // }
             }
 
             if (isRayBeingBlocked == false && thisTile != null) {
@@ -154,6 +154,7 @@ public class InputManager : MonoBehaviour
                 garbage.GarbageSpriteClosed();
             }
         }
+
     }
 
     private void UpdateInteractablesInput() {
@@ -235,7 +236,7 @@ public class InputManager : MonoBehaviour
                     }
                 }
 
-                if (StorageContainer.instance.CheckIfStorageHasSpace(lowestZGameObject2.GetComponent<Stackable>().itemInfo)) {
+                if (StorageContainer.instance.CheckIfStorageHasSpace(lowestZGameObject2.GetComponent<Stackable>().itemInfo, lowestZGameObject2.gameObject)) {
                     lowestZGameObject2.GetComponent<Stackable>().FindAmountOfChildren(lowestZGameObject2);
                     StorageContainer.instance.AddToStorage(lowestZGameObject2.GetComponent<Stackable>().itemInfo, lowestZGameObject2.GetComponent<Stackable>().amountOfChildItems);
                     Destroy(lowestZGameObject.gameObject);

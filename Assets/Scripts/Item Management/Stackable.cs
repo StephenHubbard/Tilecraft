@@ -90,11 +90,13 @@ public class Stackable : MonoBehaviour
 
                 if (item.transform.childCount > 1) {
                     potentialParentItem = item.transform.root;
+                    AttachToParent(playClickSound);
+                    return;
                 } else {
                     potentialParentItem = item.transform;
+                    AttachToParent(playClickSound);
+                    return;
                 }
-                AttachToParent(playClickSound);
-                return;
             }
         }
     }

@@ -56,7 +56,13 @@ public class StorageContainer : MonoBehaviour, IPointerEnterHandler, IPointerMov
         }
     }
 
-    public bool CheckIfStorageHasSpace(ItemInfo itemInfo) {
+    public bool CheckIfStorageHasSpace(ItemInfo itemInfo, GameObject go) {
+
+        if (go.GetComponent<Population>() && go.GetComponent<Population>().currentLevel > 0) {
+            myAnimator.SetTrigger("Storage Full");
+            return false;
+        }
+
         if (isAlreadyExistingInStorage(itemInfo)) {
             return true;
         }

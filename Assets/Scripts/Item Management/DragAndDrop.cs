@@ -182,7 +182,7 @@ public class DragAndDrop : MonoBehaviour
 
         StorageContainer.instance.ActivateWhiteBorderOff();
 
-        if (StorageContainer.instance.isOverStorage && StorageContainer.instance.CheckIfStorageHasSpace(GetComponent<DraggableItem>().itemInfo)) {
+        if (StorageContainer.instance.isOverStorage && StorageContainer.instance.CheckIfStorageHasSpace(GetComponent<DraggableItem>().itemInfo, gameObject)) {
             StorageContainer.instance.AddToStorage(draggableItem.itemInfo, stackable.amountOfChildItems);
             Destroy(gameObject);
             return;

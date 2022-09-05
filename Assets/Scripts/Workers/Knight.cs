@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Knight : MonoBehaviour
 {
+    [SerializeField] private LayerMask cloudLayerMask = new LayerMask();
+
     [SerializeField] private GameObject deadWorkerItemPrefab;
     [SerializeField] private GameObject levelUpAnimPrefab;
 
@@ -35,6 +37,61 @@ public class Knight : MonoBehaviour
         }
 
         DetectCombat();
+    }
+
+    private void Update() {
+        DetectCloudWhileWorking();
+    }
+
+    private void DetectCloudWhileWorking()
+    {
+        if (!GetComponent<PlacedItem>()) { return; }
+
+        RaycastHit2D[] hitArray = Physics2D.RaycastAll(transform.position, Vector2.zero, 100f, cloudLayerMask);
+        RaycastHit2D[] hitArrayTwo = Physics2D.RaycastAll(transform.position + new Vector3(0, 1, 0), Vector2.zero, 100f, cloudLayerMask);
+
+        if (hitArray.Length > 0)
+        {
+            foreach (var cloud in hitArray)
+            {
+
+                cloud.transform.gameObject.GetComponent<Animator>().SetBool("HalfFade", true);
+            }
+        }
+
+        if (hitArrayTwo.Length > 0)
+        {
+            foreach (var cloud in hitArrayTwo)
+            {
+
+                cloud.transform.gameObject.GetComponent<Animator>().SetBool("HalfFade", true);
+            }
+        }
+    }
+
+    private void OnDestroy() {
+        if (!GetComponent<PlacedItem>()) { return; }
+
+        RaycastHit2D[] hitArray = Physics2D.RaycastAll(transform.position, Vector2.zero, 100f, cloudLayerMask);
+        RaycastHit2D[] hitArrayTwo = Physics2D.RaycastAll(transform.position + new Vector3(0, 1, 0), Vector2.zero, 100f, cloudLayerMask);
+
+        if (hitArray.Length > 0)
+        {
+            foreach (var cloud in hitArray)
+            {
+
+                cloud.transform.gameObject.GetComponent<Animator>().SetBool("HalfFade", false);
+            }
+        }
+
+        if (hitArrayTwo.Length > 0)
+        {
+            foreach (var cloud in hitArrayTwo)
+            {
+
+                cloud.transform.gameObject.GetComponent<Animator>().SetBool("HalfFade", false);
+            }
+        }
     }
 
     private void DetectCombat() {

@@ -29,14 +29,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 605870f83804f984fad4e30336515b3b, type: 2}
   - {fileID: 11400000, guid: 7270c4c97c15cf0478785030c0514466, type: 2}
   - {fileID: 11400000, guid: b99b74b9779be8f46a37d09aeb7626a5, type: 2}
-  - {fileID: 11400000, guid: 60dfa5edbd711ff4cad9ff27e261a28e, type: 2}
   - {fileID: 11400000, guid: bb26a4b7d8c96e344b46984f9198c6ba, type: 2}
   - {fileID: 11400000, guid: e84195656fe4b6442862262d61424209, type: 2}
   isResourceOnly: 1
   isStationary: 0
   isSmeltable: 0
   foodValue: 0
-  itemsNextToDiscover:
-  - {fileID: 11400000, guid: b99b74b9779be8f46a37d09aeb7626a5, type: 2}
+  isPopulation: 0
   toolTipText: Requires Furnace
   tierGroup: 0

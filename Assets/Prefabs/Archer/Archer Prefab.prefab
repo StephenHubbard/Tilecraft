@@ -121,6 +121,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 291379695a592724aba9bb36e604cf95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cloudLayerMask:
+    serializedVersion: 2
+    m_Bits: 1024
   deadWorkerItemPrefab: {fileID: 4812397909494241834, guid: 9babb8865d7eb6040b2a905aab024264, type: 3}
   levelUpAnimPrefab: {fileID: 0}
   myWorkingStrength: 0
@@ -132,6 +135,7 @@ MonoBehaviour:
   archerArrowPrefab: {fileID: 7841289795254243318, guid: 75287fdfb26479d49b0cc45414db2410, type: 3}
   currentTarget: {fileID: 0}
   myHealth: 6
+  maxHealth: 4
 --- !u!114 &-1398967762191156472
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -144,6 +148,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96846f3f0f94fdb47ab30878ee3bc09f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentLevel: 0
+  starContainer: {fileID: 0}
+  circleHighlight: {fileID: 0}
+  isMaxLevel: 0
 --- !u!1 &8070009926642562203
 GameObject:
   m_ObjectHideFlags: 0

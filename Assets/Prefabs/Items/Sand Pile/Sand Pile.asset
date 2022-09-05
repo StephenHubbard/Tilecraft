@@ -27,5 +27,6 @@ MonoBehaviour:
   isStationary: 0
   isSmeltable: 0
   foodValue: 0
-  toolTipText: Can only be placed on plains tile
+  isPopulation: 0
+  toolTipText: produces sand
   tierGroup: 1
