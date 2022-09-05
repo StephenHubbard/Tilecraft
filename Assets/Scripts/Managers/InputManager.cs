@@ -97,7 +97,6 @@ public class InputManager : MonoBehaviour
 
         if (hitArray.Length > 0) {
 
-
             foreach (var item in hitArray)
             {
                 thisTile = item.transform.GetComponent<Tile>();
@@ -117,6 +116,10 @@ public class InputManager : MonoBehaviour
                     } 
 
                 }
+
+                if (thisTile.currentPlacedItem && thisTile.currentPlacedItem.GetComponent<Garbage>() && activeObject && activeObject.GetComponent<DraggableItem>().itemInfo.isResourceOnly) {
+                    thisTile.currentPlacedItem.GetComponent<Garbage>().GarbageSpriteOpen();
+                } 
 
 
                 if (Input.GetKey(KeyCode.LeftShift) && Input.GetMouseButtonDown(1)) { 
@@ -144,6 +147,11 @@ public class InputManager : MonoBehaviour
                 tileHighlight.transform.position = thisTile.transform.position;
             } else {
                 tileHighlight.GetComponent<SpriteRenderer>().enabled = false;
+            }
+        } else {
+            foreach (var garbage in FindObjectsOfType<Garbage>())
+            {
+                garbage.GarbageSpriteClosed();
             }
         }
     }

@@ -10,25 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7a967a3f0f99c934bb9b8a89e7f72db0, type: 3}
-  m_Name: Archer
+  m_Name: Garbage
   m_EditorClassIdentifier: 
-  itemName: Archer
-  itemSprite: {fileID: 2049823649, guid: b8950377d5c209a428d2612d600403d0, type: 3}
-  coinValue: 2
-  draggableItemPrefab: {fileID: 4812397909494241834, guid: c715ab559fc0ebe438735b9bd7581ef4, type: 3}
-  onTilePrefab: {fileID: 994099794024727751, guid: 839dd0c0841842942960ff78051ebb53, type: 3}
+  itemName: Garbage
+  itemSprite: {fileID: 21300000, guid: a9a73720ab8d6ef4abccd664e0b079b9, type: 3}
+  coinValue: 3
+  draggableItemPrefab: {fileID: 4812397909494241834, guid: 75d568c3d529d6c42b213c11d44fbbb0, type: 3}
+  onTilePrefab: {fileID: 994099794024727751, guid: 7501e16060468b14e9e7c7c38b3088bd, type: 3}
   tileInfoValidLocations:
-  - {fileID: 11400000, guid: 5f31d55a53bbe2f479011bab64202e0c, type: 2}
   - {fileID: 11400000, guid: e492befd9aee1b645b08c2b5e24460b2, type: 2}
   - {fileID: 11400000, guid: 683019bb58be0914385796f71488de33, type: 2}
-  - {fileID: 11400000, guid: 68eb43c7510400947b95468668236dc7, type: 2}
-  recipeInfo: {fileID: 11400000, guid: a1fc468e1e6266c47883a286aaaafb1e, type: 2}
+  - {fileID: 11400000, guid: 5f31d55a53bbe2f479011bab64202e0c, type: 2}
+  recipeInfo: {fileID: 11400000, guid: 886498ff786f4b541ac3be6bf43d3a43, type: 2}
   amountRecipeCanCreate: 1
   potentialOffSpring: []
   isResourceOnly: 0
-  isStationary: 0
+  isStationary: 1
   isSmeltable: 0
   foodValue: 0
-  isPopulation: 1
-  toolTipText: 
-  tierGroup: 1
+  isPopulation: 0
+  toolTipText: Can be used to throw away unwanted items
+  tierGroup: 2

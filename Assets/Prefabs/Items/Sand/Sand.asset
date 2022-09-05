@@ -26,11 +26,11 @@ MonoBehaviour:
   amountRecipeCanCreate: 1
   potentialOffSpring:
   - {fileID: 11400000, guid: a7f0335e0ecbeab46882746bbfdfa2ec, type: 2}
+  - {fileID: 11400000, guid: 1e26de426d4b6e84f9d788e4daa755d7, type: 2}
   isResourceOnly: 1
   isStationary: 0
   isSmeltable: 1
   foodValue: 0
-  itemsNextToDiscover:
-  - {fileID: 11400000, guid: a7f0335e0ecbeab46882746bbfdfa2ec, type: 2}
+  isPopulation: 0
   toolTipText: Can be smelted in furnace
   tierGroup: 1

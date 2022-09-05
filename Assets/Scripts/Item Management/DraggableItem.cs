@@ -75,6 +75,14 @@ public class DraggableItem : MonoBehaviour
                 }
             }
 
+            // Garbage
+            if (currentTile.currentPlacedItem && currentTile.currentPlacedItem.GetComponent<PlacedItem>().itemInfo.itemName == "Garbage" && itemInfo.isResourceOnly) {
+                    currentTile.currentPlacedItem.GetComponent<Garbage>().GarbageSpriteClosed();
+                    AudioManager.instance.Play("Garbage");
+                    Destroy(gameObject);
+                    return;
+                }
+
             // furnace
             if (currentTile.currentPlacedItem != null) {
 

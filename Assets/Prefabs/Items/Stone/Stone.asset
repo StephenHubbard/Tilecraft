@@ -31,14 +31,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9b59259665b11a8498e27c393ce79a5e, type: 2}
   - {fileID: 11400000, guid: 5fcc493fe547b424ebe02d85dc10eb99, type: 2}
   - {fileID: 11400000, guid: 9c2df03fdcc9796438d0dbf6f62b71e0, type: 2}
+  - {fileID: 11400000, guid: 1e26de426d4b6e84f9d788e4daa755d7, type: 2}
   isResourceOnly: 1
   isStationary: 0
   isSmeltable: 0
   foodValue: 0
-  itemsNextToDiscover:
-  - {fileID: 11400000, guid: 855316e0c92bea843b6ce2d9671bd864, type: 2}
-  - {fileID: 11400000, guid: 5fcc493fe547b424ebe02d85dc10eb99, type: 2}
-  - {fileID: 11400000, guid: 1a15c1455f69b214a8d5bc2dcb3677cd, type: 2}
   isPopulation: 0
   toolTipText: 
   tierGroup: 0
