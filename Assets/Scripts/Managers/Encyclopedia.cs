@@ -80,18 +80,17 @@ public class Encyclopedia : MonoBehaviour
     }
 
     private void CompleteTutorialEncyclopediaStep() {
-        if (TutorialManager.instance.tutorialIndexNum == 5) {
+        if (TutorialManager.instance.tutorialIndexNum == 8) {
             TutorialManager.instance.tutorialIndexNum++;
             TutorialManager.instance.ActivateNextTutorial();
-            TutorialManager.instance.MoveBoxToLeft();
         }
     }
 
     private void CompleteTutorialEncyclopediaStepTwo() {
-        if (TutorialManager.instance.tutorialIndexNum == 6) {
+        if (TutorialManager.instance.tutorialIndexNum == 9) {
             TutorialManager.instance.tutorialIndexNum++;
             TutorialManager.instance.ActivateNextTutorial();
-            TutorialManager.instance.MoveBoxToBottom();
+            TutorialManager.instance.ShowCloseButton();
         }
     }
 

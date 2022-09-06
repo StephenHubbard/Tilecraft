@@ -31,5 +31,5 @@ MonoBehaviour:
   isSmeltable: 0
   foodValue: 1
   isPopulation: 0
-  toolTipText: 
+  toolTipText: 'Food:  Drag and drop food over workers, knights, or archers.'
   tierGroup: 0

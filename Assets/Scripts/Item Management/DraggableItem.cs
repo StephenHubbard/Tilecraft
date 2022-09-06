@@ -123,7 +123,7 @@ public class DraggableItem : MonoBehaviour
 
             // worker
             if (itemInfo.name == "Worker") {
-                if (currentTile.PlaceWorker(itemInfo.onTilePrefab, gameObject.GetComponent<Worker>().myHealth, gameObject.GetComponent<Worker>().myWorkingStrength, gameObject.GetComponent<Worker>().foodNeededToUpPickaxeStrengthCurrent, gameObject.GetComponent<Population>().currentLevel)) {
+                if (currentTile.PlaceWorker(itemInfo.onTilePrefab, gameObject.GetComponent<Worker>().myHealth, gameObject.GetComponent<Worker>().myWorkingStrength, gameObject.GetComponent<Worker>().foodNeededToUpPickaxeStrengthCurrent, gameObject.GetComponent<Population>().currentLevel, GetComponent<Worker>().maxHealth)) {
                     if (i == 1) {
                         Destroy(gameObject);
                     }
@@ -143,7 +143,7 @@ public class DraggableItem : MonoBehaviour
 
             // worker
             if (itemInfo.name == "Archer") {
-                if (currentTile.PlaceArcher(itemInfo.onTilePrefab, gameObject.GetComponent<Archer>().myHealth, gameObject.GetComponent<Archer>().myCombatValue, gameObject.GetComponent<Archer>().foodNeededToUpCombatValue, gameObject.GetComponent<Population>().currentLevel)) {
+                if (currentTile.PlaceArcher(itemInfo.onTilePrefab, gameObject.GetComponent<Archer>().myHealth, gameObject.GetComponent<Archer>().myCombatValue, gameObject.GetComponent<Archer>().foodNeededToUpCombatValue, gameObject.GetComponent<Population>().currentLevel, GetComponent<Archer>().maxHealth)) {
                     if (i == 1) {
                         Destroy(gameObject);
                     }
@@ -157,7 +157,7 @@ public class DraggableItem : MonoBehaviour
 
             // worker
             if (itemInfo.name == "Knight") {
-                if (currentTile.PlaceKnight(itemInfo.onTilePrefab, gameObject.GetComponent<Knight>().myHealth, gameObject.GetComponent<Knight>().myCombatValue, gameObject.GetComponent<Knight>().foodNeededToUpCombatValue, gameObject.GetComponent<Population>().currentLevel)) {
+                if (currentTile.PlaceKnight(itemInfo.onTilePrefab, gameObject.GetComponent<Knight>().myHealth, gameObject.GetComponent<Knight>().myCombatValue, gameObject.GetComponent<Knight>().foodNeededToUpCombatValue, gameObject.GetComponent<Population>().currentLevel, GetComponent<Knight>().maxHealth)) {
                     if (i == 1) {
                         Destroy(gameObject);
                     }

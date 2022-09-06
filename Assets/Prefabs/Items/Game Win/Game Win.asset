@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Game Win
   m_EditorClassIdentifier: 
   itemName: Game Win
-  itemSprite: {fileID: 21300000, guid: 2742c18476b06a54b98a8c86abbf0bd6, type: 3}
+  itemSprite: {fileID: 21300000, guid: 03e693a3e72a63d4a8e988352e8ee709, type: 3}
   coinValue: 0
   draggableItemPrefab: {fileID: 4812397909494241834, guid: 8db72f51fc3dd6947a73016a548eda19, type: 3}
   onTilePrefab: {fileID: 994099794024727751, guid: 65db0cc8c8008364685f38366596c671, type: 3}
@@ -29,6 +29,6 @@ MonoBehaviour:
   isStationary: 0
   isSmeltable: 0
   foodValue: 0
-  itemsNextToDiscover: []
+  isPopulation: 0
   toolTipText: Build this to finish and win the game!
   tierGroup: 5

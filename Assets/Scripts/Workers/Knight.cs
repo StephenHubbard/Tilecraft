@@ -94,7 +94,7 @@ public class Knight : MonoBehaviour
         }
     }
 
-    private void DetectCombat() {
+    public void DetectCombat() {
             if (transform.GetComponent<PlacedItem>() && transform.root.GetComponent<Tile>().currentPlacedItem && transform.root.GetComponent<Tile>().currentPlacedItem.GetComponent<OrcRelic>() && enemyTarget == null) {
 
                 bool isOccupiedWithEnemies = false;
@@ -120,8 +120,9 @@ public class Knight : MonoBehaviour
         GetComponent<Population>().TransferLevel(currentLevel);
     }
 
-    public void TransferHealth(int currentHealth) {
+    public void TransferHealth(int currentHealth, int currentMaxHealth) {
         myHealth = currentHealth; 
+        maxHealth = currentMaxHealth;
     }
 
     public void FeedWorker(int amount, bool playCrunch) {

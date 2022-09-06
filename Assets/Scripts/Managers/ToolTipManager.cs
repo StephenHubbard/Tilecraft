@@ -194,11 +194,13 @@ public class ToolTipManager : MonoBehaviour
         } else {
             appleContainer.SetActive(false);
         }
-        if (coinValue > 0) {
-            this.coinValueText.text = coinValue.ToString();
-        } else {
-            coinContainer.SetActive(false);
-        }
+        // if (coinValue > 0) {
+        //     this.coinValueText.text = coinValue.ToString();
+        // } else {
+        //     coinContainer.SetActive(false);
+        // }
+        // currently disabled xp/coin container on tooltip
+        coinContainer.SetActive(false);
         if (heartValue > 0) {
             this.heartValueText.text = heartValue.ToString();
         } else {

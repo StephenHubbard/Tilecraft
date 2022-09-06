@@ -27,11 +27,11 @@ MonoBehaviour:
   potentialOffSpring:
   - {fileID: 11400000, guid: 605870f83804f984fad4e30336515b3b, type: 2}
   - {fileID: 11400000, guid: 60dfa5edbd711ff4cad9ff27e261a28e, type: 2}
+  - {fileID: 11400000, guid: 10e8d244ed8dbd94f859cf716e846be1, type: 2}
   isResourceOnly: 1
   isStationary: 0
   isSmeltable: 0
   foodValue: 0
-  itemsNextToDiscover:
-  - {fileID: 11400000, guid: 605870f83804f984fad4e30336515b3b, type: 2}
+  isPopulation: 0
   toolTipText: Requires Furnace
   tierGroup: 1

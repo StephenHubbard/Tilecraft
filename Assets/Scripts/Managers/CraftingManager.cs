@@ -69,8 +69,15 @@ public class CraftingManager : MonoBehaviour
         }
     }
 
-    private void CompleteTowerTutorial() {
-        if (recipeInfo && recipeInfo.itemInfo.itemName == "Tower" && TutorialManager.instance.tutorialIndexNum == 1) {
+    private void CompleteFarmTutorial() {
+        if (recipeInfo && recipeInfo.itemInfo.itemName == "Farm" && TutorialManager.instance.tutorialIndexNum == 1) {
+            TutorialManager.instance.tutorialIndexNum++;
+            TutorialManager.instance.ActivateNextTutorial();
+        }
+    }
+
+    private void CraftWorkerTutorial() {
+        if (recipeInfo && recipeInfo.itemInfo.itemName == "Worker" && TutorialManager.instance.tutorialIndexNum == 7) {
             TutorialManager.instance.tutorialIndexNum++;
             TutorialManager.instance.ActivateNextTutorial();
         }
@@ -96,7 +103,7 @@ public class CraftingManager : MonoBehaviour
             if (CheckIfTileHasEnemies() == false) {
                 StartCrafting();
                 if (startAmountToCraft == amountLeftToCraft) {
-                    audioManager.Play(recipeInfo.craftingClipString);
+                    AudioManager.instance.Play(recipeInfo.craftingClipString);
                 }
             }
 
@@ -294,7 +301,8 @@ public class CraftingManager : MonoBehaviour
 
         CheckCanStartCrafting();
 
-        CompleteTowerTutorial();
+        CompleteFarmTutorial();
+        CraftWorkerTutorial();
         CompleteFirstStepTutorial();
     }
 

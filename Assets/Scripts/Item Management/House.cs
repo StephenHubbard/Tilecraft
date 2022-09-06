@@ -16,6 +16,9 @@ public class House : MonoBehaviour
     public bool isBabyMaking = false;
 
     private void Start() {
+        tileSlider.maxValue = 100;
+        tileSlider.value = 100;
+
         HousingManager.instance.DetectHowManyHouses();
         HousingManager.instance.DetectTotalPopulation();
         workerPoints = GetComponentInParent<Tile>().workerPoints;
@@ -26,14 +29,14 @@ public class House : MonoBehaviour
     }
 
     private void CompleteHouseTutorial() {
-        if (TutorialManager.instance.tutorialIndexNum == 3) {
+        if (TutorialManager.instance.tutorialIndexNum == 5) {
             TutorialManager.instance.tutorialIndexNum++;
             TutorialManager.instance.ActivateNextTutorial();
         }
     }
 
     private void CompleteFirstBabyTutorial() {
-        if (TutorialManager.instance.tutorialIndexNum == 4) {
+        if (TutorialManager.instance.tutorialIndexNum == 6) {
             TutorialManager.instance.tutorialIndexNum++;
             TutorialManager.instance.ActivateNextTutorial();
         }

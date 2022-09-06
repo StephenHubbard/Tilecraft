@@ -20,7 +20,7 @@ MonoBehaviour:
   tileInfoValidLocations:
   - {fileID: 11400000, guid: 683019bb58be0914385796f71488de33, type: 2}
   recipeInfo: {fileID: 11400000, guid: 0ebd9df6212aba943b042a7eb65a2e34, type: 2}
-  amountRecipeCanCreate: 2
+  amountRecipeCanCreate: 3
   potentialOffSpring:
   - {fileID: 11400000, guid: 376c55bd2cb6eb94b88302ce8e5df8bf, type: 2}
   isResourceOnly: 0

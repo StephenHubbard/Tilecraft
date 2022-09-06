@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.EventSystems;
+using CodeMonkey.Utils;
 
 
 public class StorageItem : MonoBehaviour, IPointerClickHandler
@@ -31,13 +32,13 @@ public class StorageItem : MonoBehaviour, IPointerClickHandler
             for (int i = amountInStorage; i > 1; i--)
             {
                 amountInStorage--;
-                Instantiate(itemInfo.draggableItemPrefab, transform.position + new Vector3(0, 0, -90f), transform.rotation);
+                Instantiate(itemInfo.draggableItemPrefab, UtilsClass.GetMouseWorldPosition() + new Vector3(0, 0, 0), transform.rotation);
                 AudioManager.instance.Play("Pop");
             }
         }
         if (eventData.button == PointerEventData.InputButton.Right || eventData.button == PointerEventData.InputButton.Left) {
             amountInStorage--;
-            Instantiate(itemInfo.draggableItemPrefab, transform.position + new Vector3(0, -1.5f, -90f), transform.rotation);
+            Instantiate(itemInfo.draggableItemPrefab, UtilsClass.GetMouseWorldPosition() + new Vector3(0, -1.5f, 0), transform.rotation);
             AudioManager.instance.Play("Pop");
         }
 

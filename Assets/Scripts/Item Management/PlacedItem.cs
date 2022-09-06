@@ -13,20 +13,13 @@ public class PlacedItem : MonoBehaviour
     }
 
     private void Start() {
-        CompleteTowerTutorial();
-        ShowAutoSellToolTip();
+        CompleteFarmTutorial();
     }
 
-    private void CompleteTowerTutorial() {
-        if (itemInfo.itemName == "Tower" && TutorialManager.instance.tutorialIndexNum == 2) {
+    private void CompleteFarmTutorial() {
+        if (itemInfo.itemName == "Farm" && TutorialManager.instance.tutorialIndexNum == 2) {
             TutorialManager.instance.tutorialIndexNum++;
             TutorialManager.instance.ActivateNextTutorial();
-        }
-    }
-
-    private void ShowAutoSellToolTip() {
-        if (itemInfo.amountRecipeCanCreate > 10 && itemInfo.itemName != "Alter") {
-            TutorialManager.instance.ShowAutoSellTutorial();
         }
     }
 

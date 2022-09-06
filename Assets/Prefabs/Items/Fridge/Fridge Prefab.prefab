@@ -62,7 +62,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a1ba30ce44d9b54f8b98188569ad62e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amountOfFoodContainer: {fileID: 2384481363379938732}
   amountOfFoodText: {fileID: 2399060789524169338}
   currentAmountOfFood: 0
   appleItemPrefab: {fileID: 4812397909494241834, guid: abc7e33b10ea8974384f00ecc689908a, type: 3}
@@ -216,10 +215,10 @@ RectTransform:
   m_Father: {fileID: 8936824856268653883}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.135, y: -0.155}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -0.333, y: 0.323}
+  m_SizeDelta: {x: 0.365, y: 0.345}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4318796857108787407
 CanvasRenderer:

@@ -29,6 +29,6 @@ MonoBehaviour:
   isStationary: 0
   isSmeltable: 0
   foodValue: 1
-  itemsNextToDiscover: []
-  toolTipText: 
+  isPopulation: 0
+  toolTipText: 'Food:  Drag and drop food over workers, knights, or archers.'
   tierGroup: 2

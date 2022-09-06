@@ -5,6 +5,7 @@ using UnityEngine;
 public class Archer : MonoBehaviour
 {
     [SerializeField] private LayerMask cloudLayerMask = new LayerMask();
+    [SerializeField] private LayerMask placedItemLayerMask = new LayerMask();
 
     [SerializeField] private GameObject deadWorkerItemPrefab;
     [SerializeField] private GameObject levelUpAnimPrefab;
@@ -41,6 +42,7 @@ public class Archer : MonoBehaviour
             myAnimator.Play (state.fullPathHash, -1, Random.Range(0f,1f));
         }
 
+        OverlapCircleDetection();
         DetectCombat();
     }
 
@@ -104,7 +106,7 @@ public class Archer : MonoBehaviour
         }
     }
 
-    private void DetectCombat() {
+    public void DetectCombat() {
         if (transform.GetComponent<PlacedItem>() && transform.root.GetComponent<Tile>().currentPlacedItem && transform.root.GetComponent<Tile>().currentPlacedItem.GetComponent<OrcRelic>() && enemyTarget == null) {
 
             bool isOccupiedWithEnemies = false;
@@ -131,8 +133,9 @@ public class Archer : MonoBehaviour
 
     }
 
-        public void TransferHealth(int currentHealth) {
+        public void TransferHealth(int currentHealth, int currentMaxHealth) {
         myHealth = currentHealth;
+        maxHealth = currentMaxHealth;
     }
 
     public void FeedWorker(int amount, bool playCrunch) {
@@ -279,8 +282,19 @@ public class Archer : MonoBehaviour
         AudioManager.instance.Play("Arrow Launch");
     }
 
-    private void OnCollisionStay2D(Collision2D other) {
-        Enemy enemy = other.gameObject.GetComponent<Enemy>();
+    public void OverlapCircleDetection() {
+        Collider2D[] foundEnemies = Physics2D.OverlapCircleAll(transform.position, 1.2f, placedItemLayerMask);
+
+        Enemy enemy = null;
+
+        foreach (var item in foundEnemies)
+        {
+            if (item.GetComponent<Enemy>()) {
+                enemy = item.GetComponent<Enemy>();
+                break;
+            }
+        }
+
         if (enemy && currentTarget == null && enemy.GetComponent<PlacedItem>() && enemy.isUncoveredByClouds) {
             if (myAnimator) {
                 myAnimator.SetBool("isAttacking", true);

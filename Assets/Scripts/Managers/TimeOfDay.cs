@@ -76,7 +76,32 @@ public class TimeOfDay : MonoBehaviour
             SpawnNewItems(1);
             SpawnNewItems(2);
             SpawnNewItems(3);
+
+            DetectCombatForAll();
         }
+    }
+
+    private void DetectCombatForAll() {
+        Worker[] allWorkers = FindObjectsOfType<Worker>();
+        Knight[] allKnights = FindObjectsOfType<Knight>();
+        Archer[] allArchers = FindObjectsOfType<Archer>();
+        
+        foreach (var item in allWorkers)
+        {
+            item.DetectCombat();
+        }
+
+        foreach (var item in allKnights)
+        {
+            item.DetectCombat();
+        }
+
+        foreach (var item in allArchers)
+        {
+            item.OverlapCircleDetection();
+            item.DetectCombat();
+        }
+
     }
 
     private void SpawnNewItems(int tier) {

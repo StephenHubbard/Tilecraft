@@ -95,7 +95,7 @@ MonoBehaviour:
   archerPrefab: {fileID: 0}
   knightPrefab: {fileID: 0}
   foodNeededToUpPickaxeStrengthCurrent: 0
-  foodNeededToUpPickaxeStrengthStart: 3
+  foodNeeded: 3
   itemInfo: {fileID: 11400000, guid: 7ecdb19248e9de349ba40029c73a2f12, type: 2}
   myHealth: 4
   maxHealth: 3
@@ -150,6 +150,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96846f3f0f94fdb47ab30878ee3bc09f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentLevel: 0
+  starContainer: {fileID: 0}
+  circleHighlight: {fileID: 0}
+  isMaxLevel: 0
 --- !u!1 &8070009926642562203
 GameObject:
   m_ObjectHideFlags: 0

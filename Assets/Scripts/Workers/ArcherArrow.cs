@@ -18,9 +18,11 @@ public class ArcherArrow : MonoBehaviour
                     Instantiate(chinkVFXPrefab, transform.position, transform.rotation);
                     AudioManager.instance.Play("Armor Chink");
 
-                    if (Vector3.Distance(transform.position, archerThatLaunchedArrow.transform.position) < 1f) {
-                        currentTarget.GetComponent<Enemy>().currentTarget = archerThatLaunchedArrow;
-                        currentTarget.GetComponent<Enemy>().myAnimator.SetBool("isAttacking", true);
+                    if (archerThatLaunchedArrow != null) {
+                        if (Vector3.Distance(transform.position, archerThatLaunchedArrow.transform.position) < 1f) {
+                            currentTarget.GetComponent<Enemy>().currentTarget = archerThatLaunchedArrow;
+                            currentTarget.GetComponent<Enemy>().myAnimator.SetBool("isAttacking", true);
+                        }
                     }
 
                 } else {

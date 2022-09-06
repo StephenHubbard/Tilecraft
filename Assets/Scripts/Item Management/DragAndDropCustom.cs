@@ -4,7 +4,7 @@ using UnityEngine;
 using CodeMonkey.Utils;
 using UnityEngine.Rendering;
 
-public class DragAndDrop : MonoBehaviour
+public class DragAndDropCustom : MonoBehaviour
 {
 
     public Vector3 dragOffset;
@@ -146,7 +146,7 @@ public class DragAndDrop : MonoBehaviour
     }
 
     private void HandleOverStorageDetection() {
-        DragAndDrop[] allChildItems = GetComponentsInChildren<DragAndDrop>();
+        DragAndDropCustom[] allChildItems = GetComponentsInChildren<DragAndDropCustom>();
 
         if (StorageContainer.instance.isOverStorage) {
             StorageContainer.instance.ActivateWhiteBorderOn();

@@ -5,6 +5,7 @@ using CodeMonkey.Utils;
 
 public class WorldGeneration : MonoBehaviour
 {
+
     [SerializeField] private int gridWidth;
     [SerializeField] private int gridHeight;
     [SerializeField] public float cellSize;
@@ -29,6 +30,7 @@ public class WorldGeneration : MonoBehaviour
     [SerializeField] private int tierThreeMaxX;
     [SerializeField] private int tierThreeMinY;
     [SerializeField] private int tierThreeMaxY;
+
     
     private Grid grid;
     private bool newTileSpawned = false;
@@ -95,8 +97,8 @@ public class WorldGeneration : MonoBehaviour
 
     private void CheckThereIsEnoughSpreadResources() {
         PlacedItem[] allPlacedItemsOfThisType = FindObjectsOfType<PlacedItem>();
-        
-        foreach (var item in spawnableTileItemsTierThree)
+
+        foreach (var item in spawnableTileItemsTierTwo)
         {
             int amountOfThisType = 0;
 
@@ -107,13 +109,30 @@ public class WorldGeneration : MonoBehaviour
                 }
             }
 
-            if (item.itemName == "Copper Node" || item.itemName == "Oil Spill") {
-                if (amountOfThisType < 9) {
+            if (item.itemName == "Copper Node") {
+                if (amountOfThisType < 15) {
                     SpawnSpecificItem(item);
                 }
             }
-
         }
+        
+        // foreach (var item in spawnableTileItemsTierThree)
+        // {
+        //     int amountOfThisType = 0;
+
+        //     foreach (var placedItem in allPlacedItemsOfThisType)
+        //     {
+        //         if (item == placedItem.itemInfo) {
+        //             amountOfThisType++;
+        //         }
+        //     }
+
+        //     if (item.itemName == "Oil Spill") {
+        //         if (amountOfThisType < 9) {
+        //             SpawnSpecificItem(item);
+        //         }
+        //     }
+        // }
     }
 
     private void SpawnSpecificItem(ItemInfo itemInfo) {
@@ -137,7 +156,7 @@ public class WorldGeneration : MonoBehaviour
 
                                 List<ItemInfo> potentialItems = new List<ItemInfo>();
                                 
-                                foreach (var potentialItem in spawnableTileItemsTierThree)
+                                foreach (var potentialItem in spawnableTileItemsTierTwo)
                                 {
                                     foreach (var validLandTile in potentialItem.tileInfoValidLocations)
                                     {
@@ -266,6 +285,7 @@ public class WorldGeneration : MonoBehaviour
                     Vector3 gridLocation = grid.GetWorldPosition(x, y) + new Vector3(cellSize, cellSize) * .5f;
                     // always spawns grass and tower tile at center
                     GameObject newTile = Instantiate(tilePrefab, gridLocation, transform.rotation);
+                    
                     GameObject tileType = Instantiate(tileInfoScriptableObjects[0].tilePrefab, newTile.transform.position, transform.rotation);
                     GameObject startingTower = Instantiate(towerPrefab, newTile.transform.position, transform.rotation);
                     startingTower.transform.parent = newTile.transform;
@@ -299,6 +319,7 @@ public class WorldGeneration : MonoBehaviour
     private void SpawnTileAbove(int x, int y) {
         Vector3 gridLocation = grid.GetWorldPosition(x, y + 1) + new Vector3(cellSize, cellSize) * .5f;
         GameObject newTile = Instantiate(tilePrefab, gridLocation, transform.rotation);
+        
         GameObject tileType = Instantiate(tileInfoScriptableObjects[0].tilePrefab, newTile.transform.position, transform.rotation);
         GameObject startingItem = Instantiate(spawnableTileItemsTierOne[4].onTilePrefab, newTile.transform.position, transform.rotation);
         startingItem.transform.parent = newTile.transform;
@@ -314,6 +335,7 @@ public class WorldGeneration : MonoBehaviour
     private void SpawnTileBelow(int x, int y) {
         Vector3 gridLocation = grid.GetWorldPosition(x, y - 1) + new Vector3(cellSize, cellSize) * .5f;
         GameObject newTile = Instantiate(tilePrefab, gridLocation, transform.rotation);
+        
         GameObject tileType = Instantiate(tileInfoScriptableObjects[1].tilePrefab, newTile.transform.position, transform.rotation);
         GameObject startingItem = Instantiate(spawnableTileItemsTierOne[1].onTilePrefab, newTile.transform.position, transform.rotation);
         startingItem.transform.parent = newTile.transform;
@@ -329,6 +351,7 @@ public class WorldGeneration : MonoBehaviour
     private void SpawnTileToRight(int x, int y) {
         Vector3 gridLocation = grid.GetWorldPosition(x + 1, y) + new Vector3(cellSize, cellSize) * .5f;
         GameObject newTile = Instantiate(tilePrefab, gridLocation, transform.rotation);
+        
         GameObject tileType = Instantiate(tileInfoScriptableObjects[2].tilePrefab, newTile.transform.position, transform.rotation);
         GameObject startingItem = Instantiate(spawnableTileItemsTierOne[3].onTilePrefab, newTile.transform.position, transform.rotation);
         startingItem.transform.parent = newTile.transform;
@@ -344,6 +367,7 @@ public class WorldGeneration : MonoBehaviour
     private void SpawnTileToLeft(int x, int y) {
         Vector3 gridLocation = grid.GetWorldPosition(x - 1, y) + new Vector3(cellSize, cellSize) * .5f;
         GameObject newTile = Instantiate(tilePrefab, gridLocation, transform.rotation);
+        
         GameObject tileType = Instantiate(tileInfoScriptableObjects[3].tilePrefab, newTile.transform.position, transform.rotation);
         GameObject startingItem = Instantiate(spawnableTileItemsTierOne[5].onTilePrefab, newTile.transform.position, transform.rotation);
         startingItem.transform.parent = newTile.transform;
@@ -425,6 +449,7 @@ public class WorldGeneration : MonoBehaviour
                     if (randomNum == 1) {
                         Vector3 gridLocation = grid.GetWorldPosition(x, y) + new Vector3(cellSize, cellSize) * .5f;
                         GameObject newTile = Instantiate(tilePrefab, gridLocation, transform.rotation);
+                        
                         GenWhichTileType(newTile.transform);
 
                         int doesSpawnStartingItemNum = Random.Range(1, 4);

@@ -127,13 +127,20 @@ public class DiscoveryManager : MonoBehaviour
     }
 
     public void DetermineNewDiscovery() {
+        if (discoveryIndex > allAvailableItemsInOrder.Count - 1) {
+            EconomyManager.instance.AllItemsDiscovered();
+        }
+        
         Encyclopedia.instance.AddItemToDiscoveredList(allAvailableItemsInOrder[discoveryIndex], true, true);
         AudioManager.instance.Play("Sell");
         discoveryIndex++;
 
-        if (discoveryIndex > allAvailableItemsInOrder.Count) {
-            EconomyManager.instance.AllItemsDiscovered();
+        if (TutorialManager.instance.tutorialIndexNum == 3) {
+            TutorialManager.instance.tutorialIndexNum++;
+            TutorialManager.instance.ActivateNextTutorial();
+            TutorialManager.instance.ShowWorldSpaceCanvas();
         }
+
     }
 
 

@@ -10,7 +10,6 @@ public class StorageContainer : MonoBehaviour, IPointerEnterHandler, IPointerMov
     [SerializeField] private GameObject gridLayoutContainer;
     [SerializeField] private GameObject whiteBorder;
     [SerializeField] private GameObject storageItemPrefab;
-    [SerializeField] private Image squareBorder;
 
     public bool isOverStorage = false;
 
@@ -36,6 +35,7 @@ public class StorageContainer : MonoBehaviour, IPointerEnterHandler, IPointerMov
 
     public void AddToStorage(ItemInfo itemInfo, int amount) {
         AudioManager.instance.Play("UI Click");
+        StorageTutorial();
 
         if (isAlreadyExistingInStorage(itemInfo)) {
             foreach (Transform item in gridLayoutContainer.transform)
@@ -53,6 +53,14 @@ public class StorageContainer : MonoBehaviour, IPointerEnterHandler, IPointerMov
             ActivateWhiteBorderOff();
             newItem.GetComponent<StorageItem>().IncreaseAmount(amount);
             newItem.transform.SetAsFirstSibling();
+        }
+
+    }
+
+    private void StorageTutorial() {
+        if (TutorialManager.instance.tutorialIndexNum == 4) {
+            TutorialManager.instance.tutorialIndexNum++;
+            TutorialManager.instance.ActivateNextTutorial();
         }
     }
 

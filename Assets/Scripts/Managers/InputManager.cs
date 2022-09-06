@@ -22,7 +22,7 @@ public class InputManager : MonoBehaviour
     [SerializeField] private Scrollbar scrollbar;
     [SerializeField] private GameObject pauseMenu;
 
-    private DragAndDrop activeObject;
+    private DragAndDropCustom activeObject;
 
     public bool isOnMainMenu = false;
 
@@ -43,13 +43,7 @@ public class InputManager : MonoBehaviour
         return Input.mousePosition;
     }
 
-    private void CompleteSellItemTutorial() {
-        if (TutorialManager.instance.tutorialIndexNum == 7) {
-            TutorialManager.instance.tutorialIndexNum++;
-            TutorialManager.instance.ActivateNextTutorial();
-            TutorialManager.instance.ShowCloseButton();
-        }
-    }
+    
 
     private void Update() {
 
@@ -109,7 +103,7 @@ public class InputManager : MonoBehaviour
                         isRayBeingBlocked = true;
 
                         if (item.transform.GetComponent<Stackable>()) {
-                            if (item.transform.GetComponent<DragAndDrop>().isActive) {
+                            if (item.transform.GetComponent<DragAndDropCustom>().isActive) {
                                 isRayBeingBlocked = false;
                             }
                         }
@@ -176,7 +170,7 @@ public class InputManager : MonoBehaviour
                             lowestZGameObject = item.transform;
                         }
                     }
-                    activeObject = lowestZGameObject.gameObject.GetComponent<DragAndDrop>();
+                    activeObject = lowestZGameObject.gameObject.GetComponent<DragAndDropCustom>();
                     activeObject.OnMouseDownCustom();
                 } 
             } else {
@@ -221,7 +215,7 @@ public class InputManager : MonoBehaviour
         //     }
         // }
 
-        if (Input.GetKey(KeyCode.LeftShift) && Input.GetMouseButtonDown(0)) {
+        if (Input.GetKey(KeyCode.LeftShift) && Input.GetMouseButtonDown(0) && TutorialManager.instance.storageActive) {
             Transform lowestZGameObject2 = null;
 
             RaycastHit2D[] hit2 = Physics2D.RaycastAll(UtilsClass.GetMouseWorldPosition(), Vector2.zero, 100f, interactableLayerMask);

@@ -29,5 +29,5 @@ MonoBehaviour:
   isSmeltable: 0
   foodValue: 0
   isPopulation: 0
-  toolTipText: Can be used to throw away unwanted items
+  toolTipText: throw away unwanted items (not workers, knights, or archers).
   tierGroup: 2
