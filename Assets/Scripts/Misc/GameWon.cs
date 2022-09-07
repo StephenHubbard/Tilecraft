@@ -21,6 +21,7 @@ public class GameWon : MonoBehaviour
         timeToWinText.text = "You won in: " + totalDaysString + " days!";
         
         Time.timeScale = 0;
+
     }
 
 }

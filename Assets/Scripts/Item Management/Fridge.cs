@@ -21,6 +21,7 @@ public class Fridge : MonoBehaviour
 
     private void OnMouseOver() {
         if (Input.GetMouseButtonDown(1) && currentAmountOfFood > 0) {
+            AudioManager.instance.Play("Pop");
             Vector3 spawnItemsVector3 = transform.position + new Vector3(1f, 0, 0);
             Instantiate(appleItemPrefab, spawnItemsVector3, transform.rotation);
             currentAmountOfFood--;

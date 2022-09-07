@@ -81,7 +81,7 @@ public class InputManager : MonoBehaviour
     }
 
     private void UpdateTileInput() {
-        if (ToolTipManager.instance.isOverUI) { return; }
+        if (Menu.instance.isPaused) { return; }
 
         RaycastHit2D[] hitArray = Physics2D.RaycastAll(UtilsClass.GetMouseWorldPosition(), Vector2.zero, 100f, tileDetectionLayerMask);
 
@@ -152,7 +152,7 @@ public class InputManager : MonoBehaviour
     }
 
     private void UpdateInteractablesInput() {
-            // if (ToolTipManager.instance.isOverUI) { return; }
+            if (Menu.instance.isPaused) { return; }
 
             Transform lowestZGameObject = null;
 
@@ -187,34 +187,6 @@ public class InputManager : MonoBehaviour
             }
         }
 
-        // PREVIOUS SELL ITEM
-        // if (Input.GetMouseButtonDown(1)) {
-        //     Transform lowestZGameObject2 = null;
-
-        //     RaycastHit2D[] hit2 = Physics2D.RaycastAll(UtilsClass.GetMouseWorldPosition(), Vector2.zero, 100f, interactableLayerMask);
-
-        //     if (hit.Length > 0) {
-        //         foreach (var item in hit)
-        //         {
-        //             if (lowestZGameObject2 == null) {
-        //                 lowestZGameObject2 = item.transform;
-        //             } else if (item.transform.position.y < lowestZGameObject2.position.y) {
-        //                 lowestZGameObject2 = item.transform;
-        //             }
-        //         }
-
-        //         lowestZGameObject2.GetComponent<Stackable>().FindAmountOfChildren(lowestZGameObject2);
-        //         EconomyManager.instance.SellItem(lowestZGameObject2.gameObject, lowestZGameObject2.GetComponent<DraggableItem>().itemInfo.coinValue, lowestZGameObject2.GetComponent<Stackable>().amountOfChildItems);
-
-        //         CompleteSellItemTutorial();
-
-        //         if (lowestZGameObject2.gameObject.GetComponent<DraggableItem>().itemInfo.isPopulation) {
-        //             HousingManager.instance.DetectTotalPopulation();
-        //             HousingManager.instance.AllHousesDetectBabyMaking();
-        //         }
-        //     }
-        // }
-
         if (Input.GetKey(KeyCode.LeftShift) && Input.GetMouseButtonDown(0) && TutorialManager.instance.storageActive) {
             Transform lowestZGameObject2 = null;
 
@@ -237,7 +209,6 @@ public class InputManager : MonoBehaviour
                 }
             }
         }
-
     }
 
     public Vector2 GetCameraMoveVector()

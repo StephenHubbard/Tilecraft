@@ -92,9 +92,10 @@ public class Tile : MonoBehaviour
                 }
                 AudioManager.instance.Play("Click");
 
-                if (currentPlacedItem && currentPlacedItem.GetComponent<Hospital>()) {
+                if (currentPlacedItem && currentPlacedItem.GetComponent<Hospital>() && !currentPlacedItem.GetComponent<Hospital>().isHealing) {
                     currentPlacedItem.GetComponent<Hospital>().HealPerson(newWorker);
-                }
+                } 
+
                 return true;
             }
         }
@@ -113,9 +114,10 @@ public class Tile : MonoBehaviour
                 isOccupiedWithWorkers = true;
                 AudioManager.instance.Play("Click");
 
-                if (currentPlacedItem && currentPlacedItem.GetComponent<Hospital>()) {
+                if (currentPlacedItem && currentPlacedItem.GetComponent<Hospital>() && !currentPlacedItem.GetComponent<Hospital>().isHealing) {
                     currentPlacedItem.GetComponent<Hospital>().HealPerson(newKnight);
-                }
+                } 
+
                 return true;
             }
         }
@@ -134,9 +136,10 @@ public class Tile : MonoBehaviour
                 isOccupiedWithWorkers = true;
                 AudioManager.instance.Play("Click");
 
-                if (currentPlacedItem && currentPlacedItem.GetComponent<Hospital>()) {
+                if (currentPlacedItem && currentPlacedItem.GetComponent<Hospital>() && !currentPlacedItem.GetComponent<Hospital>().isHealing) {
                     currentPlacedItem.GetComponent<Hospital>().HealPerson(newArcher);
-                }
+                } 
+
                 return true;
             }
         }

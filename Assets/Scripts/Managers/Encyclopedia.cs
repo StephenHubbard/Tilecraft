@@ -96,6 +96,7 @@ public class Encyclopedia : MonoBehaviour
 
     // minimize icon button
     public void CloseEncylopedia() {
+        AudioManager.instance.Play("UI Click");
         CompleteTutorialEncyclopediaStepTwo();
         encylopediaContainer.SetActive(false);
         OnPointerExitDelegate();

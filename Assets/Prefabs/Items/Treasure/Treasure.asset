@@ -28,5 +28,8 @@ MonoBehaviour:
   isSmeltable: 0
   foodValue: 0
   isPopulation: 0
-  toolTipText: produces a crown
+  toolTipText: 'produces a crown
+
+
+    Found in wilderness'
   tierGroup: 3

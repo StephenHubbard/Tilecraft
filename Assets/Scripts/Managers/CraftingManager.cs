@@ -168,7 +168,7 @@ public class CraftingManager : MonoBehaviour
 
         foreach (var item in GetComponent<Tile>().workerPoints)
         {
-            if (item.childCount > 0) {
+            if (item.childCount > 0 && item.GetChild(0).GetComponent<Worker>()) {
                 amountOfWorkers++;
             }
         }

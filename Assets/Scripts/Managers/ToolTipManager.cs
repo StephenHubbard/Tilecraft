@@ -37,7 +37,6 @@ public class ToolTipManager : MonoBehaviour
 
     private void Start() {
         ToggleToolTipOff();
-        // MinimizeWindow();
     }
 
     private void Update() {
@@ -187,6 +186,7 @@ public class ToolTipManager : MonoBehaviour
 
     public void UpdateValues(string itemText, string toolTipText, int foodValue, int coinValue, int heartValue, int pickaxeValue, int hatchetValue) {
 
+
         this.itemText.text = itemText;
         this.toolTipText.text = toolTipText;
         if (foodValue > 0) {
@@ -224,11 +224,12 @@ public class ToolTipManager : MonoBehaviour
         maximizeButton.SetActive(true);
         minimizeButton.SetActive(false);
         isMaximized = false;
+        isOverUI = false;
         AudioManager.instance.Play("UI Click");
     }
 
     public void MaximizeWindow() {
-        ToggleToolTipOn();
+        // ToggleToolTipOn();
         toolTipImage.SetActive(true);
         maximizeButton.SetActive(false);
         minimizeButton.SetActive(true);

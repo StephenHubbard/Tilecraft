@@ -14,6 +14,7 @@ public class WinPendant : MonoBehaviour
     void Start()
     {
         gameWon.GameHasBeenWon();
+        Destroy(gameObject);
     }
 
 }

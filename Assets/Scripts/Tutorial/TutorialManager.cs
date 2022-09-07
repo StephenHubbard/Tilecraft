@@ -13,6 +13,7 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private TMP_Text tutorialText;
     [SerializeField] private GameObject closeButton;
     [SerializeField] private GameObject storageContainerBackground;
+    [SerializeField] private GameObject maximizeTutorialButton;
 
     public int tutorialIndexNum = 0;
 
@@ -58,6 +59,19 @@ public class TutorialManager : MonoBehaviour
         tutorialContainer.SetActive(true);
 
         // ChangeTutorialWindowSizeToFitText();
+    }
+
+    public void MinimizeButton() {
+        AudioManager.instance.Play("UI Click");
+        maximizeTutorialButton.SetActive(true);
+        tutorialContainer.SetActive(false);
+        ToolTipManager.instance.isOverUI = false;
+    }
+
+    public void MaximizeButton() {
+        AudioManager.instance.Play("UI Click");
+        maximizeTutorialButton.SetActive(false);
+        tutorialContainer.SetActive(true);
     }
 
     // private void ChangeTutorialWindowSizeToFitText() {

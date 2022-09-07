@@ -8,8 +8,12 @@ public class StartingMenu : MonoBehaviour
     [SerializeField] private GameObject worldSpaceCavas;
     [SerializeField] private GameObject uiCanvas;
     [SerializeField] private GameObject startingMenuCanvas;
+    
+    private Animator myAnimator;
 
-    private int testInt;
+    private void Awake() {
+        myAnimator = GetComponent<Animator>();
+    }
 
     private void Start() {
         InputManager.instance.isOnMainMenu = true;
@@ -17,6 +21,8 @@ public class StartingMenu : MonoBehaviour
 
     public void NewGameButton() {
         AudioManager.instance.Play("UI Click");
+        AudioManager.instance.Play("Wind");
+        myAnimator.SetTrigger("Start Game");
         NewGameStartLogic();
     }
 
@@ -24,7 +30,6 @@ public class StartingMenu : MonoBehaviour
         AudioManager.instance.Play("UI Click");
         SaveLoadGame.instance.LoadGameLogic();
     }
-    
 
     public void OptionsButton() {
         AudioManager.instance.Play("UI Click");
@@ -37,11 +42,16 @@ public class StartingMenu : MonoBehaviour
 
     private void NewGameStartLogic() {
         AudioManager.instance.Play("UI Click");
+        InputManager.instance.isOnMainMenu = false;
+        StartCoroutine(startingMenuInactiveCo());
+    }
+
+    private IEnumerator startingMenuInactiveCo() {
+        yield return new WaitForSeconds(2f);
+        HousingManager.instance.SpawnStartingThreeWorkers();
         worldSpaceCavas.SetActive(true);
         uiCanvas.SetActive(true);
         startingMenuCanvas.SetActive(false);
-        HousingManager.instance.SpawnStartingThreeWorkers();
-        InputManager.instance.isOnMainMenu = false;
     }
 
 }

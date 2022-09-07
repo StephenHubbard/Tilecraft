@@ -116,23 +116,23 @@ public class WorldGeneration : MonoBehaviour
             }
         }
         
-        // foreach (var item in spawnableTileItemsTierThree)
-        // {
-        //     int amountOfThisType = 0;
+        foreach (var item in spawnableTileItemsTierThree)
+        {
+            int amountOfThisType = 0;
 
-        //     foreach (var placedItem in allPlacedItemsOfThisType)
-        //     {
-        //         if (item == placedItem.itemInfo) {
-        //             amountOfThisType++;
-        //         }
-        //     }
+            foreach (var placedItem in allPlacedItemsOfThisType)
+            {
+                if (item == placedItem.itemInfo) {
+                    amountOfThisType++;
+                }
+            }
 
-        //     if (item.itemName == "Oil Spill") {
-        //         if (amountOfThisType < 9) {
-        //             SpawnSpecificItem(item);
-        //         }
-        //     }
-        // }
+            if (item.itemName == "Oil Spill") {
+                if (amountOfThisType < 9) {
+                    SpawnSpecificItem(item);
+                }
+            }
+        }
     }
 
     private void SpawnSpecificItem(ItemInfo itemInfo) {

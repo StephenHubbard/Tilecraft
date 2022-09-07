@@ -9,6 +9,8 @@ public class Hospital : MonoBehaviour
     [SerializeField] private float healTime = 20f;
     [SerializeField] private GameObject healVFXprefab;
 
+    public bool isHealing = false;
+
     public void HealPerson(GameObject person) {
 
         GetComponentInParent<CraftingManager>().sliderCanvas.SetActive(true);
@@ -19,6 +21,7 @@ public class Hospital : MonoBehaviour
     }
 
     private IEnumerator HealCo(GameObject person) {
+        isHealing = true;
         bool doneHealing = false;
         Slider slider = GetComponentInParent<CraftingManager>().tileSlider;
 
@@ -27,20 +30,28 @@ public class Hospital : MonoBehaviour
 
             if (slider.value < .1f) {
                 doneHealing = true;
+                isHealing = false;
 
-                if (person.gameObject.GetComponent<Worker>()) {
-                    person.gameObject.GetComponent<Worker>().myHealth = person.gameObject.GetComponent<Worker>().maxHealth;
-                }
+                Transform[] workerPointsInTile = GetComponentInParent<Tile>().workerPoints;
 
-                if (person.gameObject.GetComponent<Archer>()) {
-                    person.gameObject.GetComponent<Archer>().myHealth = person.gameObject.GetComponent<Archer>().maxHealth;
-                }
+                foreach (Transform item in workerPointsInTile)
+                {
+                    if (item.childCount > 0) {
+                        if (item.transform.GetChild(0).GetComponent<Worker>()) {
+                            item.transform.GetChild(0).GetComponent<Worker>().myHealth = item.transform.GetChild(0).GetComponent<Worker>().maxHealth;
+                        }
 
-                if (person.gameObject.GetComponent<Knight>()) {
-                    person.gameObject.GetComponent<Knight>().myHealth = person.gameObject.GetComponent<Knight>().maxHealth;
+                        if (item.transform.GetChild(0).GetComponent<Knight>()) {
+                            item.transform.GetChild(0).GetComponent<Knight>().myHealth = item.transform.GetChild(0).GetComponent<Knight>().maxHealth;
+                        }
+
+                        if (item.transform.GetChild(0).GetComponent<Archer>()) {
+                            item.transform.GetChild(0).GetComponent<Archer>().myHealth = item.transform.GetChild(0).GetComponent<Archer>().maxHealth;
+                        }
+                    }
                 }
+                
             }
-
 
             yield return null;
 

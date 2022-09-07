@@ -58,10 +58,12 @@ public class Enemy : MonoBehaviour
     private void OnCollisionStay2D(Collision2D other) {
         Worker worker = other.gameObject.GetComponent<Worker>();
         if (worker && currentTarget == null && worker.GetComponent<PlacedItem>() && isUncoveredByClouds) {
-            myAnimator.SetBool("isAttacking", true);
-            myAnimator.Play("Attack", -1, Random.Range(0f,1f));
-            currentTarget = worker.transform;
-            AudioManager.instance.Play("Orc Attack");
+            if (worker.GetComponentInParent<Tile>() == GetComponentInParent<Tile>()) {
+                myAnimator.SetBool("isAttacking", true);
+                myAnimator.Play("Attack", -1, Random.Range(0f,1f));
+                currentTarget = worker.transform;
+                AudioManager.instance.Play("Orc Attack");
+            }
         }
 
         if (!isMaskedOrc) {
@@ -76,10 +78,12 @@ public class Enemy : MonoBehaviour
 
         Knight knight = other.gameObject.GetComponent<Knight>();
         if (knight && currentTarget == null && knight.GetComponent<PlacedItem>() && isUncoveredByClouds) {
-            myAnimator.SetBool("isAttacking", true);
-            myAnimator.Play("Attack", -1, Random.Range(0f,1f));
-            currentTarget = knight.transform;
-            AudioManager.instance.Play("Orc Attack");
+            if (knight.GetComponentInParent<Tile>() == GetComponentInParent<Tile>()) {
+                myAnimator.SetBool("isAttacking", true);
+                myAnimator.Play("Attack", -1, Random.Range(0f,1f));
+                currentTarget = knight.transform;
+                AudioManager.instance.Play("Orc Attack");
+            }
         }
     }
 
