@@ -87,6 +87,7 @@ public class TutorialManager : MonoBehaviour
 
     public void CompleteThisSectionOfTutorial() {
         AudioManager.instance.Play("UI Click");
+        ToolTipManager.instance.isOverUI = false;
         tutorialContainer.SetActive(false);
     }
 

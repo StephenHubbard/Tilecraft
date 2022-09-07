@@ -109,7 +109,7 @@ public class WorldGeneration : MonoBehaviour
                 }
             }
 
-            if (item.itemName == "Copper Node") {
+            if (item.itemName == "Copper Node" || item.itemName == "Sand Pile") {
                 if (amountOfThisType < 15) {
                     SpawnSpecificItem(item);
                 }
@@ -160,18 +160,18 @@ public class WorldGeneration : MonoBehaviour
                                 {
                                     foreach (var validLandTile in potentialItem.tileInfoValidLocations)
                                     {
-
                                         if (validLandTile == hit.transform.GetComponent<Tile>().tileInfo) {
                                             potentialItems.Add(potentialItem);
                                         }
                                     }
                                 }
+
                                 int whichPrefabToSpawnNum = Random.Range(0, potentialItems.Count);
                                 
                                 if (potentialItems.Count == 0) { continue; }
 
-                                GameObject startingPlacedItem = Instantiate(itemInfo.onTilePrefab, hit.transform.position, transform.rotation);
-                                startingPlacedItem.transform.parent = hit.transform.transform;
+                                GameObject startingPlacedItem = Instantiate(potentialItems[whichPrefabToSpawnNum].onTilePrefab, hit.transform.position, transform.rotation);
+                                startingPlacedItem.transform.parent = hit.transform;
                                 hit.transform.GetComponent<Tile>().UpdateCurrentPlacedItem(startingPlacedItem.GetComponent<PlacedItem>().itemInfo, startingPlacedItem);
                                 hit.transform.GetComponent<Tile>().isOccupiedWithBuilding = true;
                                 hit.transform.GetComponent<CraftingManager>().UpdateAmountLeftToCraft(startingPlacedItem.GetComponent<PlacedItem>().itemInfo.amountRecipeCanCreate);

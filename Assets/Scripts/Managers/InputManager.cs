@@ -81,7 +81,7 @@ public class InputManager : MonoBehaviour
     }
 
     private void UpdateTileInput() {
-        if (Menu.instance.isPaused) { return; }
+        if (Menu.instance && Menu.instance.isPaused) { return; }
 
         RaycastHit2D[] hitArray = Physics2D.RaycastAll(UtilsClass.GetMouseWorldPosition(), Vector2.zero, 100f, tileDetectionLayerMask);
 
@@ -152,7 +152,7 @@ public class InputManager : MonoBehaviour
     }
 
     private void UpdateInteractablesInput() {
-            if (Menu.instance.isPaused) { return; }
+            if (Menu.instance && Menu.instance.isPaused) { return; }
 
             Transform lowestZGameObject = null;
 
