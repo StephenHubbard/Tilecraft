@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using CodeMonkey.Utils;
 
-public class Tile : MonoBehaviour
+public class Tile : MonoBehaviour, IDataPersistence
 {
+    [SerializeField] public string id;
     [SerializeField] public TileInfo tileInfo;
     [SerializeField] public ItemInfo itemInfo;
     [SerializeField] public GameObject currentPlacedItem;
@@ -27,17 +28,41 @@ public class Tile : MonoBehaviour
     private CraftingManager craftingManager;
     private HighlightedBorder highlightedBorder;
 
+    public bool saveSinglePositionTest = false;
+
     private void Awake() {
         highlightedBorder = FindObjectOfType<HighlightedBorder>();
         craftingManager = GetComponent<CraftingManager>();
     } 
+
+    private void Start() {
+        GenerateGuid();
+    }
 
     public void UpdateCurrentPlacedItem(ItemInfo itemInfo, GameObject thisPlacedItem) {
         this.itemInfo = itemInfo;
         currentPlacedItem = thisPlacedItem;
         currentPlacedResources.Add(itemInfo);
         currentPlacedItem.GetComponent<PlacedItem>().CheckForValidRecipe();
+    }
 
+    public void GenerateGuid() {
+        id = System.Guid.NewGuid().ToString();
+    }
+
+    public void LoadData(GameData data) {
+        print(data.tilePositionTest.x);
+    }
+
+    public void SaveData(ref GameData data) {
+        if (saveSinglePositionTest) {
+            data.tilePositionTest = transform.position;
+            print(transform.position.x);
+            // if (data.tilePositions.ContainsKey(id)) {
+            //     data.tilePositions.Remove(id);
+            // }
+            // data.tilePositions.Add(id, transform.position);
+        }
     }
 
     public void ToggleAutoSell() {

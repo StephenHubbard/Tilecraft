@@ -28,7 +28,8 @@ public class StartingMenu : MonoBehaviour
 
     public void LoadGameButton() {
         AudioManager.instance.Play("UI Click");
-        SaveLoadGame.instance.LoadGameLogic();
+        DataPersistenceManager.instance.LoadGame();
+        print("game loaded");
     }
 
     public void OptionsButton() {
@@ -43,6 +44,7 @@ public class StartingMenu : MonoBehaviour
     private void NewGameStartLogic() {
         AudioManager.instance.Play("UI Click");
         InputManager.instance.isOnMainMenu = false;
+        DataPersistenceManager.instance.NewGame();
         StartCoroutine(startingMenuInactiveCo());
     }
 

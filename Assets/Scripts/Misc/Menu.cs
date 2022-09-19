@@ -38,7 +38,8 @@ public class Menu : MonoBehaviour
 
     public void SaveGameButton() {
         AudioManager.instance.Play("UI Click");
-        SaveLoadGame.instance.SaveGameLogic();
+        DataPersistenceManager.instance.SaveGame();
+        print("game saved");
     }
 
     public void ResumeButton() {

@@ -4,10 +4,10 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-public class EconomyManager : MonoBehaviour
+public class EconomyManager : MonoBehaviour, IDataPersistence
 {
-    [SerializeField] public int currentCoins = 0;
-    [SerializeField] public int coinsTillDiscovery = 5;
+    [SerializeField] public int currentXP = 0;
+    [SerializeField] public int XPTillDiscovery = 5;
     [SerializeField] private GameObject spinningCoinPrefab;
     [SerializeField] private Slider slider;
     [SerializeField] private TMP_Text coinText;
@@ -25,12 +25,20 @@ public class EconomyManager : MonoBehaviour
     }
 
     private void Start() {
-        slider.maxValue = coinsTillDiscovery;
-        slider.value = currentCoins;
+        slider.maxValue = XPTillDiscovery;
+        slider.value = currentXP;
+    }
+
+    public void LoadData(GameData data) {
+        this.currentXP = data.currentXP;
+    }
+
+    public void SaveData(ref GameData data) {
+        data.currentXP = this.currentXP;
     }
 
     private void Update() {
-        coinText.text = currentCoins.ToString() + "/" + coinsTillDiscovery.ToString();
+        coinText.text = currentXP.ToString() + "/" + XPTillDiscovery.ToString();
 
     }
 
@@ -40,17 +48,17 @@ public class EconomyManager : MonoBehaviour
             return; 
         }
 
-        int leftoverAmount = (coinsTillDiscovery - currentCoins) - amount;
+        int leftoverAmount = (XPTillDiscovery - currentXP) - amount;
 
-        currentCoins += amount;
-        slider.value = currentCoins;
+        currentXP += amount;
+        slider.value = currentXP;
 
-        if (currentCoins >= coinsTillDiscovery) {
+        if (currentXP >= XPTillDiscovery) {
             NewDiscovery();
-            slider.maxValue = coinsTillDiscovery + 1;
-            coinsTillDiscovery = (int)slider.maxValue;
-            currentCoins = 0;
-            slider.value = currentCoins;
+            slider.maxValue = XPTillDiscovery + 1;
+            XPTillDiscovery = (int)slider.maxValue;
+            currentXP = 0;
+            slider.value = currentXP;
         }
 
         if (leftoverAmount < 0) {
