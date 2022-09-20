@@ -28,7 +28,6 @@ public class Tile : MonoBehaviour, IDataPersistence
     private CraftingManager craftingManager;
     private HighlightedBorder highlightedBorder;
 
-    public bool saveSinglePositionTest = false;
 
     private void Awake() {
         highlightedBorder = FindObjectOfType<HighlightedBorder>();
@@ -37,6 +36,7 @@ public class Tile : MonoBehaviour, IDataPersistence
 
     private void Start() {
         GenerateGuid();
+
     }
 
     public void UpdateCurrentPlacedItem(ItemInfo itemInfo, GameObject thisPlacedItem) {
@@ -44,6 +44,7 @@ public class Tile : MonoBehaviour, IDataPersistence
         currentPlacedItem = thisPlacedItem;
         currentPlacedResources.Add(itemInfo);
         currentPlacedItem.GetComponent<PlacedItem>().CheckForValidRecipe();
+
     }
 
     public void GenerateGuid() {
@@ -51,18 +52,16 @@ public class Tile : MonoBehaviour, IDataPersistence
     }
 
     public void LoadData(GameData data) {
-        print(data.tilePositionTest.x);
+
     }
 
     public void SaveData(ref GameData data) {
-        if (saveSinglePositionTest) {
-            data.tilePositionTest = transform.position;
-            print(transform.position.x);
-            // if (data.tilePositions.ContainsKey(id)) {
-            //     data.tilePositions.Remove(id);
-            // }
-            // data.tilePositions.Add(id, transform.position);
+        if (data.tilePositions.ContainsKey(id)) {
+            data.tilePositions.Remove(id);
         }
+        data.tilePositions.Add(id, transform.position);
+        data.tileInfo.Add(id, this.tileInfo);
+        data.itemInfo.Add(id, this.itemInfo);
     }
 
     public void ToggleAutoSell() {
@@ -266,7 +265,7 @@ public class Tile : MonoBehaviour, IDataPersistence
 
     }
 
-    private IEnumerator CheckValideRecipeEndOfFrameCo() {
+    public IEnumerator CheckValideRecipeEndOfFrameCo() {
         yield return new WaitForEndOfFrame();
 
         currentPlacedResources.Clear();

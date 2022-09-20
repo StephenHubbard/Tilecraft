@@ -6,8 +6,9 @@ using UnityEngine.EventSystems;
 using CodeMonkey.Utils;
 
 
-public class StorageItem : MonoBehaviour, IPointerClickHandler
+public class StorageItem : MonoBehaviour, IPointerClickHandler, IDataPersistence
 {
+    [SerializeField] public string id;
     [SerializeField] private TMP_Text amountText;
 
     public ItemInfo itemInfo;
@@ -15,7 +16,24 @@ public class StorageItem : MonoBehaviour, IPointerClickHandler
     public int amountInStorage = 0;
 
     private void Start() {
+        GenerateGuid();
         itemInfo = GetComponent<UITooltip>().itemInfo;
+    }
+
+    public void GenerateGuid() {
+        id = System.Guid.NewGuid().ToString();
+    }
+
+    public void LoadData(GameData data) {
+
+    }
+
+    public void SaveData(ref GameData data) {
+        if (data.storageItemsItemInfo.ContainsKey(id)) {
+            data.storageItemsItemInfo.Remove(id);
+        }
+        data.storageItemsItemInfo.Add(id, itemInfo);
+        data.storageItemsAmount.Add(id, amountInStorage);
     }
 
     private void Update() {

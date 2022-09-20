@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class EconomyManager : MonoBehaviour, IDataPersistence
 {
     [SerializeField] public int currentXP = 0;
-    [SerializeField] public int XPTillDiscovery = 5;
+    [SerializeField] public int xpTillDiscovery = 5;
     [SerializeField] private GameObject spinningCoinPrefab;
     [SerializeField] private Slider slider;
     [SerializeField] private TMP_Text coinText;
@@ -25,20 +25,24 @@ public class EconomyManager : MonoBehaviour, IDataPersistence
     }
 
     private void Start() {
-        slider.maxValue = XPTillDiscovery;
+        slider.maxValue = xpTillDiscovery;
         slider.value = currentXP;
     }
 
     public void LoadData(GameData data) {
         this.currentXP = data.currentXP;
+        this.xpTillDiscovery = data.xpTillDiscovery;
+        slider.maxValue = xpTillDiscovery;
+        slider.value = currentXP;
     }
 
     public void SaveData(ref GameData data) {
         data.currentXP = this.currentXP;
+        data.xpTillDiscovery = this.xpTillDiscovery;
     }
 
     private void Update() {
-        coinText.text = currentXP.ToString() + "/" + XPTillDiscovery.ToString();
+        coinText.text = currentXP.ToString() + "/" + xpTillDiscovery.ToString();
 
     }
 
@@ -48,15 +52,15 @@ public class EconomyManager : MonoBehaviour, IDataPersistence
             return; 
         }
 
-        int leftoverAmount = (XPTillDiscovery - currentXP) - amount;
+        int leftoverAmount = (xpTillDiscovery - currentXP) - amount;
 
         currentXP += amount;
         slider.value = currentXP;
 
-        if (currentXP >= XPTillDiscovery) {
+        if (currentXP >= xpTillDiscovery) {
             NewDiscovery();
-            slider.maxValue = XPTillDiscovery + 1;
-            XPTillDiscovery = (int)slider.maxValue;
+            slider.maxValue = xpTillDiscovery + 1;
+            xpTillDiscovery = (int)slider.maxValue;
             currentXP = 0;
             slider.value = currentXP;
         }

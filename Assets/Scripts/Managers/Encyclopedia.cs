@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
 
-public class Encyclopedia : MonoBehaviour
+public class Encyclopedia : MonoBehaviour, IDataPersistence
 {
     [SerializeField] private GameObject uncraftedFilterButton;
     [SerializeField] private Sprite inactiveButtonSprite;
@@ -19,7 +19,7 @@ public class Encyclopedia : MonoBehaviour
     [SerializeField] private GameObject backButton;
     [SerializeField] private TMP_Text bottomContainerText;
     [SerializeField] public List<ItemInfo> startingItems = new List<ItemInfo>();
-    [SerializeField] public Dictionary<ItemInfo, bool> discoveredItems = new Dictionary<ItemInfo, bool>();
+    [SerializeField] public SerializableDictionary<ItemInfo, bool> discoveredItems = new SerializableDictionary<ItemInfo, bool>();
     [SerializeField] private List<ItemInfo> newlyDiscoveredItems = new List<ItemInfo>();
     [SerializeField] private List<ItemInfo> itemsThatCanBeCrafted = new List<ItemInfo>();
 
@@ -49,7 +49,14 @@ public class Encyclopedia : MonoBehaviour
         {
             AddItemToDiscoveredList(item, false, false);
         }
+    }
 
+    public void LoadData(GameData data) {
+        this.discoveredItems = data.discoveredItemsCraftedDict;
+    }
+
+    public void SaveData(ref GameData data) {
+        data.discoveredItemsCraftedDict = this.discoveredItems;
     }
 
     public void CraftedDiscoveredItem(ItemInfo itemInfo) {

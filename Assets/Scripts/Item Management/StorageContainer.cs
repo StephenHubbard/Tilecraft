@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 
 public class StorageContainer : MonoBehaviour, IPointerEnterHandler, IPointerMoveHandler, IPointerExitHandler
 {
-    [SerializeField] private GameObject gridLayoutContainer;
+    [SerializeField] public GameObject gridLayoutContainer;
     [SerializeField] private GameObject whiteBorder;
     [SerializeField] private GameObject storageItemPrefab;
 

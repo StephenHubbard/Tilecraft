@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using CodeMonkey.Utils;
 
-public class Worker : MonoBehaviour
+public class Worker : MonoBehaviour, IDataPersistence
 {
-    
+    [SerializeField] public string id;
     [SerializeField] private LayerMask cloudLayerMask = new LayerMask();
     [SerializeField] private GameObject deadWorkerOnTilePrefab;
     [SerializeField] private GameObject deadWorkerItemPrefab;
@@ -32,6 +32,8 @@ public class Worker : MonoBehaviour
     }
 
     private void Start() {
+        GenerateGuid();
+
         if (GetComponent<PlacedItem>() && myAnimator) {
             AnimatorStateInfo state = myAnimator.GetCurrentAnimatorStateInfo (0);
             myAnimator.Play (state.fullPathHash, -1, Random.Range(0f,1f));
@@ -40,7 +42,28 @@ public class Worker : MonoBehaviour
         DetectCombat();
 
         itemInfo.toolTipText = "strength value: " + myWorkingStrength.ToString();
+    }
 
+    public void LoadData(GameData data) {
+
+    }
+
+    public void SaveData(ref GameData data) {
+        if (GetComponent<DraggableItem>()) {
+            if (data.draggableItemWorkersPos.ContainsKey(id)) {
+                data.draggableItemWorkersPos.Remove(id);
+            }
+            data.draggableItemWorkersPos.Add(id, transform.position);
+            data.draggableItemWorkers.Add(id, itemInfo);
+        }
+
+        if (GetComponent<PlacedItem>()) {
+            if (data.placedItemsWorkersPos.ContainsKey(id)) {
+                data.placedItemsWorkersPos.Remove(id);
+            }
+            data.placedItemsWorkersPos.Add(id, transform.position);
+            data.placedItemWorkers.Add(id, itemInfo);
+        }
     }
 
     private void Update()
@@ -48,7 +71,9 @@ public class Worker : MonoBehaviour
         DetectCloudWhileWorking();
     }
 
-    
+    public void GenerateGuid() {
+        id = System.Guid.NewGuid().ToString();
+    }
 
     private void DetectCloudWhileWorking()
     {

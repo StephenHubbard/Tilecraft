@@ -28,7 +28,7 @@ public class StartingMenu : MonoBehaviour
 
     public void LoadGameButton() {
         AudioManager.instance.Play("UI Click");
-        DataPersistenceManager.instance.LoadGame();
+        StartCoroutine(loadGameCo());
         print("game loaded");
     }
 
@@ -54,6 +54,29 @@ public class StartingMenu : MonoBehaviour
         worldSpaceCavas.SetActive(true);
         uiCanvas.SetActive(true);
         startingMenuCanvas.SetActive(false);
+    }
+
+    private IEnumerator loadGameCo() {
+        // will implement wind and 2 sec delay after testing
+        Tile[] allTiles = FindObjectsOfType<Tile>();
+        foreach (var tile in allTiles)
+        {
+            Destroy(tile.gameObject);
+        }
+
+        Cloud[] allClouds = FindObjectsOfType<Cloud>();
+        foreach (var cloud in allClouds)
+        {
+            Destroy(cloud.gameObject);
+        }
+        yield return new WaitForSeconds(.1f);
+        worldSpaceCavas.SetActive(true);
+        uiCanvas.SetActive(true);
+        startingMenuCanvas.SetActive(false);
+
+        DataPersistenceManager.instance.LoadGame();
+        InputManager.instance.isOnMainMenu = false;
+
     }
 
 }

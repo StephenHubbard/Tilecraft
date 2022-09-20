@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DiscoveryManager : MonoBehaviour
+public class DiscoveryManager : MonoBehaviour, IDataPersistence
 {
     public bool discoverAllItems = false;
 
@@ -45,6 +45,16 @@ public class DiscoveryManager : MonoBehaviour
         if (discoverAllItems) {
             DiscoverAllItems();
         }
+    }
+
+    public void LoadData(GameData data) {
+        this.discoveryIndex = data.discoveryIndex;
+
+        LoadDiscoveredItems();
+    }
+
+    public void SaveData(ref GameData data) {
+        data.discoveryIndex = this.discoveryIndex;
     }
 
     // debug use only
@@ -140,10 +150,16 @@ public class DiscoveryManager : MonoBehaviour
             TutorialManager.instance.ActivateNextTutorial();
             TutorialManager.instance.ShowWorldSpaceCanvas();
         }
-
     }
 
+    public void LoadDiscoveredItems() {
+        int loadedDiscoveryIndex = discoveryIndex;
 
+        for (int i = 0; i < loadedDiscoveryIndex; i++)
+        {
+            Encyclopedia.instance.AddItemToDiscoveredList(allAvailableItemsInOrder[i], false, false);
+        }
+    }
     
 
     public void NewDiscoveryAnimation(ItemInfo itemInfo) {

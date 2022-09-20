@@ -3,17 +3,38 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public class PlacedItem : MonoBehaviour
-{
+public class PlacedItem : MonoBehaviour, IDataPersistence
+{   
+    [SerializeField] public string id;
+
     [SerializeField] public ItemInfo itemInfo;
     public int amountLeft;
 
     private void Awake() {
-        amountLeft = 1;
+        amountLeft = itemInfo.amountRecipeCanCreate;
     }
 
     private void Start() {
         CompleteFarmTutorial();
+        GenerateGuid();
+    }
+
+    public void GenerateGuid() {
+        id = System.Guid.NewGuid().ToString();
+    }
+
+    public void LoadData(GameData data) {
+
+    }
+
+    public void SaveData(ref GameData data) {
+        if (itemInfo.isResourceOnly) {
+            if (data.tilePositions.ContainsKey(id)) {
+                data.tilePositions.Remove(id);
+            }
+            data.placedItems.Add(id, itemInfo);
+            data.placedItemsPos.Add(id, transform.position);
+        }
     }
 
     private void CompleteFarmTutorial() {

@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DraggableItem : MonoBehaviour
+public class DraggableItem : MonoBehaviour, IDataPersistence
 {
+    [SerializeField] public string id;
+
     [SerializeField] public ItemInfo itemInfo;
     
     private GameObject tileHighlight;
@@ -23,6 +25,7 @@ public class DraggableItem : MonoBehaviour
 
     private void Start() {
         tileHighlight.GetComponent<SpriteRenderer>().enabled = false;
+        GenerateGuid();
 
         StartCoroutine(CanPlaceItemOnTileDelay());
     }
@@ -30,6 +33,24 @@ public class DraggableItem : MonoBehaviour
     public IEnumerator CanPlaceItemOnTileDelay() {
         yield return new WaitForSeconds(.05f);
         CanPlaceOnTile = true;
+    }
+
+    public void GenerateGuid() {
+        id = System.Guid.NewGuid().ToString();
+    }
+
+    public void LoadData(GameData data) {
+        
+    }
+
+    public void SaveData(ref GameData data) {
+        if (!this.GetComponent<Population>()) {
+            if (data.tilePositions.ContainsKey(id)) {
+                data.tilePositions.Remove(id);
+            }
+            data.draggableItemPositions.Add(id, transform.position);
+            data.draggableItemsItemInfo.Add(id, this.itemInfo);
+        }
     }
 
 
