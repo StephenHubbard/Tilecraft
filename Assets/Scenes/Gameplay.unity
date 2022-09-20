@@ -4636,7 +4636,7 @@ GameObject:
   - component: {fileID: 671058805}
   - component: {fileID: 671058806}
   m_Layer: 5
-  m_Name: Grid Layout
+  m_Name: Storage Grid Layout
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6137,7 +6137,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &988879239
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8103,6 +8103,9 @@ MonoBehaviour:
   bottomContainerText: {fileID: 1597429975}
   startingItems:
   - {fileID: 11400000, guid: 9c2df03fdcc9796438d0dbf6f62b71e0, type: 2}
+  discoveredItems:
+    keys: []
+    values: 
   newlyDiscoveredItems: []
   itemsThatCanBeCrafted: []
 --- !u!1 &1195058164
@@ -8710,6 +8713,7 @@ GameObject:
   - component: {fileID: 1270444721}
   - component: {fileID: 1270444722}
   - component: {fileID: 1270444723}
+  - component: {fileID: 1270444724}
   m_Layer: 0
   m_Name: DataPersistenceManager
   m_TagString: Untagged
@@ -8795,6 +8799,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7dc34a3d20cdb074abb03d19273f9761, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1270444724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1270444717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be7372895b456794abb7094736fd99a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1280071510
@@ -9597,7 +9613,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bfc551d3cdb78e4eb545262d33e87a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showTutorial: 0
+  showTutorial: 1
   storageActive: 1
   tutorialContainer: {fileID: 44721069}
   tutorialRectTransform: {fileID: 44721070}
@@ -13706,7 +13722,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.778086, y: 1}
+    m_SensorSize: {x: 1.7783313, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0

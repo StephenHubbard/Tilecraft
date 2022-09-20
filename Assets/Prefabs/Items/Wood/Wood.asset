@@ -23,7 +23,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 683019bb58be0914385796f71488de33, type: 2}
   - {fileID: 11400000, guid: 68eb43c7510400947b95468668236dc7, type: 2}
   recipeInfo: {fileID: 11400000, guid: 785e907fbaffd414d901ecc8927e640c, type: 2}
-  amountRecipeCanCreate: 3
+  amountRecipeCanCreate: 1
   potentialOffSpring:
   - {fileID: 11400000, guid: 14a62113a04f8aa4e9ce5e060ae05011, type: 2}
   - {fileID: 11400000, guid: 3541cebb65418d543904013ad5efe8ec, type: 2}
@@ -36,8 +36,6 @@ MonoBehaviour:
   isStationary: 0
   isSmeltable: 0
   foodValue: 0
-  itemsNextToDiscover:
-  - {fileID: 11400000, guid: 855316e0c92bea843b6ce2d9671bd864, type: 2}
   isPopulation: 0
   toolTipText: 
   tierGroup: 0
