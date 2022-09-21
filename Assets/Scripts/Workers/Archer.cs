@@ -170,7 +170,7 @@ public class Archer : MonoBehaviour, IDataPersistence
         maxHealth = currentMaxHealth;
     }
 
-    public void FeedWorker(int amount, bool playCrunch) {
+    public void FeedArcher(int amount, bool playCrunch) {
         if (playCrunch) {
             AudioManager.instance.Play("Eat Crunch");
         }
@@ -224,7 +224,7 @@ public class Archer : MonoBehaviour, IDataPersistence
 
     public void LevelUpStrength(int leftoverAmountOfFood, bool showLevelUpAnim) {
         if (showLevelUpAnim) {
-            GameObject levelUpPrefabAnim = Instantiate(levelUpAnimPrefab, transform.position + new Vector3(0, .5f, 0), transform.rotation);
+            GameObject levelUpPrefabAnim = Instantiate(levelUpAnimPrefab, transform.position + new Vector3(0, 0, 0), transform.rotation);
             StartCoroutine(DestroyStarPrefabCo(levelUpPrefabAnim));
         }
         myCombatValue++;
@@ -232,7 +232,7 @@ public class Archer : MonoBehaviour, IDataPersistence
         myHealth = maxHealth;
         foodNeededToUpCombatValue = foodNeeded;
         if (leftoverAmountOfFood > 0) {
-            FeedWorker(leftoverAmountOfFood, false);
+            FeedArcher(leftoverAmountOfFood, false);
         }
         GetComponent<Population>().UpLevelStars(true);
         DetermineFoodNeeded();

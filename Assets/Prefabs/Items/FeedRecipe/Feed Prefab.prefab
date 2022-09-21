@@ -10,13 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3800486178009987088}
   - component: {fileID: 853084195101498960}
-  - component: {fileID: 945506467775673203}
-  - component: {fileID: 2548897153402979144}
-  - component: {fileID: 6258026925614194309}
-  - component: {fileID: 4903413514689684792}
-  - component: {fileID: 6764383044030163193}
-  m_Layer: 8
-  m_Name: Knight Prefab
+  - component: {fileID: -7858915592111961031}
+  m_Layer: 0
+  m_Name: Feed Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34,7 +30,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4766408083403190018}
+  - {fileID: 7481141850889007026}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -51,66 +47,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 
-  itemInfo: {fileID: 11400000, guid: ea5cfccaa8e77fe4eabdf280c946787c, type: 2}
+  itemInfo: {fileID: 11400000, guid: 26d4b12ca6aad4e488a937f6420ef617, type: 2}
   amountLeft: 0
---- !u!95 &945506467775673203
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 994099794024727751}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 331e95de8e2891546866645156542c62, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!58 &2548897153402979144
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 994099794024727751}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.19
---- !u!50 &6258026925614194309
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 994099794024727751}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 1
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
---- !u!114 &4903413514689684792
+--- !u!114 &-7858915592111961031
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -119,40 +58,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 994099794024727751}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 856fb8d66fbc69d4ab91af4978ed946f, type: 3}
+  m_Script: {fileID: 11500000, guid: 4934530761811f941a2ee448ebc5840e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 
-  cloudLayerMask:
-    serializedVersion: 2
-    m_Bits: 1024
-  deadWorkerItemPrefab: {fileID: 4812397909494241834, guid: 9babb8865d7eb6040b2a905aab024264, type: 3}
-  levelUpAnimPrefab: {fileID: 6309947321449810909, guid: 250095a8072322f40beed91a82500db7, type: 3}
-  myWorkingStrength: 0
-  myCombatValue: 2
-  foodNeededToUpCombatValue: 0
-  foodNeeded: 3
-  archerPrefab: {fileID: 4812397909494241834, guid: c715ab559fc0ebe438735b9bd7581ef4, type: 3}
-  workerPrefab: {fileID: 4812397909494241834, guid: 4fea6c41e7173da44bdb63fc54b8a34a, type: 3}
-  myHealth: 5
-  maxHealth: 6
---- !u!114 &6764383044030163193
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 994099794024727751}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96846f3f0f94fdb47ab30878ee3bc09f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentLevel: 0
-  starContainer: {fileID: 0}
-  circleHighlight: {fileID: 0}
-  isMaxLevel: 0
---- !u!1 &8070009926642562203
+  foodWorthAmount: 1
+--- !u!1 &6127922019841925830
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -160,22 +70,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4766408083403190018}
-  - component: {fileID: 7301728323509092388}
-  m_Layer: 8
+  - component: {fileID: 7481141850889007026}
+  - component: {fileID: 7710457364570910059}
+  m_Layer: 0
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4766408083403190018
+--- !u!4 &7481141850889007026
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8070009926642562203}
+  m_GameObject: {fileID: 6127922019841925830}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -184,13 +94,13 @@ Transform:
   m_Father: {fileID: 3800486178009987088}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &7301728323509092388
+--- !u!212 &7710457364570910059
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8070009926642562203}
+  m_GameObject: {fileID: 6127922019841925830}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -225,12 +135,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -1187868931, guid: faf7125e6a89cd2448460f22ddd0e519, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2679111af3ac5e74ba925ed5782eb139, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.5, y: 0.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

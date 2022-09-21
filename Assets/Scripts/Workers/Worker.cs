@@ -205,7 +205,7 @@ public class Worker : MonoBehaviour, IDataPersistence
 
     public void LevelUpStrength(int leftoverAmountOfFood, bool showLevelUpAnim) {
         if (showLevelUpAnim) {
-            GameObject levelUpPrefabAnim = Instantiate(levelUpAnimPrefab, transform.position + new Vector3(0, .5f, 0), transform.rotation);
+            GameObject levelUpPrefabAnim = Instantiate(levelUpAnimPrefab, transform.position, transform.rotation);
             StartCoroutine(DestroyStarPrefabCo(levelUpPrefabAnim));
         }
         myWorkingStrength++;

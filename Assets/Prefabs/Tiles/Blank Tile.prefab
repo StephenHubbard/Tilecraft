@@ -686,6 +686,7 @@ GameObject:
   - component: {fileID: 3298315849044119313}
   - component: {fileID: 4051719424531252416}
   - component: {fileID: 7124545992445261582}
+  - component: {fileID: 3363848941257902545}
   m_Layer: 7
   m_Name: Blank Tile
   m_TagString: Untagged
@@ -796,6 +797,8 @@ MonoBehaviour:
   recipeInfo: {fileID: 0}
   coinSellAnim: {fileID: 1739528165412195027, guid: 98ef04f86f1e79e4d92029645517e4cc, type: 3}
   defaultGreen: {r: 0, g: 0, b: 0, a: 0}
+  feedRecipeInfo: {fileID: 11400000, guid: 230f22742db87cc48b456bfcf59f9091, type: 2}
+  feedAnimPrefab: {fileID: 1584155137035308739, guid: b7f8a9728069b77439a95dbafe7fc97f, type: 3}
   amountOfWorkers: 0
   totalWorkerStrength: 0
   amountLeftToCraft: 0
@@ -804,6 +807,18 @@ MonoBehaviour:
   hasWorkers: 0
   isCrafting: 0
   currentCorrectItemsAcquiredForCrafting: 0
+--- !u!114 &3363848941257902545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8424925183059702565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37b723bbccfb81f459171823a0698508, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8424925183525853616
 GameObject:
   m_ObjectHideFlags: 0

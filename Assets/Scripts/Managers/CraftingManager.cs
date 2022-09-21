@@ -13,7 +13,8 @@ public class CraftingManager : MonoBehaviour
     [SerializeField] public RecipeInfo recipeInfo;
     [SerializeField] private GameObject coinSellAnim;
     [SerializeField] public Color defaultGreen;
-
+    [SerializeField] private RecipeInfo feedRecipeInfo;
+    [SerializeField] private GameObject feedAnimPrefab;
     
     public int amountOfWorkers;
     public int totalWorkerStrength;
@@ -89,6 +90,24 @@ public class CraftingManager : MonoBehaviour
     }
 
     public void CheckCanStartCrafting() {
+        if (GetComponent<FeedOnTile>().CheckIfCanEat()) {
+            hasCompleteRecipe = true;
+            foreach (var resourcePoint in GetComponent<Tile>().resourcePoints)
+            {
+                if (resourcePoint.childCount > 0) {
+                    recipeInfo = feedRecipeInfo;
+                    break;
+                }
+            }
+
+            foreach (var workerPoint in GetComponent<Tile>().workerPoints)
+            {
+                if (workerPoint.childCount > 0) {
+                    hasWorkers = true;
+                    totalWorkerStrength++;
+                }
+            }
+        }
 
         if (GetComponent<Tile>().currentPlacedItem) {
             hasCompleteRecipe = true;
@@ -203,7 +222,8 @@ public class CraftingManager : MonoBehaviour
         sliderCanvas.SetActive(false);
         hasCompleteRecipe = false;
         isCrafting = false;
-
+        recipeInfo = null;
+        GetComponent<Tile>().itemInfo = null;
 
         foreach (var item in GetComponent<Tile>().workerPoints)
         {
@@ -249,19 +269,40 @@ public class CraftingManager : MonoBehaviour
     }
 
     public void PopOutNewItemFromRecipe() {
+        // Feed
+        if (recipeInfo == feedRecipeInfo) {
+            Population popToFeed = null;
+            foreach (var resourcePoint in GetComponent<Tile>().resourcePoints)
+            {
+                if (resourcePoint.childCount > 0) {
+                    GameObject thisFeedAnim = Instantiate(feedAnimPrefab, resourcePoint.transform.position, transform.rotation);
+                    foreach (var workerPoint in GetComponent<Tile>().workerPoints)
+                    {
+                        if (workerPoint.childCount > 0) {
+                            popToFeed = workerPoint.GetChild(0).GetComponent<Population>();
+                            thisFeedAnim.GetComponent<FoodAnim>().FeedPopulation(popToFeed);
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+
         // EconomyManager.instance.CheckDiscovery(recipeInfo.itemInfo.coinValue);
         Vector3 spawnItemsVector3 = transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), -1);
         if (recipeInfo.itemInfo.itemName == "XP") {
             spawnItemsVector3 = transform.position + new Vector3(0, 1, 0);
         }
-        GameObject craftedItem = Instantiate(recipeInfo.itemInfo.draggableItemPrefab, spawnItemsVector3, transform.rotation);
-        // craft x2 if it's a weapon
-        if (craftedItem.GetComponent<Weapon>()) {
-            Instantiate(recipeInfo.itemInfo.draggableItemPrefab, spawnItemsVector3, transform.rotation);
-        }
-        recipeInfo.itemInfo.NextInLineToDiscover();
-        AutoSellCraftedItem(craftedItem);
-        if (recipeInfo.itemInfo.itemName != "XP") {
+        if (recipeInfo != feedRecipeInfo) {
+            GameObject craftedItem = Instantiate(recipeInfo.itemInfo.draggableItemPrefab, spawnItemsVector3, transform.rotation);
+            // craft x2 if it's a weapon
+            if (craftedItem.GetComponent<Weapon>()) {
+                Instantiate(recipeInfo.itemInfo.draggableItemPrefab, spawnItemsVector3, transform.rotation);
+            }
+            recipeInfo.itemInfo.NextInLineToDiscover();
+            AutoSellCraftedItem(craftedItem);
+        } 
+        if (recipeInfo.itemInfo.itemName != "XP" && recipeInfo.itemInfo.itemName != "Feed") {
             encyclopedia.AddItemToDiscoveredList(recipeInfo.itemInfo, true, false);
         }
         ToDoManager.instance.CraftedItemTakeOffToDoList(recipeInfo.itemInfo);
@@ -274,12 +315,6 @@ public class CraftingManager : MonoBehaviour
             }
         }
 
-        // foreach (var item in recipeInfo.itemInfo.recipeInfo.neededRecipeItems)
-        // {
-        //     if (item.itemName != "Dead Worker") {
-        //         encyclopedia.AddItemToDiscoveredList(item, true, false);
-        //     }
-        // }
         
         Encyclopedia.instance.CraftedDiscoveredItem(recipeInfo.itemInfo);
 
@@ -298,6 +333,7 @@ public class CraftingManager : MonoBehaviour
         if (GetComponent<Tile>().currentPlacedItem && amountLeftToCraft == 0 && GetComponent<Tile>().currentPlacedItem.GetComponent<Furnace>()) {
             GetComponent<Tile>().currentPlacedItem.GetComponent<Furnace>().AbandonSmelting();
         }
+
 
         CheckCanStartCrafting();
 

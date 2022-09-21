@@ -13,6 +13,9 @@ public class CameraController : MonoBehaviour
     [SerializeField] private Collider2D cameraConfiner;
     [SerializeField] private float cameraBorderBuffer = 7f;
     [SerializeField] private Camera mainCam;
+    [SerializeField] private float edgeSize = 30f;
+    [SerializeField] private float moveAmount = 100f;
+    [SerializeField] public bool edgeScrollingEnabled = true;
 
     private CinemachineTransposer cinemachineTransposer;
 
@@ -27,14 +30,13 @@ public class CameraController : MonoBehaviour
 
         bottomLeftLimit = cameraConfiner.bounds.min;
         topRightLimit = cameraConfiner.bounds.max;
-
-
     }
 
     private void Update()
     {
         HandleMovement();
         HandleZoom();
+
     }
 
     private void HandleMovement()
@@ -43,13 +45,28 @@ public class CameraController : MonoBehaviour
 
         float moveSpeed = 10f;
 
+        if (edgeScrollingEnabled) {
+            if (Input.mousePosition.x > Screen.width - edgeSize) {
+                inputMoveDir.x = +1;
+            }
+            if (Input.mousePosition.x < edgeSize) {
+                inputMoveDir.x = -1;
+            }
+            if (Input.mousePosition.y > Screen.height - edgeSize) {
+                inputMoveDir.y = +1;
+            }
+            if (Input.mousePosition.y < edgeSize) {
+                inputMoveDir.y = -1;
+            }
+        }
+
         Vector3 moveVector = transform.up * inputMoveDir.y + transform.right * inputMoveDir.x;
         transform.position += moveVector * moveSpeed * Time.deltaTime;
 
         // confiner getting in the way of interactable raycasts event system
         transform.position = (new Vector3(Mathf.Clamp(transform.position.x, bottomLeftLimit.x + cameraBorderBuffer, topRightLimit.x - cameraBorderBuffer), Mathf.Clamp(transform.position.y, bottomLeftLimit.y + cameraBorderBuffer, topRightLimit.y - cameraBorderBuffer), transform.position.z));
-
     }
+
 
 
     private void HandleZoom()

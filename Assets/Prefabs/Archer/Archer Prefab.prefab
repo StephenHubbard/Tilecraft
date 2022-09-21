@@ -50,6 +50,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 930d0fac990f5a640bc418598ee9e5c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 
   itemInfo: {fileID: 11400000, guid: 095b7d547fde57a47807f4ee4d0b69d9, type: 2}
   amountLeft: 0
 --- !u!95 &945506467775673203
@@ -121,6 +122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 291379695a592724aba9bb36e604cf95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 
   cloudLayerMask:
     serializedVersion: 2
     m_Bits: 1024
@@ -128,7 +130,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   deadWorkerItemPrefab: {fileID: 4812397909494241834, guid: 9babb8865d7eb6040b2a905aab024264, type: 3}
-  levelUpAnimPrefab: {fileID: 0}
+  levelUpAnimPrefab: {fileID: 6309947321449810909, guid: 250095a8072322f40beed91a82500db7, type: 3}
   myWorkingStrength: 0
   myCombatValue: 1
   foodNeededToUpCombatValue: 0

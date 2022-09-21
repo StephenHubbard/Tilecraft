@@ -10,6 +10,9 @@ public class ToDoManager : MonoBehaviour
     [SerializeField] private GameObject toDoListPrefab;
     [SerializeField] private GameObject listContainerGridLayoutParent;
     [SerializeField] private Sprite notCraftableSprite;
+    [SerializeField] private Sprite plusIconSprite;
+    [SerializeField] private Sprite furnaceSprite;
+    [SerializeField] private Sprite alterSprite;
 
     [SerializeField] public List<GameObject> toDoList = new List<GameObject>();
 
@@ -99,7 +102,18 @@ public class ToDoManager : MonoBehaviour
             newList.transform.GetChild(4).GetComponent<Image>().enabled = false;
         }
 
-        
+        if (newList.transform.GetChild(0).GetComponent<UITooltip>().itemInfo.recipeInfo.requiresFurnace) {
+                newList.transform.GetChild(3).GetComponent<Image>().enabled = true;
+                newList.transform.GetChild(3).GetComponent<Image>().sprite = plusIconSprite;
+
+                newList.transform.GetChild(4).GetComponent<Image>().enabled = true;
+
+                if (newList.transform.GetChild(0).GetComponent<UITooltip>().itemInfo.itemName == "Ash") {
+                    newList.transform.GetChild(4).GetComponent<Image>().sprite = alterSprite;
+                } else {
+                    newList.transform.GetChild(4).GetComponent<Image>().sprite = furnaceSprite;
+                }
+            }
 
         newList.GetComponent<ToDoList>().itemInfo = itemInfo;
         toDoList.Add(newList);

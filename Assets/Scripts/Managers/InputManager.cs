@@ -187,7 +187,7 @@ public class InputManager : MonoBehaviour
             }
         }
 
-        if (Input.GetKey(KeyCode.LeftShift) && Input.GetMouseButtonDown(0) && TutorialManager.instance.storageActive) {
+        if (Input.GetMouseButtonDown(1) && TutorialManager.instance.storageActive) {
             Transform lowestZGameObject2 = null;
 
             RaycastHit2D[] hit2 = Physics2D.RaycastAll(UtilsClass.GetMouseWorldPosition(), Vector2.zero, 100f, interactableLayerMask);
@@ -205,7 +205,7 @@ public class InputManager : MonoBehaviour
                 if (StorageContainer.instance.CheckIfStorageHasSpace(lowestZGameObject2.GetComponent<Stackable>().itemInfo, lowestZGameObject2.gameObject)) {
                     lowestZGameObject2.GetComponent<Stackable>().FindAmountOfChildren(lowestZGameObject2);
                     StorageContainer.instance.AddToStorage(lowestZGameObject2.GetComponent<Stackable>().itemInfo, lowestZGameObject2.GetComponent<Stackable>().amountOfChildItems);
-                    Destroy(lowestZGameObject.gameObject);
+                    Destroy(lowestZGameObject2.gameObject);
                 }
             }
         }

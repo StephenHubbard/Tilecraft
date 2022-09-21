@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Treasure
   m_EditorClassIdentifier: 
   itemName: Treasure
-  itemSprite: {fileID: 21300000, guid: f842128fd49915e4f885d617e4abc892, type: 3}
+  itemSprite: {fileID: 21300000, guid: 91939b1166f3212419971585b1ca9405, type: 3}
   coinValue: 1
   draggableItemPrefab: {fileID: 4812397909494241834, guid: 13edf744516755942a415911d52d4f3f, type: 3}
   onTilePrefab: {fileID: 994099794024727751, guid: 0b6554f5f36fbd846817b2df1c5aab7c, type: 3}

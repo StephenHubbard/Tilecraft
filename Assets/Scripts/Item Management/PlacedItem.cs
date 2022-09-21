@@ -64,6 +64,10 @@ public class PlacedItem : MonoBehaviour, IDataPersistence
                 return true;
             }
 
+            if (GetComponent<Food>()) {
+                GetComponentInParent<CraftingManager>().UpdateAmountLeftToCraft(1);
+            }
+
         }
 
         GetComponentInParent<CraftingManager>().hasCompleteRecipe = false;
