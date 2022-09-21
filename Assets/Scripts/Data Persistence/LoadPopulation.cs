@@ -11,26 +11,60 @@ public class LoadPopulation : MonoBehaviour
     }
 
     public void SpawnDraggableItemWorkers(GameData data) {
-        foreach (KeyValuePair<string, ItemInfo> kvp in data.draggableItemWorkers) {
-            Vector3 workerPos;
-            data.draggableItemWorkersPos.TryGetValue(kvp.Key, out workerPos);
+        foreach (KeyValuePair<string, ItemInfo> kvp in data.draggableItemPopulation) {
+            Vector3 popPos;
+            data.draggablePopulationPos.TryGetValue(kvp.Key, out popPos);
 
             ItemInfo itemInfo;
-            data.draggableItemWorkers.TryGetValue(kvp.Key, out itemInfo);
-            GameObject loadedItem = Instantiate(itemInfo.draggableItemPrefab, workerPos, transform.rotation);
+            data.draggableItemPopulation.TryGetValue(kvp.Key, out itemInfo);
+            GameObject loadedWorker = Instantiate(itemInfo.draggableItemPrefab, popPos, transform.rotation);
+
+            int currentLevel;
+            data.populationLevels.TryGetValue(kvp.Key, out currentLevel);
+            for (int i = 0; i < currentLevel; i++)
+            {
+                if (loadedWorker.GetComponent<Worker>()) {
+                    loadedWorker.GetComponent<Worker>().LevelUpStrength(0, false);
+                }
+
+                if (loadedWorker.GetComponent<Archer>()) {
+                    loadedWorker.GetComponent<Archer>().LevelUpStrength(0, false);
+                }
+
+                if (loadedWorker.GetComponent<Knight>()) {
+                    loadedWorker.GetComponent<Knight>().LevelUpStrength(0, false);
+                }
+            }
         }
     }
 
     public void SpawnPlacedWorkers(GameData data) {
-        foreach (KeyValuePair<string, ItemInfo> kvp in data.placedItemWorkers) {
-            Vector3 workerPos;
-            data.placedItemsWorkersPos.TryGetValue(kvp.Key, out workerPos);
+        foreach (KeyValuePair<string, ItemInfo> kvp in data.placedItemPopulation) {
+            Vector3 popPos;
+            data.placedItemsPopulationPos.TryGetValue(kvp.Key, out popPos);
 
             ItemInfo itemInfo;
-            data.placedItemWorkers.TryGetValue(kvp.Key, out itemInfo);
-            GameObject loadedItem = Instantiate(itemInfo.onTilePrefab, workerPos, transform.rotation);
+            data.placedItemPopulation.TryGetValue(kvp.Key, out itemInfo);
+            GameObject loadedWorker = Instantiate(itemInfo.onTilePrefab, popPos, transform.rotation);
 
-            RaycastHit2D[] hitArray = Physics2D.RaycastAll(loadedItem.transform.position, Vector2.zero, 100f);
+            int currentLevel;
+            data.populationLevels.TryGetValue(kvp.Key, out currentLevel);
+            for (int i = 0; i < currentLevel; i++)
+            {
+                if (loadedWorker.GetComponent<Worker>()) {
+                    loadedWorker.GetComponent<Worker>().LevelUpStrength(0, false);
+                }
+
+                if (loadedWorker.GetComponent<Archer>()) {
+                    loadedWorker.GetComponent<Archer>().LevelUpStrength(0, false);
+                }
+
+                if (loadedWorker.GetComponent<Knight>()) {
+                    loadedWorker.GetComponent<Knight>().LevelUpStrength(0, false);
+                }
+            }
+
+            RaycastHit2D[] hitArray = Physics2D.RaycastAll(loadedWorker.transform.position, Vector2.zero, 100f);
 
             Tile parentTile = null;
             Transform parentTransform = null;
@@ -47,8 +81,8 @@ public class LoadPopulation : MonoBehaviour
             {
                 if (workerPoint.transform.childCount == 0) {
                     parentTransform = workerPoint;
-                    loadedItem.transform.SetParent(parentTransform);
-                    loadedItem.transform.position = parentTransform.position;
+                    loadedWorker.transform.SetParent(parentTransform);
+                    loadedWorker.transform.position = parentTransform.position;
                     break;
                 }
             }
@@ -58,5 +92,4 @@ public class LoadPopulation : MonoBehaviour
         }
     }
 
-    
 }

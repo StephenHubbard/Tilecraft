@@ -33,7 +33,7 @@ public class TutorialManager : MonoBehaviour
         myAnimator = tutorialContainer.GetComponent<Animator>();
     }
 
-    private void Start() {
+    public void StartTutorial() {
         if (showTutorial) {
             storageActive = false;
             tutorialContainer.SetActive(true);
@@ -41,7 +41,6 @@ public class TutorialManager : MonoBehaviour
         }
 
         ActivateNextTutorial();
-
     }
 
     public void MoveBoxToLeft() {

@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Knight : MonoBehaviour
+public class Knight : MonoBehaviour, IDataPersistence
 {
+    [SerializeField] public string id;
+
     [SerializeField] private LayerMask cloudLayerMask = new LayerMask();
 
     [SerializeField] private GameObject deadWorkerItemPrefab;
@@ -31,12 +33,42 @@ public class Knight : MonoBehaviour
 
 
     private void Start() {
+        GenerateGuid();
+
         if (GetComponent<PlacedItem>() && myAnimator) {
             AnimatorStateInfo state = myAnimator.GetCurrentAnimatorStateInfo (0);
             myAnimator.Play (state.fullPathHash, -1, Random.Range(0f,1f));
         }
 
         DetectCombat();
+    }
+
+    public void LoadData(GameData data) {
+
+    }
+
+    public void SaveData(ref GameData data) {
+        if (GetComponent<DraggableItem>()) {
+            if (data.draggablePopulationPos.ContainsKey(id)) {
+                data.draggablePopulationPos.Remove(id);
+            }
+            data.draggablePopulationPos.Add(id, transform.position);
+            data.draggableItemPopulation.Add(id, GetComponent<DraggableItem>().itemInfo);
+        }
+
+        if (GetComponent<PlacedItem>()) {
+            if (data.placedItemsPopulationPos.ContainsKey(id)) {
+                data.placedItemsPopulationPos.Remove(id);
+            }
+            data.placedItemsPopulationPos.Add(id, transform.position);
+            data.placedItemPopulation.Add(id, GetComponent<PlacedItem>().itemInfo);
+        }
+
+        data.populationLevels.Add(id, GetComponent<Population>().currentLevel);
+    }
+
+    public void GenerateGuid() {
+        id = System.Guid.NewGuid().ToString();
     }
 
     private void Update() {
@@ -139,7 +171,7 @@ public class Knight : MonoBehaviour
         foodNeededToUpCombatValue -= amount;
 
         if (foodNeededToUpCombatValue <= 0) {
-            LevelUpStrength(leftoverAmountOfFood);
+            LevelUpStrength(leftoverAmountOfFood, true);
         }
     }
 
@@ -177,10 +209,11 @@ public class Knight : MonoBehaviour
     }
 
 
-    public void LevelUpStrength(int leftoverAmountOfFood) {
-        // EconomyManager.instance.CheckDiscovery(1);
-        GameObject levelUpPrefabAnim = Instantiate(levelUpAnimPrefab, transform.position + new Vector3(0, .5f, 0), transform.rotation);
-        StartCoroutine(DestroyStarPrefabCo(levelUpPrefabAnim));
+    public void LevelUpStrength(int leftoverAmountOfFood, bool showLevelUpAnim) {
+        if (showLevelUpAnim) {
+            GameObject levelUpPrefabAnim = Instantiate(levelUpAnimPrefab, transform.position + new Vector3(0, .5f, 0), transform.rotation);
+            StartCoroutine(DestroyStarPrefabCo(levelUpPrefabAnim));
+        }
         myCombatValue++;
         maxHealth++;
         myHealth = maxHealth;

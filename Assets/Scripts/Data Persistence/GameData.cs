@@ -29,11 +29,11 @@ public class GameData
     public SerializableDictionary<string, Vector3> placedItemsPos;
 
     // Workers
-    public SerializableDictionary<string, ItemInfo> draggableItemWorkers;
-    public SerializableDictionary<string, Vector3> draggableItemWorkersPos;
+    public SerializableDictionary<string, ItemInfo> draggableItemPopulation;
+    public SerializableDictionary<string, Vector3> draggablePopulationPos;
 
-    public SerializableDictionary<string, ItemInfo> placedItemWorkers;
-    public SerializableDictionary<string, Vector3> placedItemsWorkersPos;
+    public SerializableDictionary<string, ItemInfo> placedItemPopulation;
+    public SerializableDictionary<string, Vector3> placedItemsPopulationPos;
 
     // Storage
     public SerializableDictionary<string, ItemInfo> storageItemsItemInfo;
@@ -41,6 +41,9 @@ public class GameData
 
     // Encyclopedia
     public SerializableDictionary<ItemInfo, bool> discoveredItemsCraftedDict;
+
+    // Population
+    public SerializableDictionary<string, int> populationLevels;
 
 
     public GameData() {
@@ -68,11 +71,11 @@ public class GameData
         placedItemsPos = new SerializableDictionary<string, Vector3>();
 
         // Workers 
-        draggableItemWorkers = new SerializableDictionary<string, ItemInfo>();
-        draggableItemWorkersPos = new SerializableDictionary<string, Vector3>();
+        draggableItemPopulation = new SerializableDictionary<string, ItemInfo>();
+        draggablePopulationPos = new SerializableDictionary<string, Vector3>();
 
-        placedItemWorkers = new SerializableDictionary<string, ItemInfo>();
-        placedItemsWorkersPos = new SerializableDictionary<string, Vector3>();
+        placedItemPopulation = new SerializableDictionary<string, ItemInfo>();
+        placedItemsPopulationPos = new SerializableDictionary<string, Vector3>();
 
         // Storage
         storageItemsItemInfo = new SerializableDictionary<string, ItemInfo>();
@@ -80,5 +83,9 @@ public class GameData
 
         // Encyclopedia
         discoveredItemsCraftedDict = new SerializableDictionary<ItemInfo, bool>();
+
+        // Population
+        populationLevels = new SerializableDictionary<string, int>();
+
     }
 }

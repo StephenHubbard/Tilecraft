@@ -50,20 +50,22 @@ public class Worker : MonoBehaviour, IDataPersistence
 
     public void SaveData(ref GameData data) {
         if (GetComponent<DraggableItem>()) {
-            if (data.draggableItemWorkersPos.ContainsKey(id)) {
-                data.draggableItemWorkersPos.Remove(id);
+            if (data.draggablePopulationPos.ContainsKey(id)) {
+                data.draggablePopulationPos.Remove(id);
             }
-            data.draggableItemWorkersPos.Add(id, transform.position);
-            data.draggableItemWorkers.Add(id, itemInfo);
+            data.draggablePopulationPos.Add(id, transform.position);
+            data.draggableItemPopulation.Add(id, itemInfo);
         }
 
         if (GetComponent<PlacedItem>()) {
-            if (data.placedItemsWorkersPos.ContainsKey(id)) {
-                data.placedItemsWorkersPos.Remove(id);
+            if (data.placedItemsPopulationPos.ContainsKey(id)) {
+                data.placedItemsPopulationPos.Remove(id);
             }
-            data.placedItemsWorkersPos.Add(id, transform.position);
-            data.placedItemWorkers.Add(id, itemInfo);
+            data.placedItemsPopulationPos.Add(id, transform.position);
+            data.placedItemPopulation.Add(id, itemInfo);
         }
+
+        data.populationLevels.Add(id, GetComponent<Population>().currentLevel);
     }
 
     private void Update()
@@ -167,7 +169,7 @@ public class Worker : MonoBehaviour, IDataPersistence
         foodNeededToUpPickaxeStrengthCurrent -= amount;
 
         if (foodNeededToUpPickaxeStrengthCurrent <= 0) {
-            LevelUpStrength(leftoverAmountOfFood);
+            LevelUpStrength(leftoverAmountOfFood, true);
         }
     }
 
@@ -201,11 +203,11 @@ public class Worker : MonoBehaviour, IDataPersistence
     }
 
 
-    public void LevelUpStrength(int leftoverAmountOfFood) {
-        // EconomyManager.instance.CheckDiscovery(1);
-        
-        GameObject levelUpPrefabAnim = Instantiate(levelUpAnimPrefab, transform.position + new Vector3(0, .5f, 0), transform.rotation);
-        StartCoroutine(DestroyStarPrefabCo(levelUpPrefabAnim));
+    public void LevelUpStrength(int leftoverAmountOfFood, bool showLevelUpAnim) {
+        if (showLevelUpAnim) {
+            GameObject levelUpPrefabAnim = Instantiate(levelUpAnimPrefab, transform.position + new Vector3(0, .5f, 0), transform.rotation);
+            StartCoroutine(DestroyStarPrefabCo(levelUpPrefabAnim));
+        }
         myWorkingStrength++;
         maxHealth++;
         myHealth = maxHealth;

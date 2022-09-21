@@ -29,6 +29,7 @@ public class StartingMenu : MonoBehaviour
     public void LoadGameButton() {
         AudioManager.instance.Play("UI Click");
         StartCoroutine(loadGameCo());
+        TutorialManager.instance.showTutorial = false;
         print("game loaded");
     }
 
@@ -50,6 +51,7 @@ public class StartingMenu : MonoBehaviour
 
     private IEnumerator startingMenuInactiveCo() {
         yield return new WaitForSeconds(2f);
+        TutorialManager.instance.StartTutorial();
         HousingManager.instance.SpawnStartingThreeWorkers();
         worldSpaceCavas.SetActive(true);
         uiCanvas.SetActive(true);
