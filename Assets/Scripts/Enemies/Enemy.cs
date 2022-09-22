@@ -56,29 +56,57 @@ public class Enemy : MonoBehaviour
     }
 
     private void OnCollisionStay2D(Collision2D other) {
-        Worker worker = other.gameObject.GetComponent<Worker>();
-        if (worker && currentTarget == null && worker.GetComponent<PlacedItem>() && isUncoveredByClouds) {
-            if (worker.GetComponentInParent<Tile>() == GetComponentInParent<Tile>()) {
+        if (isMaskedOrc) {
+            Worker worker = other.gameObject.GetComponent<Worker>();
+            if (worker && currentTarget == null && worker.GetComponent<PlacedItem>() && isUncoveredByClouds) {
+                if (worker.GetComponentInParent<Tile>() == GetComponentInParent<Tile>()) {
+                    myAnimator.SetBool("isAttacking", true);
+                    myAnimator.Play("Attack", -1, Random.Range(0f,1f));
+                    currentTarget = worker.transform;
+                    AudioManager.instance.Play("Orc Attack");
+                }
+            }
+
+            if (!isMaskedOrc) {
+                Archer archer = other.gameObject.GetComponent<Archer>();
+                if (archer && currentTarget == null && archer.GetComponent<PlacedItem>() && isUncoveredByClouds) {
+                    myAnimator.SetBool("isAttacking", true);
+                    myAnimator.Play("Attack", -1, Random.Range(0f,1f));
+                    currentTarget = archer.transform;
+                    AudioManager.instance.Play("Orc Attack");
+                }
+            }
+
+            Knight knight = other.gameObject.GetComponent<Knight>();
+            if (knight && currentTarget == null && knight.GetComponent<PlacedItem>() && isUncoveredByClouds) {
+                if (knight.GetComponentInParent<Tile>() == GetComponentInParent<Tile>()) {
+                    myAnimator.SetBool("isAttacking", true);
+                    myAnimator.Play("Attack", -1, Random.Range(0f,1f));
+                    currentTarget = knight.transform;
+                    AudioManager.instance.Play("Orc Attack");
+                }
+            }
+        } else {
+            Worker worker = other.gameObject.GetComponent<Worker>();
+            if (worker && currentTarget == null && worker.GetComponent<PlacedItem>() && isUncoveredByClouds) {
                 myAnimator.SetBool("isAttacking", true);
                 myAnimator.Play("Attack", -1, Random.Range(0f,1f));
                 currentTarget = worker.transform;
                 AudioManager.instance.Play("Orc Attack");
             }
-        }
 
-        if (!isMaskedOrc) {
-            Archer archer = other.gameObject.GetComponent<Archer>();
-            if (archer && currentTarget == null && archer.GetComponent<PlacedItem>() && isUncoveredByClouds) {
-                myAnimator.SetBool("isAttacking", true);
-                myAnimator.Play("Attack", -1, Random.Range(0f,1f));
-                currentTarget = archer.transform;
-                AudioManager.instance.Play("Orc Attack");
+            if (!isMaskedOrc) {
+                Archer archer = other.gameObject.GetComponent<Archer>();
+                if (archer && currentTarget == null && archer.GetComponent<PlacedItem>() && isUncoveredByClouds) {
+                    myAnimator.SetBool("isAttacking", true);
+                    myAnimator.Play("Attack", -1, Random.Range(0f,1f));
+                    currentTarget = archer.transform;
+                    AudioManager.instance.Play("Orc Attack");
+                }
             }
-        }
 
-        Knight knight = other.gameObject.GetComponent<Knight>();
-        if (knight && currentTarget == null && knight.GetComponent<PlacedItem>() && isUncoveredByClouds) {
-            if (knight.GetComponentInParent<Tile>() == GetComponentInParent<Tile>()) {
+            Knight knight = other.gameObject.GetComponent<Knight>();
+            if (knight && currentTarget == null && knight.GetComponent<PlacedItem>() && isUncoveredByClouds) {
                 myAnimator.SetBool("isAttacking", true);
                 myAnimator.Play("Attack", -1, Random.Range(0f,1f));
                 currentTarget = knight.transform;

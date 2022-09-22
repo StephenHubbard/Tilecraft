@@ -56,6 +56,7 @@ public class TutorialManager : MonoBehaviour
 
         tutorialText.text = tutorialStrings[tutorialIndexNum];
         tutorialContainer.SetActive(true);
+        maximizeTutorialButton.SetActive(false);
 
         // ChangeTutorialWindowSizeToFitText();
     }

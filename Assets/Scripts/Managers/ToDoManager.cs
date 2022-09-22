@@ -13,6 +13,8 @@ public class ToDoManager : MonoBehaviour
     [SerializeField] private Sprite plusIconSprite;
     [SerializeField] private Sprite furnaceSprite;
     [SerializeField] private Sprite alterSprite;
+    [SerializeField] private ItemInfo furnaceItemInfo;
+    [SerializeField] private ItemInfo alterItemInfo;
 
     [SerializeField] public List<GameObject> toDoList = new List<GameObject>();
 
@@ -110,8 +112,12 @@ public class ToDoManager : MonoBehaviour
 
                 if (newList.transform.GetChild(0).GetComponent<UITooltip>().itemInfo.itemName == "Ash") {
                     newList.transform.GetChild(4).GetComponent<Image>().sprite = alterSprite;
+                    newList.transform.GetChild(4).GetComponent<UITooltip>().itemInfo = alterItemInfo;
+                    newList.transform.GetChild(3).GetComponent<UITooltip>().isPlusIcon = true;
                 } else {
                     newList.transform.GetChild(4).GetComponent<Image>().sprite = furnaceSprite;
+                    newList.transform.GetChild(4).GetComponent<UITooltip>().itemInfo = furnaceItemInfo;
+                    newList.transform.GetChild(3).GetComponent<UITooltip>().isPlusIcon = true;
                 }
             }
 

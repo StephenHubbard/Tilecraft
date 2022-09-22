@@ -5,18 +5,22 @@ using UnityEngine;
 public class DraggableItem : MonoBehaviour, IDataPersistence
 {
     [SerializeField] public string id;
-
     [SerializeField] public ItemInfo itemInfo;
     
+    private LayerMask interactableLayerMask = new LayerMask();
     private GameObject tileHighlight;
     public Tile currentTile;
     public int amountLeft;
 
     private AudioManager audioManager;
+    private DragAndDropCustom dragAndDropCustom;
 
     public bool CanPlaceOnTile = false;
 
+    private Vector3 lastObjectPos;
+
     private void Awake() {
+        dragAndDropCustom = GetComponent<DragAndDropCustom>();
         tileHighlight = GameObject.Find("Highlighted Border - Square");
         audioManager = FindObjectOfType<AudioManager>();
 
@@ -24,6 +28,7 @@ public class DraggableItem : MonoBehaviour, IDataPersistence
     }
 
     private void Start() {
+        interactableLayerMask = LayerMask.GetMask("Interactable");
         tileHighlight.GetComponent<SpriteRenderer>().enabled = false;
         GenerateGuid();
 
@@ -58,6 +63,23 @@ public class DraggableItem : MonoBehaviour, IDataPersistence
         if (currentTile != null) {
             tileHighlight.GetComponent<SpriteRenderer>().enabled = true;
             tileHighlight.transform.position = currentTile.transform.position;
+        }
+
+        RepelFromOtherItems();
+    }
+
+    private void RepelFromOtherItems() {
+        if (dragAndDropCustom.isActive) { return ;}
+
+        RaycastHit2D[] hitArray = Physics2D.RaycastAll(transform.position, Vector2.zero, 100f, interactableLayerMask);
+
+        foreach (var hit in hitArray)
+        {
+            if (hit.transform.GetComponent<DraggableItem>().itemInfo != itemInfo) {
+                lastObjectPos = hit.transform.position;
+                transform.root.Translate((transform.root.position - lastObjectPos) * Time.deltaTime);
+                transform.root.position = new Vector3(transform.root.position.x, transform.root.position.y, 0);
+            }
         }
     }
 

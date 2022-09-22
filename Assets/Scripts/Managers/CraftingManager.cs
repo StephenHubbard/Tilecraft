@@ -269,6 +269,10 @@ public class CraftingManager : MonoBehaviour
     }
 
     public void PopOutNewItemFromRecipe() {
+        CompleteFarmTutorial();
+        CraftWorkerTutorial();
+
+
         // Feed
         if (recipeInfo == feedRecipeInfo) {
             Population popToFeed = null;
@@ -337,8 +341,6 @@ public class CraftingManager : MonoBehaviour
 
         CheckCanStartCrafting();
 
-        CompleteFarmTutorial();
-        CraftWorkerTutorial();
         CompleteFirstStepTutorial();
     }
 

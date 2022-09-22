@@ -715,9 +715,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e39409af50ae3624aa410dfaa2eb8233, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 
   itemInfo: {fileID: 11400000, guid: 095b7d547fde57a47807f4ee4d0b69d9, type: 2}
   currentTile: {fileID: 0}
   amountLeft: 0
+  CanPlaceOnTile: 0
 --- !u!50 &4812397909494241839
 Rigidbody2D:
   serializedVersion: 4
@@ -768,6 +770,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 291379695a592724aba9bb36e604cf95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 
+  cloudLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  placedItemLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
   deadWorkerItemPrefab: {fileID: 4812397909494241834, guid: 9babb8865d7eb6040b2a905aab024264, type: 3}
   levelUpAnimPrefab: {fileID: 6309947321449810909, guid: 250095a8072322f40beed91a82500db7, type: 3}
   myWorkingStrength: 0
@@ -778,8 +787,8 @@ MonoBehaviour:
   knightPrefab: {fileID: 4812397909494241834, guid: 0a3f66f9d8017864fb7cf306cf6c630d, type: 3}
   archerArrowPrefab: {fileID: 0}
   currentTarget: {fileID: 0}
-  myHealth: 4
-  maxHealth: 4
+  myHealth: 5
+  maxHealth: 5
 --- !u!114 &-2436233452540949055
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -795,6 +804,7 @@ MonoBehaviour:
   currentLevel: 0
   starContainer: {fileID: 567718162111421787}
   circleHighlight: {fileID: 1287058697092631269}
+  isMaxLevel: 0
 --- !u!1 &4812397909912382413
 GameObject:
   m_ObjectHideFlags: 0

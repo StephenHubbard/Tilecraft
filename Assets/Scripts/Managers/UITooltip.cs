@@ -16,6 +16,7 @@ public class UITooltip : MonoBehaviour, IPointerClickHandler, IPointerEnterHandl
     public GameObject shownItemsContainer;
     public bool isEncyclopediaIcon = false;
     public bool isStorageIcon = false;
+    public bool isPlusIcon = false;
 
 
     [SerializeField] private GameObject toDoListActiveBorderPrefab;
@@ -31,6 +32,8 @@ public class UITooltip : MonoBehaviour, IPointerClickHandler, IPointerEnterHandl
 
         if (isEncyclopediaIcon) {
             toolTipText = "Required Components:";
+
+            
         }
     }
 
@@ -38,6 +41,15 @@ public class UITooltip : MonoBehaviour, IPointerClickHandler, IPointerEnterHandl
         if (shownItemsContainer == null) {
             shownItemsContainer = GameObject.Find("ShownItemsContainer");
         }
+
+        if (isPlusIcon) {
+            toolTipName = "Plus Icon";
+            toolTipText = "Must use with furnace or alter";
+        }
+    }
+
+    private void LateUpdate() {
+        
     }
 
 
