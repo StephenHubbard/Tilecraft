@@ -30,7 +30,7 @@ MonoBehaviour:
   isSmeltable: 0
   foodValue: 0
   isPopulation: 0
-  toolTipText: 'Must be placed on empty land tile
+  toolTipText: 'Place to explore your surroundings
 
 
     Can be picked back up with

@@ -31,5 +31,6 @@ MonoBehaviour:
   isSmeltable: 0
   foodValue: 1
   isPopulation: 0
-  toolTipText: 'Food:  Drag and drop food over workers, knights, or archers.'
+  toolTipText: 'Food:  Put on a tile with a worker, knight, or archer to feed them
+    and level them up. '
   tierGroup: 0

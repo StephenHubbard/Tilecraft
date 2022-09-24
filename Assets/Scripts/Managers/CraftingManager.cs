@@ -222,7 +222,6 @@ public class CraftingManager : MonoBehaviour
         sliderCanvas.SetActive(false);
         hasCompleteRecipe = false;
         isCrafting = false;
-        recipeInfo = null;
         GetComponent<Tile>().itemInfo = null;
 
         foreach (var item in GetComponent<Tile>().workerPoints)
@@ -326,6 +325,7 @@ public class CraftingManager : MonoBehaviour
         amountLeftToCraft -= 1;
 
         if (amountLeftToCraft == 0) {
+            recipeInfo = null;
             DoneCrafting();
             GetComponent<Tile>().DoneCraftingDestroyItem();
         }

@@ -196,7 +196,6 @@ GameObject:
   - component: {fileID: 4812397909494241838}
   - component: {fileID: 4812397909494241839}
   - component: {fileID: -289416859817077857}
-  - component: {fileID: 4069041757002108112}
   - component: {fileID: 3610106091125134148}
   m_Layer: 6
   m_Name: Item_Child
@@ -263,9 +262,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e39409af50ae3624aa410dfaa2eb8233, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 
   itemInfo: {fileID: 11400000, guid: 35fa9f6730af71b428cd2751da4cd287, type: 2}
   currentTile: {fileID: 0}
   amountLeft: 0
+  CanPlaceOnTile: 0
 --- !u!50 &4812397909494241839
 Rigidbody2D:
   serializedVersion: 4
@@ -304,19 +305,6 @@ MonoBehaviour:
   itemInfo: {fileID: 0}
   lastChild: {fileID: 0}
   isSellable: 0
---- !u!114 &4069041757002108112
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4812397909494241834}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4934530761811f941a2ee448ebc5840e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  foodWorthAmount: 1
 --- !u!114 &3610106091125134148
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -329,6 +317,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96846f3f0f94fdb47ab30878ee3bc09f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentLevel: 0
+  starContainer: {fileID: 0}
+  circleHighlight: {fileID: 0}
+  isMaxLevel: 0
 --- !u!1 &4812397909912382413
 GameObject:
   m_ObjectHideFlags: 0
