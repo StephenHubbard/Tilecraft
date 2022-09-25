@@ -146,6 +146,8 @@ public class DragAndDropCustom : MonoBehaviour
     }
 
     private void HandleOverStorageDetection() {
+        if (InputManager.instance.isOnMainMenu) { return; }
+        
         DragAndDropCustom[] allChildItems = GetComponentsInChildren<DragAndDropCustom>();
 
         if (StorageContainer.instance.isOverStorage) {

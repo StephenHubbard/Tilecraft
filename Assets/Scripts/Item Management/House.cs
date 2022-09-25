@@ -12,6 +12,7 @@ public class House : MonoBehaviour
     [SerializeField] private float timeToHaveBabyTotal = 10f;
     [SerializeField] private Transform[] workerPoints;
     [SerializeField] private GameObject childPrefab;
+    [SerializeField] private GameObject[] workersAndPitchforks;
 
     public bool isBabyMaking = false;
 
@@ -26,6 +27,8 @@ public class House : MonoBehaviour
         DetectBabyMaking();
 
         CompleteHouseTutorial();
+
+        DeParentWorkersAndPitchforks();
     }
 
     private void CompleteHouseTutorial() {
@@ -41,6 +44,14 @@ public class House : MonoBehaviour
             TutorialManager.instance.ActivateNextTutorial();
         }
     }
+
+    private void DeParentWorkersAndPitchforks() {
+        foreach (var item in workersAndPitchforks)
+        {
+            item.gameObject.transform.parent = null;
+        }
+    }
+
 
     private void Update() {
         if (isBabyMaking) {

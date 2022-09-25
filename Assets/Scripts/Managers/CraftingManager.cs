@@ -223,6 +223,9 @@ public class CraftingManager : MonoBehaviour
         hasCompleteRecipe = false;
         isCrafting = false;
         GetComponent<Tile>().itemInfo = null;
+        if (GetComponent<Tile>().currentPlacedItem) {
+            GetComponent<Tile>().itemInfo = GetComponent<Tile>().currentPlacedItem.GetComponent<PlacedItem>().itemInfo;
+        }
 
         foreach (var item in GetComponent<Tile>().workerPoints)
         {
@@ -304,6 +307,7 @@ public class CraftingManager : MonoBehaviour
             }
             recipeInfo.itemInfo.NextInLineToDiscover();
             AutoSellCraftedItem(craftedItem);
+
         } 
         if (recipeInfo.itemInfo.itemName != "XP" && recipeInfo.itemInfo.itemName != "Feed") {
             encyclopedia.AddItemToDiscoveredList(recipeInfo.itemInfo, true, false);

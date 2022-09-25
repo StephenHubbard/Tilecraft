@@ -119,7 +119,7 @@ public class DraggableItem : MonoBehaviour, IDataPersistence
             }
 
             // Garbage
-            if (currentTile.currentPlacedItem && currentTile.currentPlacedItem.GetComponent<PlacedItem>().itemInfo.itemName == "Garbage" && itemInfo.isResourceOnly) {
+            if (currentTile.currentPlacedItem && currentTile.currentPlacedItem.GetComponent<PlacedItem>().itemInfo.itemName == "Garbage" && (itemInfo.isResourceOnly || itemInfo.isStationary)) {
                     currentTile.currentPlacedItem.GetComponent<Garbage>().GarbageSpriteClosed();
                     AudioManager.instance.Play("Garbage");
                     Destroy(gameObject);

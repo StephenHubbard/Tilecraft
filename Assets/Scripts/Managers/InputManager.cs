@@ -135,7 +135,7 @@ public class InputManager : MonoBehaviour
 
             }
 
-            if (isRayBeingBlocked == false && thisTile != null) {
+            if (isRayBeingBlocked == false && thisTile != null && !isOnMainMenu) {
                 tileHighlight.GetComponent<SpriteRenderer>().enabled = true;
 
                 tileHighlight.transform.position = thisTile.transform.position;

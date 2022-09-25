@@ -44,13 +44,13 @@ public class StartingMenu : MonoBehaviour
 
     private void NewGameStartLogic() {
         AudioManager.instance.Play("UI Click");
-        InputManager.instance.isOnMainMenu = false;
         DataPersistenceManager.instance.NewGame();
         StartCoroutine(startingMenuInactiveCo());
     }
 
     private IEnumerator startingMenuInactiveCo() {
         yield return new WaitForSeconds(2f);
+        InputManager.instance.isOnMainMenu = false;
         TutorialManager.instance.StartTutorial();
         HousingManager.instance.SpawnStartingThreeWorkers();
         worldSpaceCavas.SetActive(true);

@@ -183,6 +183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 930d0fac990f5a640bc418598ee9e5c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 
   itemInfo: {fileID: 11400000, guid: 3461b2de5af17f642a7ace8a859fee4d, type: 2}
   amountLeft: 0
 --- !u!114 &7183725315813296955
@@ -215,7 +216,8 @@ MonoBehaviour:
   isAlter: 1
   currentlySmeltingItem: {fileID: 0}
   amountLeftToSmelt: 0
-  occupiedWithResourceInFurance: 0
+  occupiedWithResourceInFurnace: 0
+  isSmelting: 0
 --- !u!1 &7687845647317474612
 GameObject:
   m_ObjectHideFlags: 0
@@ -241,7 +243,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7687845647317474612}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.297, y: 0.732, z: 0}
+  m_LocalPosition: {x: -0.297, y: 0.837, z: 0}
   m_LocalScale: {x: 0.33188, y: 0.33188, z: 0.33188}
   m_ConstrainProportionsScale: 0
   m_Children:

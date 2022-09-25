@@ -43,6 +43,7 @@ public class DataPersistenceManager : MonoBehaviour
 
             this.gameData = new GameData();
         }
+        
     }
 
 
