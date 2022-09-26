@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 using CodeMonkey.Utils;
 
 
-public class StorageItem : MonoBehaviour, IPointerClickHandler, IDataPersistence
+public class StorageItem : MonoBehaviour, IPointerClickHandler, IDataPersistence, IPointerDownHandler
 {
     [SerializeField] public string id;
     [SerializeField] private TMP_Text amountText;
@@ -54,10 +54,23 @@ public class StorageItem : MonoBehaviour, IPointerClickHandler, IDataPersistence
                 AudioManager.instance.Play("Pop");
             }
         }
-        if (eventData.button == PointerEventData.InputButton.Right || eventData.button == PointerEventData.InputButton.Left) {
+        if (eventData.button == PointerEventData.InputButton.Right) {
             amountInStorage--;
             Instantiate(itemInfo.draggableItemPrefab, UtilsClass.GetMouseWorldPosition() + new Vector3(0, -1.5f, 0), transform.rotation);
             AudioManager.instance.Play("Pop");
+        }
+
+        CheckIfZero();
+
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        if (eventData.button == PointerEventData.InputButton.Left) {
+            amountInStorage--;
+            GameObject storageGO = Instantiate(itemInfo.draggableItemPrefab, UtilsClass.GetMouseWorldPosition() + new Vector3(0, 0, 0), transform.rotation);
+            AudioManager.instance.Play("Pop");
+            storageGO.GetComponent<DragAndDropCustom>().OnMouseDownCustom();
         }
 
         CheckIfZero();

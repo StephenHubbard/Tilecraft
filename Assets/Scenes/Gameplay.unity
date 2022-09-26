@@ -2496,9 +2496,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toolTipName: Storage
-  toolTipText: 'Click: Single Out
+  toolTipText: 'Left Click: Drag out
 
-    Shift + Click:  All out or all in'
+
+    Right Click: Single item out
+
+
+    Shift
+    + Right Click:  All out '
   itemInfo: {fileID: 0}
   shownItemsContainer: {fileID: 0}
   isEncyclopediaIcon: 0
@@ -9508,7 +9513,9 @@ MonoBehaviour:
   - "Farms will harvest xp as shown in the top left corner.  \n\nEach time your xp
     bar fills up, you'll make a new discovery. "
   - "To keep things organized, use the storage container up top!  \n\nDrag items
-    in and out manually, or right click them to automatically add them to your storage."
+    in and out manually, or right click them to automatically add them to your storage.\n\nCheck
+    the storage tool tip by hovering your mouse above the top container for more
+    hotkeys. "
   - 'Hmm, we could use some more workers.  I know!  Let''s craft and place down a
     house. '
   - "If we want a higher population, all we have to do is place two workers on an
@@ -13855,7 +13862,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Alpha - Version 0.4
+  m_text: Alpha - Version 0.5
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 37753bf56d1af3644b190f9d0dad1f3f, type: 2}
   m_sharedMaterial: {fileID: -2186161118020174935, guid: 37753bf56d1af3644b190f9d0dad1f3f, type: 2}
