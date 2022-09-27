@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TimeOfDay : MonoBehaviour
+public class TimeOfDay : MonoBehaviour, IDataPersistence
 {
     [SerializeField] private Transform handleParent;
     [SerializeField] private float timeLeftInDay;
@@ -31,7 +31,6 @@ public class TimeOfDay : MonoBehaviour
 
     private void Start() {
         clockSpinFactor = 360f / howLongIsOneDay ;
-        timeLeftInDay = howLongIsOneDay;
     }
 
     private void Update() {
@@ -41,32 +40,17 @@ public class TimeOfDay : MonoBehaviour
         handleParent.transform.eulerAngles = new Vector3(0, 0, timeLeftInDay * clockSpinFactor);
 
         ResetDay();
-        // ThreeSecondsLeft();
     }
 
-    private void ThreeSecondsLeft() {
-        if (timeLeftInDay <= 3f && !countDownStarted) {
-            countDownStarted = true;
-            StartCoroutine(TripleBeepDown());
-        }
+    public void LoadData(GameData data) {
+        this.timeLeftInDay = data.timeLeftInDay;
+        this.totalTimeElapsed = data.totalTimeElapsed;
     }
 
-    private IEnumerator TripleBeepDown() {
-        int amountOfBeeps = 0;
-
-        while (countDownStarted) {
-            AudioManager.instance.Play("Beep");
-            yield return new WaitForSeconds(1f);
-            amountOfBeeps++;
-            if (amountOfBeeps == 3) {
-                countDownStarted = false;
-                AudioManager.instance.Play("End Of Day Bell");
-            }
-        }
-
-        yield return null;
+    public void SaveData(ref GameData data) {
+        data.timeLeftInDay = this.timeLeftInDay;
+        data.totalTimeElapsed = this.totalTimeElapsed;
     }
-
 
     private void ResetDay() {
         if (timeLeftInDay <= 0) {

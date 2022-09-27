@@ -29,8 +29,8 @@ public class Cloud : MonoBehaviour, IDataPersistence
     }
 
     public void SaveData(ref GameData data) {
-        if (data.tilePositions.ContainsKey(id)) {
-            data.tilePositions.Remove(id);
+        if (data.cloudPositions.ContainsKey(id)) {
+            data.cloudPositions.Remove(id);
         }
         data.cloudPositions.Add(id, transform.position);
     }

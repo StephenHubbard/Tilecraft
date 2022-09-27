@@ -9,6 +9,10 @@ public class GameData
     public int currentXP;
     public int xpTillDiscovery;
 
+    // Time
+    public float timeLeftInDay;
+    public float totalTimeElapsed;
+
     // Discovery Manager
     public int discoveryIndex;
 
@@ -50,6 +54,10 @@ public class GameData
         // Economy Manager
         this.currentXP = 0;
         this.xpTillDiscovery = 0;
+
+        // Time
+        this.timeLeftInDay = 0;
+        this.totalTimeElapsed = 0;
 
         // Discovery Manager
         this.discoveryIndex = 0;

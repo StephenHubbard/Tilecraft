@@ -30,7 +30,6 @@ public class StartingMenu : MonoBehaviour
         AudioManager.instance.Play("UI Click");
         StartCoroutine(loadGameCo());
         TutorialManager.instance.showTutorial = false;
-        print("game loaded");
     }
 
     public void OptionsButton() {

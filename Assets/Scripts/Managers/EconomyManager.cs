@@ -80,7 +80,7 @@ public class EconomyManager : MonoBehaviour, IDataPersistence
     }
 
     private IEnumerator AllItemsDiscoveredEndOfFrameCo() {
-        yield return new WaitForEndOfFrame();
+        yield return null;
         CheckDiscovery(0);
     }
 
@@ -92,17 +92,6 @@ public class EconomyManager : MonoBehaviour, IDataPersistence
         DiscoveryManager.instance.DetermineNewDiscovery();
     }
 
-    // public void SellItem(GameObject thisObj, int amount, int stackSize) {
-    //     if (thisObj.GetComponent<Stackable>().isSellable == false) { return; }
-
-    //     AudioManager.instance.Play("Sell");
-    //     GameObject thisCoin = Instantiate(spinningCoinPrefab, thisObj.transform.position + new Vector3(0, 1f, 0), transform.rotation);
-    //     StartCoroutine(DestroyCoinCo(thisCoin));
-    //     CheckDiscovery(amount * stackSize);
-
-
-    //     Destroy(thisObj);
-    // }
 
     private IEnumerator DestroyCoinCo(GameObject thisCoin) {
         yield return new WaitForSeconds(.7f);

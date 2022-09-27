@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3800486178009987088}
   - component: {fileID: 853084195101498960}
-  - component: {fileID: -7858915592111961031}
   m_Layer: 0
   m_Name: Paper Prefab
   m_TagString: Untagged
@@ -46,21 +45,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 930d0fac990f5a640bc418598ee9e5c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 
   itemInfo: {fileID: 11400000, guid: 288868514ae1d204c845b251d77feecd, type: 2}
   amountLeft: 0
---- !u!114 &-7858915592111961031
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 994099794024727751}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4934530761811f941a2ee448ebc5840e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  foodWorthAmount: 1
 --- !u!1 &6127922019841925830
 GameObject:
   m_ObjectHideFlags: 0

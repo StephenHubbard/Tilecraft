@@ -50,8 +50,9 @@ public class DraggableItem : MonoBehaviour, IDataPersistence
 
     public void SaveData(ref GameData data) {
         if (!this.GetComponent<Population>()) {
-            if (data.tilePositions.ContainsKey(id)) {
-                data.tilePositions.Remove(id);
+            if (data.draggableItemPositions.ContainsKey(id)) {
+                data.draggableItemPositions.Remove(id);
+                data.draggableItemsItemInfo.Remove(id);
             }
             data.draggableItemPositions.Add(id, transform.position);
             data.draggableItemsItemInfo.Add(id, this.itemInfo);

@@ -20,6 +20,10 @@ public class Hospital : MonoBehaviour
         StartCoroutine(HealCo(person));
     }
 
+    public void isHealingFalse() {
+        isHealing = false;
+    }
+
     private IEnumerator HealCo(GameObject person) {
         isHealing = true;
         bool doneHealing = false;

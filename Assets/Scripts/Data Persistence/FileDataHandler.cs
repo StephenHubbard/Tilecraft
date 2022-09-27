@@ -43,22 +43,6 @@ public class FileDataHandler
     public void Save(GameData data) {
         string fullPath = Path.Combine(dataDirPath, dataFileName);
 
-        // Delete old file
-        // try 
-        // {
-        //     if (File.Exists(fullPath)) {
-        //         Debug.Log("previous save file deleted");
-        //         Directory.Delete(Path.GetDirectoryName(fullPath), true);
-        //     } else {
-        //         Debug.LogWarning("Tried to delete data, but the data didn't exist");
-        //     }
-        // }
-        // catch (Exception e) {
-        //     Debug.LogError("Failed to delte profile data for profile ID : at path: " + fullPath + "\n" + e);
-        // }
-
-        // New file
-        Debug.Log(fullPath);
         try {
             Directory.CreateDirectory(Path.GetDirectoryName(fullPath));
 

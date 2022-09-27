@@ -223,7 +223,7 @@ public class CraftingManager : MonoBehaviour
         hasCompleteRecipe = false;
         isCrafting = false;
         GetComponent<Tile>().itemInfo = null;
-        if (GetComponent<Tile>().currentPlacedItem) {
+        if (GetComponent<Tile>().currentPlacedItem && amountLeftToCraft != 0) {
             GetComponent<Tile>().itemInfo = GetComponent<Tile>().currentPlacedItem.GetComponent<PlacedItem>().itemInfo;
         }
 
@@ -330,8 +330,8 @@ public class CraftingManager : MonoBehaviour
 
         if (amountLeftToCraft == 0) {
             recipeInfo = null;
-            DoneCrafting();
             GetComponent<Tile>().DoneCraftingDestroyItem();
+            DoneCrafting();
         }
 
         if (transform.GetComponent<Tile>().currentPlacedItem && transform.GetComponent<Tile>().currentPlacedItem.GetComponent<Furnace>()) {

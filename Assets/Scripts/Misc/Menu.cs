@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class Menu : MonoBehaviour
 {
     [SerializeField] private GameObject menuContainer;
     [SerializeField] private GameObject gameWinContainer;
+    [SerializeField] private GameObject gameSavedText;
 
     public bool isPaused;
 
@@ -39,10 +41,12 @@ public class Menu : MonoBehaviour
     public void SaveGameButton() {
         AudioManager.instance.Play("UI Click");
         DataPersistenceManager.instance.SaveGame();
-        print("game saved");
+        gameSavedText.SetActive(true);
     }
 
+
     public void ResumeButton() {
+        gameSavedText.SetActive(false);
         AudioManager.instance.Play("UI Click");
         ToolTipManager.instance.isOverUI = false;
         isPaused = false;

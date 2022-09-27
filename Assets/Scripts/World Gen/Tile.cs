@@ -58,6 +58,8 @@ public class Tile : MonoBehaviour, IDataPersistence
     public void SaveData(ref GameData data) {
         if (data.tilePositions.ContainsKey(id)) {
             data.tilePositions.Remove(id);
+            data.tileInfo.Remove(id);
+            data.itemInfo.Remove(id);
         }
         data.tilePositions.Add(id, transform.position);
         data.tileInfo.Add(id, this.tileInfo);
@@ -208,6 +210,7 @@ public class Tile : MonoBehaviour, IDataPersistence
 
         if (currentPlacedItem && currentPlacedItem.GetComponent<Hospital>()) {
             currentPlacedItem.GetComponent<Hospital>().KillCoroutines();
+            currentPlacedItem.GetComponent<Hospital>().isHealingFalse();
         }
 
         

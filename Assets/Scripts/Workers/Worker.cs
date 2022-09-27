@@ -52,6 +52,9 @@ public class Worker : MonoBehaviour, IDataPersistence
         if (GetComponent<DraggableItem>()) {
             if (data.draggablePopulationPos.ContainsKey(id)) {
                 data.draggablePopulationPos.Remove(id);
+                data.draggableItemPopulation.Remove(id);
+                data.draggableItemsItemInfo.Remove(id);
+                data.populationLevels.Remove(id);
             }
             data.draggablePopulationPos.Add(id, transform.position);
             data.draggableItemPopulation.Add(id, itemInfo);
@@ -60,6 +63,8 @@ public class Worker : MonoBehaviour, IDataPersistence
         if (GetComponent<PlacedItem>()) {
             if (data.placedItemsPopulationPos.ContainsKey(id)) {
                 data.placedItemsPopulationPos.Remove(id);
+                data.populationLevels.Remove(id);
+                data.placedItemPopulation.Remove(id);
             }
             data.placedItemsPopulationPos.Add(id, transform.position);
             data.placedItemPopulation.Add(id, itemInfo);
@@ -259,6 +264,8 @@ public class Worker : MonoBehaviour, IDataPersistence
             if (myEnemy != null) {
                 myEnemy.myAnimator.SetBool("isAttacking", false);
             }
+            GetComponentInParent<CraftingManager>().DoneCrafting();
+            GetComponentInParent<CraftingManager>().ResetStartingValuesSlider();
             Destroy(gameObject);
         }
     }
