@@ -49,6 +49,13 @@ public class GameData
     // Population
     public SerializableDictionary<string, int> populationLevels;
 
+    // Enemies
+    public SerializableDictionary<string, bool> isSkeletonWarrior;
+    public SerializableDictionary<string, Vector3> enemyPos;
+
+    // To Do List
+    public SerializableDictionary<string, ItemInfo> toDoList;
+
 
     public GameData() {
         // Economy Manager
@@ -95,5 +102,11 @@ public class GameData
         // Population
         populationLevels = new SerializableDictionary<string, int>();
 
+        // Enemies
+        isSkeletonWarrior = new SerializableDictionary<string, bool>();
+        enemyPos = new SerializableDictionary<string, Vector3>();
+
+        // To Do List
+        toDoList = new SerializableDictionary<string, ItemInfo>();
     }
 }

@@ -4,18 +4,22 @@ using UnityEngine;
 
 public class OrcRelic : MonoBehaviour
 {
+    [SerializeField] public int id;
     [SerializeField] public Transform[] orcSpawnPoints;
     [SerializeField] private GameObject orcPrefab;
     [SerializeField] private GameObject maskedOrc;
 
     public bool isDrums = false;
     public bool hasEnemies = true;
+    public bool spawnEnemies = false;
 
     private void Start() {
         SpawnOrcs();
     }
 
     private void SpawnOrcs() {
+        if (spawnEnemies == false) { return; }
+
         int howManyOrcsToSpawn = Random.Range(1, 3);
 
         for (int i = 0; i <= howManyOrcsToSpawn; i++)

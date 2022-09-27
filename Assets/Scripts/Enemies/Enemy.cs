@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour, IDataPersistence
 {
+    [SerializeField] public string id;
+
     [SerializeField] private GameObject arrowPrefab;
     [SerializeField] public int myHealth = 3;
     [SerializeField] private LayerMask cloudLayerMask = new LayerMask();
@@ -11,15 +13,33 @@ public class Enemy : MonoBehaviour
     public Transform currentTarget = null;
     public bool isUncoveredByClouds = false;
 
-    public bool isMaskedOrc = false;
+    public bool isSkeletonWarrior = false;
 
     private void Awake() {
         myAnimator = GetComponent<Animator>();
     }
     
     private void Start() {
+        GenerateGuid();
         AnimatorStateInfo state = myAnimator.GetCurrentAnimatorStateInfo (0);
         myAnimator.Play (state.fullPathHash, -1, Random.Range(0f,1f));
+    }
+
+    public void GenerateGuid() {
+        id = System.Guid.NewGuid().ToString();
+    }
+
+    public void LoadData(GameData data) {
+
+    }
+
+    public void SaveData(ref GameData data) {
+        if (data.isSkeletonWarrior.ContainsKey(id)) {
+            data.isSkeletonWarrior.Remove(id);
+            data.enemyPos.Remove(id);
+        }
+        data.isSkeletonWarrior.Add(id, isSkeletonWarrior);
+        data.enemyPos.Add(id, transform.position);
     }
 
     private void Update() {
@@ -56,7 +76,7 @@ public class Enemy : MonoBehaviour
     }
 
     private void OnCollisionStay2D(Collision2D other) {
-        if (isMaskedOrc) {
+        if (isSkeletonWarrior) {
             Worker worker = other.gameObject.GetComponent<Worker>();
             if (worker && currentTarget == null && worker.GetComponent<PlacedItem>() && isUncoveredByClouds) {
                 if (worker.GetComponentInParent<Tile>() == GetComponentInParent<Tile>()) {
@@ -67,7 +87,7 @@ public class Enemy : MonoBehaviour
                 }
             }
 
-            if (!isMaskedOrc) {
+            if (!isSkeletonWarrior) {
                 Archer archer = other.gameObject.GetComponent<Archer>();
                 if (archer && currentTarget == null && archer.GetComponent<PlacedItem>() && isUncoveredByClouds) {
                     myAnimator.SetBool("isAttacking", true);
@@ -95,7 +115,7 @@ public class Enemy : MonoBehaviour
                 AudioManager.instance.Play("Orc Attack");
             }
 
-            if (!isMaskedOrc) {
+            if (!isSkeletonWarrior) {
                 Archer archer = other.gameObject.GetComponent<Archer>();
                 if (archer && currentTarget == null && archer.GetComponent<PlacedItem>() && isUncoveredByClouds) {
                     myAnimator.SetBool("isAttacking", true);

@@ -55,6 +55,8 @@ public class DataPersistenceManager : MonoBehaviour
         LoadPopulation.instance.SpawnDraggableItemWorkers(data);
         LoadPopulation.instance.SpawnPlacedWorkers(data);
         LoadStorageItems.instance.SpawnStorageItems(data);
+        LoadEnemies.instance.SpawnEnemies(data);
+        LoadToDoList.instance.SpawnToDoList(data);
     }
 
     public void SaveGame() {

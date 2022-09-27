@@ -107,12 +107,14 @@ public class DraggableItem : MonoBehaviour, IDataPersistence
     public void PlaceItemOnTile(int amountInStack) {
         if (!CanPlaceOnTile || ToolTipManager.instance.isOverUI) { return; }
 
+        Stackable stackable = GetComponent<Stackable>();
+
         for (int i = amountInStack; i > 0; i--)
         {
             // fridge
             if (currentTile.currentPlacedItem && currentTile.currentPlacedItem.GetComponent<Fridge>()) {
                 if (gameObject.GetComponent<Food>()) {
-                    currentTile.currentPlacedItem.GetComponent<Fridge>().IncreaseFoodAmount(gameObject.GetComponent<Food>().foodWorthAmount, GetComponent<Stackable>().amountOfChildItems);
+                    currentTile.currentPlacedItem.GetComponent<Fridge>().IncreaseFoodAmount(gameObject.GetComponent<Food>().foodWorthAmount, stackable.amountOfChildItems);
                     AudioManager.instance.Play("Click");
                     Destroy(gameObject);
                     return;
@@ -138,7 +140,7 @@ public class DraggableItem : MonoBehaviour, IDataPersistence
                     } else if (!currentTile.GetComponent<CraftingManager>().isCrafting && itemInfo.itemName == "Dead Worker" & currentTile.currentPlacedItem.GetComponent<Furnace>().isAlter) {
                         currentTile.currentPlacedItem.GetComponent<Furnace>().occupiedWithResourceInFurnace = true;
                         currentTile.currentPlacedItem.GetComponent<Furnace>().UpdateCurrentOccupiedResourceSprite(itemInfo);
-                        currentTile.currentPlacedItem.GetComponent<Furnace>().StartSmelting(itemInfo, GetComponent<Stackable>().amountOfChildItems);
+                        currentTile.currentPlacedItem.GetComponent<Furnace>().StartSmelting(itemInfo, stackable.amountOfChildItems);
                         AudioManager.instance.Play("Click");
                         Destroy(gameObject);
                         return;
@@ -147,7 +149,7 @@ public class DraggableItem : MonoBehaviour, IDataPersistence
                     if (!currentTile.GetComponent<CraftingManager>().isCrafting && !currentTile.currentPlacedItem.GetComponent<Furnace>().isAlter) {
                         currentTile.currentPlacedItem.GetComponent<Furnace>().occupiedWithResourceInFurnace = true;
                         currentTile.currentPlacedItem.GetComponent<Furnace>().UpdateCurrentOccupiedResourceSprite(itemInfo);
-                        currentTile.currentPlacedItem.GetComponent<Furnace>().StartSmelting(itemInfo, GetComponent<Stackable>().amountOfChildItems);
+                        currentTile.currentPlacedItem.GetComponent<Furnace>().StartSmelting(itemInfo, stackable.amountOfChildItems);
                         AudioManager.instance.Play("Click");
                         Destroy(gameObject);
                         return;
@@ -157,8 +159,8 @@ public class DraggableItem : MonoBehaviour, IDataPersistence
                         return;
                     }
                 } else if (currentTile.currentPlacedItem.GetComponent<Furnace>() && itemInfo == currentTile.currentPlacedItem.GetComponent<Furnace>().currentlySmeltingItem) {
-                        currentTile.GetComponent<CraftingManager>().amountLeftToCraft += GetComponent<Stackable>().amountOfChildItems;
-                        currentTile.currentPlacedItem.GetComponent<Furnace>().amountLeftToSmelt += GetComponent<Stackable>().amountOfChildItems;
+                        currentTile.GetComponent<CraftingManager>().amountLeftToCraft += stackable.amountOfChildItems;
+                        currentTile.currentPlacedItem.GetComponent<Furnace>().amountLeftToSmelt += stackable.amountOfChildItems;
                         AudioManager.instance.Play("Click");
                         Destroy(gameObject);
                         return;
@@ -167,7 +169,8 @@ public class DraggableItem : MonoBehaviour, IDataPersistence
 
             // worker
             if (itemInfo.name == "Worker") {
-                if (currentTile.PlaceWorker(itemInfo.onTilePrefab, gameObject.GetComponent<Worker>().myHealth, gameObject.GetComponent<Worker>().myWorkingStrength, gameObject.GetComponent<Worker>().foodNeededToUpPickaxeStrengthCurrent, gameObject.GetComponent<Population>().currentLevel, GetComponent<Worker>().maxHealth)) {
+                
+                if (currentTile.PlaceWorker(itemInfo.onTilePrefab, stackable.childItems[i - 1].gameObject.GetComponent<Worker>().myHealth, stackable.childItems[i - 1].gameObject.GetComponent<Worker>().myWorkingStrength, stackable.childItems[i - 1].gameObject.GetComponent<Worker>().foodNeededToUpPickaxeStrengthCurrent, stackable.childItems[i - 1].gameObject.GetComponent<Population>().currentLevel, stackable.childItems[i - 1].GetComponent<Worker>().maxHealth)) {
                     if (i == 1) {
                         Destroy(gameObject);
                     }
@@ -185,9 +188,9 @@ public class DraggableItem : MonoBehaviour, IDataPersistence
                 }
             }
 
-            // worker
+            // archer
             if (itemInfo.name == "Archer") {
-                if (currentTile.PlaceArcher(itemInfo.onTilePrefab, gameObject.GetComponent<Archer>().myHealth, gameObject.GetComponent<Archer>().myCombatValue, gameObject.GetComponent<Archer>().foodNeededToUpCombatValue, gameObject.GetComponent<Population>().currentLevel, GetComponent<Archer>().maxHealth)) {
+                if (currentTile.PlaceArcher(itemInfo.onTilePrefab, stackable.childItems[i - 1].gameObject.GetComponent<Archer>().myHealth, stackable.childItems[i - 1].gameObject.GetComponent<Archer>().myCombatValue, stackable.childItems[i - 1].gameObject.GetComponent<Archer>().foodNeededToUpCombatValue, stackable.childItems[i - 1].gameObject.GetComponent<Population>().currentLevel, stackable.childItems[i - 1].GetComponent<Archer>().maxHealth)) {
                     if (i == 1) {
                         Destroy(gameObject);
                     }
@@ -199,9 +202,9 @@ public class DraggableItem : MonoBehaviour, IDataPersistence
                 }
             }
 
-            // worker
+            // knight
             if (itemInfo.name == "Knight") {
-                if (currentTile.PlaceKnight(itemInfo.onTilePrefab, gameObject.GetComponent<Knight>().myHealth, gameObject.GetComponent<Knight>().myCombatValue, gameObject.GetComponent<Knight>().foodNeededToUpCombatValue, gameObject.GetComponent<Population>().currentLevel, GetComponent<Knight>().maxHealth)) {
+                if (currentTile.PlaceKnight(itemInfo.onTilePrefab, stackable.childItems[i - 1].gameObject.GetComponent<Knight>().myHealth, stackable.childItems[i - 1].gameObject.GetComponent<Knight>().myCombatValue, stackable.childItems[i - 1].gameObject.GetComponent<Knight>().foodNeededToUpCombatValue, stackable.childItems[i - 1].gameObject.GetComponent<Population>().currentLevel, stackable.childItems[i - 1].GetComponent<Knight>().maxHealth)) {
                     if (i == 1) {
                         Destroy(gameObject);
                     }

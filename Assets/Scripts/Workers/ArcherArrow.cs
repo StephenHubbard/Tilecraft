@@ -14,7 +14,7 @@ public class ArcherArrow : MonoBehaviour
 
             if (Vector3.Distance(transform.position, currentTarget.transform.position) < .1f) {
 
-                if (currentTarget.GetComponent<Enemy>().isMaskedOrc) {
+                if (currentTarget.GetComponent<Enemy>().isSkeletonWarrior) {
                     Instantiate(chinkVFXPrefab, transform.position, transform.rotation);
                     AudioManager.instance.Play("Armor Chink");
 

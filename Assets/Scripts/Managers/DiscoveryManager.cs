@@ -137,10 +137,10 @@ public class DiscoveryManager : MonoBehaviour, IDataPersistence
     }
 
     public void DetermineNewDiscovery() {
-        if (discoveryIndex > allAvailableItemsInOrder.Count - 1) {
+        if (allAvailableItemsInOrder[discoveryIndex].itemName == "Game Win") {
             EconomyManager.instance.AllItemsDiscovered();
         }
-        
+
         Encyclopedia.instance.AddItemToDiscoveredList(allAvailableItemsInOrder[discoveryIndex], true, true);
         AudioManager.instance.Play("Sell");
         discoveryIndex++;

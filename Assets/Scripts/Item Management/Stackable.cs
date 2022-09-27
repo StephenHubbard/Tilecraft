@@ -17,6 +17,8 @@ public class Stackable : MonoBehaviour
 
     public bool isSellable = false;
 
+    public List<GameObject> childItems = new List<GameObject>();
+
     private void Awake() {
         audioManager = FindObjectOfType<AudioManager>();
         itemInfo = GetComponent<DraggableItem>().itemInfo;
@@ -67,13 +69,17 @@ public class Stackable : MonoBehaviour
 
     public void FindAmountOfChildren(Transform parentItem) {
         amountOfChildItems = 0;
+        childItems.Clear();
 
         Stackable[] amountOfChildren = GetComponentsInChildren<Stackable>();
 
         foreach (var item in amountOfChildren)
         {
             amountOfChildItems += 1;
+            childItems.Add(item.gameObject);
         }
+
+        childItems.Reverse();
     }
 
     public void DetachFromParent() {

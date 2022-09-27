@@ -175,6 +175,10 @@ public class WorldGeneration : MonoBehaviour
                                 hit.transform.GetComponent<Tile>().UpdateCurrentPlacedItem(startingPlacedItem.GetComponent<PlacedItem>().itemInfo, startingPlacedItem);
                                 hit.transform.GetComponent<Tile>().isOccupiedWithBuilding = true;
                                 hit.transform.GetComponent<CraftingManager>().UpdateAmountLeftToCraft(startingPlacedItem.GetComponent<PlacedItem>().itemInfo.amountRecipeCanCreate);
+
+                                if (startingPlacedItem.GetComponent<OrcRelic>()) {
+                                    startingPlacedItem.GetComponent<OrcRelic>().spawnEnemies = true;
+                                }
                             }
                         }
                     }
@@ -221,6 +225,10 @@ public class WorldGeneration : MonoBehaviour
                                 hit.transform.GetComponent<Tile>().UpdateCurrentPlacedItem(startingPlacedItem.GetComponent<PlacedItem>().itemInfo, startingPlacedItem);
                                 hit.transform.GetComponent<Tile>().isOccupiedWithBuilding = true;
                                 hit.transform.GetComponent<CraftingManager>().UpdateAmountLeftToCraft(startingPlacedItem.GetComponent<PlacedItem>().itemInfo.amountRecipeCanCreate);
+
+                                if (startingPlacedItem.GetComponent<OrcRelic>()) {
+                                    startingPlacedItem.GetComponent<OrcRelic>().spawnEnemies = true;
+                                }
                             }
                         }
                     }
@@ -269,6 +277,10 @@ public class WorldGeneration : MonoBehaviour
                                 hit.transform.GetComponent<Tile>().UpdateCurrentPlacedItem(startingPlacedItem.GetComponent<PlacedItem>().itemInfo, startingPlacedItem);
                                 hit.transform.GetComponent<Tile>().isOccupiedWithBuilding = true;
                                 hit.transform.GetComponent<CraftingManager>().UpdateAmountLeftToCraft(startingPlacedItem.GetComponent<PlacedItem>().itemInfo.amountRecipeCanCreate);
+
+                                if (startingPlacedItem.GetComponent<OrcRelic>()) {
+                                    startingPlacedItem.GetComponent<OrcRelic>().spawnEnemies = true;
+                                }
                             }
                         }
                     }
@@ -479,6 +491,10 @@ public class WorldGeneration : MonoBehaviour
                             newTile.GetComponent<Tile>().UpdateCurrentPlacedItem(startingPlacedItem.GetComponent<PlacedItem>().itemInfo, startingPlacedItem);
                             newTile.GetComponent<Tile>().isOccupiedWithBuilding = true;
                             newTile.GetComponent<CraftingManager>().UpdateAmountLeftToCraft(startingPlacedItem.GetComponent<PlacedItem>().itemInfo.amountRecipeCanCreate);
+
+                            if (startingPlacedItem.GetComponent<OrcRelic>()) {
+                                startingPlacedItem.GetComponent<OrcRelic>().spawnEnemies = true;
+                            }
                         }
 
                         grid.SetValue(gridLocation, 1);

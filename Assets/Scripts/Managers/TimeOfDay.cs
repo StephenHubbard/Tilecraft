@@ -177,6 +177,10 @@ public class TimeOfDay : MonoBehaviour, IDataPersistence
                 tile.GetComponent<CraftingManager>().UpdateAmountLeftToCraft(startingPlacedItem.GetComponent<PlacedItem>().itemInfo.amountRecipeCanCreate);
                 tile.GetComponent<CraftingManager>().CheckCanStartCrafting();
                 FadeInNewTileItem(startingPlacedItem);
+
+                if (startingPlacedItem.GetComponent<OrcRelic>()) {
+                    startingPlacedItem.GetComponent<OrcRelic>().spawnEnemies = true;
+                }
             }
         }
 

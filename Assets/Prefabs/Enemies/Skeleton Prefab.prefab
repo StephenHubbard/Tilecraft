@@ -50,6 +50,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 930d0fac990f5a640bc418598ee9e5c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 
   itemInfo: {fileID: 11400000, guid: 9f4fcc8b513a12e4ba49920d92c8637f, type: 2}
   amountLeft: 0
 --- !u!58 &6816163836829188929
@@ -101,6 +102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 089e18529806e0c43bc081d4e0a18ffc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 
   arrowPrefab: {fileID: 0}
   myHealth: 10
   cloudLayerMask:
@@ -109,7 +111,7 @@ MonoBehaviour:
   myAnimator: {fileID: 0}
   currentTarget: {fileID: 0}
   isUncoveredByClouds: 0
-  isMaskedOrc: 1
+  isSkeletonWarrior: 1
 --- !u!95 &-9190544060313587555
 Animator:
   serializedVersion: 4
