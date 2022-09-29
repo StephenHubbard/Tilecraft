@@ -46,10 +46,24 @@ public class House : MonoBehaviour
     }
 
     private void DeParentWorkersAndPitchforks() {
-        foreach (var item in workersAndPitchforks)
-        {
-            item.gameObject.transform.parent = null;
+        if (DataPersistenceManager.instance.isLoadedGame) {
+            foreach (var item in workersAndPitchforks)
+            {
+                Destroy(item.gameObject);
+            }
+            StartCoroutine(ChangeIsLoadedGameCo());
+        } else {
+            foreach (var item in workersAndPitchforks)
+            {
+                item.gameObject.transform.parent = null;
+            }
         }
+
+    }
+
+    private IEnumerator ChangeIsLoadedGameCo() {
+        yield return null;
+        DataPersistenceManager.instance.isLoadedGame = false;
     }
 
 

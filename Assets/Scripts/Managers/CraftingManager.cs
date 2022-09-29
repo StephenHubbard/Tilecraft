@@ -116,6 +116,8 @@ public class CraftingManager : MonoBehaviour
         if (GetComponent<Tile>().currentPlacedItem && GetComponent<Tile>().currentPlacedItem.GetComponent<Tower>()) {
             hasCompleteRecipe = true;
             recipeInfo = GetComponent<Tile>().currentPlacedItem.GetComponent<PlacedItem>().itemInfo.recipeInfo;
+            amountLeftToCraft = 1;
+            startAmountToCraft = 1;
         }
 
         if (hasCompleteRecipe && hasWorkers && !isCrafting && amountLeftToCraft > 0 && recipeInfo && !recipeInfo.requiresFurnace) {

@@ -11,6 +11,7 @@ public class DataPersistenceManager : MonoBehaviour
     private GameData gameData;
     private List<IDataPersistence> dataPersistenceObjects;
     private FileDataHandler dataHandler;
+    public bool isLoadedGame = false;
 
     public static DataPersistenceManager instance { get; private set; }
 
@@ -35,6 +36,7 @@ public class DataPersistenceManager : MonoBehaviour
             Debug.Log("No data was found");
         } else {
             LoadData(gameData);
+            isLoadedGame = true;
 
             foreach (IDataPersistence dataPersistenceObj in dataPersistenceObjects)
             {

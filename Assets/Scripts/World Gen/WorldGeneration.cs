@@ -301,9 +301,6 @@ public class WorldGeneration : MonoBehaviour
                     GameObject tileType = Instantiate(tileInfoScriptableObjects[0].tilePrefab, newTile.transform.position, transform.rotation);
                     GameObject startingTower = Instantiate(towerPrefab, newTile.transform.position, transform.rotation);
                     startingTower.transform.parent = newTile.transform;
-                    // newTile.GetComponent<Tile>().UpdateCurrentPlacedItem(towerPrefab.GetComponent<PlacedItem>().itemInfo, startingTower);
-                    // newTile.GetComponent<Tile>().isOccupiedWithBuilding = true;
-                    // newTile.GetComponent<CraftingManager>().UpdateAmountLeftToCraft(towerPrefab.GetComponent<PlacedItem>().itemInfo.amountRecipeCanCreate);
                     tileType.transform.parent = newTile.transform;
                     tileType.GetComponentInParent<Tile>().tileInfo = tileInfoScriptableObjects[0];
                     grid.SetValue(gridLocation, 1);
@@ -317,7 +314,7 @@ public class WorldGeneration : MonoBehaviour
     }
 
     private IEnumerator DestroyStartingTower(GameObject startingTower) {
-        yield return new WaitForEndOfFrame();
+        yield return null;
         Destroy(startingTower);
     }
 

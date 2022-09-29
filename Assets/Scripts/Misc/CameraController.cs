@@ -45,7 +45,7 @@ public class CameraController : MonoBehaviour
 
         float moveSpeed = 10f;
 
-        if (edgeScrollingEnabled) {
+        if (edgeScrollingEnabled && !InputManager.instance.isOnMainMenu) {
             if (Input.mousePosition.x > Screen.width - edgeSize) {
                 inputMoveDir.x = +1;
             }

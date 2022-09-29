@@ -8,7 +8,7 @@ public class HousingManager : MonoBehaviour
     [SerializeField] public int maximumPopulation;
     [SerializeField] public int currentPopulation;
     [SerializeField] private int startingPopulation;
-    [SerializeField] private int housePopValue = 5;
+    [SerializeField] private int housePopValue;
     [SerializeField] private Slider slider;
     [SerializeField] private TMP_Text housingText;
     [SerializeField] private Animator housingUIAnimator;
@@ -25,7 +25,6 @@ public class HousingManager : MonoBehaviour
 
     private void Start() {
         DetectHowManyHouses();
-        // DetectTotalPopulation();
     }
 
     private void Update() {
