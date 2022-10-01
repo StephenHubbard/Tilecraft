@@ -230,7 +230,7 @@ public class Tile : MonoBehaviour, IDataPersistence
                 }
 
                 if (worker.GetChild(0).GetComponent<Knight>()) {
-                    Vector3 spawnItemsVector3 = transform.position + new Vector3(1.2f, .5f, 0);
+                    Vector3 spawnItemsVector3 = transform.position + new Vector3(1.2f, .4f, 0);
                     GameObject newKnight = Instantiate(knightItemPrefab, spawnItemsVector3, transform.rotation);
                     newKnight.GetComponent<Knight>().TransferHealth(worker.GetChild(0).GetComponent<Knight>().myHealth, worker.GetChild(0).GetComponent<Knight>().maxHealth);
                     newKnight.GetComponent<Knight>().TransferStrength(worker.GetChild(0).GetComponent<Knight>().myCombatValue, worker.GetChild(0).GetComponent<Knight>().foodNeededToUpCombatValue, worker.GetChild(0).GetComponent<Population>().currentLevel);
@@ -240,7 +240,7 @@ public class Tile : MonoBehaviour, IDataPersistence
                 }
 
                 if (worker.GetChild(0).GetComponent<Archer>()) {
-                    Vector3 spawnItemsVector3 = transform.position + new Vector3(1.2f, .5f, 0);
+                    Vector3 spawnItemsVector3 = transform.position + new Vector3(1.2f, .6f, 0);
                     GameObject newArcher = Instantiate(archerItemPrefab, spawnItemsVector3, transform.rotation);
                     newArcher.GetComponent<Archer>().TransferHealth(worker.GetChild(0).GetComponent<Archer>().myHealth, worker.GetChild(0).GetComponent<Archer>().maxHealth);
                     newArcher.GetComponent<Archer>().TransferStrength(worker.GetChild(0).GetComponent<Archer>().myCombatValue, worker.GetChild(0).GetComponent<Archer>().foodNeededToUpCombatValue, worker.GetChild(0).GetComponent<Population>().currentLevel);

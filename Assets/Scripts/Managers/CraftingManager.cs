@@ -51,16 +51,18 @@ public class CraftingManager : MonoBehaviour
 
             if (recipeInfo && recipeInfo.itemInfo.itemName == "Tower") {
                 ResetStartingValuesSlider();
-
-                sliderBackgroundColor.color = defaultGreen;
             }
         } 
     }
 
     public void ResetStartingValuesSlider() {
+        if (GetComponent<Tile>()) {
+            DoneCrafting();
+        }
         tileSlider.value = currentCraftTime;
         tileSlider.maxValue = 100;
         tileSlider.value = 100;
+        sliderBackgroundColor.color = defaultGreen;
     }
 
     public void CompleteFirstStepTutorial() {
@@ -224,7 +226,9 @@ public class CraftingManager : MonoBehaviour
         sliderCanvas.SetActive(false);
         hasCompleteRecipe = false;
         isCrafting = false;
-        GetComponent<Tile>().itemInfo = null;
+        if (GetComponent<Tile>().itemInfo) {
+            GetComponent<Tile>().itemInfo = null;
+        }
         if (GetComponent<Tile>().currentPlacedItem && amountLeftToCraft != 0) {
             GetComponent<Tile>().itemInfo = GetComponent<Tile>().currentPlacedItem.GetComponent<PlacedItem>().itemInfo;
         }
