@@ -62,7 +62,7 @@ public class CraftingManager : MonoBehaviour
         tileSlider.value = currentCraftTime;
         tileSlider.maxValue = 100;
         tileSlider.value = 100;
-        sliderBackgroundColor.color = defaultGreen;
+        // sliderBackgroundColor.color = defaultGreen;
     }
 
     public void CompleteFirstStepTutorial() {

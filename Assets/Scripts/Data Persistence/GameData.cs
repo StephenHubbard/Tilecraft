@@ -16,6 +16,9 @@ public class GameData
     // Discovery Manager
     public int discoveryIndex;
 
+    // Camera Controller
+    public float cameraOrthoSize;
+
     // Tiles 
     public SerializableDictionary<string, Vector3> tilePositions;
     public SerializableDictionary<string, TileInfo> tileInfo;
@@ -57,6 +60,7 @@ public class GameData
     public SerializableDictionary<string, ItemInfo> toDoList;
 
 
+
     public GameData() {
         // Economy Manager
         this.currentXP = 0;
@@ -68,6 +72,9 @@ public class GameData
 
         // Discovery Manager
         this.discoveryIndex = 0;
+
+        /// Camera Controller 
+        this.cameraOrthoSize = 0;
 
         // Tiles
         tilePositions = new SerializableDictionary<string, Vector3>();

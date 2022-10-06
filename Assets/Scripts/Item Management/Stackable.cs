@@ -16,7 +16,7 @@ public class Stackable : MonoBehaviour
     private int interactableLayerMask;
 
     public bool isSellable = false;
-
+    public bool leftClickFromStorage = false;
     public List<GameObject> childItems = new List<GameObject>();
 
     private void Awake() {
@@ -26,7 +26,9 @@ public class Stackable : MonoBehaviour
     }
 
     private void Start() {
-        FindNearbySameQOL(false);
+        if (!leftClickFromStorage) {
+            FindNearbySameQOL(false);
+        }
         FindAmountOfChildren(this.transform);
         StartCoroutine(CanSellCo());
     }

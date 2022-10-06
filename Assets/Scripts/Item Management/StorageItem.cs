@@ -50,7 +50,7 @@ public class StorageItem : MonoBehaviour, IPointerClickHandler, IDataPersistence
             for (int i = amountInStorage; i > 1; i--)
             {
                 amountInStorage--;
-                Instantiate(itemInfo.draggableItemPrefab, UtilsClass.GetMouseWorldPosition() + new Vector3(0, 0, 0), transform.rotation);
+                GameObject storageGO = Instantiate(itemInfo.draggableItemPrefab, UtilsClass.GetMouseWorldPosition() + new Vector3(0, 0, 0), transform.rotation);
                 AudioManager.instance.Play("Pop");
             }
         }
@@ -69,6 +69,7 @@ public class StorageItem : MonoBehaviour, IPointerClickHandler, IDataPersistence
         if (eventData.button == PointerEventData.InputButton.Left) {
             amountInStorage--;
             GameObject storageGO = Instantiate(itemInfo.draggableItemPrefab, UtilsClass.GetMouseWorldPosition() + new Vector3(0, 0, 0), transform.rotation);
+            storageGO.GetComponent<Stackable>().leftClickFromStorage = true;
             AudioManager.instance.Play("Pop");
             storageGO.GetComponent<DragAndDropCustom>().OnMouseDownCustom();
         }

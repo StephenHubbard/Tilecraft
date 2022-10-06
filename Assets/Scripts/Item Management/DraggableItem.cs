@@ -80,7 +80,7 @@ public class DraggableItem : MonoBehaviour, IDataPersistence
                 lastObjectPos = hit.transform.position;
                 transform.root.Translate((transform.root.position - lastObjectPos) * Time.deltaTime);
                 transform.root.position = new Vector3(transform.root.position.x, transform.root.position.y, 0);
-            }
+            } 
         }
     }
 

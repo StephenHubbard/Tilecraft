@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 
-public class CameraController : MonoBehaviour
+public class CameraController : MonoBehaviour, IDataPersistence
 {
 
     private const float MIN_FOLLOW_Z_OFFSET = 4f;
@@ -67,6 +67,13 @@ public class CameraController : MonoBehaviour
         transform.position = (new Vector3(Mathf.Clamp(transform.position.x, bottomLeftLimit.x + cameraBorderBuffer, topRightLimit.x - cameraBorderBuffer), Mathf.Clamp(transform.position.y, bottomLeftLimit.y + cameraBorderBuffer, topRightLimit.y - cameraBorderBuffer), transform.position.z));
     }
 
+    public void LoadData(GameData data) {
+        this.cinemachineVirtualCamera.m_Lens.OrthographicSize = data.cameraOrthoSize;
+    }
+
+    public void SaveData(ref GameData data) {
+        data.cameraOrthoSize = this.cinemachineVirtualCamera.m_Lens.OrthographicSize;
+    }
 
 
     private void HandleZoom()

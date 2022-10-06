@@ -162,7 +162,6 @@ public class Archer : MonoBehaviour, IDataPersistence
         myCombatValue = currentStrength;
         foodNeededToUpCombatValue = currentFoodNeeded;
         GetComponent<Population>().TransferLevel(currentLevel);
-
     }
 
         public void TransferHealth(int currentHealth, int currentMaxHealth) {

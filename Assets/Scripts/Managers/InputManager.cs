@@ -152,7 +152,7 @@ public class InputManager : MonoBehaviour
     }
 
     private void UpdateInteractablesInput() {
-            if (Menu.instance && Menu.instance.isPaused) { return; }
+        if (Menu.instance && Menu.instance.isPaused) { return; }
 
             Transform lowestZGameObject = null;
 

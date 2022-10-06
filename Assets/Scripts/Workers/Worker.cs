@@ -288,6 +288,12 @@ public class Worker : MonoBehaviour, IDataPersistence
         maxHealth = currentMaxHealth;
     }
 
+    public void StopWorkingAnimCheck() {
+        if (GetComponentInParent<CraftingManager>().isCrafting == false) {
+            StopWorking();
+        }
+    }
+
 
     private IEnumerator StartWorkingCo() {
         yield return new WaitForSeconds(Random.Range(0f, .3f));

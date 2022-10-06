@@ -3796,7 +3796,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 13.07692
+  orthographic size: 6
   m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
@@ -9673,7 +9673,7 @@ MonoBehaviour:
     different tiles to gather resources.  "
   - "Right click active workers to pluck them off the tile (shift + right click to
     pull them all).  \n\nLet's build a farm!  Place the resources from the to do
-    list on a tile with a worker."
+    list on an empty tile with one or more workers."
   - "Place your newly crafted Farm on any land tile with one or more workers.  \n\nThe
     more workers you have the faster things get crafted!"
   - "Farms will harvest xp as shown in the top left corner.  \n\nEach time your xp
@@ -12540,7 +12540,7 @@ MonoBehaviour:
   mainCam: {fileID: 0}
   edgeSize: 30
   moveAmount: 100
-  edgeScrollingEnabled: 1
+  edgeScrollingEnabled: 0
 --- !u!114 &1741666897
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13639,14 +13639,14 @@ MonoBehaviour:
   m_Follow: {fileID: 1741666895}
   m_Lens:
     FieldOfView: 34
-    OrthographicSize: 13.07692
+    OrthographicSize: 6
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7784172, y: 1}
+    m_SensorSize: {x: 1.776808, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0

@@ -5,6 +5,8 @@ using System.Linq;
 
 public class PlacedItem : MonoBehaviour, IDataPersistence
 {   
+    [SerializeField] private LayerMask cloudLayerMask = new LayerMask();
+
     [SerializeField] public string id;
 
     [SerializeField] public ItemInfo itemInfo;
@@ -17,6 +19,12 @@ public class PlacedItem : MonoBehaviour, IDataPersistence
     private void Start() {
         CompleteFarmTutorial();
         GenerateGuid();
+
+        cloudLayerMask = LayerMask.GetMask("Clouds");
+    }
+
+    private void Update() {
+        DetectCloudWhilePlaced();
     }
 
     public void GenerateGuid() {
@@ -34,6 +42,57 @@ public class PlacedItem : MonoBehaviour, IDataPersistence
             }
             data.placedItems.Add(id, itemInfo);
             data.placedItemsPos.Add(id, transform.position);
+        }
+    }
+
+    private void DetectCloudWhilePlaced()
+    {
+        if (!itemInfo.isResourceOnly) { return; }
+
+        RaycastHit2D[] hitArray = Physics2D.RaycastAll(transform.position, Vector2.zero, 100f, cloudLayerMask);
+        RaycastHit2D[] hitArrayTwo = Physics2D.RaycastAll(transform.position + new Vector3(0, 1, 0), Vector2.zero, 100f, cloudLayerMask);
+
+        if (hitArray.Length > 0)
+        {
+            foreach (var cloud in hitArray)
+            {
+
+                cloud.transform.gameObject.GetComponent<Animator>().SetBool("HalfFade", true);
+            }
+        }
+
+        if (hitArrayTwo.Length > 0)
+        {
+            foreach (var cloud in hitArrayTwo)
+            {
+
+                cloud.transform.gameObject.GetComponent<Animator>().SetBool("HalfFade", true);
+            }
+        }
+    }
+
+    private void OnDestroy() {
+        if (!GetComponent<PlacedItem>()) { return; }
+
+        RaycastHit2D[] hitArray = Physics2D.RaycastAll(transform.position, Vector2.zero, 100f, cloudLayerMask);
+        RaycastHit2D[] hitArrayTwo = Physics2D.RaycastAll(transform.position + new Vector3(0, 1, 0), Vector2.zero, 100f, cloudLayerMask);
+
+        if (hitArray.Length > 0)
+        {
+            foreach (var cloud in hitArray)
+            {
+
+                cloud.transform.gameObject.GetComponent<Animator>().SetBool("HalfFade", false);
+            }
+        }
+
+        if (hitArrayTwo.Length > 0)
+        {
+            foreach (var cloud in hitArrayTwo)
+            {
+
+                cloud.transform.gameObject.GetComponent<Animator>().SetBool("HalfFade", false);
+            }
         }
     }
 
