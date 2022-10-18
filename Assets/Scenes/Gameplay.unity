@@ -1298,17 +1298,17 @@ MonoBehaviour:
   m_FillRect: {fileID: 1793917950}
   m_HandleRect: {fileID: 2128038491}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 0.00001
   m_MaxValue: 1
   m_WholeNumbers: 0
   m_Value: 0.7
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1426930137}
-        m_TargetAssemblyTypeName: StartingMenu, Assembly-CSharp
-        m_MethodName: UpdateMusicVolume
-        m_Mode: 1
+      - m_Target: {fileID: 1047827863}
+        m_TargetAssemblyTypeName: AudioOptionsManager, Assembly-CSharp
+        m_MethodName: OnMusicSliderValueChange
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -4220,19 +4220,7 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1426930137}
-        m_TargetAssemblyTypeName: StartingMenu, Assembly-CSharp
-        m_MethodName: WindowToggle
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_IsOn: 1
 --- !u!1 &519420028
 GameObject:
@@ -5715,13 +5703,25 @@ MonoBehaviour:
   m_FillRect: {fileID: 1397788518}
   m_HandleRect: {fileID: 338126307}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 0.00001
   m_MaxValue: 1
   m_WholeNumbers: 0
   m_Value: 0.7
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1047827863}
+        m_TargetAssemblyTypeName: AudioOptionsManager, Assembly-CSharp
+        m_MethodName: OnSFXSliderValueChange
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &714035663
 GameObject:
   m_ObjectHideFlags: 0
@@ -8364,6 +8364,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1047827861}
   - component: {fileID: 1047827862}
+  - component: {fileID: 1047827863}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -8399,204 +8400,251 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
-  - name: Theme Music
+  - audioType: 1
+    name: Theme Music
     clip: {fileID: 8300000, guid: dff850f87763df845b812925470999c7, type: 3}
     loop: 1
     volume: 0.4
     pitch: 1
     source: {fileID: 0}
-  - name: Pop
+  - audioType: 0
+    name: Pop
     clip: {fileID: 8300000, guid: b4cd9804c05bd8643877bdebbc9e579d, type: 3}
     loop: 0
     volume: 1
     pitch: 1.58
     source: {fileID: 0}
-  - name: Click
+  - audioType: 0
+    name: Click
     clip: {fileID: 8300000, guid: 18a4b12080ee3bf4ab3c96ce3bce9c4f, type: 3}
     loop: 0
     volume: 1
     pitch: 1
     source: {fileID: 0}
-  - name: Sell
+  - audioType: 0
+    name: Sell
     clip: {fileID: 8300000, guid: 52d65113796b82a4f9ecb98d1cdfd782, type: 3}
     loop: 0
     volume: 1
     pitch: 1
     source: {fileID: 0}
-  - name: Stack
+  - audioType: 0
+    name: Stack
     clip: {fileID: 8300000, guid: 99348d26b121bdf40bca2ff30b000207, type: 3}
     loop: 0
     volume: 1
     pitch: 0.86
     source: {fileID: 0}
-  - name: Tile Placement
+  - audioType: 0
+    name: Tile Placement
     clip: {fileID: 8300000, guid: b43d102aac6b145468dcaa94a5cccae1, type: 3}
     loop: 0
     volume: 0.462
     pitch: 1
     source: {fileID: 0}
-  - name: Crafting Started
+  - audioType: 0
+    name: Crafting Started
     clip: {fileID: 8300000, guid: e0c17022768667549b4e2ff7f2c65cbd, type: 3}
     loop: 0
     volume: 1
     pitch: 1
     source: {fileID: 0}
-  - name: Bush Rustle
+  - audioType: 0
+    name: Bush Rustle
     clip: {fileID: 8300000, guid: ce6825fb32106074a8dfe486b163dac9, type: 3}
     loop: 0
     volume: 0.34
     pitch: 1
     source: {fileID: 0}
-  - name: UI Click
+  - audioType: 0
+    name: UI Click
     clip: {fileID: 8300000, guid: 030515f205b54fc478961cbe39c4e75e, type: 3}
     loop: 0
     volume: 0.72
     pitch: 1.98
     source: {fileID: 0}
-  - name: Orc Attack
+  - audioType: 0
+    name: Orc Attack
     clip: {fileID: 8300000, guid: e39bdf0f5d71c0d43922dd7f92a1781c, type: 3}
     loop: 0
     volume: 0.514
     pitch: 1.41
     source: {fileID: 0}
-  - name: Arrow Launch
+  - audioType: 0
+    name: Arrow Launch
     clip: {fileID: 8300000, guid: 6e8772b49f34d402a90016ed445d8a2f, type: 3}
     loop: 0
     volume: 0.35
     pitch: 0.56
     source: {fileID: 0}
-  - name: Building Placement
+  - audioType: 0
+    name: Building Placement
     clip: {fileID: 8300000, guid: 56fc19c3b945b084ea8f06ddd16a8ef9, type: 3}
     loop: 0
     volume: 1
     pitch: 1
     source: {fileID: 0}
-  - name: Pitchfork Attack
+  - audioType: 0
+    name: Pitchfork Attack
     clip: {fileID: 8300000, guid: e6037e53f87f16649956db7502c333a1, type: 3}
     loop: 0
     volume: 1
     pitch: 1
     source: {fileID: 0}
-  - name: Worker Death
+  - audioType: 0
+    name: Worker Death
     clip: {fileID: 8300000, guid: c5f5719bef85f854b807d8404510d35b, type: 3}
     loop: 0
     volume: 0.805
     pitch: 0.9
     source: {fileID: 0}
-  - name: End Of Day Bell
+  - audioType: 0
+    name: End Of Day Bell
     clip: {fileID: 8300000, guid: 8e0de73c25ec95047981d939ba6e21cc, type: 3}
     loop: 0
     volume: 0.2
     pitch: 1
     source: {fileID: 0}
-  - name: Beep
+  - audioType: 0
+    name: Beep
     clip: {fileID: 8300000, guid: 77e9f1bf6329d914ab624d27337abd27, type: 3}
     loop: 0
     volume: 0.15
     pitch: 1
     source: {fileID: 0}
-  - name: Eat Crunch
+  - audioType: 0
+    name: Eat Crunch
     clip: {fileID: 8300000, guid: 9988e7ed4336d37499208ed59ecbadba, type: 3}
     loop: 0
     volume: 0.529
     pitch: 1
     source: {fileID: 0}
-  - name: Level Up
+  - audioType: 0
+    name: Level Up
     clip: {fileID: 8300000, guid: f496ee49452356c42b44918f0ebc872d, type: 3}
     loop: 0
     volume: 0.529
     pitch: 1
     source: {fileID: 0}
-  - name: Knight Equip
+  - audioType: 0
+    name: Knight Equip
     clip: {fileID: 8300000, guid: f3366538b8a9b5340aa99a79aec788c5, type: 3}
     loop: 0
     volume: 0.529
     pitch: 1
     source: {fileID: 0}
-  - name: Archer Equip
+  - audioType: 0
+    name: Archer Equip
     clip: {fileID: 8300000, guid: 5d373332e347fab45a1b84377d092d41, type: 3}
     loop: 0
     volume: 0.529
     pitch: 1
     source: {fileID: 0}
-  - name: Start Mine
+  - audioType: 0
+    name: Start Mine
     clip: {fileID: 8300000, guid: 772361ab67d4cc44b903623905740308, type: 3}
     loop: 0
     volume: 1
     pitch: 1
     source: {fileID: 0}
-  - name: Start Fishing
+  - audioType: 0
+    name: Start Fishing
     clip: {fileID: 8300000, guid: e82cb24c5e9f01d49913e0f52c429f5d, type: 3}
     loop: 0
     volume: 1
     pitch: 1
     source: {fileID: 0}
-  - name: ClickTwo
+  - audioType: 0
+    name: ClickTwo
     clip: {fileID: 8300000, guid: 99348d26b121bdf40bca2ff30b000207, type: 3}
     loop: 0
     volume: 1
     pitch: 0.8
     source: {fileID: 0}
-  - name: Furnace Started
+  - audioType: 0
+    name: Furnace Started
     clip: {fileID: 8300000, guid: f796126a179cb944da77c9a6b004e377, type: 3}
     loop: 0
     volume: 2
     pitch: 1
     source: {fileID: 0}
-  - name: New Discovery
+  - audioType: 0
+    name: New Discovery
     clip: {fileID: 8300000, guid: 0d40d79634be97c4fbdcc06397562396, type: 3}
     loop: 0
     volume: 0
     pitch: 1
     source: {fileID: 0}
-  - name: Armor Chink
+  - audioType: 0
+    name: Armor Chink
     clip: {fileID: 8300000, guid: f8d683638a1edbd43bedebd0392ed022, type: 3}
     loop: 0
     volume: 1
     pitch: 1
     source: {fileID: 0}
-  - name: Heal Complete
+  - audioType: 0
+    name: Heal Complete
     clip: {fileID: 8300000, guid: 63629b88aa6ae9a42b6be22e047c81b1, type: 3}
     loop: 0
     volume: 0.45
     pitch: 1
     source: {fileID: 0}
-  - name: Orc Swing
+  - audioType: 0
+    name: Orc Swing
     clip: {fileID: 8300000, guid: 95df212278b5d4642a77fbdc43bcd400, type: 3}
     loop: 0
     volume: 0.17
     pitch: 1
     source: {fileID: 0}
-  - name: Arrow Hit
+  - audioType: 0
+    name: Arrow Hit
     clip: {fileID: 8300000, guid: f03cc828d7635714da4375a26d54c6e5, type: 3}
     loop: 0
     volume: 0.2
     pitch: 1.1
     source: {fileID: 0}
-  - name: Farm Start
+  - audioType: 0
+    name: Farm Start
     clip: {fileID: 8300000, guid: c7bfaa3ae4a38d54bb4ab4878c23126c, type: 3}
     loop: 0
     volume: 1.5
     pitch: 1
     source: {fileID: 0}
-  - name: Garbage
+  - audioType: 0
+    name: Garbage
     clip: {fileID: 8300000, guid: 7848ade55cfe20345ae5a260e566609d, type: 3}
     loop: 0
     volume: 1
     pitch: 1
     source: {fileID: 0}
-  - name: Garbage Open
+  - audioType: 0
+    name: Garbage Open
     clip: {fileID: 8300000, guid: 907417551f0d23e4b81dfa9eea600bb0, type: 3}
     loop: 0
     volume: 0.35
     pitch: 1
     source: {fileID: 0}
-  - name: Wind
+  - audioType: 0
+    name: Wind
     clip: {fileID: 8300000, guid: 80fadbbce62f72343943c384b6699ff2, type: 3}
     loop: 0
     volume: 1
     pitch: 1
     source: {fileID: 0}
+  musicMixerGroup: {fileID: -6652677477385015688, guid: 8ed2d4307a57cb74aa9f50680c26d686, type: 2}
+  sfxMixerGroup: {fileID: 3150458111183460749, guid: 8ed2d4307a57cb74aa9f50680c26d686, type: 2}
+--- !u!114 &1047827863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1047827860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e4f14542fb24f04fa26b3eca38670aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1057800654
 GameObject:
   m_ObjectHideFlags: 0
@@ -12852,7 +12900,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'save settings '
+  m_text: Apply Graphic Changes
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 37753bf56d1af3644b190f9d0dad1f3f, type: 2}
   m_sharedMaterial: {fileID: -2186161118020174935, guid: 37753bf56d1af3644b190f9d0dad1f3f, type: 2}
@@ -12879,8 +12927,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 60.9
-  m_fontSizeBase: 60.9
+  m_fontSize: 40
+  m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

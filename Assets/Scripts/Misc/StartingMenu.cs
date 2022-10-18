@@ -7,8 +7,8 @@ using TMPro;
 
 public class StartingMenu : MonoBehaviour
 {
-    [SerializeField] private Slider musicSlider;
-    [SerializeField] private Slider sfxSlider;
+    [SerializeField] public Slider musicSlider;
+    [SerializeField] public Slider sfxSlider;
     [SerializeField] private GameObject worldSpaceCavas;
     [SerializeField] private GameObject uiCanvas;
     [SerializeField] private GameObject startingMenuCanvas;
@@ -22,7 +22,10 @@ public class StartingMenu : MonoBehaviour
     
     private Animator myAnimator;
 
+    public static StartingMenu instance;
+
     private void Awake() {
+        instance = this;
         myAnimator = GetComponent<Animator>();
     }
 
@@ -36,12 +39,12 @@ public class StartingMenu : MonoBehaviour
         DetectCurrentRes();
     }
 
-    public void UpdateMusicVolume() {
-        AudioListener.volume = musicSlider.value;
+    public void UpdateMusicVolume(float volume) {
+        musicSlider.value = volume;
     }
 
-    public void UpdateSFXVolume() {
-        AudioListener.volume = sfxSlider.value;
+    public void UpdateSFXVolume(float volume) {
+        sfxSlider.value = volume;
     }
 
     private void DetectCurrentRes() {
@@ -108,6 +111,8 @@ public class StartingMenu : MonoBehaviour
     }
 
     public void ResLeft() {
+        AudioManager.instance.Play("UI Click");
+
         selectedResolution--;
         if (selectedResolution < 0) {
             selectedResolution = 0;
@@ -116,6 +121,8 @@ public class StartingMenu : MonoBehaviour
     }
 
     public void ResRight() {
+        AudioManager.instance.Play("UI Click");
+
         selectedResolution++;
         if (selectedResolution > resolutions.Count - 1) {
             selectedResolution = resolutions.Count - 1;
