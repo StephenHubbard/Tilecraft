@@ -142,7 +142,6 @@ public class DiscoveryManager : MonoBehaviour, IDataPersistence
         }
 
         Encyclopedia.instance.AddItemToDiscoveredList(allAvailableItemsInOrder[discoveryIndex], true, true);
-        AudioManager.instance.Play("Sell");
         discoveryIndex++;
 
         if (TutorialManager.instance.tutorialIndexNum == 3) {

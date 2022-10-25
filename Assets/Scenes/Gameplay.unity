@@ -1664,7 +1664,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Close
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 37753bf56d1af3644b190f9d0dad1f3f, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 32ed81f2eeca8be44ae1b07332c286d3, type: 2}
   m_sharedMaterial: {fileID: -2186161118020174935, guid: 37753bf56d1af3644b190f9d0dad1f3f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -1728,7 +1728,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &188884393
@@ -6442,8 +6442,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Filter Uncrafted
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 37753bf56d1af3644b190f9d0dad1f3f, type: 2}
-  m_sharedMaterial: {fileID: -2186161118020174935, guid: 37753bf56d1af3644b190f9d0dad1f3f, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 32ed81f2eeca8be44ae1b07332c286d3, type: 2}
+  m_sharedMaterial: {fileID: -2186161118020174935, guid: 32ed81f2eeca8be44ae1b07332c286d3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -6506,7 +6506,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &852808530
@@ -8411,28 +8411,28 @@ MonoBehaviour:
     name: Pop
     clip: {fileID: 8300000, guid: 72e7fa92b4b15d4428aaad3fd4f85288, type: 3}
     loop: 0
-    volume: 1
+    volume: 0.49
     pitch: 1
     source: {fileID: 0}
   - audioType: 0
     name: Click
     clip: {fileID: 8300000, guid: 77d6d494097e2ad48835b48402b91cc1, type: 3}
     loop: 0
-    volume: 0.33
+    volume: 0.16
     pitch: 1.18
     source: {fileID: 0}
   - audioType: 0
     name: Stack
     clip: {fileID: 8300000, guid: cfd8ec012fff6f84aae0fd500f4e7f0f, type: 3}
     loop: 0
-    volume: 1
+    volume: 0.72
     pitch: 1
     source: {fileID: 0}
   - audioType: 0
     name: Crafting Started
     clip: {fileID: 8300000, guid: 659a7939cdb6ff04aa76420f5292e3c5, type: 3}
     loop: 0
-    volume: 0.62
+    volume: 0.52
     pitch: 0.83
     source: {fileID: 0}
   - audioType: 0
@@ -8593,8 +8593,8 @@ MonoBehaviour:
     name: Wind
     clip: {fileID: 8300000, guid: f85932b77258a0f4bb9344b4b3cd6312, type: 3}
     loop: 0
-    volume: 0.93
-    pitch: 0.81
+    volume: 0.85
+    pitch: 0.64
     source: {fileID: 0}
   musicMixerGroup: {fileID: 5259687168181620093, guid: 071a074edf97cdb49845aed3d1a9343e, type: 2}
   sfxMixerGroup: {fileID: -6790459010892099692, guid: 071a074edf97cdb49845aed3d1a9343e, type: 2}
@@ -10821,8 +10821,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'New:'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 37753bf56d1af3644b190f9d0dad1f3f, type: 2}
-  m_sharedMaterial: {fileID: -2186161118020174935, guid: 37753bf56d1af3644b190f9d0dad1f3f, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 32ed81f2eeca8be44ae1b07332c286d3, type: 2}
+  m_sharedMaterial: {fileID: -2186161118020174935, guid: 32ed81f2eeca8be44ae1b07332c286d3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -11695,7 +11695,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bfc551d3cdb78e4eb545262d33e87a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showTutorial: 0
+  showTutorial: 1
   storageActive: 1
   tutorialContainer: {fileID: 44721069}
   tutorialRectTransform: {fileID: 44721070}
@@ -14043,8 +14043,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Known Recipes:'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 37753bf56d1af3644b190f9d0dad1f3f, type: 2}
-  m_sharedMaterial: {fileID: -2186161118020174935, guid: 37753bf56d1af3644b190f9d0dad1f3f, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 32ed81f2eeca8be44ae1b07332c286d3, type: 2}
+  m_sharedMaterial: {fileID: -2186161118020174935, guid: 32ed81f2eeca8be44ae1b07332c286d3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -15148,7 +15148,6 @@ GameObject:
   - component: {fileID: 1741666895}
   - component: {fileID: 1741666896}
   - component: {fileID: 1741666897}
-  - component: {fileID: 1741666898}
   m_Layer: 0
   m_Name: CameraController
   m_TagString: Untagged
@@ -15200,18 +15199,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5cb64c9a639ed5847a9d8c0e8bee9505, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1741666898
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1741666894}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cfcc9ceea0bf419cb3bcaf548c2600d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1751532532
@@ -16890,8 +16877,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Right Click Recipes to toggle to do list
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 37753bf56d1af3644b190f9d0dad1f3f, type: 2}
-  m_sharedMaterial: {fileID: -2186161118020174935, guid: 37753bf56d1af3644b190f9d0dad1f3f, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 32ed81f2eeca8be44ae1b07332c286d3, type: 2}
+  m_sharedMaterial: {fileID: -2186161118020174935, guid: 32ed81f2eeca8be44ae1b07332c286d3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -17023,7 +17010,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Alpha - Version 0.6
+  m_text: Alpha - Version 0.7
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 32ed81f2eeca8be44ae1b07332c286d3, type: 2}
   m_sharedMaterial: {fileID: -2186161118020174935, guid: 32ed81f2eeca8be44ae1b07332c286d3, type: 2}
@@ -17224,7 +17211,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1948473645}
-  - component: {fileID: 1948473646}
   m_Layer: 0
   m_Name: Cameras
   m_TagString: Untagged
@@ -17252,18 +17238,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1948473646
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1948473644}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cfcc9ceea0bf419cb3bcaf548c2600d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1951160113
 GameObject:
   m_ObjectHideFlags: 0
