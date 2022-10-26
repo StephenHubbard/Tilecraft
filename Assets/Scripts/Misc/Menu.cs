@@ -42,6 +42,7 @@ public class Menu : MonoBehaviour
         AudioManager.instance.Play("UI Click");
         DataPersistenceManager.instance.SaveGame();
         gameSavedText.SetActive(true);
+        PlayerPrefs.SetInt("SavedGame", 1);
     }
 
 

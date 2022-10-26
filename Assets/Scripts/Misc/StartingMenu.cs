@@ -66,6 +66,14 @@ public class StartingMenu : MonoBehaviour
             selectedResolution = resolutions.Count - 1;
             UpdateResText();
         }
+
+        if (PlayerPrefs.GetInt("FullScreen") == 0) {
+            Screen.fullScreen = false;
+            fullScreenTog.isOn = false;
+        } else {
+            Screen.fullScreen = true;
+            fullScreenTog.isOn = true;
+        }
     }
 
     public void NewGameButton() {
@@ -77,8 +85,12 @@ public class StartingMenu : MonoBehaviour
 
     public void LoadGameButton() {
         AudioManager.instance.Play("UI Click");
-        StartCoroutine(loadGameCo());
-        TutorialManager.instance.showTutorial = false;
+        if (PlayerPrefs.GetInt("SavedGame") == 1) {
+            StartCoroutine(loadGameCo());
+            TutorialManager.instance.showTutorial = false;
+        } else {
+            Debug.Log("No data was found");
+        }
     }
 
     public void OptionsButton() {
@@ -91,9 +103,11 @@ public class StartingMenu : MonoBehaviour
     public void SaveOptionsButton() {
         AudioManager.instance.Play("UI Click");
         if (fullScreenTog.isOn) {
-            Screen.fullScreen = false;
-        } else {
             Screen.fullScreen = true;
+            PlayerPrefs.SetInt("FullScreen", 1);
+        } else {
+            Screen.fullScreen = false;
+            PlayerPrefs.SetInt("FullScreen", 0);
         }
             
         Screen.SetResolution(resolutions[selectedResolution].horizontal, resolutions[selectedResolution].vertical, fullScreenTog.isOn);

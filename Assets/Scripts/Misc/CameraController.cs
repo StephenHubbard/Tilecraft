@@ -14,7 +14,6 @@ public class CameraController : MonoBehaviour, IDataPersistence
     [SerializeField] private float cameraBorderBuffer = 7f;
     [SerializeField] private Camera mainCam;
     [SerializeField] private float edgeSize = 30f;
-    [SerializeField] private float moveAmount = 100f;
     [SerializeField] public bool edgeScrollingEnabled = true;
 
     private CinemachineTransposer cinemachineTransposer;

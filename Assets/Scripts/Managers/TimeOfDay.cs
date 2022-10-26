@@ -16,7 +16,6 @@ public class TimeOfDay : MonoBehaviour, IDataPersistence
     public float totalTimeElapsed;
     
     private float clockSpinFactor;
-    private bool countDownStarted = false;
 
     private FoodManager foodManager;
 
