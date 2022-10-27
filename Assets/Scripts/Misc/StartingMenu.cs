@@ -14,10 +14,13 @@ public class StartingMenu : MonoBehaviour
     [SerializeField] private GameObject startingMenuCanvas;
     [SerializeField] private GameObject optionsContainer;
     [SerializeField] private GameObject mainMenuContainer;
+    [SerializeField] private GameObject creditsContainer;
     [SerializeField] private TMP_Text resText;
     [SerializeField] private GameObject logo;
     [SerializeField] private Toggle fullScreenTog;
     [SerializeField] private List<ResItem> resolutions = new List<ResItem>();
+    [SerializeField] private GameObject versionText;
+    [SerializeField] private GameObject creditsButton;
     public int selectedResolution = 0;
     
     private Animator myAnimator;
@@ -83,6 +86,15 @@ public class StartingMenu : MonoBehaviour
         NewGameStartLogic();
     }
 
+    public void ShowCreditsButton() {
+        AudioManager.instance.Play("UI Click");
+        creditsContainer.SetActive(true);
+        mainMenuContainer.SetActive(false);
+        logo.SetActive(false);
+        creditsButton.SetActive(false);
+        versionText.SetActive(false);
+    }
+
     public void LoadGameButton() {
         AudioManager.instance.Play("UI Click");
         if (PlayerPrefs.GetInt("SavedGame") == 1) {
@@ -118,6 +130,21 @@ public class StartingMenu : MonoBehaviour
         optionsContainer.SetActive(false);
         mainMenuContainer.SetActive(true);
         logo.SetActive(true);
+        creditsContainer.SetActive(false);
+        creditsButton.SetActive(true);
+        versionText.SetActive(true);
+    }
+
+    public void HubbardGamesInsta() {
+        Application.OpenURL("https://www.instagram.com/hubbardgames/");
+    }
+
+    public void CloudRoadMusicUrl() {
+        Application.OpenURL("https://www.cloudroadmusic.com/");
+    }
+
+    public void A0405uTwitterUrl() {
+        Application.OpenURL("https://twitter.com/a0405u");
     }
 
     public void UpdateResText() {
