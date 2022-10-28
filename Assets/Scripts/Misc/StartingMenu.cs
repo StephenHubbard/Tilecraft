@@ -110,6 +110,8 @@ public class StartingMenu : MonoBehaviour
         optionsContainer.SetActive(true);
         mainMenuContainer.SetActive(false);
         logo.SetActive(false);
+        creditsButton.SetActive(false);
+        versionText.SetActive(false);
     }
 
     public void SaveOptionsButton() {
