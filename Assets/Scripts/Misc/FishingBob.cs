@@ -10,6 +10,7 @@ public class FishingBob : MonoBehaviour
         myAnimator = GetComponent<Animator>();
     }
 
+
     private void Start() {
         AnimatorStateInfo state = myAnimator.GetCurrentAnimatorStateInfo (0);
         myAnimator.Play (state.fullPathHash, -1, Random.Range(0f,1f));

@@ -13,8 +13,10 @@ public class OrcRelic : MonoBehaviour
     public bool hasEnemies = true;
     public bool spawnEnemies = false;
 
+
     private void Start() {
         SpawnOrcs();
+
     }
 
     private void SpawnOrcs() {

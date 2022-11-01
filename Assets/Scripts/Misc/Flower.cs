@@ -10,10 +10,13 @@ public class Flower : MonoBehaviour
         myAnimator = GetComponent<Animator>();
     }
 
+
     private void Start() {
         AnimatorStateInfo state = myAnimator.GetCurrentAnimatorStateInfo (0);
         myAnimator.Play (state.fullPathHash, -1, Random.Range(0f,1f));
     }
+
+    
 
     private void OnCollisionEnter2D(Collision2D other) {
         if (other.gameObject.GetComponent<Flower>()) {
